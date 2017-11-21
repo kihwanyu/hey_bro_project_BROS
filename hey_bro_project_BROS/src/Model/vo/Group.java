@@ -49,8 +49,8 @@ public class Group {
 	}
 	@Override
 	public String toString() {
-		return "Group [number=" + number + ", Leader=" + Leader + ", gName=" + gName + ", pw=" + pw + ", Content="
-				+ Content + "]";
+		return number + ", " + Leader + ", " + gName + ", " + pw + ", "
+				+ Content;
 	}
 	
 	

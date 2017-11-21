@@ -90,9 +90,9 @@ public class Schedule {
 	}
 	@Override
 	public String toString() {
-		return "Schedule [gName=" + gName + ", sName=" + sName + ", year=" + year + ", month=" + month + ", date="
-				+ date + ", startHour=" + startHour + ", startMin=" + startMin + ", endHour=" + endHour + ", endMin="
-				+ endMin + ", sContent=" + sContent + "]";
+		return gName + ", " + sName + ", " + year + ", " + month + ", "
+				+ date + ", " + startHour + ", " + startMin + ", " + endHour + ", "
+				+ endMin + ", " + sContent;
 	}
 	
 	

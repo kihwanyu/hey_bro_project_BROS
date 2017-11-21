@@ -61,8 +61,8 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Member [userId=" + userId + ", userPw=" + userPw + ", userName=" + userName + ", birthday=" + birthday
-				+ ", phone=" + phone + ", email=" + email + "]";
+		return userId + ", " + userPw + ", " + userName + ", " + birthday
+				+ ", " + phone + ", " + email;
 	}
 
 }
