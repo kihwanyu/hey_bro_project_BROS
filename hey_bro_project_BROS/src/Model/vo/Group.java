@@ -5,7 +5,7 @@ public class Group {
 	private String Leader;
 	private String gName;
 	private String pw;
-	private String Content;
+	private String content;
 	public Group() {
 		super();
 	}
@@ -15,7 +15,7 @@ public class Group {
 		Leader = leader;
 		this.gName = gName;
 		this.pw = pw;
-		Content = content;
+		this.content = content;
 	}
 	public int getNumber() {
 		return number;
@@ -42,15 +42,15 @@ public class Group {
 		this.pw = pw;
 	}
 	public String getContent() {
-		return Content;
+		return content;
 	}
 	public void setContent(String content) {
-		Content = content;
+		this.content = content;
 	}
 	@Override
 	public String toString() {
 		return number + ", " + Leader + ", " + gName + ", " + pw + ", "
-				+ Content;
+				+ content;
 	}
 	
 	

@@ -16,12 +16,8 @@ import java.util.Set;
 
 import Model.vo.Member;
 
-public class MemberAddDao {
-	public MemberAddDao(){
-		
-		
-	}
-	public void MemberAdd(){
+public class MemberRegisterDao {
+	public MemberRegisterDao(){
 		Map<String,Member> memberMap = new HashMap<>();
 		Scanner sc = new Scanner(System.in);
 		Properties prop = new Properties();
@@ -35,7 +31,7 @@ public class MemberAddDao {
 	
 		
 		try {
-			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS\\src\\Model\\Data\\members.xml"));
+			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\members.xml"));
 			System.out.println(prop.size());
 			for(int i = 0; i < prop.size(); i++){
 				String str;
@@ -101,5 +97,5 @@ public class MemberAddDao {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	}	
 }
