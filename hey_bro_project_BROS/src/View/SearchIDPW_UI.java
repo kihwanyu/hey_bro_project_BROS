@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 public class SearchIDPW_UI {
 
-	public void searchId(){
+	public void searchIdPw(){
 		
 		JFrame mf = new JFrame();
 		mf.setBounds(400,200,800,500);
@@ -147,6 +147,7 @@ public class SearchIDPW_UI {
 		idBtn.setLocation(100, 300);
 		idBtn.setSize(250, 30);
 		
+		//패널에 컴포넌트 담기
 		
 		pan1.add(text);
 		pan1.add(text2);
@@ -284,7 +285,8 @@ public class SearchIDPW_UI {
 		JButton pwBtn = new JButton("비밀번호 찾기");
 		pwBtn.setLocation(440, 300);
 		pwBtn.setSize(250, 30);
-				
+		
+		//패널에 컴포넌트 담기
 		
 		pan2.add(text4);
 		pan2.add(text5);
@@ -292,7 +294,7 @@ public class SearchIDPW_UI {
 		pan2.add(text6);
 		pan2.add(pwBtn);
 		
-		
+		//메인 프레임 담기
 		
 		mf.add(pan1);		
 		mf.add(pan2);
@@ -300,11 +302,6 @@ public class SearchIDPW_UI {
 		mf.setVisible(true);
 		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-	}
-
-	public static void main(String[] args) {
-		SearchIDPW_UI test = new SearchIDPW_UI();
-		test.searchId();
 	}
 
 }
