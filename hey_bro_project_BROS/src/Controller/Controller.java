@@ -1,20 +1,17 @@
 package Controller;
 
-import java.util.ArrayList;
-
 import Model.dao.LoginDao;
-import Model.dao.MemberAddDao;
-import Model.vo.Member;
+import Model.dao.MemberRegisterDao;
+
 
 public class Controller {
-	MemberAddDao mad = new MemberAddDao();
+	MemberRegisterDao mad = new MemberRegisterDao();
 	public Controller(String key){
 		switch (key) {
-		case "MemberAdd.dao" :
-		
-		mad.MemberAdd();
+		case "MemberRegister.do" :
+		new MemberRegisterDao();
 		break;
-		case "Login.dao":
+		case "Login.do":
 			new LoginDao();
 			break;
 
