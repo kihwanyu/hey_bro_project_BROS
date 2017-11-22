@@ -49,11 +49,12 @@ public class Main_UI extends JFrame {
 
 		Image icon2 = new ImageIcon("hey_bro_project_BROS/src/View/img/main_2.PNG").getImage().getScaledInstance(140, 139, 0);
 		JButton join = new JButton(new ImageIcon(icon2));
-
-		join.setLocation(450, 200);
+		
+		join.setBounds(450, 200, 130, 130);
+	/*	join.setLocation(450, 200);
 		//userPanel3.setBackground(Color.green);
 		join.setSize(130, 130);
-
+*/
 		Image icon3 = new ImageIcon("hey_bro_project_BROS/src/View/img/main_3.PNG").getImage().getScaledInstance(139, 139, 0);
 		JButton in = new JButton(new ImageIcon(icon3));
 
@@ -69,12 +70,12 @@ public class Main_UI extends JFrame {
 		Image icon_2 = new ImageIcon("hey_bro_project_BROS/src/View/img/button2.PNG").getImage().getScaledInstance(205, 48, 0);
 		JButton qa = new JButton(new ImageIcon(icon_2));
 		qa.setLocation(10, 170);
-		qa.setSize(180, 52);
+		qa.setSize(180, 48);
 
 		Image icon_3 = new ImageIcon("hey_bro_project_BROS/src/View/img/button3.PNG").getImage().getScaledInstance(206, 50, 0);
 		JButton out = new JButton(new ImageIcon(icon_3));
 		out.setLocation(10, 350);
-		out.setSize(180, 52);
+		out.setSize(180, 50);
 
 		//text
 		JLabel text1 = new JLabel("님 환영합니다.");
