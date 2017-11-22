@@ -26,7 +26,7 @@ public class Transfer extends JFrame{
 		this.setResizable(false);
 		
 			
-		
+		//
 		
 		//메인 이미지
 		Image icon = new ImageIcon("hey_bro_project_BROS/src/View/img/Transfer.PNG").getImage().getScaledInstance(380, 389, 0);
