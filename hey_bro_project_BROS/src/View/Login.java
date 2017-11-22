@@ -19,7 +19,7 @@ public class Login extends JFrame{
 	private JPasswordField passText;
 	private JTextField userText;
 	private boolean bLoginCheck;
-
+	//
 	public static void main(String[] args) {
 		//new LoginView();
 		//400 200 800 500
