@@ -15,15 +15,15 @@ public class Transfer extends JFrame{
 	public Transfer(){
 		JFrame mf = new JFrame();
 		
-		mf.setLayout(null);
+		this.setLayout(null);
 		//mf.setBackground(Color.WHITE);
 
 		//프레임 크기
-		mf.setBounds(400, 200, 385, 420);
+		this.setBounds(400, 200, 385, 420);
 		//프레임 이름
-		mf.setTitle("Hey~bro");
+		this.setTitle("Hey~bro");
 		//사이즈 조절불가
-		mf.setResizable(false);
+		this.setResizable(false);
 		
 			
 		
@@ -58,15 +58,15 @@ public class Transfer extends JFrame{
 		
 	
 		
-		mf.add(memberList);
-		mf.add(back);
-		mf.add(tf_bt);
-		mf.add(main);
+		this.add(memberList);
+		this.add(back);
+		this.add(tf_bt);
+		this.add(main);
 		
 		
 		
-		mf.setVisible(true);
-		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	/*public static void main(String[] args){
