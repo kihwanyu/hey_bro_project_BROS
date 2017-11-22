@@ -2,34 +2,32 @@ package View;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class Main_UI extends JFrame {
+public class Main_UI extends JPanel {
 
+	private JPanel mainPanel;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5254287704675653795L;
 
 	public Main_UI(){
-		JFrame mf = new JFrame();
 		//jo1
-		mf.setLayout(null);
-		mf.setBackground(Color.WHITE);
+		this.setLayout(null);
+		this.setBackground(Color.WHITE);
 
-		//프레임 크기
-		mf.setBounds(400, 200, 800, 500);
-		//프레임 이름
-		mf.setTitle("Hey~bro");
-		//사이즈 조절불가
-		mf.setResizable(false);
+		this.setBounds(0, 0, 800, 500);
 
 
-		JPanel mainPanel = new JPanel();
+
+		mainPanel = new JPanel();
 		mainPanel.setBackground(Color.WHITE);
 		mainPanel.setSize(800, 500);
 		JPanel userPanel = new JPanel();
@@ -65,7 +63,7 @@ public class Main_UI extends JFrame {
 		JButton edit = new JButton(new ImageIcon(icon_1));
 		edit.setLocation(10, 100);
 		edit.setSize(180, 52);
-
+		clickEvent(edit, new MemberUpdate_UI());
 		Image icon_2 = new ImageIcon("hey_bro_project_BROS/src/View/img/button2.PNG").getImage().getScaledInstance(205, 48, 0);
 		JButton qa = new JButton(new ImageIcon(icon_2));
 		qa.setLocation(10, 170);
@@ -90,17 +88,17 @@ public class Main_UI extends JFrame {
 		png.setSize(48, 45);
 
 
-		mf.add(png);
-		mf.add(plusLabel);
-		mf.add(join);
-		mf.add(in);
-		mf.add(edit);
-		mf.add(qa);
-		mf.add(out);
-		mf.add(text1);
-		mf.add(text2);
-		mf.add(userPanel);
-		mf.add(mainPanel);
+		mainPanel.add(png);
+		mainPanel.add(plusLabel);
+		mainPanel.add(join);
+		mainPanel.add(in);
+		mainPanel.add(edit);
+		mainPanel.add(qa);
+		mainPanel.add(out);
+		mainPanel.add(text1);
+		mainPanel.add(text2);
+		mainPanel.add(userPanel);
+		this.add(mainPanel);
 		//mf.add();
 
 		/*//아이콘 이미지 변경
@@ -110,8 +108,44 @@ public class Main_UI extends JFrame {
 			e.printStackTrace();
 		}
 		 */
-
-		mf.setVisible(true);
-		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	public void clickEvent(JButton button, JPanel panel){
+		button.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				nextPage(panel);				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
+	public void nextPage(JPanel loadPanel) {		
+		this.remove(this.mainPanel);//현재 패널 지우고
+		this.mainPanel =  loadPanel; //2번 패널 객체를 담음
+		this.add(mainPanel); //다시 패널을 올려줌
+		this.repaint(); //다시 적용(갱신)
 	}
 }

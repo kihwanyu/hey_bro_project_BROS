@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -10,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class SearchIDPW_UI extends JFrame{
+public class SearchIDPW_UI extends JPanel{
 
 	/**
 	 * 
@@ -19,16 +20,13 @@ public class SearchIDPW_UI extends JFrame{
 
 	public SearchIDPW_UI(){
 		
-		JFrame mf = new JFrame();
-		mf.setBounds(400,200,800,500);
+		//JFrame mf = new JFrame();
+		this.setBounds(0,0,800,500);
 	
 		
 		//panel1 : 아이디 찾기
-		JPanel pan1 = new JPanel();
-		pan1.setLayout(null);
-		pan1.setLocation(0, 0);
-		pan1.setSize(400, 500);
-		
+		//JPanel pan1 = new JPanel();
+		this.setLayout(null);
 				
 		JLabel lb1 = new JLabel("아이디 찾기");
 		lb1.setLocation(170, 50);
@@ -152,26 +150,24 @@ public class SearchIDPW_UI extends JFrame{
 		
 		//패널에 컴포넌트 담기
 		
-		pan1.add(text);
-		pan1.add(text2);
-		pan1.add(lb1);
-		pan1.add(text3);
-		pan1.add(idBtn);
+		this.add(text);
+		this.add(text2);
+		this.add(lb1);
+		this.add(text3);
+		this.add(idBtn);
 		
 		
 		//panel2 찾기
 		
-		JPanel pan2 = new JPanel();
-		pan2.setLayout(null);
-		pan2.setLocation(400, 0);
-		pan2.setSize(200, 500);
-				
+		//JPanel pan2 = new JPanel();
+		this.setLayout(null);
+		//this.setBackground(Color.PINK);
 		JLabel lb2 = new JLabel("비밀번호 찾기");
 		lb2.setLocation(480, 50);
 		lb2.setSize(200,50);
 		lb2.setFont(new Font(Font.DIALOG, Font.BOLD, 25));
 				
-		pan2.add(lb2);
+		this.add(lb2);
 				
 		JTextField text4 = new JTextField(15);
 		text4.setLocation(440, 150);
@@ -291,19 +287,17 @@ public class SearchIDPW_UI extends JFrame{
 		
 		//패널에 컴포넌트 담기
 		
-		pan2.add(text4);
-		pan2.add(text5);
-		pan2.add(lb2);
-		pan2.add(text6);
-		pan2.add(pwBtn);
+		this.add(text4);
+		this.add(text5);
+		this.add(lb2);
+		this.add(text6);
+		this.add(pwBtn);
 		
 		//메인 프레임 담기
+
 		
-		mf.add(pan1);		
-		mf.add(pan2);
-		
-		mf.setVisible(true);
-		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
 

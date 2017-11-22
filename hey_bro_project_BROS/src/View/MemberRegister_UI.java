@@ -12,14 +12,13 @@ import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-public class MemberRegister_UI extends JFrame {
+public class MemberRegister_UI extends JPanel {
 	/**
 	 * 
 	 */
@@ -29,12 +28,12 @@ public class MemberRegister_UI extends JFrame {
 		final int MEMBER_LIBEL_LOCATION_X = 80;
 		final int MEMBER_TEXT_LOCATION_X = MEMBER_LIBEL_LOCATION_X+110; 
 		
-		JFrame fr = new JFrame("회원가입");
+		//JFrame fr = new JFrame("회원가입");
 		JPanel title_p = new JPanel();
-		JPanel panel_m = new JPanel();
-		panel_m.setLayout(null);
-		panel_m.setLocation(0, 0);
-		
+		//JPanel panel_m = new JPanel();
+		this.setLayout(null);
+		this.setLocation(0, 0);
+
 		JLabel title_lb = new JLabel("회원가입");
 		
 		JLabel id_lb = new JLabel("아이디 : \n");
@@ -144,34 +143,33 @@ public class MemberRegister_UI extends JFrame {
 		gender.add(man);
 		gender.add(woman);
 		
-		fr.setBounds(400,200,800,500);
-		fr.add(title_p,"North");
-		fr.add(panel_m);
+		this.setBounds(0,0,800,500);
+		this.add(title_p,"North");
 		
 		title_p.add(title_lb);
 		
-		panel_m.add(id_lb);
-		panel_m.add(overlap_bt);
-		panel_m.add(id_text);
-		panel_m.add(pw_lb1);
-		panel_m.add(pw_text1);
-		panel_m.add(pw_lb2);
-		panel_m.add(pw_text2);
-		panel_m.add(name_text);
-		panel_m.add(name_lb);
-		panel_m.add(man);
-		panel_m.add(woman);
-		panel_m.add(birthday_lb);
-		panel_m.add(yearList);
-		panel_m.add(monthList);
+		this.add(id_lb);
+		this.add(overlap_bt);
+		this.add(id_text);
+		this.add(pw_lb1);
+		this.add(pw_text1);
+		this.add(pw_lb2);
+		this.add(pw_text2);
+		this.add(name_text);
+		this.add(name_lb);
+		this.add(man);
+		this.add(woman);
+		this.add(birthday_lb);
+		this.add(yearList);
+		this.add(monthList);
 		
-		panel_m.add(email_lb);
-		panel_m.add(email_text);
-		panel_m.add(userIng_lb);
-		panel_m.add(imageOpen_Bt);
-		panel_m.add(register_bt);
-		panel_m.add(deleteAll_bt);
-		panel_m.add(dateList);
+		this.add(email_lb);
+		this.add(email_text);
+		this.add(userIng_lb);
+		this.add(imageOpen_Bt);
+		this.add(register_bt);
+		this.add(deleteAll_bt);
+		this.add(dateList);
 		
 		textDelete(id_text);
 		textDelete(pw_text1);
@@ -199,8 +197,9 @@ public class MemberRegister_UI extends JFrame {
 			}
 		});
 		
-		fr.setVisible(true);
-		fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//fr.setVisible(true);
+		//fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	//text박스 클릭시 텍스트박스에 있는 문자열을 지워주는 메소드.
 	public void textDelete(JTextField tf){
