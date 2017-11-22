@@ -88,8 +88,12 @@ public class Main_UI extends JFrame {
 		JLabel png = new JLabel(new ImageIcon(icon_4));
 		png.setLocation(0, 3);
 		png.setSize(48, 45);
-
-
+		
+		Image icon_5 = new ImageIcon("hey_bro_project_BROS/src/View/img/logout.PNG").getImage().getScaledInstance(149, 49, 0);
+		JButton logout = new JButton(new ImageIcon(icon_5));
+		logout.setBounds(630, 410, 149, 49);
+		
+		mf.add(logout);
 		mf.add(png);
 		mf.add(plusLabel);
 		mf.add(join);
