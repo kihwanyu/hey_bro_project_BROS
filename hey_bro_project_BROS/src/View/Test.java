@@ -6,6 +6,7 @@ public class Test {
 		//new MemberUpdate_UI();
 		//new GroupEdit_UI();
 		new Main_UI();
+		
 	}
 
 }
