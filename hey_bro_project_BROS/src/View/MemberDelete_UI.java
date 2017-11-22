@@ -5,7 +5,12 @@ import java.awt.Image;
 
 import javax.swing.*;
 
-public class MemberDelete_UI {
+public class MemberDelete_UI extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6557046076929215948L;
+
 	public MemberDelete_UI() {
 		JFrame mf = new JFrame();
 		

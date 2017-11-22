@@ -9,15 +9,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class GroupEdit_UI extends JFrame{
+public class GroupRegistor_UI extends JFrame {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1436779561881168592L;
+	private static final long serialVersionUID = 4430678642605584542L;
 
-	public GroupEdit_UI(){
-		JFrame mf = new JFrame("모임 수정");
-		
+	public GroupRegistor_UI(){
+		JFrame mf = new JFrame("모임 만들기");
+
 		mf.setBounds(400, 200, 800, 500);
 		mf.setLayout(null);
 		
@@ -26,9 +26,9 @@ public class GroupEdit_UI extends JFrame{
 		mainPanel.setBackground(Color.white);
 		
 		//창 이름
-		JLabel title = new JLabel("모임수정");
+		JLabel title = new JLabel("모임 만들기");
 		title.setFont(new Font(Font.DIALOG, Font.BOLD, 28));
-		title.setLocation(330,10);
+		title.setLocation(316,10);
 		title.setSize(300, 30);
 		
 		//모임명 라벨
@@ -86,7 +86,7 @@ public class GroupEdit_UI extends JFrame{
 		newstf.setSize(300, 160);
 		
 		//추가버튼
-		JButton btn = new JButton("수정완료");
+		JButton btn = new JButton("완료");
 		btn.setLocation(340,400);
 		btn.setSize(100, 30);
 		btn.setBackground(new Color(5, 150, 255));
@@ -111,3 +111,4 @@ public class GroupEdit_UI extends JFrame{
 		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
+
