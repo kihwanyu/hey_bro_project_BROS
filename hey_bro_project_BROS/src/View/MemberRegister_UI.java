@@ -26,7 +26,7 @@ public class MemberRegister_UI extends JFrame {
 
 	public MemberRegister_UI(){
 		final int MEMBER_LIBEL_LOCATION_X = 80;
-		final int MEMBER_TEXT_LOCATION_X = 190; 
+		final int MEMBER_TEXT_LOCATION_X = MEMBER_LIBEL_LOCATION_X+110; 
 		
 		JFrame fr = new JFrame("회원가입");
 		JPanel title_p = new JPanel();
@@ -75,19 +75,27 @@ public class MemberRegister_UI extends JFrame {
 		JButton deleteAll_bt = new JButton("다시 쓰기");
 		deleteAll_bt.setLocation(MEMBER_TEXT_LOCATION_X+50, 350);
 		deleteAll_bt.setSize(150,40);
-		
+		//아이디
 		JTextField id_text = new JTextField(10);
+		id_text.setText("아이디를 입력해주세요.");
 		id_text.setLocation(MEMBER_TEXT_LOCATION_X, 60);
 		id_text.setSize(150,30);
+		//비밀번호
 		JTextField pw_text1 = new JTextField(10);
+		pw_text1.setText("비밀번호를 입력해주세요.");
 		pw_text1.setLocation(MEMBER_TEXT_LOCATION_X, 100);
 		pw_text1.setSize(150,30);
+		//비밀번호 재입력
 		JTextField pw_text2 = new JTextField(10);
+		pw_text2.setText("비밀번호를 다시 입력해주세요.");
 		pw_text2.setLocation(MEMBER_TEXT_LOCATION_X, 140);
 		pw_text2.setSize(150,30);
 		JTextField name_text = new JTextField(10);
+		//이름
+		name_text.setText("이름을 입력해주세요.");
 		name_text.setLocation(MEMBER_TEXT_LOCATION_X, 220);
 		name_text.setSize(150,30);
+		//생일(년/월/일).
 		JComboBox<String> yearList = new JComboBox<>();
 		JComboBox<String> monthList = new JComboBox<>();
 		JComboBox<String> dateList = new JComboBox<>();
@@ -117,11 +125,13 @@ public class MemberRegister_UI extends JFrame {
 		monthList.setSize(40,30);
 		dateList.setLocation(MEMBER_TEXT_LOCATION_X+110, 260);
 		dateList.setSize(40,30);
-		
+		//이메일.
 		JTextField email_text = new JTextField(10);
+		email_text.setText("이메일을 입력해주세요.");
 		email_text.setLocation(MEMBER_TEXT_LOCATION_X, 300);
 		email_text.setSize(150,30);
 		
+		//성별.
 		JRadioButton man = new JRadioButton("남");
 		man.setLocation(MEMBER_TEXT_LOCATION_X+10, 180);
 		man.setSize(90,30);
@@ -138,6 +148,7 @@ public class MemberRegister_UI extends JFrame {
 		fr.add(panel_m);
 		
 		title_p.add(title_lb);
+		
 		panel_m.add(id_lb);
 		panel_m.add(overlap_bt);
 		panel_m.add(id_text);
@@ -161,119 +172,120 @@ public class MemberRegister_UI extends JFrame {
 		panel_m.add(deleteAll_bt);
 		panel_m.add(dateList);
 		
-		yearList.addItemListener(new ItemListener() {		
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				dateList.removeAllItems();
-				System.out.println(Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex())));
-				int year = Integer.parseInt(yearList.getItemAt(yearList.getSelectedIndex()));
-				int month = Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex()));
-				 if((0 == (year % 4) && 0 != (year %100)) || 0 == year%400) {
-					if(month==2) {
-						for(int i = 0; i < 29; i++){
-							date[i] = 1+i;
-							dateList.addItem(String.valueOf(date[i]).toString());	
-						}
-					}
-					else if(month==4||month==6||month==9||month==11){
-						for(int i = 0; i < 30; i++){
-							date[i] = 1+i;
-							dateList.addItem(String.valueOf(date[i]).toString());	
-						}
-					}
-					else {
-						for(int i = 0; i < 31; i++){
-							date[i] = 1+i;
-							dateList.addItem(String.valueOf(date[i]).toString());	
-						}
-					}
-				}
-				else if(month==2){
-					for(int i = 0; i < 28; i++){
-						date[i] = 1+i;
-						dateList.addItem(String.valueOf(date[i]).toString());	
-					}
-				}
-				else if(month==4||month==6||month==9||month==11){
-					for(int i = 0; i < 30; i++){
-						date[i] = 1+i;
-						dateList.addItem(String.valueOf(date[i]).toString());	
-					}
-				}
-				else {
-					for(int i = 0; i < 31; i++){
-						date[i] = 1+i;
-						dateList.addItem(String.valueOf(date[i]).toString());	
-					}
-				}
-			}
-		});
-		monthList.addItemListener(new ItemListener() {
-			
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				dateList.removeAllItems();
-				System.out.println(Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex())));
-				int year = Integer.parseInt(yearList.getItemAt(yearList.getSelectedIndex()));
-				int month = Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex()));
-				 if((0 == (year % 4) && 0 != (year %100)) || 0 == year%400) {
-					if(month==2) {
-						for(int i = 0; i < 29; i++){
-							date[i] = 1+i;
-							dateList.addItem(String.valueOf(date[i]).toString());	
-						}
-					}
-					else if(month==4||month==6||month==9||month==11){
-						for(int i = 0; i < 30; i++){
-							date[i] = 1+i;
-							dateList.addItem(String.valueOf(date[i]).toString());	
-						}
-					}
-					else {
-						for(int i = 0; i < 31; i++){
-							date[i] = 1+i;
-							dateList.addItem(String.valueOf(date[i]).toString());	
-						}
-					}
-				}
-				else if(month==2){
-					for(int i = 0; i < 28; i++){
-						date[i] = 1+i;
-						dateList.addItem(String.valueOf(date[i]).toString());	
-					}
-				}
-				else if(month==4||month==6||month==9||month==11){
-					for(int i = 0; i < 30; i++){
-						date[i] = 1+i;
-						dateList.addItem(String.valueOf(date[i]).toString());	
-					}
-				}
-				else {
-					for(int i = 0; i < 31; i++){
-						date[i] = 1+i;
-						dateList.addItem(String.valueOf(date[i]).toString());	
-					}
-				}
-			}
-		});
+		textDelete(id_text);
+		textDelete(pw_text1);
+		textDelete(pw_text2);
+		textDelete(name_text);
+		textDelete(email_text);
+		
+		birthdayComboList(monthList , yearList, monthList, dateList, date);
+		birthdayComboList(yearList , yearList, monthList, dateList, date);
+		
+		//모든 텍스트 박스의 문자열을 초기값으로 바꾸어준다.
 		deleteAll_bt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				id_text.setText("");
-				pw_text1.setText("");
-				pw_text2.setText("");
-				name_text.setText("");
+				id_text.setText("아이디를 입력해주세요.");
+				pw_text1.setText("비밀번호를 입력해주세요.");
+				pw_text2.setText("비밀번호를 다시 입력해주세요.");
+				name_text.setText("이름을 입력해주세요.");
 				gender.clearSelection();					
 				yearList.setSelectedIndex(0);
 				monthList.setSelectedIndex(0);;
 				dateList.setSelectedIndex(0);
 				
-				email_text.setText("");				
+				email_text.setText("이메일을 입력해주세요.");				
 			}
 		});
 		
 		fr.setVisible(true);
 		fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	//text박스 클릭시 텍스트박스에 있는 문자열을 지워주는 메소드.
+	public void textDelete(JTextField tf){
+		tf.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tf.setText("");
+			}
+		});
+	}
+	//윤년을 계산하여, 월에 대한 일을 List에 저장하는 메소드. 
+	public void birthdayComboList(JComboBox<String> standard, JComboBox<String> yearList,
+			 JComboBox<String> monthList, JComboBox<String> cbd, int[] date){
+		standard.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				cbd.removeAllItems();
+				System.out.println(Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex())));
+				int year = Integer.parseInt(yearList.getItemAt(yearList.getSelectedIndex()));
+				int month = Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex()));
+				 if((0 == (year % 4) && 0 != (year %100)) || 0 == year%400) {
+					if(month==2) {
+						for(int i = 0; i < 29; i++){
+							date[i] = 1+i;
+							cbd.addItem(String.valueOf(date[i]).toString());	
+						}
+					}
+					else if(month==4||month==6||month==9||month==11){
+						for(int i = 0; i < 30; i++){
+							date[i] = 1+i;
+							cbd.addItem(String.valueOf(date[i]).toString());	
+						}
+					}
+					else {
+						for(int i = 0; i < 31; i++){
+							date[i] = 1+i;
+							cbd.addItem(String.valueOf(date[i]).toString());	
+						}
+					}
+				}
+				else if(month==2){
+					for(int i = 0; i < 28; i++){
+						date[i] = 1+i;
+						cbd.addItem(String.valueOf(date[i]).toString());	
+					}
+				}
+				else if(month==4||month==6||month==9||month==11){
+					for(int i = 0; i < 30; i++){
+						date[i] = 1+i;
+						cbd.addItem(String.valueOf(date[i]).toString());	
+					}
+				}
+				else {
+					for(int i = 0; i < 31; i++){
+						date[i] = 1+i;
+						cbd.addItem(String.valueOf(date[i]).toString());	
+					}
+				}
+			}
+		});
 	}
 }
 	
