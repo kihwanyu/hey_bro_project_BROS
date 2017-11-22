@@ -19,23 +19,24 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-public class MemberRegister_UI extends JFrame {
+public class MemberUpdate_UI extends JFrame {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -753271555181998155L;
-
-	public MemberRegister_UI(){
+	private static final long serialVersionUID = 3878058214731925430L;
+	
+	public MemberUpdate_UI(){
 		final int MEMBER_LIBEL_LOCATION_X = 80;
 		final int MEMBER_TEXT_LOCATION_X = MEMBER_LIBEL_LOCATION_X+110; 
 		
-		JFrame fr = new JFrame("회원가입");
+		JFrame fr = new JFrame("회원 정보 수정");
 		JPanel title_p = new JPanel();
 		JPanel panel_m = new JPanel();
 		panel_m.setLayout(null);
 		panel_m.setLocation(0, 0);
 		
-		JLabel title_lb = new JLabel("회원가입");
+		JLabel title_lb = new JLabel("회원 정보 수정");
 		
 		JLabel id_lb = new JLabel("아이디 : \n");
 		id_lb.setLocation(MEMBER_LIBEL_LOCATION_X, 50);
@@ -64,23 +65,24 @@ public class MemberRegister_UI extends JFrame {
 		userIng_lb.setLocation(MEMBER_LIBEL_LOCATION_X+400, 10);	
 		userIng_lb.setSize(300,300);
 		
-		JButton overlap_bt = new JButton("중복검사"); 
+		/*JButton overlap_bt = new JButton("중복검사"); 
 		overlap_bt.setLocation(MEMBER_TEXT_LOCATION_X+160, 59);
-		overlap_bt.setSize(90,30);
+		overlap_bt.setSize(90,30);*/
 		JButton imageOpen_Bt = new JButton("이미지 가져오기");
 		imageOpen_Bt.setLocation(MEMBER_TEXT_LOCATION_X+320, 285);
 		imageOpen_Bt.setSize(150,40);
-		JButton register_bt = new JButton("가입 하기");
-		register_bt.setLocation(MEMBER_TEXT_LOCATION_X+215, 350);
+		JButton register_bt = new JButton("수정 하기");
+		register_bt.setLocation(MEMBER_TEXT_LOCATION_X+125, 350);
 		register_bt.setSize(150,40);
-		JButton deleteAll_bt = new JButton("다시 쓰기");
+		/*JButton deleteAll_bt = new JButton("다시 쓰기");
 		deleteAll_bt.setLocation(MEMBER_TEXT_LOCATION_X+50, 350);
-		deleteAll_bt.setSize(150,40);
+		deleteAll_bt.setSize(150,40);*/
 		//아이디
 		JTextField id_text = new JTextField(10);
-		id_text.setText("아이디를 입력해주세요.");
+		id_text.setText("rlghks94");
 		id_text.setLocation(MEMBER_TEXT_LOCATION_X, 60);
 		id_text.setSize(150,30);
+		id_text.setEditable(false);
 		//비밀번호
 		JPasswordField pw_text1 = new JPasswordField(10);
 		pw_text1.setText("비밀번호를 입력해주세요.");
@@ -93,7 +95,7 @@ public class MemberRegister_UI extends JFrame {
 		pw_text2.setSize(150,30);
 		JTextField name_text = new JTextField(10);
 		//이름
-		name_text.setText("이름을 입력해주세요.");
+		name_text.setText("유기환");
 		name_text.setLocation(MEMBER_TEXT_LOCATION_X, 220);
 		name_text.setSize(150,30);
 		//생일(년/월/일).
@@ -103,6 +105,8 @@ public class MemberRegister_UI extends JFrame {
 		int[] year = new int[80];
 		int[] month = new int [12];
 		int[] date = new int [31];
+		
+		
 		
 		for(int i = 0; i < year.length; i++){
 			year[i] = 1940+i;
@@ -118,17 +122,17 @@ public class MemberRegister_UI extends JFrame {
 			dateList.addItem(String.valueOf(date[i]).toString());	
 		}
 		
-		yearList.setSelectedIndex(0); 
+		yearList.setSelectedIndex(55); 
 		yearList.setLocation(MEMBER_TEXT_LOCATION_X, 260);
 		yearList.setSize(55,30);
-		monthList.setSelectedIndex(0);
+		monthList.setSelectedIndex(5);
 		monthList.setLocation(MEMBER_TEXT_LOCATION_X+62, 260);
 		monthList.setSize(40,30);
 		dateList.setLocation(MEMBER_TEXT_LOCATION_X+110, 260);
 		dateList.setSize(40,30);
 		//이메일.
 		JTextField email_text = new JTextField(10);
-		email_text.setText("이메일을 입력해주세요.");
+		email_text.setText("dbrlghks94@gmail.com");
 		email_text.setLocation(MEMBER_TEXT_LOCATION_X, 300);
 		email_text.setSize(150,30);
 		
@@ -141,6 +145,8 @@ public class MemberRegister_UI extends JFrame {
 		woman.setSize(90,30);
 		ButtonGroup gender = new ButtonGroup();
 		
+		man.setSelected(true);
+		
 		gender.add(man);
 		gender.add(woman);
 		
@@ -151,7 +157,7 @@ public class MemberRegister_UI extends JFrame {
 		title_p.add(title_lb);
 		
 		panel_m.add(id_lb);
-		panel_m.add(overlap_bt);
+		//panel_m.add(overlap_bt);
 		panel_m.add(id_text);
 		panel_m.add(pw_lb1);
 		panel_m.add(pw_text1);
@@ -170,7 +176,7 @@ public class MemberRegister_UI extends JFrame {
 		panel_m.add(userIng_lb);
 		panel_m.add(imageOpen_Bt);
 		panel_m.add(register_bt);
-		panel_m.add(deleteAll_bt);
+		//panel_m.add(deleteAll_bt);
 		panel_m.add(dateList);
 		
 		textDelete(id_text);
@@ -181,9 +187,9 @@ public class MemberRegister_UI extends JFrame {
 		
 		birthdayComboList(monthList , yearList, monthList, dateList, date);
 		birthdayComboList(yearList , yearList, monthList, dateList, date);
-		
+		dateList.setSelectedIndex(25);
 		//모든 텍스트 박스의 문자열을 초기값으로 바꾸어준다.
-		deleteAll_bt.addActionListener(new ActionListener() {
+		/*deleteAll_bt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				id_text.setText("아이디를 입력해주세요.");
@@ -198,7 +204,7 @@ public class MemberRegister_UI extends JFrame {
 				email_text.setText("이메일을 입력해주세요.");				
 			}
 		});
-		
+		*/
 		fr.setVisible(true);
 		fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -284,6 +290,7 @@ public class MemberRegister_UI extends JFrame {
 					}
 				}
 			}
+			
 		});
 	}
 }
