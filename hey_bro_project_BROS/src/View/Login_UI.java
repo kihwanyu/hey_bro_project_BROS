@@ -27,7 +27,7 @@ public class Login_UI extends JFrame{
 
 	public Login_UI() {
 		// setting
-		this.setTitle("LOGIN");
+		this.setTitle("HEY~BRO");
 		this.setResizable(false);
 		this.setBounds(400, 200, 800, 500);
 		panel = new JPanel();
