@@ -1,6 +1,12 @@
 package View;
 
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -85,18 +91,20 @@ public class MemberRegister_UI extends JFrame {
 		JComboBox<String> yearList = new JComboBox<>();
 		JComboBox<String> monthList = new JComboBox<>();
 		JComboBox<String> dateList = new JComboBox<>();
-		int[] year = new int[100];
+		int[] year = new int[80];
 		int[] month = new int [12];
 		int[] date = new int [31];
+		
 		for(int i = 0; i < year.length; i++){
-			year[i] = 1950+i;
+			year[i] = 1940+i;
 			yearList.addItem(String.valueOf(year[i]).toString());
 		}
 		for(int i = 0; i < month.length; i++){
 			month[i] = 1+i;
 			monthList.addItem(String.valueOf(month[i]).toString());
 		}
-		for(int i = 0; i < date.length; i++){
+		
+		for(int i = 0; i < 31; i++){
 			date[i] = 1+i;
 			dateList.addItem(String.valueOf(date[i]).toString());	
 		}
@@ -107,7 +115,6 @@ public class MemberRegister_UI extends JFrame {
 		monthList.setSelectedIndex(0);
 		monthList.setLocation(MEMBER_TEXT_LOCATION_X+62, 260);
 		monthList.setSize(40,30);
-		dateList.setSelectedIndex(0); 
 		dateList.setLocation(MEMBER_TEXT_LOCATION_X+110, 260);
 		dateList.setSize(40,30);
 		
@@ -145,13 +152,126 @@ public class MemberRegister_UI extends JFrame {
 		panel_m.add(birthday_lb);
 		panel_m.add(yearList);
 		panel_m.add(monthList);
-		panel_m.add(dateList);
+		
 		panel_m.add(email_lb);
 		panel_m.add(email_text);
 		panel_m.add(userIng_lb);
 		panel_m.add(imageOpen_Bt);
 		panel_m.add(register_bt);
 		panel_m.add(deleteAll_bt);
+		panel_m.add(dateList);
+		
+		yearList.addItemListener(new ItemListener() {		
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				dateList.removeAllItems();
+				System.out.println(Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex())));
+				int year = Integer.parseInt(yearList.getItemAt(yearList.getSelectedIndex()));
+				int month = Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex()));
+				 if((0 == (year % 4) && 0 != (year %100)) || 0 == year%400) {
+					if(month==2) {
+						for(int i = 0; i < 29; i++){
+							date[i] = 1+i;
+							dateList.addItem(String.valueOf(date[i]).toString());	
+						}
+					}
+					else if(month==4||month==6||month==9||month==11){
+						for(int i = 0; i < 30; i++){
+							date[i] = 1+i;
+							dateList.addItem(String.valueOf(date[i]).toString());	
+						}
+					}
+					else {
+						for(int i = 0; i < 31; i++){
+							date[i] = 1+i;
+							dateList.addItem(String.valueOf(date[i]).toString());	
+						}
+					}
+				}
+				else if(month==2){
+					for(int i = 0; i < 28; i++){
+						date[i] = 1+i;
+						dateList.addItem(String.valueOf(date[i]).toString());	
+					}
+				}
+				else if(month==4||month==6||month==9||month==11){
+					for(int i = 0; i < 30; i++){
+						date[i] = 1+i;
+						dateList.addItem(String.valueOf(date[i]).toString());	
+					}
+				}
+				else {
+					for(int i = 0; i < 31; i++){
+						date[i] = 1+i;
+						dateList.addItem(String.valueOf(date[i]).toString());	
+					}
+				}
+			}
+		});
+		monthList.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				dateList.removeAllItems();
+				System.out.println(Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex())));
+				int year = Integer.parseInt(yearList.getItemAt(yearList.getSelectedIndex()));
+				int month = Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex()));
+				 if((0 == (year % 4) && 0 != (year %100)) || 0 == year%400) {
+					if(month==2) {
+						for(int i = 0; i < 29; i++){
+							date[i] = 1+i;
+							dateList.addItem(String.valueOf(date[i]).toString());	
+						}
+					}
+					else if(month==4||month==6||month==9||month==11){
+						for(int i = 0; i < 30; i++){
+							date[i] = 1+i;
+							dateList.addItem(String.valueOf(date[i]).toString());	
+						}
+					}
+					else {
+						for(int i = 0; i < 31; i++){
+							date[i] = 1+i;
+							dateList.addItem(String.valueOf(date[i]).toString());	
+						}
+					}
+				}
+				else if(month==2){
+					for(int i = 0; i < 28; i++){
+						date[i] = 1+i;
+						dateList.addItem(String.valueOf(date[i]).toString());	
+					}
+				}
+				else if(month==4||month==6||month==9||month==11){
+					for(int i = 0; i < 30; i++){
+						date[i] = 1+i;
+						dateList.addItem(String.valueOf(date[i]).toString());	
+					}
+				}
+				else {
+					for(int i = 0; i < 31; i++){
+						date[i] = 1+i;
+						dateList.addItem(String.valueOf(date[i]).toString());	
+					}
+				}
+			}
+		});
+		deleteAll_bt.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				id_text.setText("");
+				pw_text1.setText("");
+				pw_text2.setText("");
+				name_text.setText("");
+				gender.clearSelection();					
+				yearList.setSelectedIndex(0);
+				monthList.setSelectedIndex(0);;
+				dateList.setSelectedIndex(0);
+				
+				email_text.setText("");				
+			}
+		});
+		
 		fr.setVisible(true);
 		fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
