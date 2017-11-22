@@ -12,7 +12,7 @@ public class Main_UI {
 
 	public void main_UI(){
 		JFrame mf = new JFrame();
-
+		//
 		mf.setLayout(null);
 		mf.setBackground(Color.WHITE);
 
