@@ -104,7 +104,7 @@ public class GroupRegistor_UI extends JPanel {
 			}
 			
 		});
-		//
+		
 		JButton back_btn = new JButton("뒤로가기");
 		back_btn.setLocation(250,400);
 		back_btn.setSize(100, 30);

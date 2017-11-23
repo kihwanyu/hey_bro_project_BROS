@@ -20,7 +20,7 @@ public class JoinGroup_UI extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -5276751205814558579L;
-//
+
 	public JoinGroup_UI(JFrame frame){
 		this.superFrame = frame;
 		//JFrame mf = new JFrame();

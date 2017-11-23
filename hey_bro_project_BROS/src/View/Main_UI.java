@@ -57,7 +57,7 @@ public class Main_UI extends JFrame {
 		in.setLocation(650, 200);
 		in.setSize(130, 130);
 	//	clickEvent(plusLabel, new );
-		//
+		
 		
 		//회원 정보 수정
 		Image icon_1 = new ImageIcon("hey_bro_project_BROS/src/View/img/button1.PNG").getImage().getScaledInstance(207, 52, 0);
