@@ -1,5 +1,8 @@
 package View;
 
+import java.awt.Color;
+import java.awt.Dialog;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class JoinGroup_UI extends JPanel {
 	private JPanel panel;
@@ -33,42 +37,62 @@ public class JoinGroup_UI extends JPanel {
 		//panel.setLayout(null);
 		//라벨 생성
 		JLabel lb1 = new JLabel("모임참여");
-		
+
 		lb1.setLocation(350, 50);
 		lb1.setSize(200, 100);
 		lb1.setFont(new Font(Font.DIALOG, Font.BOLD, 28));
-		
-		
+
+
 		//콤보박스 생성
 		String [] groups = {"모임을 선택해주세요", "BROS", "샛별고 동문회", "샛별대 동문회"};
-		
-		
+
+
 		JComboBox<String> groupList = new JComboBox<>(groups);
 		groupList.setSelectedIndex(0);
 		groupList.setLocation(200, 150);
 		groupList.setSize(390, 50);
-		
+
 		groupList.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JComboBox<String> cb = (JComboBox<String>) e.getSource(); //선택한 콤보박스
 				String name = (String)cb.getSelectedItem(); //선택된 아이템을 스트링에다가 형변환해서 담음
-				
+
 				/*Image img = new ImageIcon("images/"+name + ".PNG").getImage().getScaledInstance(150,150,0); //확장자가 다 똑같다는 전제 하에..
 				label.setIcon(new ImageIcon(img));*/		
 			}
 		});
 		//버튼 생성
-		
+
 		JButton btn1 = new JButton("뒤로가기");
 		btn1.setLocation(200, 300);
 		btn1.setSize(180, 50);
-		
+
 		JButton btn2 = new JButton("입장하기");
 		btn2.setLocation(400, 300);
 		btn2.setSize(180, 50);
-		
+		btn2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource()==btn2){
+				Dialog sd = new Dialog(frame,"모임 참여");
+				sd.setBounds(300, 100, 500, 300);
+				sd.setLayout(null);
+				
+				JLabel title = new JLabel("GROUP NAME");
+				title.setFont(new Font(Font.DIALOG, Font.BOLD, 28));
+				title.setLocation(145,10);
+				title.setSize(300, 30);
+				sd.add(title);
+				 
+				String result = JOptionPane.showInputDialog("내용을 입력하세요");
+		            System.out.println(result);
+
+				}
+			}
+		});
 		//메인프레임에 담기
 		//this.add(panel);
 		panel.add(lb1);
@@ -76,74 +100,74 @@ public class JoinGroup_UI extends JPanel {
 		panel.add(btn1);
 		panel.add(btn2);
 		this.add(panel);
-		
-		btn2.addMouseListener(new MouseListener() {
-			
+
+		/*btn2.addMouseListener(new MouseListener() {
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent e) {
 				new GroupJoin_Pw_UI();
 
 				frameSetVisible();
 			}
-			
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-		});
-		
+		});*/
+
 		//clickEvent();
 	}
-	
+
 	public void clickEvent(JButton button, JPanel panel){
 		button.addMouseListener(new MouseListener() {
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent e) {
 				nextPage(panel);				
 			}
-			
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
 	}
