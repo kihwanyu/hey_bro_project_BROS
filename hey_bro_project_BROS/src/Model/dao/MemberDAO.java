@@ -19,14 +19,15 @@ public class MemberDAO {
 	Properties prop = new Properties();
 	ArrayList<String> userIdList = new ArrayList<>();
 	//회원가입
-	public void memberRegister(String userId, String userPw, 
-			String userName, String birthday, String email, String pictureUrl){
+	public void memberRegister(String userId, String userPw, String userName,  
+			String userGender, String birthday, String email, String pictureUrl){
 		Map<Integer,Member> memberMap = new HashMap<>();
 		
 		// registered 등록된
 		String rUserId;
 		String rUserPw;
 		String rUserName;
+		String rUserGender;
 		String rBirthday;
 		String rEmail;
 		String rPictureUrl;
@@ -37,7 +38,7 @@ public class MemberDAO {
 			for(int i = 0; i < prop.size(); i++){
 				String str;
 				
-				String[] str_arr = new String[6];
+				String[] str_arr = new String[7];
 				
 				//System.out.println(prop.getProperty(String.valueOf(i).toString()));
 				str = prop.getProperty(String.valueOf(i).toString());
@@ -51,11 +52,12 @@ public class MemberDAO {
 					rUserId = str_arr[0];
 					rUserPw = str_arr[1];
 					rUserName = str_arr[2];
-					rBirthday = str_arr[3];
-					rEmail = str_arr[4];
-					rPictureUrl = str_arr[5];	
+					rUserGender = str_arr[3];
+					rBirthday = str_arr[4];
+					rEmail = str_arr[5];
+					rPictureUrl = str_arr[6];	
 					
-					Member member = new Member(rUserId, rUserPw, rUserName, rBirthday, rEmail, rPictureUrl);
+					Member member = new Member(rUserId, rUserPw, rUserName, rUserGender, rBirthday, rEmail, rPictureUrl);
 					memberMap.put(memberMap.size(), member);					
 				}
 			}	
@@ -66,7 +68,7 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 		
-		memberMap.put(memberMap.size(),new Member(userId, userPw, userName, birthday, email, pictureUrl));
+		memberMap.put(memberMap.size(),new Member(userId, userPw, userName, userGender, birthday, email, pictureUrl));
 	
 		Set<Integer> keys = memberMap.keySet();
 		Iterator<Integer> memIter = keys.iterator();
