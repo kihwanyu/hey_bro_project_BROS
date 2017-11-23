@@ -16,13 +16,19 @@ import javax.swing.JPanel;
 public class JoinGroup_UI extends JPanel {
 	private JPanel panel;
 	private JFrame superFrame;
+	private JPanel superPanel;
+	private JPanel tempPanel;
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5276751205814558579L;
 
-	public JoinGroup_UI(JFrame frame){
-		this.superFrame = frame;
+	public JoinGroup_UI(JFrame superFrame, JPanel superPanel){
+		this.panel = this.tempPanel;
+		this.superFrame = superFrame;
+		this.tempPanel = this.panel;
+		this.superPanel = superPanel;
 		//JFrame mf = new JFrame();
 		panel = new JPanel();
 		this.setBounds(0,0,800,500);
@@ -76,6 +82,7 @@ public class JoinGroup_UI extends JPanel {
 		panel.add(btn1);
 		panel.add(btn2);
 		this.add(panel);
+		clickEvent(btn1, superPanel);
 		
 		btn2.addMouseListener(new MouseListener() {
 			
@@ -87,7 +94,7 @@ public class JoinGroup_UI extends JPanel {
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
-				new GroupJoin_Pw_UI();
+				new GroupJoin_Pw_UI(superFrame);
 
 				frameSetVisible();
 			}
@@ -147,13 +154,17 @@ public class JoinGroup_UI extends JPanel {
 			}
 		});
 	}
+	public void PanelSetVisible(){
+		this.setVisible(false);
+	}
 	public void frameSetVisible(){
 		superFrame.setVisible(false);
 	}
-	public void nextPage(JPanel loadPanel) {		
+	public void nextPage(JPanel loadPanel) {
 		this.remove(this.panel);//현재 패널 지우고
-		this.panel =  loadPanel; //2번 패널 객체를 담음
-		this.add(panel); //다시 패널을 올려줌
+		//this.panel =  loadPanel; //2번 패널 객체를 담음
+		this.add(loadPanel); //다시 패널을 올려줌
 		this.repaint(); //다시 적용(갱신)
+		
 	}
 }

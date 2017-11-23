@@ -8,14 +8,22 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import Controller.Controller;
+import Model.vo.Session;
 
 public class Login_UI extends JFrame{
 	/**
 	 * 
 	 */
+	Controller c = new Controller();
+	//세션역활을 해줄 세션 클래스
+	Session session = new Session();
+	
 	private static final long serialVersionUID = 4965601877104326133L;
 	private JPanel panel;
 	private JButton btnLogin;
@@ -83,7 +91,7 @@ public class Login_UI extends JFrame{
 		btnIdPw.setBounds(365, 260, 115, 25);
 		panel.add(btnIdPw);
 		
-		clickEvent(btnInit,new MemberRegister_UI());
+		clickEvent(btnInit,new MemberRegister_UI(this));
 		clickEvent(btnIdPw,new SearchIDPW_UI());
 		
 		btnLogin.addMouseListener(new MouseListener() {
@@ -96,8 +104,17 @@ public class Login_UI extends JFrame{
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
-				new Main_UI();
-				frameSetVisible();
+				Boolean result = c.process("Login.do", userText.getText(), passText.getText());
+				if(result){	
+					//로그인 성공시 비밀번호와 패스워드를 세션으로 얻는다.
+					session.setUserId(userText.getText());
+					session.setUserPw(passText.getText());
+					
+					new Main_UI(session);
+					frameSetVisible();
+				} else {
+					JOptionPane.showMessageDialog(null, "로그인 실패 \n\"아이디와 비밀번호를 다시확인해주세요.\"");
+				}			
 			}
 			
 			@Override
@@ -161,8 +178,8 @@ public class Login_UI extends JFrame{
 	}
 	public void nextPage(JPanel loadPanel) {		
 		this.remove(this.panel);//현재 패널 지우고
-		this.panel =  loadPanel; //2번 패널 객체를 담음
-		this.add(panel); //다시 패널을 올려줌
+		//this.panel =  loadPanel; //2번 패널 객체를 담음
+		this.add(loadPanel); //다시 패널을 올려줌
 		this.repaint(); //다시 적용(갱신)
 	}
 }

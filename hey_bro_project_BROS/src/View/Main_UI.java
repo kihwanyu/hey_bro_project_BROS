@@ -10,16 +10,22 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import Model.vo.Session;
+
 public class Main_UI extends JFrame {
 
 	private JPanel mainPanel;
+	private Session session = new Session();
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5254287704675653795L;
 
-	public Main_UI(){
+	public Main_UI(Session session){
 		//jo1
+		//로그인에서 받을 세션을 메인화면으로 가지고 온다.
+		this.session = session;
+		
 		this.setLayout(null);
 		this.setBackground(Color.WHITE);
 
@@ -49,7 +55,7 @@ public class Main_UI extends JFrame {
 		join.setLocation(450, 200);
 		//userPanel3.setBackground(Color.green);
 		join.setSize(130, 130);
-		clickEvent(join, new JoinGroup_UI(this));
+		
 		Image icon3 = new ImageIcon("hey_bro_project_BROS/src/View/img/main_3.PNG").getImage().getScaledInstance(139, 139, 0);
 		JButton in = new JButton(new ImageIcon(icon3));
 
@@ -99,6 +105,7 @@ public class Main_UI extends JFrame {
 		mainPanel.add(userPanel);
 		this.add(mainPanel);
 		
+		clickEvent(join, new JoinGroup_UI(this,mainPanel));
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//mf.add();
@@ -123,7 +130,7 @@ public class Main_UI extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				nextPage(panel);			
-				
+				System.out.println("눌림");
 			}
 			
 			@Override
