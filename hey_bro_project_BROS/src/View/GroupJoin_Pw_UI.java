@@ -2,6 +2,7 @@ package View;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -15,9 +16,12 @@ public class GroupJoin_Pw_UI extends JFrame {
 	/**
 	 * 
 	 */
+	private JFrame superFrame;
+	
 	private static final long serialVersionUID = 5827244684650823215L;
 
-	public GroupJoin_Pw_UI(){
+	public GroupJoin_Pw_UI(JFrame superFrame){
+		this.superFrame = superFrame;
 		//JFrame mf = new JFrame("모임 참여");
 		this.setTitle("모임 참여");
 		this.setBounds(300, 100, 500, 300);
@@ -68,7 +72,38 @@ public class GroupJoin_Pw_UI extends JFrame {
 		this.add(mainPanel);
 			
 		this.setVisible(true);
-		
+		btn2.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				superFrame.setVisible(true);
+				frameSetVisible();
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		btn1.addMouseListener(new MouseListener() {
 			
 			@Override

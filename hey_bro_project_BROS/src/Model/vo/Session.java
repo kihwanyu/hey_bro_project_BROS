@@ -1,7 +1,7 @@
 package Model.vo;
 
 public class Session {
-	private String userName;
+	private String userId;
 	private String userPw;
 	
 	
@@ -10,20 +10,20 @@ public class Session {
 	}
 
 
-	public Session(String userName, String userPw) {
+	public Session(String userId, String userPw) {
 		super();
-		this.userName = userName;
+		this.userId = userId;
 		this.userPw = userPw;
 	}
 
 
-	public String getUserName() {
-		return userName;
+	public String getUserId() {
+		return userId;
 	}
 
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 
@@ -39,7 +39,7 @@ public class Session {
 
 	@Override
 	public String toString() {
-		return "Session [userName=" + userName + ", userPw=" + userPw + "]";
+		return "Session [userName=" + userId + ", userPw=" + userPw + "]";
 	}
 	
 	

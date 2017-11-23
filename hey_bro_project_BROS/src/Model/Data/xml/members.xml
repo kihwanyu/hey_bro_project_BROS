@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<comment>Tue Nov 21 17:10:12 KST 2017</comment>
-<entry key="rlghks94">rlghks94, 1234, 유기환, 940526, 01048034471, dbrlghks94@gmail.com</entry>
+<comment>Fri Nov 24 01:58:25 KST 2017</comment>
+<entry key="8">123123131, 비밀번호를 입력해주세요., 이름을 입력해주세요., 1940011, null, 이메일을 입력해주세요.</entry>
+<entry key="7">1231243212, 비밀번호를 입력해주세요., 이름을 입력해주세요., 1940011, 이메일을 입력해주세요., null</entry>
+<entry key="6">23423424, 비밀번호를 입력해주세요., 이름을 입력해주세요., 1940011, null, 이메일을 입력해주세요.</entry>
+<entry key="5">21312313, 비밀번호를 입력해주세요., 이름을 입력해주세요., 1940011, 이메일을 입력해주세요., null</entry>
+<entry key="4">12312314, 비밀번호를 입력해주세요., 이름을 입력해주세요., 1940011, null, 이메일을 입력해주세요.</entry>
+<entry key="3">123123, 비밀번호를 입력해주세요., 이름을 입력해주세요., 1940011, 이메일을 입력해주세요., null</entry>
+<entry key="2">qqweq, 비밀번호를 입력해주세요., 이름을 입력해주세요., 1940011, null, 이메일을 입력해주세요.</entry>
+<entry key="1">아이디를 입력해주세요., 비밀번호를 입력해주세요., 이름을 입력해주세요., 1940011, 이메일을 입력해주세요., null</entry>
+<entry key="0">rlghks940526, 052600, 유기환, 1994526, null, null</entry>
 </properties>

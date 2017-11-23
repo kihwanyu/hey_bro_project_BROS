@@ -5,21 +5,21 @@ public class Member {
 	private String userPw;
 	private String userName;
 	private String birthday;
-	private String phone;
 	private String email;
-	
+	private String pictureUrl;
 	public Member() {
 		super();
 	}
 
-	public Member(String userId, String userPw, String userName, String birthday, String phone, String email) {
+	public Member(String userId, String userPw, String userName, 
+			String birthday, String email, String pictureUrl) {
 		super();
 		this.userId = userId;
 		this.userPw = userPw;
 		this.userName = userName;
 		this.birthday = birthday;
-		this.phone = phone;
 		this.email = email;
+		this.pictureUrl = pictureUrl;
 	}
 	
 	public String getUserId() {
@@ -34,23 +34,11 @@ public class Member {
 	public void setUserPw(String userPw) {
 		this.userPw = userPw;
 	}
-	public String getuserName() {
-		return userName;
-	}
-	public void setuserName(String userName) {
-		this.userName = userName;
-	}
 	public String getBirthday() {
 		return birthday;
 	}
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
-	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
 	}
 	public String getEmail() {
 		return email;
@@ -58,11 +46,26 @@ public class Member {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPictureUrl() {
+		return pictureUrl;
+	}
+
+	public void setPictureUrl(String pictureUrl) {
+		this.pictureUrl = pictureUrl;
+	}
 
 	@Override
 	public String toString() {
 		return userId + ", " + userPw + ", " + userName + ", " + birthday
-				+ ", " + phone + ", " + email;
+				+ ", " + pictureUrl + ", " + email;
 	}
 
 }

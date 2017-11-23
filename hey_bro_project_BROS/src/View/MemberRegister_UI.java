@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -12,26 +14,36 @@ import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import Controller.Controller;
+
 public class MemberRegister_UI extends JPanel {
 	/**
 	 * 
 	 */
+
+	Controller c = new Controller();
+	static boolean loginBoolean = false;
+	
 	private static final long serialVersionUID = -753271555181998155L;
 
-	public MemberRegister_UI(){
+	public MemberRegister_UI(JFrame superFrame){
+		
 		
 		final int MEMBER_LIBEL_LOCATION_X = 80;
 		final int MEMBER_TEXT_LOCATION_X = MEMBER_LIBEL_LOCATION_X+110; 
 		
-		//JFrame fr = new JFrame("회원가입");
+		String pictureUrl = null;
+		
 		JPanel title_p = new JPanel();
-		//JPanel panel_m = new JPanel();
+		
 		this.setLayout(null);
 		this.setLocation(0, 0);
 
@@ -73,6 +85,7 @@ public class MemberRegister_UI extends JPanel {
 		JButton register_bt = new JButton("가입 하기");
 		register_bt.setLocation(MEMBER_TEXT_LOCATION_X+215, 350);
 		register_bt.setSize(150,40);
+		register_bt.setEnabled(false);
 		JButton deleteAll_bt = new JButton("다시 쓰기");
 		deleteAll_bt.setLocation(MEMBER_TEXT_LOCATION_X+50, 350);
 		deleteAll_bt.setSize(150,40);
@@ -180,8 +193,115 @@ public class MemberRegister_UI extends JPanel {
 		
 		birthdayComboList(monthList , yearList, monthList, dateList, date);
 		birthdayComboList(yearList , yearList, monthList, dateList, date);
-		
-		
+		//아이디텍스트 이벤트 - 중복검사후 다시 아아디를 바꾸려고하면 가입하기 버튼이 비활성화
+		id_text.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				loginBoolean = false;
+				register_bt.setEnabled(false);
+			}
+		});
+		//중복검사 버튼 이벤트
+		overlap_bt.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				boolean result = c.process("MemberIdOverlap.do", id_text.getText());
+				
+				System.out.println(result);
+				if(result){
+					 JOptionPane.showMessageDialog(null, "중복되지 않았습니다.");
+					 //가입하기 버튼 활성화
+					 loginBoolean = true;
+					 register_bt.setEnabled(true);
+				} else {
+					JOptionPane.showMessageDialog(null, "중복되었습니다.");
+				}
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		register_bt.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {	
+				String month_text;
+				if(loginBoolean){
+					int monthCompareValue = Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex()));
+					if(monthCompareValue < 10){
+						month_text="0"+monthCompareValue;
+					} else {
+						month_text=String.valueOf(monthCompareValue).toString();
+					}
+					String birthday = yearList.getItemAt(yearList.getSelectedIndex()) 
+							+ month_text 
+							+ dateList.getItemAt(dateList.getSelectedIndex());
+					if(pw_text1.getText().equals(pw_text2.getText())){
+						c.process("MemberRegister.do", id_text.getText(), pw_text1.getText(), name_text.getText(), birthday, email_text.getText(), pictureUrl);
+						JOptionPane.showMessageDialog(null, "회원가입이 성공적으로 이루어졌습니다.");
+						//로그인 페이지로 이동
+						loginPage(superFrame);
+					} else {
+						JOptionPane.showMessageDialog(null, "비밀번호가  일치 하지 않습니다.\n다시입력해주세요.");
+					}
+				}
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
 		//모든 텍스트 박스의 문자열을 초기값으로 바꾸어준다.
 		deleteAll_bt.addActionListener(new ActionListener() {
 			@Override
@@ -284,6 +404,11 @@ public class MemberRegister_UI extends JPanel {
 				}
 			}
 		});
+	}
+	public void loginPage(JFrame superFrame) {		
+		superFrame.setVisible(false);//현재 패널 지우고
+		superFrame.add(new Login_UI()); //다시 패널을 올려줌
+		//this.repaint(); //다시 적용(갱신)
 	}
 }
 	
