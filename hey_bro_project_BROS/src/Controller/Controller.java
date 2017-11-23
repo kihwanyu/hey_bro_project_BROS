@@ -5,11 +5,11 @@ import Model.dao.MemberDAO;
 
 public class Controller {
 	MemberDAO mDao = new MemberDAO();
-	public void process(String key, String userId, String userPw, 
-			String userName, String birthday, String email, String pictureUrl){
+	public void process(String key, String userId, String userPw, String userName
+			, String userGender, String birthday, String email, String pictureUrl){
 		switch (key) {
 		case "MemberRegister.do" :
-			mDao.memberRegister(userId, userPw, userName, birthday, email, pictureUrl);
+			mDao.memberRegister(userId, userPw, userName, userGender, birthday, email, pictureUrl);
 			break;
 			
 		default:

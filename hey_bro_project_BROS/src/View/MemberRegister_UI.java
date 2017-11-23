@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.FileDialog;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.regex.Matcher;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -29,18 +31,22 @@ public class MemberRegister_UI extends JPanel {
 	 * 
 	 */
 
-	Controller c = new Controller();
-	static boolean loginBoolean = false;
+	private Controller c = new Controller();
+	private	static boolean loginBoolean = false;
+	private static String pictureUrl = null;
+	private static JFrame superFrame;
+	private static JLabel userIng_lb;
+	private static String gender_text = "남"; // 디폴트 인자
 	
 	private static final long serialVersionUID = -753271555181998155L;
 
 	public MemberRegister_UI(JFrame superFrame){
-		
+		this.superFrame = superFrame;
 		
 		final int MEMBER_LIBEL_LOCATION_X = 80;
 		final int MEMBER_TEXT_LOCATION_X = MEMBER_LIBEL_LOCATION_X+110; 
 		
-		String pictureUrl = null;
+		String defaltImgUrl = "hey_bro_project_BROS/src/Model/Data/img/dog.jpg";
 		
 		JPanel title_p = new JPanel();
 		
@@ -68,9 +74,8 @@ public class MemberRegister_UI extends JPanel {
 		email_lb.setLocation(MEMBER_LIBEL_LOCATION_X, 290);
 		email_lb.setSize(150,50);
 		
-		Image userIng_img = new ImageIcon("hey_bro_project_BROS/src/Model/Data/img/dog.jpg").getImage().getScaledInstance(200, 200, 0);
-
-		JLabel userIng_lb = new JLabel();
+		Image userIng_img = new ImageIcon(defaltImgUrl).getImage().getScaledInstance(200, 200, 0);
+		userIng_lb = new JLabel();
 		
 		userIng_lb.setIcon(new ImageIcon(userIng_img));
 		userIng_lb.setLocation(MEMBER_LIBEL_LOCATION_X+400, 10);	
@@ -193,6 +198,52 @@ public class MemberRegister_UI extends JPanel {
 		
 		birthdayComboList(monthList , yearList, monthList, dateList, date);
 		birthdayComboList(yearList , yearList, monthList, dateList, date);
+		man.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				gender_text = "남";
+			}
+		});
+		woman.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				gender_text = "여";
+			}
+		});
+		imageOpen_Bt.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				pictureUrl = imgOpen();	
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		//아이디텍스트 이벤트 - 중복검사후 다시 아아디를 바꾸려고하면 가입하기 버튼이 비활성화
 		id_text.addKeyListener(new KeyListener() {
 			
@@ -266,21 +317,28 @@ public class MemberRegister_UI extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent e) {	
 				String month_text;
+				String date_text;
 				if(loginBoolean){
 					int monthCompareValue = Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex()));
+					int dateCompareValue = Integer.parseInt(dateList.getItemAt(dateList.getSelectedIndex()));
 					if(monthCompareValue < 10){
 						month_text="0"+monthCompareValue;
 					} else {
 						month_text=String.valueOf(monthCompareValue).toString();
 					}
+					if(dateCompareValue < 10){
+						date_text="0"+dateCompareValue;
+					} else {
+						date_text=String.valueOf(dateCompareValue).toString();
+					}
 					String birthday = yearList.getItemAt(yearList.getSelectedIndex()) 
-							+ month_text 
-							+ dateList.getItemAt(dateList.getSelectedIndex());
+										+ month_text + date_text;
+							
 					if(pw_text1.getText().equals(pw_text2.getText())){
-						c.process("MemberRegister.do", id_text.getText(), pw_text1.getText(), name_text.getText(), birthday, email_text.getText(), pictureUrl);
+						c.process("MemberRegister.do", id_text.getText(), pw_text1.getText(), name_text.getText(), gender_text, birthday, email_text.getText(), pictureUrl);
 						JOptionPane.showMessageDialog(null, "회원가입이 성공적으로 이루어졌습니다.");
 						//로그인 페이지로 이동
-						loginPage(superFrame);
+						loginPage();
 					} else {
 						JOptionPane.showMessageDialog(null, "비밀번호가  일치 하지 않습니다.\n다시입력해주세요.");
 					}
@@ -405,10 +463,27 @@ public class MemberRegister_UI extends JPanel {
 			}
 		});
 	}
-	public void loginPage(JFrame superFrame) {		
-		superFrame.setVisible(false);//현재 패널 지우고
-		superFrame.add(new Login_UI()); //다시 패널을 올려줌
-		//this.repaint(); //다시 적용(갱신)
+	public String imgOpen(){
+		FileDialog fileOpen = new FileDialog(superFrame, "파일열기", FileDialog.LOAD);
+		fileOpen.setDirectory("c:\\");
+		fileOpen.setVisible(true);
+		String fileDirectory = fileOpen.getDirectory() + fileOpen.getFile();
+		if(fileOpen.getFile() == null) return fileDirectory;
+		fileDirectory = fileDirectory.replaceAll("\\\\","\\\\\\\\");
+		System.out.println(fileDirectory);
+		// \는 \\\\로 입력해야한다. \\는 \\\\로 입력해야 오류가 발생하지않는다.
+		// replaceAll("\\\\","\\\\\\\\")은 문자열 에서 "\"를 "\\"로 고친다.
+		Image newImage = new ImageIcon(fileDirectory).getImage().getScaledInstance(200, 200, 0);
+		userIng_lb.setIcon(new ImageIcon(newImage));
+		 
+
+		this.revalidate();
+		this.repaint();
+		return fileDirectory;
+	}
+	public void loginPage() {		
+		superFrame.setVisible(false);//현재 프레임의 비전을끄고
+		superFrame.add(new Login_UI()); //새로운 프레임을 만든다.
 	}
 }
 	

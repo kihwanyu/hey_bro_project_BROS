@@ -4,6 +4,7 @@ public class Member {
 	private String userId;
 	private String userPw;
 	private String userName;
+	private String gender;
 	private String birthday;
 	private String email;
 	private String pictureUrl;
@@ -11,12 +12,13 @@ public class Member {
 		super();
 	}
 
-	public Member(String userId, String userPw, String userName, 
+	public Member(String userId, String userPw, String userName, String gender,
 			String birthday, String email, String pictureUrl) {
 		super();
 		this.userId = userId;
 		this.userPw = userPw;
 		this.userName = userName;
+		this.gender = gender;
 		this.birthday = birthday;
 		this.email = email;
 		this.pictureUrl = pictureUrl;
@@ -34,6 +36,15 @@ public class Member {
 	public void setUserPw(String userPw) {
 		this.userPw = userPw;
 	}
+	
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
 	public String getBirthday() {
 		return birthday;
 	}
@@ -64,8 +75,8 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return userId + ", " + userPw + ", " + userName + ", " + birthday
-				+ ", " + pictureUrl + ", " + email;
+		return userId + ", " + userPw + ", " + userName + ", " + gender 
+				+ ", " + birthday + ", " + email + ", " + pictureUrl;
 	}
 
 }
