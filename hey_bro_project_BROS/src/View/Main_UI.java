@@ -25,8 +25,6 @@ public class Main_UI extends JPanel {
 
 		this.setBounds(0, 0, 800, 500);
 
-
-
 		mainPanel = new JPanel();
 		mainPanel.setBackground(Color.WHITE);
 		mainPanel.setSize(800, 500);
@@ -47,33 +45,34 @@ public class Main_UI extends JPanel {
 
 		Image icon2 = new ImageIcon("hey_bro_project_BROS/src/View/img/main_2.PNG").getImage().getScaledInstance(140, 139, 0);
 		JButton join = new JButton(new ImageIcon(icon2));
-
+		
 		join.setLocation(450, 200);
 		//userPanel3.setBackground(Color.green);
 		join.setSize(130, 130);
-
+		clickEvent(join, new JoinGroup_UI());
 		Image icon3 = new ImageIcon("hey_bro_project_BROS/src/View/img/main_3.PNG").getImage().getScaledInstance(139, 139, 0);
 		JButton in = new JButton(new ImageIcon(icon3));
 
 		in.setLocation(650, 200);
 		//userPanel4.setBackground(Color.RED);
 		in.setSize(130, 130);
-
+		//회원 정보 수정
 		Image icon_1 = new ImageIcon("hey_bro_project_BROS/src/View/img/button1.PNG").getImage().getScaledInstance(207, 52, 0);
 		JButton edit = new JButton(new ImageIcon(icon_1));
 		edit.setLocation(10, 100);
 		edit.setSize(180, 52);
+		//Q/A
 		clickEvent(edit, new MemberUpdate_UI());
 		Image icon_2 = new ImageIcon("hey_bro_project_BROS/src/View/img/button2.PNG").getImage().getScaledInstance(205, 48, 0);
 		JButton qa = new JButton(new ImageIcon(icon_2));
 		qa.setLocation(10, 170);
 		qa.setSize(180, 52);
-
+		//회원탈퇴
 		Image icon_3 = new ImageIcon("hey_bro_project_BROS/src/View/img/button3.PNG").getImage().getScaledInstance(206, 50, 0);
 		JButton out = new JButton(new ImageIcon(icon_3));
 		out.setLocation(10, 350);
 		out.setSize(180, 52);
-
+		clickEvent(out, new MemberDelete_UI());
 		//text
 		JLabel text1 = new JLabel("님 환영합니다.");
 		text1.setLocation(110, 3);

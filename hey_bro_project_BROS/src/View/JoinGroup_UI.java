@@ -3,22 +3,31 @@ package View;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-public class JoinGroup_UI extends JFrame {
+public class JoinGroup_UI extends JPanel {
+	private JPanel panel;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5276751205814558579L;
 
 	public JoinGroup_UI(){
-		JFrame mf = new JFrame();
-		mf.setBounds(400,200,800,500);
-		mf.setLayout(null);
+		//JFrame mf = new JFrame();
+		panel = new JPanel();
+		this.setBounds(0,0,800,500);
+		this.setLayout(null);
+		panel.setBounds(0, 0, 800, 500);
+		panel.setLayout(null);
+		//panel.setBounds(0, 0, 800, 500);
+		//panel.setLayout(null);
 		//라벨 생성
 		JLabel lb1 = new JLabel("모임참여");
 		
@@ -58,12 +67,85 @@ public class JoinGroup_UI extends JFrame {
 		btn2.setSize(180, 50);
 		
 		//메인프레임에 담기
+		//this.add(panel);
+		panel.add(lb1);
+		panel.add(groupList);
+		panel.add(btn1);
+		panel.add(btn2);
+		this.add(panel);
 		
-		mf.add(lb1);
-		mf.add(groupList);
-		mf.add(btn1);
-		mf.add(btn2);
-		mf.setVisible(true);
-		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		btn2.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				new GroupJoin_Pw_UI();				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		//clickEvent();
+	}
+	
+	public void clickEvent(JButton button, JPanel panel){
+		button.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				nextPage(panel);				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
+	public void nextPage(JPanel loadPanel) {		
+		this.remove(this.panel);//현재 패널 지우고
+		this.panel =  loadPanel; //2번 패널 객체를 담음
+		this.add(panel); //다시 패널을 올려줌
+		this.repaint(); //다시 적용(갱신)
 	}
 }
