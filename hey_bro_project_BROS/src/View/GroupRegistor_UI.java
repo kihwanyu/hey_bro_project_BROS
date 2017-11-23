@@ -2,6 +2,10 @@ package View;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,17 +13,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class GroupRegistor_UI extends JFrame {
+public class GroupRegistor_UI extends JPanel {
+	private JPanel superPanel;
+	private JPanel mainPanel;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4430678642605584542L;
 
-	public GroupRegistor_UI(){
-		JFrame mf = new JFrame("모임 만들기");
+	public GroupRegistor_UI(JPanel superPanel){
+		//JFrame mf = new JFrame("모임 만들기");
 
-		mf.setBounds(400, 200, 800, 500);
-		mf.setLayout(null);
+		this.setBounds(0, 0, 800, 500);
+		this.setLayout(null);
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setSize(800, 500);
@@ -87,28 +93,96 @@ public class GroupRegistor_UI extends JFrame {
 		
 		//추가버튼
 		JButton btn = new JButton("완료");
-		btn.setLocation(340,400);
+		btn.setLocation(440,400);
 		btn.setSize(100, 30);
 		btn.setBackground(new Color(5, 150, 255));
+		btn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Main_UI();
+			}
+			
+		});
 		
-		mf.add(title, "North");
-		mf.add(gName);
-		mf.add(gntf);
-		mf.add(glike);
-		mf.add(gltf);
-		mf.add(gPw);
-		mf.add(gPwtf);
-		mf.add(regPw);
-		mf.add(regPwtf);
-		mf.add(content);
-		mf.add(ctf);
-		mf.add(news);
-		mf.add(newstf);
-		mf.add(btn , "South");
-		mf.add(mainPanel);
+		JButton back_btn = new JButton("뒤로가기");
+		back_btn.setLocation(250,400);
+		back_btn.setSize(100, 30);
+		back_btn.setBackground(new Color(5, 150, 255));
+		back_btn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == back_btn){
+					new Main_UI();
+				}
+			}
+			
+		});
 		
-		mf.setVisible(true);
-		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainPanel.add(title, "North");
+		mainPanel.add(gName);
+		mainPanel.add(gntf);
+		mainPanel.add(glike);
+		mainPanel.add(gltf);
+		mainPanel.add(gPw);
+		mainPanel.add(gPwtf);
+		mainPanel.add(regPw);
+		mainPanel.add(regPwtf);
+		mainPanel.add(content);
+		mainPanel.add(ctf);
+		mainPanel.add(news);
+		mainPanel.add(newstf);
+		mainPanel.add(btn , "South");
+		mainPanel.add(back_btn, "South");
+		
+		this.add(mainPanel);
+		
+		//mf.setVisible(true);
+		//mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	
+	
+	public void clickEvent(JButton button, JPanel panel){
+		button.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				nextPage(panel);			
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
+	public void nextPage(JPanel loadPanel) {		
+		this.removeAll();//현재 패널 지우고
+		this.mainPanel =  loadPanel; //2번 패널 객체를 담음
+		this.add(mainPanel); //다시 패널을 올려줌
+		this.repaint(); //다시 적용(갱신)
 	}
 }
 

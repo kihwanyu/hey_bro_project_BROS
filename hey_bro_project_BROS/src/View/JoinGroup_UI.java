@@ -61,9 +61,17 @@ public class JoinGroup_UI extends JPanel {
 		});
 		//버튼 생성
 		
-		JButton btn1 = new JButton("뒤로가기");
+		JButton btn1 = new JButton("메인으로 가기");
 		btn1.setLocation(200, 300);
 		btn1.setSize(180, 50);
+		btn1.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Main_UI();
+			}
+			
+		});
 		
 		JButton btn2 = new JButton("입장하기");
 		btn2.setLocation(400, 300);

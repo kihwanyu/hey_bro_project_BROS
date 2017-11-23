@@ -2,6 +2,8 @@ package View;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -45,17 +47,18 @@ public class Main_UI extends JFrame {
 
 		Image icon2 = new ImageIcon("hey_bro_project_BROS/src/View/img/main_2.PNG").getImage().getScaledInstance(140, 139, 0);
 		JButton join = new JButton(new ImageIcon(icon2));
-		
 		join.setLocation(450, 200);
-		//userPanel3.setBackground(Color.green);
 		join.setSize(130, 130);
+		
+		
 		clickEvent(join, new JoinGroup_UI(this));
 		Image icon3 = new ImageIcon("hey_bro_project_BROS/src/View/img/main_3.PNG").getImage().getScaledInstance(139, 139, 0);
 		JButton in = new JButton(new ImageIcon(icon3));
-
 		in.setLocation(650, 200);
-		//userPanel4.setBackground(Color.RED);
 		in.setSize(130, 130);
+	//	clickEvent(plusLabel, new );
+		
+		
 		//회원 정보 수정
 		Image icon_1 = new ImageIcon("hey_bro_project_BROS/src/View/img/button1.PNG").getImage().getScaledInstance(207, 52, 0);
 		JButton edit = new JButton(new ImageIcon(icon_1));
@@ -110,6 +113,7 @@ public class Main_UI extends JFrame {
 			e.printStackTrace();
 		}
 		 */
+		clickEvent(plusLabel, new GroupRegistor_UI(mainPanel));
 	}
 	public void clickEvent(JButton button, JPanel panel){
 		button.addMouseListener(new MouseListener() {

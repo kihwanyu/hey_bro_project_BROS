@@ -2,6 +2,8 @@ package View;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -58,6 +60,14 @@ public class GroupJoin_Pw_UI extends JFrame {
 		btn2.setLocation(195,180);
 		btn2.setSize(100, 29);
 		btn2.setBackground(new Color(5, 150, 255));
+		btn2.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//new JoinGroup_UI();
+			}
+			
+		});
 		
 		this.add(title);
 		this.add(gPw);

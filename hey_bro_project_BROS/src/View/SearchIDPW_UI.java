@@ -183,8 +183,7 @@ public class SearchIDPW_UI extends JPanel{
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
+				text4.setText("");				
 			}
 			
 			@Override
@@ -201,7 +200,7 @@ public class SearchIDPW_UI extends JPanel{
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				text4.setText("");
+				//text4.setText("");
 				
 			}
 		});
