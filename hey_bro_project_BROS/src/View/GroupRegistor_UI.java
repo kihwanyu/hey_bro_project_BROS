@@ -9,106 +9,109 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class GroupRegistor_UI extends JFrame {
+public class GroupRegistor_UI extends JPanel {
+	//private JPanel mainPanel;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4430678642605584542L;
 
 	public GroupRegistor_UI(){
-		JFrame mf = new JFrame("¸ðÀÓ ¸¸µé±â");
-
-		mf.setBounds(400, 200, 800, 500);
-		mf.setLayout(null);
+	//	JFrame mf = new JFrame("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½");
+		//
+		this.setBounds(0, 0, 800, 500);
+		this.setLayout(null);
 		
-		JPanel mainPanel = new JPanel();
-		mainPanel.setSize(800, 500);
-		mainPanel.setBackground(Color.white);
+		JPanel bgPanel = new JPanel();
+		bgPanel.setSize(800, 500);
+		bgPanel.setBackground(Color.white);
 		
-		//Ã¢ ÀÌ¸§
-		JLabel title = new JLabel("¸ðÀÓ ¸¸µé±â");
+		//Ã¢ ï¿½Ì¸ï¿½
+		JLabel title = new JLabel("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½");
 		title.setFont(new Font(Font.DIALOG, Font.BOLD, 28));
 		title.setLocation(316,10);
 		title.setSize(300, 30);
 		
-		//¸ðÀÓ¸í ¶óº§
-		JLabel gName = new JLabel("¸ðÀÓ¸í : ");
+		//ï¿½ï¿½ï¿½Ó¸ï¿½ ï¿½ï¿½
+		JLabel gName = new JLabel("ï¿½ï¿½ï¿½Ó¸ï¿½ : ");
 		gName.setLocation(70,80);
 		gName.setSize(200, 30);
-		//¸ðÀÓ¸í ÅØ½ºÆ® ÇÊµå
+		//ï¿½ï¿½ï¿½Ó¸ï¿½ ï¿½Ø½ï¿½Æ® ï¿½Êµï¿½
 		JTextField gntf = new JTextField(20);
 		gntf.setLocation(150, 80);
 		gntf.setSize(200, 30);
 		
-		//ÄÜÅÙÃ÷ ¶óº§
-		JLabel glike = new JLabel("¸ðÀÓ °ü½É»ç : ");
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		JLabel glike = new JLabel("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½É»ï¿½ : ");
 		glike.setLocation(450,80);
 		glike.setSize(200, 30);
-		// ÄÜÅÙÃ÷ ÅØ½ºÆ® ÇÊµå
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ® ï¿½Êµï¿½
 		JTextField gltf = new JTextField(20);
 		gltf.setLocation(540, 80);
 		gltf.setSize(200, 30);
 		
-		//ºñ¹Ð¹øÈ£ ÀÔ·Â ¶óº§
-		JLabel gPw = new JLabel("ºñ¹Ð¹øÈ£ÀÔ·Â : ");
+		//ï¿½ï¿½Ð¹ï¿½È£ ï¿½Ô·ï¿½ ï¿½ï¿½
+		JLabel gPw = new JLabel("ï¿½ï¿½Ð¹ï¿½È£ï¿½Ô·ï¿½ : ");
 		gPw.setLocation(50,120);
 		gPw.setSize(200, 30);
-		//ºñ¹Ð¹øÈ£ ÀÔ·Â ÅØ½ºÆ® ÇÊµå
+		//ï¿½ï¿½Ð¹ï¿½È£ ï¿½Ô·ï¿½ ï¿½Ø½ï¿½Æ® ï¿½Êµï¿½
 		JTextField gPwtf = new JTextField(20);
 		gPwtf.setLocation(150, 120);
 		gPwtf.setSize(200, 30);
 		
-		//ºñ¹Ð¹øÈ£ Àç ÀÔ·Â ¶óº§
-		JLabel regPw = new JLabel("ºñ¹Ð¹øÈ£ ÀçÀÔ·Â : ");
+		//ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½
+		JLabel regPw = new JLabel("ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½Ô·ï¿½ : ");
 		regPw.setLocation(425, 120);
 		regPw.setSize(200, 30);
-		//ºñ¹Ð¹øÈ£ Àç ÀÔ·Â ÅØ½ºÆ® ÇÊµå
+		//ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½Ø½ï¿½Æ® ï¿½Êµï¿½
 		JTextField regPwtf = new JTextField(20);
 		regPwtf.setLocation(540, 120);
 		regPwtf.setSize(200, 30);
 		
-		//¸ðÀÓ ³»¿ë ¶óº§
-		JLabel content = new JLabel("¸ðÀÓ ³»¿ë");
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		JLabel content = new JLabel("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		content.setLocation(170,180);
 		content.setSize(200, 30);
-		// ÅØ½ºÆ®
+		// ï¿½Ø½ï¿½Æ®
 		JTextField ctf = new JTextField(20);
 		ctf.setLocation(50, 220);
 		ctf.setSize(300, 160);
 		
-		//°øÁö»çÇ× ¶óº§
-		JLabel news = new JLabel("°øÁö»çÇ×");
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		JLabel news = new JLabel("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		news.setLocation(565, 180);
 		news.setSize(200, 30);
-		//ÅØ½ºÆ®
+		//ï¿½Ø½ï¿½Æ®
 		JTextField newstf = new JTextField(20);
 		newstf.setLocation(440, 220);
 		newstf.setSize(300, 160);
 		
-		//Ãß°¡¹öÆ°
-		JButton btn = new JButton("¿Ï·á");
+		//ï¿½ß°ï¿½ï¿½ï¿½Æ°
+		JButton btn = new JButton("ï¿½Ï·ï¿½");
 		btn.setLocation(340,400);
 		btn.setSize(100, 30);
 		btn.setBackground(new Color(5, 150, 255));
+
+		this.add(title, "North");
+		this.add(gName);
+		this.add(gntf);
+		this.add(glike);
+		this.add(gltf);
+		this.add(gPw);
+		this.add(gPwtf);
+		this.add(regPw);
+		this.add(regPwtf);
+		this.add(content);
+		this.add(ctf);
+		this.add(news);
+		this.add(newstf);
+		this.add(btn , "South");
+		this.add(bgPanel);
+		//this.add(mainPanel);
 		
-		mf.add(title, "North");
-		mf.add(gName);
-		mf.add(gntf);
-		mf.add(glike);
-		mf.add(gltf);
-		mf.add(gPw);
-		mf.add(gPwtf);
-		mf.add(regPw);
-		mf.add(regPwtf);
-		mf.add(content);
-		mf.add(ctf);
-		mf.add(news);
-		mf.add(newstf);
-		mf.add(btn , "South");
-		mf.add(mainPanel);
-		
-		mf.setVisible(true);
-		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//mf.setVisible(true);
+		//mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	
 }
 
