@@ -18,13 +18,13 @@ import javax.swing.table.JTableHeader;
 
 public class GroupListForLeaders  {
 	public void groupList(){
-		
+	
 	/*	JFrame mf = new JFrame();		
 		mf.setBounds(300, 100, 800, 500);
-		mf.setLayout(null);*/
+		mf.setLayout(null); */
 		
 	
-	
+	//
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBounds(0, 0, 800, 500);
@@ -34,7 +34,7 @@ public class GroupListForLeaders  {
 		lb1.setBounds(30, 10, 100, 40);
 		lb1.setFont(new Font(Font.DIALOG, Font.BOLD, 16));
 		
-		Image icon = new ImageIcon("hey_bro_project_BROS/src/View/img/images (1).png").getImage().getScaledInstance(40, 40, 0);
+		Image icon = new ImageIcon("hey_bro_project_BROS/src/View/img/images.png").getImage().getScaledInstance(40, 40, 0);
 		JLabel lb2 = new JLabel(new ImageIcon(icon));
 		lb2.setBounds(1, 28, 80, 80);
 		
@@ -55,7 +55,7 @@ public class GroupListForLeaders  {
 		JButton btn3 = new JButton("모임 삭제");
 		btn3.setBounds(20, 350, 220, 50);
 		
-		Image icon2 = new ImageIcon("hey_bro_project_BROS/src/View/img/if_button-previous_85591.png").getImage().getScaledInstance(30, 30, 0);
+		Image icon2 = new ImageIcon("hey_bro_project_BROS/src/View/img/if_button-previous_855910.png").getImage().getScaledInstance(30, 30, 0);
 		JLabel prev = new JLabel(new ImageIcon(icon2));
 		prev.setBounds(430, 50,30,30 );
 		
@@ -68,7 +68,7 @@ public class GroupListForLeaders  {
 		
 		
 		
-		Image icon3 = new ImageIcon("hey_bro_project_BROS/src/View/img/if_button-next_85587.png").getImage().getScaledInstance(30, 30, 0);
+		Image icon3 = new ImageIcon("hey_bro_project_BROS/src/View/img/if_button-next_855870.png").getImage().getScaledInstance(30, 30, 0);
 		JLabel next = new JLabel(new ImageIcon(icon3));
 		next.setBounds(600, 50,30,30 );
 		
