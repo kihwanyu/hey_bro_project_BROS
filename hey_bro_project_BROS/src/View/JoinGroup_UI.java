@@ -10,16 +10,19 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class JoinGroup_UI extends JPanel {
 	private JPanel panel;
+	private JFrame superFrame;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5276751205814558579L;
 
-	public JoinGroup_UI(){
+	public JoinGroup_UI(JFrame frame){
+		this.superFrame = frame;
 		//JFrame mf = new JFrame();
 		panel = new JPanel();
 		this.setBounds(0,0,800,500);
@@ -84,7 +87,9 @@ public class JoinGroup_UI extends JPanel {
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
-				new GroupJoin_Pw_UI();				
+				new GroupJoin_Pw_UI();
+
+				frameSetVisible();
 			}
 			
 			@Override
@@ -141,6 +146,9 @@ public class JoinGroup_UI extends JPanel {
 				
 			}
 		});
+	}
+	public void frameSetVisible(){
+		superFrame.setVisible(false);
 	}
 	public void nextPage(JPanel loadPanel) {		
 		this.remove(this.panel);//현재 패널 지우고

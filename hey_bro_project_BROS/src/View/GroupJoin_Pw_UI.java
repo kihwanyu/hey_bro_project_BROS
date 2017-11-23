@@ -2,6 +2,8 @@ package View;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,9 +18,10 @@ public class GroupJoin_Pw_UI extends JFrame {
 	private static final long serialVersionUID = 5827244684650823215L;
 
 	public GroupJoin_Pw_UI(){
-		JFrame mf = new JFrame("모임 참여");
-		mf.setBounds(300, 100, 500, 300);
-		mf.setLayout(null);
+		//JFrame mf = new JFrame("모임 참여");
+		this.setTitle("모임 참여");
+		this.setBounds(300, 100, 500, 300);
+		this.setLayout(null);
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setSize(500, 300);
@@ -56,14 +59,50 @@ public class GroupJoin_Pw_UI extends JFrame {
 		btn2.setSize(100, 29);
 		btn2.setBackground(new Color(5, 150, 255));
 		
-		mf.add(title);
-		mf.add(gPw);
-		mf.add(gPwtf);
-		mf.add(btn1);
-		mf.add(btn2);
-		mf.add(subPanel);
-		mf.add(mainPanel);
+		this.add(title);
+		this.add(gPw);
+		this.add(gPwtf);
+		this.add(btn1);
+		this.add(btn2);
+		this.add(subPanel);
+		this.add(mainPanel);
 			
-		mf.setVisible(true);
+		this.setVisible(true);
+		
+		btn1.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				new User_Calendar_UI();
+				frameSetVisible();
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
+	public void frameSetVisible(){
+		this.setVisible(false);
 	}
 }

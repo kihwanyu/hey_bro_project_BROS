@@ -83,10 +83,45 @@ public class Login_UI extends JFrame{
 		btnIdPw.setBounds(365, 260, 115, 25);
 		panel.add(btnIdPw);
 		
-		clickEvent(btnLogin,new Main_UI());
 		clickEvent(btnInit,new MemberRegister_UI());
 		clickEvent(btnIdPw,new SearchIDPW_UI());
+		
+		btnLogin.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				new Main_UI();
+				frameSetVisible();
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}	
+	public void frameSetVisible(){
+		this.setVisible(false);
+	}
 	public void clickEvent(JButton button, JPanel panel){
 		button.addMouseListener(new MouseListener() {
 			
@@ -98,7 +133,11 @@ public class Login_UI extends JFrame{
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
-				nextPage(panel);				
+				nextPage(panel);
+				//panel을 새로고침 해준다.
+				//간혹 GUI오류에 의해 나오지 않는 컴포넌트를 다시 띄워준다.
+				panel.revalidate();
+				panel.repaint();
 			}
 			
 			@Override

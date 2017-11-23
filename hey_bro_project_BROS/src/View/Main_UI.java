@@ -10,7 +10,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class Main_UI extends JPanel {
+public class Main_UI extends JFrame {
 
 	private JPanel mainPanel;
 	/**
@@ -23,13 +23,13 @@ public class Main_UI extends JPanel {
 		this.setLayout(null);
 		this.setBackground(Color.WHITE);
 
-		this.setBounds(0, 0, 800, 500);
+		this.setBounds(400, 200, 800, 500);
 
 		mainPanel = new JPanel();
 		mainPanel.setBackground(Color.WHITE);
-		mainPanel.setSize(800, 500);
+		mainPanel.setLayout(null);
+		mainPanel.setBounds(0, 0, 800, 500);
 		JPanel userPanel = new JPanel();
-
 
 		userPanel.setLocation(0, 0);
 		userPanel.setBackground(Color.LIGHT_GRAY);
@@ -49,7 +49,7 @@ public class Main_UI extends JPanel {
 		join.setLocation(450, 200);
 		//userPanel3.setBackground(Color.green);
 		join.setSize(130, 130);
-		clickEvent(join, new JoinGroup_UI());
+		clickEvent(join, new JoinGroup_UI(this));
 		Image icon3 = new ImageIcon("hey_bro_project_BROS/src/View/img/main_3.PNG").getImage().getScaledInstance(139, 139, 0);
 		JButton in = new JButton(new ImageIcon(icon3));
 
@@ -98,6 +98,9 @@ public class Main_UI extends JPanel {
 		mainPanel.add(text2);
 		mainPanel.add(userPanel);
 		this.add(mainPanel);
+		
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//mf.add();
 
 		/*//아이콘 이미지 변경
@@ -119,7 +122,8 @@ public class Main_UI extends JPanel {
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
-				nextPage(panel);				
+				nextPage(panel);			
+				
 			}
 			
 			@Override
