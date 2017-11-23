@@ -18,7 +18,7 @@ public class GroupRegistor_UI extends JPanel {
 
 	public GroupRegistor_UI(){
 	//	JFrame mf = new JFrame("���� �����");
-
+		//
 		this.setBounds(0, 0, 800, 500);
 		this.setLayout(null);
 		
