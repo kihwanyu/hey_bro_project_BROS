@@ -5,20 +5,17 @@ import java.awt.Image;
 
 import javax.swing.*;
 
-public class MemberDelete_UI extends JFrame {
+public class MemberDelete_UI extends JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6557046076929215948L;
 
 	public MemberDelete_UI() {
-		JFrame mf = new JFrame();
+		//JFrame mf = new JFrame();
 		
-		mf.setBounds(300, 250, 800, 500);
-		mf.setLayout(null);
-		mf.setTitle("Hey~bro");
-		mf.setResizable(false);
-		
+		this.setBounds(0, 0, 800, 500);
+		this.setLayout(null);
 		
 		//Î∞∞Í≤Ω?Éâ
 		JPanel bg = new JPanel();
@@ -29,7 +26,6 @@ public class MemberDelete_UI extends JFrame {
 		String userName = "¡∂º∫Ωƒ";
 		JLabel name = new JLabel(userName);
 		name.setBounds(380, 179, 50, 50);
-		
 		
 		//Î¨∏Íµ¨ ?ùºÎ≤?
 		Image icon = new ImageIcon("hey_bro_project_BROS/src/View/img/out.PNG").getImage().getScaledInstance(612, 358, 0);
@@ -46,14 +42,11 @@ public class MemberDelete_UI extends JFrame {
 		check.setBackground(null);
 		check.setBounds(270, 335, 20, 20);
 		
-		mf.add(check);
-		mf.add(label2);
-		mf.add(name);
-		mf.add(label);
-		mf.add(bg);
-		
-		mf.setVisible(true);
-		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.add(check);
+		this.add(label2);
+		this.add(name);
+		this.add(label);
+		this.add(bg);
 	}
 
 }

@@ -63,9 +63,7 @@ public class GroupJoin_Pw_UI extends JFrame {
 		mf.add(btn2);
 		mf.add(subPanel);
 		mf.add(mainPanel);
-		
-		
+			
 		mf.setVisible(true);
-		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
