@@ -31,12 +31,6 @@ public class MemberUpdate_UI extends JPanel {
 		final int MEMBER_LIBEL_LOCATION_X = 80;
 		final int MEMBER_TEXT_LOCATION_X = MEMBER_LIBEL_LOCATION_X+110; 
 		
-		//JFrame fr = new JFrame("회원 정보 수정");
-		//JPanel title_p = new JPanel();
-		//JPanel panel_m = new JPanel();
-		//panel_m.setLayout(null);
-		//panel_m.setLocation(0, 0);
-		
 		JLabel title_lb = new JLabel("회원 정보 수정");
 		
 		JLabel id_lb = new JLabel("아이디 : \n");
@@ -66,18 +60,13 @@ public class MemberUpdate_UI extends JPanel {
 		userIng_lb.setLocation(MEMBER_LIBEL_LOCATION_X+400, 10);	
 		userIng_lb.setSize(300,300);
 		
-		/*JButton overlap_bt = new JButton("중복검사"); 
-		overlap_bt.setLocation(MEMBER_TEXT_LOCATION_X+160, 59);
-		overlap_bt.setSize(90,30);*/
 		JButton imageOpen_Bt = new JButton("이미지 가져오기");
 		imageOpen_Bt.setLocation(MEMBER_TEXT_LOCATION_X+320, 285);
 		imageOpen_Bt.setSize(150,40);
 		JButton register_bt = new JButton("수정 하기");
 		register_bt.setLocation(MEMBER_TEXT_LOCATION_X+125, 350);
 		register_bt.setSize(150,40);
-		/*JButton deleteAll_bt = new JButton("다시 쓰기");
-		deleteAll_bt.setLocation(MEMBER_TEXT_LOCATION_X+50, 350);
-		deleteAll_bt.setSize(150,40);*/
+	
 		//아이디
 		JTextField id_text = new JTextField(10);
 		id_text.setText("rlghks94");
@@ -152,13 +141,12 @@ public class MemberUpdate_UI extends JPanel {
 		gender.add(woman);
 		
 		this.setBounds(0,0,800,500);
-		//this.add(this,"North");
-		//this.add(panel_m);
+
 		
 		this.add(title_lb);
 		
 		this.add(id_lb);
-		//panel_m.add(overlap_bt);
+
 		this.add(id_text);
 		this.add(pw_lb1);
 		this.add(pw_text1);
@@ -177,11 +165,9 @@ public class MemberUpdate_UI extends JPanel {
 		this.add(userIng_lb);
 		this.add(imageOpen_Bt);
 		this.add(register_bt);
-		//panel_m.add(deleteAll_bt);
+
 		this.add(dateList);
-		//this.add(title_p);
-		//this.add(panel_m);
-		//this.setBackground(Color.BLUE);
+
 		textDelete(id_text);
 		textDelete(pw_text1);
 		textDelete(pw_text2);
@@ -191,23 +177,6 @@ public class MemberUpdate_UI extends JPanel {
 		birthdayComboList(monthList , yearList, monthList, dateList, date);
 		birthdayComboList(yearList , yearList, monthList, dateList, date);
 		dateList.setSelectedIndex(25);
-		//모든 텍스트 박스의 문자열을 초기값으로 바꾸어준다.
-		/*deleteAll_bt.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				id_text.setText("아이디를 입력해주세요.");
-				pw_text1.setText("비밀번호를 입력해주세요.");
-				pw_text2.setText("비밀번호를 다시 입력해주세요.");
-				name_text.setText("이름을 입력해주세요.");
-				gender.clearSelection();					
-				yearList.setSelectedIndex(0);
-				monthList.setSelectedIndex(0);;
-				dateList.setSelectedIndex(0);
-				
-				email_text.setText("이메일을 입력해주세요.");				
-			}
-		});
-		*/
 	}
 	//text박스 클릭시 텍스트박스에 있는 문자열을 지워주는 메소드.
 	public void textDelete(JTextField tf){

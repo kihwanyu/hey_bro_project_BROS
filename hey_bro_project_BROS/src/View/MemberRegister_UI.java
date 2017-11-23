@@ -25,6 +25,7 @@ public class MemberRegister_UI extends JPanel {
 	private static final long serialVersionUID = -753271555181998155L;
 
 	public MemberRegister_UI(){
+		
 		final int MEMBER_LIBEL_LOCATION_X = 80;
 		final int MEMBER_TEXT_LOCATION_X = MEMBER_LIBEL_LOCATION_X+110; 
 		
@@ -180,13 +181,14 @@ public class MemberRegister_UI extends JPanel {
 		birthdayComboList(monthList , yearList, monthList, dateList, date);
 		birthdayComboList(yearList , yearList, monthList, dateList, date);
 		
+		
 		//모든 텍스트 박스의 문자열을 초기값으로 바꾸어준다.
 		deleteAll_bt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				id_text.setText("아이디를 입력해주세요.");
 				pw_text1.setText("비밀번호를 입력해주세요.");
-				pw_text2.setText("비밀번호를 다시 입력해주세요.");
+				pw_text2.setText("비밀번호를 입력해주세요.");
 				name_text.setText("이름을 입력해주세요.");
 				gender.clearSelection();					
 				yearList.setSelectedIndex(0);
@@ -198,8 +200,6 @@ public class MemberRegister_UI extends JPanel {
 		});
 		
 		
-		//fr.setVisible(true);
-		//fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	//text박스 클릭시 텍스트박스에 있는 문자열을 지워주는 메소드.
 	public void textDelete(JTextField tf){
@@ -241,7 +241,7 @@ public class MemberRegister_UI extends JPanel {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				dateList.removeAllItems();
-				System.out.println(Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex())));
+				//System.out.println(Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex())));
 				int year = Integer.parseInt(yearList.getItemAt(yearList.getSelectedIndex()));
 				int month = Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex()));
 				 if((0 == (year % 4) && 0 != (year %100)) || 0 == year%400) {
