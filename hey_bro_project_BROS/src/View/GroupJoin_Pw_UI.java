@@ -114,7 +114,7 @@ public class GroupJoin_Pw_UI extends JFrame {
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
-				new User_Calendar_UI();
+				new User_Celendar_UI();
 				frameSetVisible();
 			}
 			
