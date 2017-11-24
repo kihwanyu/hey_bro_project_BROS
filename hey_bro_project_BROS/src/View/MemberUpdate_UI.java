@@ -1,6 +1,5 @@
 package View;
-
-import java.awt.Color;
+import java.awt.FileDialog;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,14 +19,28 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import Controller.Controller;
+import Model.vo.Member;
+import Model.vo.Session;
+
 public class MemberUpdate_UI extends JPanel {
 
 	/**
 	 * 
 	 */
+	static private Controller c = new Controller();
+	static private Member m = new Member();
+	private static String pictureUrl = null;
+	private static JLabel userIng_lb;
+	private static String gender_text = "남"; // 디폴트 인자
+	private static JFrame superFrame;
 	private static final long serialVersionUID = 3878058214731925430L;
 	
-	public MemberUpdate_UI(){
+	public MemberUpdate_UI(JFrame superFrame, Session session){
+		m = c.process("MemberSatting.do", session);
+		
+		this.superFrame = superFrame;
+		
 		final int MEMBER_LIBEL_LOCATION_X = 80;
 		final int MEMBER_TEXT_LOCATION_X = MEMBER_LIBEL_LOCATION_X+110; 
 		
@@ -52,7 +65,7 @@ public class MemberUpdate_UI extends JPanel {
 		email_lb.setLocation(MEMBER_LIBEL_LOCATION_X, 290);
 		email_lb.setSize(150,50);
 		
-		Image userIng_img = new ImageIcon("hey_bro_project_BROS/src/Model/Data/img/dog.jpg").getImage().getScaledInstance(200, 200, 0);
+		Image userIng_img = new ImageIcon(m.getPictureUrl()).getImage().getScaledInstance(200, 200, 0);
 
 		JLabel userIng_lb = new JLabel();
 		
@@ -63,29 +76,29 @@ public class MemberUpdate_UI extends JPanel {
 		JButton imageOpen_Bt = new JButton("이미지 가져오기");
 		imageOpen_Bt.setLocation(MEMBER_TEXT_LOCATION_X+320, 285);
 		imageOpen_Bt.setSize(150,40);
-		JButton register_bt = new JButton("수정 하기");
-		register_bt.setLocation(MEMBER_TEXT_LOCATION_X+125, 350);
-		register_bt.setSize(150,40);
+		JButton update_bt = new JButton("수정 하기");
+		update_bt.setLocation(MEMBER_TEXT_LOCATION_X+125, 350);
+		update_bt.setSize(150,40);
 	
 		//아이디
 		JTextField id_text = new JTextField(10);
-		id_text.setText("rlghks94");
+		id_text.setText(m.getUserId());
 		id_text.setLocation(MEMBER_TEXT_LOCATION_X, 60);
 		id_text.setSize(150,30);
 		id_text.setEditable(false);
 		//비밀번호
 		JPasswordField pw_text1 = new JPasswordField(10);
-		pw_text1.setText("비밀번호를 입력해주세요.");
+		pw_text1.setText(m.getUserPw());
 		pw_text1.setLocation(MEMBER_TEXT_LOCATION_X, 100);
 		pw_text1.setSize(150,30);
 		//비밀번호 재입력
 		JPasswordField pw_text2 = new JPasswordField(10);
-		pw_text2.setText("비밀번호를 입력해주세요.");
+		pw_text2.setText(m.getUserPw());
 		pw_text2.setLocation(MEMBER_TEXT_LOCATION_X, 140);
 		pw_text2.setSize(150,30);
 		JTextField name_text = new JTextField(10);
 		//이름
-		name_text.setText("유기환");
+		name_text.setText(m.getUserName());
 		name_text.setLocation(MEMBER_TEXT_LOCATION_X, 220);
 		name_text.setSize(150,30);
 		//생일(년/월/일).
@@ -111,18 +124,26 @@ public class MemberUpdate_UI extends JPanel {
 			date[i] = 1+i;
 			dateList.addItem(String.valueOf(date[i]).toString());	
 		}
+		System.out.println(m.getBirthday());
+		int user_year = Integer.parseInt(m.getBirthday().substring(0,4));
+		System.out.println(user_year);
+		int user_month = Integer.parseInt(m.getBirthday().substring(4,6));
+		System.out.println(user_month);
+		int user_date = Integer.parseInt(m.getBirthday().substring(6,8));
+		System.out.println(user_date);
 		
-		yearList.setSelectedIndex(55); 
+		yearList.setSelectedIndex(user_year-1940); 
 		yearList.setLocation(MEMBER_TEXT_LOCATION_X, 260);
 		yearList.setSize(55,30);
-		monthList.setSelectedIndex(5);
+		monthList.setSelectedIndex(user_month-1);
 		monthList.setLocation(MEMBER_TEXT_LOCATION_X+62, 260);
 		monthList.setSize(40,30);
 		dateList.setLocation(MEMBER_TEXT_LOCATION_X+110, 260);
 		dateList.setSize(40,30);
+		dateList.setSelectedIndex(user_date-1);
 		//이메일.
 		JTextField email_text = new JTextField(10);
-		email_text.setText("dbrlghks94@gmail.com");
+		email_text.setText(m.getEmail());
 		email_text.setLocation(MEMBER_TEXT_LOCATION_X, 300);
 		email_text.setSize(150,30);
 		
@@ -134,8 +155,11 @@ public class MemberUpdate_UI extends JPanel {
 		woman.setLocation(MEMBER_TEXT_LOCATION_X+100, 180);
 		woman.setSize(90,30);
 		ButtonGroup gender = new ButtonGroup();
-		
-		man.setSelected(true);
+		if(m.getGender().equals("남")){
+			man.setSelected(true);
+		} else {
+			woman.setSelected(true);
+		}
 		
 		gender.add(man);
 		gender.add(woman);
@@ -164,7 +188,7 @@ public class MemberUpdate_UI extends JPanel {
 		this.add(email_text);
 		this.add(userIng_lb);
 		this.add(imageOpen_Bt);
-		this.add(register_bt);
+		this.add(update_bt);
 
 		this.add(dateList);
 
@@ -176,7 +200,103 @@ public class MemberUpdate_UI extends JPanel {
 		
 		birthdayComboList(monthList , yearList, monthList, dateList, date);
 		birthdayComboList(yearList , yearList, monthList, dateList, date);
-		dateList.setSelectedIndex(25);
+		man.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				gender_text = "남";
+			}
+		});
+		woman.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				gender_text = "여";
+			}
+		});
+		imageOpen_Bt.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				pictureUrl = imgOpen();	
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		update_bt.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				boolean result;
+				String month_text;
+				String date_text;
+				int monthCompareValue = Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex()));
+				int dateCompareValue = Integer.parseInt(dateList.getItemAt(dateList.getSelectedIndex()));
+				if(monthCompareValue < 10){
+					month_text="0"+monthCompareValue;
+				} else {
+					month_text=String.valueOf(monthCompareValue).toString();
+				}
+				if(dateCompareValue < 10){
+					date_text="0"+dateCompareValue;
+				} else {
+					date_text=String.valueOf(dateCompareValue).toString();
+				}
+				String birthday = yearList.getItemAt(yearList.getSelectedIndex()) 
+									+ month_text + date_text;
+						
+				m = new Member(id_text.getText(), pw_text1.getText(), name_text.getText()
+						, gender_text, birthday, email_text.getText(), pictureUrl);
+				c.process("MemberUpdate.do", m);
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 	//text박스 클릭시 텍스트박스에 있는 문자열을 지워주는 메소드.
 	public void textDelete(JTextField tf){
@@ -262,6 +382,24 @@ public class MemberUpdate_UI extends JPanel {
 			}
 			
 		});
+	}
+	public String imgOpen(){
+		FileDialog fileOpen = new FileDialog(superFrame, "파일열기", FileDialog.LOAD);
+		fileOpen.setDirectory("c:\\");
+		fileOpen.setVisible(true);
+		String fileDirectory = fileOpen.getDirectory() + fileOpen.getFile();
+		if(fileOpen.getFile() == null) return fileDirectory;
+		fileDirectory = fileDirectory.replaceAll("\\\\","\\\\\\\\");
+		System.out.println(fileDirectory);
+		// \는 \\\\로 입력해야한다. \\는 \\\\로 입력해야 오류가 발생하지않는다.
+		// replaceAll("\\\\","\\\\\\\\")은 문자열 에서 "\"를 "\\"로 고친다.
+		Image newImage = new ImageIcon(fileDirectory).getImage().getScaledInstance(200, 200, 0);
+		userIng_lb.setIcon(new ImageIcon(newImage));
+		 
+
+		this.revalidate();
+		this.repaint();
+		return fileDirectory;
 	}
 }
 	

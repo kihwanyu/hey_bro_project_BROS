@@ -10,12 +10,15 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import Controller.Controller;
+import Model.vo.Member;
 import Model.vo.Session;
 
 public class Main_UI extends JFrame {
 
 	private JPanel mainPanel;
-	private Session session = new Session();
+	private Controller c = new Controller();
+	private Member m = new Member();
 	/**
 	 * 
 	 */
@@ -24,7 +27,8 @@ public class Main_UI extends JFrame {
 	public Main_UI(Session session){
 		//jo1
 		//로그인에서 받을 세션을 메인화면으로 가지고 온다.
-		this.session = session;
+		//로그인한 아이디로 맴버정보를 가져와 세팅한다.
+		m = c.process("MemberSatting.do", session);
 		
 		this.setLayout(null);
 		this.setBackground(Color.WHITE);
@@ -68,7 +72,7 @@ public class Main_UI extends JFrame {
 		edit.setLocation(10, 100);
 		edit.setSize(180, 52);
 		//Q/A
-		clickEvent(edit, new MemberUpdate_UI());
+		clickEvent(edit, new MemberUpdate_UI(this, session));
 		Image icon_2 = new ImageIcon("hey_bro_project_BROS/src/View/img/button2.PNG").getImage().getScaledInstance(205, 48, 0);
 		JButton qa = new JButton(new ImageIcon(icon_2));
 		qa.setLocation(10, 170);
@@ -83,11 +87,11 @@ public class Main_UI extends JFrame {
 		JLabel text1 = new JLabel("님 환영합니다.");
 		text1.setLocation(110, 3);
 		text1.setSize(100, 50);
-		JLabel text2 = new JLabel("조성식");
+		JLabel text2 = new JLabel(m.getUserName());
 		text2.setLocation(65, 3);
 		text2.setSize(60, 50);
 
-		Image icon_4 = new ImageIcon("hey_bro_project_BROS/src/View/img/button4.PNG").getImage().getScaledInstance(48, 45, 0);
+		Image icon_4 = new ImageIcon(m.getPictureUrl()).getImage().getScaledInstance(48, 45, 0);
 		JLabel png = new JLabel(new ImageIcon(icon_4));
 		png.setLocation(0, 3);
 		png.setSize(48, 45);
