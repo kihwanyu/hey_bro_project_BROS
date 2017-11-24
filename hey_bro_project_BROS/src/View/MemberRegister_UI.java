@@ -33,8 +33,8 @@ public class MemberRegister_UI extends JPanel {
 
 	private Controller c = new Controller();
 	private	static boolean loginBoolean = false;
-	private static String pictureUrl = null;
 	private static JFrame superFrame;
+	private static String pictureUrl = null;
 	private static JLabel userIng_lb;
 	private static String gender_text = "남"; // 디폴트 인자
 	

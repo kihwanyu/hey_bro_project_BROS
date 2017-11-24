@@ -18,10 +18,13 @@ import Model.vo.Session;
 public class MemberDAO {
 	Properties prop = new Properties();
 	ArrayList<String> userIdList = new ArrayList<>();
+	Map<Integer,Member> memberMap = new HashMap<>();
+	ArrayList<Member> memberArrayList = new ArrayList<>(); 
+	
 	//회원가입
 	public void memberRegister(String userId, String userPw, String userName,  
 			String userGender, String birthday, String email, String pictureUrl){
-		Map<Integer,Member> memberMap = new HashMap<>();
+		
 		
 		// registered 등록된
 		String rUserId;
@@ -45,9 +48,9 @@ public class MemberDAO {
 				if(str!=null){
 					//System.out.println(str);
 					str_arr = str.split(", ");
-					for(String s : str_arr){
+					/*for(String s : str_arr){
 						System.out.println(s);
-					}
+					}*/
 					
 					rUserId = str_arr[0];
 					rUserPw = str_arr[1];
@@ -92,7 +95,7 @@ public class MemberDAO {
 		String rUserId;
 		try {
 			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\members.xml"));
-			System.out.println(prop.size());
+			//System.out.println(prop.size());
 			for(int i = 0; i < prop.size(); i++){
 				String str;
 				
@@ -123,7 +126,7 @@ public class MemberDAO {
 		}
 		return true;
 	}
-	//로그인 중복 검사
+	//로그인
 	public boolean Login(String userId, String userPw){
 		ArrayList<Session> sessionList = new ArrayList<>();
 		
@@ -131,7 +134,7 @@ public class MemberDAO {
 		String rUserPw;
 		try {
 			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\members.xml"));
-			System.out.println(prop.size());
+			//System.out.println(prop.size());
 			for(int i = 0; i < prop.size(); i++){
 				String str;
 				
@@ -163,5 +166,62 @@ public class MemberDAO {
 			}
 		}
 		return false;
+	}
+	
+	public Member memberSetting(Session session) {
+		// registered 등록된
+		String rUserId;
+		String rUserPw;
+		String rUserName;
+		String rUserGender;
+		String rBirthday;
+		String rEmail;
+		String rPictureUrl;
+		
+		try {
+			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\members.xml"));
+			//System.out.println(prop.size());
+			for(int i = 0; i < prop.size(); i++){
+				String str;
+				
+				String[] str_arr = new String[7];
+				
+				str = prop.getProperty(String.valueOf(i).toString());
+				if(str!=null){
+					str_arr = str.split(", ");
+					/*for(String s : str_arr){
+						System.out.println(s);
+					}*/
+					
+					rUserId = str_arr[0];
+					rUserPw = str_arr[1];
+					rUserName = str_arr[2];
+					rUserGender = str_arr[3];
+					rBirthday = str_arr[4];
+					rEmail = str_arr[5];
+					rPictureUrl = str_arr[6];	
+					
+					Member member = new Member(rUserId, rUserPw, rUserName, rUserGender, rBirthday, rEmail, rPictureUrl);
+
+					memberArrayList.add(member);
+				}
+			}	
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		for(int i = 0; i < memberArrayList.size(); i++){
+			if(session.getUserId().equals(memberArrayList.get(i).getUserId())){
+				return memberArrayList.get(i);
+			}
+		}
+		return null;
+	}
+	public Boolean memberUpdate(Member member) {
+		
+		return null;
 	}
 }
