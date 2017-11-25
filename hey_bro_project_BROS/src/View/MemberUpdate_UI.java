@@ -25,6 +25,7 @@ import Model.vo.Member;
 import Model.vo.Session;
 
 public class MemberUpdate_UI extends JPanel {
+	//
 
 	/**
 	 * 

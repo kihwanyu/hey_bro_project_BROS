@@ -5,6 +5,7 @@ import Model.vo.Member;
 import Model.vo.Session;
 
 public class Controller {
+	//
 	MemberDAO mDao = new MemberDAO();
 	Member member;
 	public void process(String key, String userId, String userPw, String userName

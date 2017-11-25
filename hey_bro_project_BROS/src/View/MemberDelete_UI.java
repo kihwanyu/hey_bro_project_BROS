@@ -6,6 +6,7 @@ import java.awt.Image;
 import javax.swing.*;
 
 public class MemberDelete_UI extends JPanel {
+	//
 	/**
 	 * 
 	 */
