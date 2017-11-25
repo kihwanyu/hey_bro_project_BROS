@@ -111,6 +111,10 @@ public class Main_UI extends JFrame {
 		clickEvent(join, new JoinGroup_UI(this,mainPanel));
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		clickEvent(plusLabel, new GroupRegistor_UI(session));
+		
+		
 		//mf.add();
 
 		/*//아이콘 이미지 변경
@@ -156,6 +160,10 @@ public class Main_UI extends JFrame {
 			}
 		});
 	}
+	
+	
+	
+	
 	public void nextPage(JPanel loadPanel) {		
 		this.remove(this.mainPanel);//현재 패널 지우고
 		this.mainPanel =  loadPanel; //2번 패널 객체를 담음
