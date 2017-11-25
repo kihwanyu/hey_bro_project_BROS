@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import Controller.Controller;
 import Model.vo.Session;
+import sun.security.util.Password;
 
 public class Login_UI extends JFrame{
 	/**
@@ -104,6 +105,14 @@ public class Login_UI extends JFrame{
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
+				/*String passwordStr = "";
+				StringBuilder sb = new StringBuilder();
+				
+				char[] passwordChar = passText.getPassword();
+				
+				for(int i = 0; i < passwordChar.length; i++){
+					sb.append(passwordChar[i]);
+				}*/
 				Boolean result = c.process("Login.do", userText.getText(), passText.getText());
 				if(result){	
 					//로그인 성공시 비밀번호와 패스워드를 세션으로 얻는다.
