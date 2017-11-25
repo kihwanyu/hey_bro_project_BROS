@@ -15,7 +15,7 @@ import Model.vo.Member;
 import Model.vo.Session;
 
 public class Main_UI extends JFrame {
-
+	//
 	private JPanel mainPanel;
 	private Controller c = new Controller();
 	private Member m = new Member();

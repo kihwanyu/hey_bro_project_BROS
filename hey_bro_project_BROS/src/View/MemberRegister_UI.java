@@ -27,6 +27,7 @@ import javax.swing.JTextField;
 import Controller.Controller;
 
 public class MemberRegister_UI extends JPanel {
+	//
 	/**
 	 * 
 	 */

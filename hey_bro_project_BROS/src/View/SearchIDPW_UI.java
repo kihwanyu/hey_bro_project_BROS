@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class SearchIDPW_UI extends JPanel{
+	//
 
 	/**
 	 * 

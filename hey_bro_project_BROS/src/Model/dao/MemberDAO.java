@@ -17,6 +17,7 @@ import Model.vo.Member;
 import Model.vo.Session;
 
 public class MemberDAO {
+	//
 	//회원가입
 	public void memberRegister(String userId, String userPw, String userName,  
 			String userGender, String birthday, String email, String pictureUrl){
