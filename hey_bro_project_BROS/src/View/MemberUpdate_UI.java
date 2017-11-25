@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -34,10 +35,15 @@ public class MemberUpdate_UI extends JPanel {
 	private static JLabel userIng_lb;
 	private static String gender_text = "남"; // 디폴트 인자
 	private static JFrame superFrame;
+	private static Session session;
 	private static final long serialVersionUID = 3878058214731925430L;
 	
 	public MemberUpdate_UI(JFrame superFrame, Session session){
+		
 		m = c.process("MemberSatting.do", session);
+		
+		this.session = session;
+		String defaltImgUrl = m.getPictureUrl();
 		
 		this.superFrame = superFrame;
 		
@@ -65,11 +71,11 @@ public class MemberUpdate_UI extends JPanel {
 		email_lb.setLocation(MEMBER_LIBEL_LOCATION_X, 290);
 		email_lb.setSize(150,50);
 		
-		Image userIng_img = new ImageIcon(m.getPictureUrl()).getImage().getScaledInstance(200, 200, 0);
-
-		JLabel userIng_lb = new JLabel();
+		Image userIng_img = new ImageIcon(defaltImgUrl).getImage().getScaledInstance(200, 200, 0);
+		userIng_lb = new JLabel();
 		
 		userIng_lb.setIcon(new ImageIcon(userIng_img));
+		
 		userIng_lb.setLocation(MEMBER_LIBEL_LOCATION_X+400, 10);	
 		userIng_lb.setSize(300,300);
 		
@@ -191,7 +197,7 @@ public class MemberUpdate_UI extends JPanel {
 		this.add(update_bt);
 
 		this.add(dateList);
-
+		
 		textDelete(id_text);
 		textDelete(pw_text1);
 		textDelete(pw_text2);
@@ -200,6 +206,8 @@ public class MemberUpdate_UI extends JPanel {
 		
 		birthdayComboList(monthList , yearList, monthList, dateList, date);
 		birthdayComboList(yearList , yearList, monthList, dateList, date);
+		
+		this.setLayout(null);
 		man.addActionListener(new ActionListener() {
 			
 			@Override
@@ -256,7 +264,6 @@ public class MemberUpdate_UI extends JPanel {
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
-				boolean result;
 				String month_text;
 				String date_text;
 				int monthCompareValue = Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex()));
@@ -276,7 +283,16 @@ public class MemberUpdate_UI extends JPanel {
 						
 				m = new Member(id_text.getText(), pw_text1.getText(), name_text.getText()
 						, gender_text, birthday, email_text.getText(), pictureUrl);
-				c.process("MemberUpdate.do", m);
+				
+				if(pw_text1.getText().equals(pw_text2.getText())){
+					c.process("MemberUpdate.do", m);
+					JOptionPane.showMessageDialog(null, "정보수정이 성공적으로 이루어졌습니다.");
+					//로그인 페이지로 이동
+					mainPage();
+				} else {
+					JOptionPane.showMessageDialog(null, "비밀번호가  일치 하지 않습니다.\n다시입력해주세요.");
+				}
+				
 			}
 			
 			@Override
@@ -400,6 +416,14 @@ public class MemberUpdate_UI extends JPanel {
 		this.revalidate();
 		this.repaint();
 		return fileDirectory;
+	}
+	public void mainPage() {		
+		superFrame.setVisible(false);//현재 프레임의 비전을끄고
+		try {
+			superFrame.add(new Main_UI(session)); //새로운 프레임을 만든다.
+		} catch (Exception e) {
+		}
+		
 	}
 }
 	

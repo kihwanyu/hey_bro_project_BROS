@@ -96,7 +96,6 @@ public class Main_UI extends JFrame {
 		png.setLocation(0, 3);
 		png.setSize(48, 45);
 
-
 		mainPanel.add(png);
 		mainPanel.add(plusLabel);
 		mainPanel.add(join);
@@ -134,7 +133,8 @@ public class Main_UI extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				nextPage(panel);			
-				System.out.println("´­¸²");
+				panel.revalidate();
+				panel.repaint();
 			}
 			
 			@Override

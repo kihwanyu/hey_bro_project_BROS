@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -16,15 +17,11 @@ import Model.vo.Member;
 import Model.vo.Session;
 
 public class MemberDAO {
-	Properties prop = new Properties();
-	ArrayList<String> userIdList = new ArrayList<>();
-	Map<Integer,Member> memberMap = new HashMap<>();
-	ArrayList<Member> memberArrayList = new ArrayList<>(); 
-	
 	//회원가입
 	public void memberRegister(String userId, String userPw, String userName,  
 			String userGender, String birthday, String email, String pictureUrl){
-		
+		Properties prop = new Properties();
+		Map<Integer,Member> memberMap = new HashMap<>();
 		
 		// registered 등록된
 		String rUserId;
@@ -92,6 +89,8 @@ public class MemberDAO {
 	}	
 	//회원가입 - 중복검사
 	public boolean MemberIdOverlap(String userId){
+		Properties prop = new Properties();
+		ArrayList<String> userIdList = new ArrayList<>();
 		String rUserId;
 		try {
 			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\members.xml"));
@@ -128,6 +127,7 @@ public class MemberDAO {
 	}
 	//로그인
 	public boolean Login(String userId, String userPw){
+		Properties prop = new Properties();
 		ArrayList<Session> sessionList = new ArrayList<>();
 		
 		String rUserId;
@@ -169,6 +169,9 @@ public class MemberDAO {
 	}
 	
 	public Member memberSetting(Session session) {
+		Properties prop = new Properties();
+		ArrayList<Member> memberArrayList = new ArrayList<>(); 
+		
 		// registered 등록된
 		String rUserId;
 		String rUserPw;
@@ -220,8 +223,101 @@ public class MemberDAO {
 		}
 		return null;
 	}
-	public Boolean memberUpdate(Member member) {
+	public void memberUpdate(Member m) {
+		Properties prop = new Properties();
+		Map<Integer,Member> memberMap = new HashMap<>();
+		ArrayList<Member> memberArrayList = new ArrayList<>(); 
 		
-		return null;
+		// registered 등록된
+		String rUserId;
+		String rUserPw;
+		String rUserName;
+		String rUserGender;
+		String rBirthday;
+		String rEmail;
+		String rPictureUrl;
+		
+		try {
+			prop.clear();
+			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\members.xml"));
+			//System.out.println(prop.size());
+			for(int i = 0; i < prop.size(); i++){
+				String str;
+				
+				String[] str_arr = new String[7];
+				
+				str = prop.getProperty(String.valueOf(i).toString());
+				if(str!=null){
+					str_arr = str.split(", ");
+					/*for(String s : str_arr){
+						System.out.println(s);
+					}*/
+					
+					rUserId = str_arr[0];
+					rUserPw = str_arr[1];
+					rUserName = str_arr[2];
+					rUserGender = str_arr[3];
+					rBirthday = str_arr[4];
+					rEmail = str_arr[5];
+					rPictureUrl = str_arr[6];	
+					
+					Member member = new Member(rUserId, rUserPw, rUserName, rUserGender, rBirthday, rEmail, rPictureUrl);
+					System.out.println(member.toString());
+					memberMap.put(memberMap.size(), member);
+				}
+			}	
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Collection<Member> memberValues = memberMap.values();
+		memberArrayList.addAll(memberValues);
+		for(int i = 0; i < memberArrayList.size(); i++){
+			if(memberArrayList.get(i).getUserId().equals(m.getUserId())){
+				System.out.println(memberArrayList.get(i));
+				memberArrayList.set(i, m);
+				System.out.println(memberArrayList.get(i));
+			}
+			prop.setProperty(String.valueOf(i).toString(), memberArrayList.get(i).toString());
+		}
+		
+		try {
+			prop.storeToXML(new FileOutputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\members.xml"),String.valueOf(new Date()).toString());
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		//Set<Integer> keys = memberMap.keySet();
+		//Iterator<Integer> memIter = keys.iterator();
+		
+		/*try {
+			while(memIter.hasNext()){
+				int key = memIter.next();
+				if(m.getUserId().equals(memberMap.get(key).getUserId())){
+					memberMap.get(key).setUserId(m.getUserId());
+					memberMap.get(key).setUserPw(m.getUserPw());
+					memberMap.get(key).setUserName(m.getUserName());
+					memberMap.get(key).setGender(m.getGender());
+					memberMap.get(key).setBirthday(m.getBirthday());
+					memberMap.get(key).setEmail(m.getEmail());
+					System.out.println("성공적으로 정보수정이 완료되었습니다.");
+				}
+				prop.setProperty(String.valueOf(key).toString(), memberMap.get(key).toString());
+			}
+			
+			prop.storeToXML(new FileOutputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\members.xml"),String.valueOf(new Date()).toString());
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}*/
 	}
 }

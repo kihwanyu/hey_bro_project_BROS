@@ -25,9 +25,6 @@ public class Controller {
 		case "MemberIdOverlap.do" :
 			result = mDao.MemberIdOverlap(userId);
 			break;
-		case "MemberSetting.do" :
-			
-			break;
 		default:
 			break;
 		}
@@ -60,16 +57,14 @@ public class Controller {
 			return member;
 		}
 	//메소드 중첩(오버로딩)
-		public Boolean process(String key, Member member){
-			Boolean result = false;
+		public void process(String key, Member member){
 			switch (key) {
 			case "MemberUpdate.do":
-				result = mDao.memberUpdate(member);
+				mDao.memberUpdate(member);
 				break;
 			default:
 				break;
 			}
-			return result;
 		}
 	
 }

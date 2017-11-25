@@ -279,12 +279,12 @@ public class MemberRegister_UI extends JPanel {
 				
 				System.out.println(result);
 				if(result){
-					 JOptionPane.showMessageDialog(null, "중복되지 않았습니다.");
+					 JOptionPane.showMessageDialog(null, "사용가능한 아아디 입니다.");
 					 //가입하기 버튼 활성화
 					 loginBoolean = true;
 					 register_bt.setEnabled(true);
 				} else {
-					JOptionPane.showMessageDialog(null, "중복되었습니다.");
+					JOptionPane.showMessageDialog(null, "아이디가 중복 되었습니다.");
 				}
 			}
 			
@@ -483,7 +483,12 @@ public class MemberRegister_UI extends JPanel {
 	}
 	public void loginPage() {		
 		superFrame.setVisible(false);//현재 프레임의 비전을끄고
-		superFrame.add(new Login_UI()); //새로운 프레임을 만든다.
+		try {
+			superFrame.add(new Login_UI()); //새로운 프레임을 만든다.
+		} catch (Exception e) {
+
+		}
+		
 	}
 }
 	
