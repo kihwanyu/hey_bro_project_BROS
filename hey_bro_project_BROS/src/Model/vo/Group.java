@@ -14,7 +14,10 @@ public class Group {
 	public Group() {
 		super();
 	}
-
+	
+	public Group(String gName) {
+		this.gName = gName;
+	}
 
 	public Group(String gName, String interests, String pw, String content, String news, String leader) {
 		super();

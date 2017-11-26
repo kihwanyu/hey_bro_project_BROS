@@ -19,12 +19,12 @@ import javax.swing.table.JTableHeader;
 public class GroupListForLeaders  {
 	public void groupList(){
 	
-	/*	JFrame mf = new JFrame();		
+		JFrame mf = new JFrame();		
 		mf.setBounds(300, 100, 800, 500);
-		mf.setLayout(null); */
+		mf.setLayout(null); 
 		
 	
-	//
+	
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBounds(0, 0, 800, 500);
@@ -172,19 +172,19 @@ public class GroupListForLeaders  {
 		panel.add(sp2);
 		panel.add(calendar);
 		
-		/*mf.add(panel);
+		mf.add(panel);
 	
 		
 		mf.setVisible(true);
-		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
+		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
 	}
 	
-	/*
+	
 	public static void main(String[] args){
-		GroupList gl = new GroupList();
+		GroupListForLeaders gl = new GroupListForLeaders();
 		gl.groupList();
-	}*/
+	}
 }
 

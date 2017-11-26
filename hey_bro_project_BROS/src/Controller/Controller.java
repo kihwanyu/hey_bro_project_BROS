@@ -1,5 +1,7 @@
 package Controller;
 
+import java.util.ArrayList;
+
 import Model.dao.GroupDAO;
 import Model.dao.MemberDAO;
 import Model.vo.Group;
@@ -9,6 +11,7 @@ import Model.vo.Session;
 public class Controller {
 	//Member
 	MemberDAO mDao = new MemberDAO();
+	
 	Member member;
 	public void process(String key, String userId, String userPw, String userName
 			, String userGender, String birthday, String email, String pictureUrl){
@@ -101,5 +104,16 @@ public class Controller {
 				break;
 			}
 			return result;
+		}
+		public ArrayList<String> process(String key, String userId, int type){
+			ArrayList<String> groupList = new ArrayList();
+			switch (key) {
+			case "GroupListSearch.do" :
+				groupList = gDao.groupListSearch(userId,type);
+				break;
+			default:
+				break;
+			}
+			return groupList;
 		}
 }

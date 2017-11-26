@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -26,13 +27,17 @@ public class GroupSearch_UI extends JPanel {
 	private Controller c = new Controller(); //수정
 	private Member m = new Member(); //수정
 	private Session session; //수정
-
+	private ArrayList<String> groupArr = new ArrayList<>();
+	private String [] groups;
+	private JComboBox<String> groupList;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5276751205814558579L;
 
 	public GroupSearch_UI(JFrame superFrame, JPanel superPanel, Session session/*수정*/){
+		
+		
 		m = c.process("MemberSatting.do", session); //수정
 		this.session = session; //수정
 		this.panel = this.tempPanel;
@@ -53,34 +58,73 @@ public class GroupSearch_UI extends JPanel {
 		lb1.setLocation(340, 50);
 		lb1.setSize(200, 100);
 		lb1.setFont(new Font(Font.DIALOG, Font.BOLD, 28));
-
-
+		
+		
 		//콤보박스 생성
 		String [] groups = {"모임을 선택해주세요", "BROS", "샛별고 동문회", "샛별대 동문회"};
-
 
 		JComboBox<String> groupList = new JComboBox<>(groups);
 		groupList.setSelectedIndex(0);
 		groupList.setLocation(200, 230);
 		groupList.setSize(390, 50);
-
-		groupList.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JComboBox<String> cb = (JComboBox<String>) e.getSource(); //선택한 콤보박스
-				String name = (String)cb.getSelectedItem(); //선택된 아이템을 스트링에다가 형변환해서 담음
-
-				/*Image img = new ImageIcon("images/"+name + ".PNG").getImage().getScaledInstance(150,150,0); //확장자가 다 똑같다는 전제 하에..
-					label.setIcon(new ImageIcon(img));*/		
-			}
-		});
+		
 		//그룹장 검색 라벨 + 텍스트 필드
 		JLabel gNlabel = new JLabel();
 		gNlabel.setText("그룹장 검색");
 		gNlabel.setBounds(200, 150, 100, 50);
 		JTextField gNtf = new JTextField();
-		gNtf.setBounds(290, 150, 300, 50);
+		gNtf.setBounds(290, 150, 220, 50);
+		JButton gNbut= new JButton("확인");
+		gNbut.setBounds(530, 150, 60, 50);
+		gNbut.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				groupArr = c.process("GroupListSearch.do", gNtf.getText(), 1);
+				
+				String[] groups_values = new String[groupArr.size()];
+				//
+				groupList.removeAllItems();
+				
+				for(int i = 0; i < groupArr.size(); i++) {
+					groups_values[i] = groupArr.get(i);
+					groupList.addItem(groups_values[i]);
+					System.out.println(groups_values[i]);
+				}
+				//System.out.println(groups[1]);
+				
+				//groupList = new JComboBox<>(groups_values);
+				groupList.setSelectedIndex(0);
+				groupList.setLocation(200, 230);
+				groupList.setSize(390, 50);
+				
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+		});
 		
 		
 		
@@ -97,6 +141,7 @@ public class GroupSearch_UI extends JPanel {
 		//메인프레임에 담기
 		//this.add(panel);
 		panel.add(gNlabel);
+		panel.add(gNbut);
 		panel.add(gNtf);
 		panel.add(lb1);
 		panel.add(groupList);
