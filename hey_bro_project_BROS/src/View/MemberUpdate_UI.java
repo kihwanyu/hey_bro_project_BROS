@@ -326,8 +326,7 @@ public class MemberUpdate_UI extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				main_UI();
-				//메인으로
+				
 				
 			}
 
@@ -345,8 +344,8 @@ public class MemberUpdate_UI extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
+				main_UI();
+				//메인으로
 			}
 
 			@Override
