@@ -2,6 +2,7 @@ package View;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -17,11 +18,13 @@ public class GroupJoin_Pw_UI extends JFrame {
 	 * 
 	 */
 	private JFrame superFrame;
+	private JFrame present;
 	
 	private static final long serialVersionUID = 5827244684650823215L;
 
 	public GroupJoin_Pw_UI(JFrame superFrame){
 		this.superFrame = superFrame;
+		this.present = this;
 		//JFrame mf = new JFrame("모임 참여");
 		this.setTitle("모임 참여");
 		this.setBounds(300, 100, 500, 300);
@@ -56,6 +59,15 @@ public class GroupJoin_Pw_UI extends JFrame {
 		btn1.setLocation(340,80);
 		btn1.setSize(100, 29);
 		btn1.setBackground(new Color(5, 150, 255));
+		btn1.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new User_Celendar_UI(present);
+				frameSetVisible();
+			}
+			
+		});
 
 		//뒤로가기 버튼
 		JButton btn2 = new JButton("뒤로가기");
@@ -104,38 +116,7 @@ public class GroupJoin_Pw_UI extends JFrame {
 				
 			}
 		});
-		btn1.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				new User_Celendar_UI();
-				frameSetVisible();
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
+	
 	}
 	public void frameSetVisible(){
 		this.setVisible(false);

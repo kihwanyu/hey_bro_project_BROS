@@ -3,6 +3,8 @@ package View;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
@@ -11,17 +13,17 @@ import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class User_Celendar_UI{
+public class User_Celendar_UI extends JFrame{
 
-	public void calendar(){
-		JFrame mf = new JFrame();      
-		mf.setLayout(null);
-		mf.setBackground(Color.WHITE);
+	public User_Celendar_UI(JFrame superFrame/*수정*/){
+		//JFrame mf = new JFrame();      
+		this.setLayout(null);
+		this.setBackground(Color.WHITE);
 		//프레임 크기
-		mf.setBounds(100, 50, 1100, 800);
+		this.setBounds(100, 50, 1100, 800);
 		//프레임 이름
-		mf.setTitle("Hey~bro");
-		mf.setResizable(false);
+		this.setTitle("Hey~bro");
+		this.setResizable(false);
 
 		//달력 패널 
 		JPanel cjp = new JPanel();
@@ -167,35 +169,75 @@ public class User_Celendar_UI{
 		png.setLocation(0, 3);
 		png.setSize(48, 45);
 
-		mf.add(cjp);
+		this.add(cjp);
 
-		mf.add(text1);
-		mf.add(text2);
-		mf.add(text3);
-		mf.add(text4);
-		mf.add(text5);
-		mf.add(text6);
+		this.add(text1);
+		this.add(text2);
+		this.add(text3);
+		this.add(text4);
+		this.add(text5);
+		this.add(text6);
 		
-		mf.add(backB);
-		mf.add(gtf);
-		mf.add(dayP);
-		mf.add(cPanel);
-		mf.add(listB);
-		mf.add(png);
+		this.add(backB);
+		this.add(gtf);
+		this.add(dayP);
+		this.add(cPanel);
+		this.add(listB);
+		this.add(png);
 		/*mf.add(edit);
 		mf.add(qa);*/
-		mf.add(out);
-		mf.add(textGl);
-		mf.add(textGln);
-		mf.add(userPanel);
-		mf.add(mainPanel);
+		this.add(out);
+		this.add(textGl);
+		this.add(textGln);
+		this.add(userPanel);
+		this.add(mainPanel);
 
 
-		mf.setVisible(true);
-		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//수정
+		backB.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				superFrame.setVisible(true);
+				frameSetVisible();
+								
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 	}
-	public static void main(String[] args){
+	//수정
+	public void frameSetVisible(){
+		this.setVisible(false);
+	}
+	/*public static void main(String[] args){
 		User_Celendar_UI u = new User_Celendar_UI();
 		u.calendar();
-	}
+	}*/
 }
