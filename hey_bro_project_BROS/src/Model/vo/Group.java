@@ -1,21 +1,35 @@
 package Model.vo;
 
 public class Group {
-	private int number;
-	private String leader;
+	private String number;
+	
 	
 	private String gName;
 	private String interests;
 	private String pw;
 	private String content;
 	private String news;
+	private String leader;
 	
 	public Group() {
 		super();
 	}
 
+
 	public Group(String gName, String interests, String pw, String content, String news, String leader) {
 		super();
+		this.gName = gName;
+		this.interests = interests;
+		this.pw = pw;
+		this.content = content;
+		this.news = news;
+		this.leader = leader;
+	}
+	
+	
+	public Group(String gNum, String gName, String interests, String pw, String content, String news, String leader) {
+		super();
+		this.number = gNum;
 		this.gName = gName;
 		this.interests = interests;
 		this.pw = pw;
@@ -41,10 +55,10 @@ public class Group {
 		this.news = news;
 	}
 
-	public int getNumber() {
+	public String getNumber() {
 		return number;
 	}
-	public void setNumber(int number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 	public String getLeader() {
@@ -74,8 +88,7 @@ public class Group {
 
 	@Override
 	public String toString() {
-		return "Group [gName=" + gName + ", interests=" + interests + ", pw=" + pw + ", content=" + content + ", news="
-				+ news + "]";
+		return number+", "+ gName + ", "+  interests + ", "+  pw + ", "+ content + ", " +news +", " +leader;
 	}
 
 	

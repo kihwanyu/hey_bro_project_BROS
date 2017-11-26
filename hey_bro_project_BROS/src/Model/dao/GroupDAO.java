@@ -19,14 +19,18 @@ import Model.vo.Member;
 import Model.vo.Session;
 
 public class GroupDAO {
-	Properties prop = new Properties();
-	LinkedList<String> groupList = new LinkedList<>();
-	Map<Integer,Group> groupMap = new HashMap<>();
+	
+	
 	
 	public void groupRegister(String gName, String interests, String pw, String content, String news, String leader){
+		Properties prop = new Properties();
+		LinkedList<String> groupList = new LinkedList<>();
+		Map<Integer,Group> groupMap = new HashMap<>();
+		
 		
 		//Registered
-	
+		
+		String rNum;
 		String rGname;
 		String rInterests;
 		String rPw;
@@ -40,21 +44,25 @@ public class GroupDAO {
 			
 			for(int i = 0; i < prop.size(); i++){
 				String str;
-				String[] str_arr = new String[6];
+				Group group = new Group();
+				str = group.toString();
+				String[] str_arr = new String[7];
 				str = prop.getProperty(String.valueOf(i).toString());
 				
 				if(str!=null){
 		
 					str_arr = str.split(", ");
 					
-					rGname = str_arr[0];
-					rInterests = str_arr[1];
-					rPw = str_arr[2];
-					rContent = str_arr[3];
-					rNews = str_arr[4];
-					rLeader = str_arr[5];
 					
-					Group group = new Group(rGname, rInterests, rPw, rContent, rNews, rLeader);
+					rNum = str_arr[0];
+					rGname = str_arr[1];
+					rInterests = str_arr[2];
+					rPw = str_arr[3];
+					rContent = str_arr[4];
+					rNews = str_arr[5];
+					rLeader = str_arr[6];
+					
+					new Group(rNum,rGname, rInterests, rPw, rContent, rNews, rLeader);
 					groupMap.put(groupMap.size(), group);
 				}
 				
@@ -76,7 +84,7 @@ public class GroupDAO {
 				prop.setProperty(String.valueOf(key).toString(), groupMap.get(key).toString());
 			}
 			
-			prop.storeToXML(new FileOutputStream("hey_bro_project_BROS/src/Model/Data/xml/groups.xml"),String.valueOf(new Date()).toString());
+			prop.storeToXML(new FileOutputStream("hey_bro_project_BROS/src/Model/Data/xml/groups.xml"), null);
 			//System.out.println("성공적으로 모임생성이 완료되었습니다.");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -89,8 +97,6 @@ public class GroupDAO {
 		Properties prop = new Properties();
 		ArrayList<Session> sessionList = new ArrayList<>();
 		String pw;
-		String rUserId;
-		String rUserPw;
 		
 		try {
 			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS/src/Model/Data/xml/groups.xml"));
