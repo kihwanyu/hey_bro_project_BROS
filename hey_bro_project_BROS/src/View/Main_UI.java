@@ -68,21 +68,6 @@ public class Main_UI extends JFrame {
 		JButton in = new JButton(new ImageIcon(icon3));
 		in.setLocation(650, 200);
 		in.setSize(130, 130);
-	
-		//수정
-		in.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new GroupSearch_UI(superFrame);
-				
-				frameSetVisible();
-				
-			}
-		
-		});
-
-	
 		
 		//회원 정보 수정
 		Image icon_1 = new ImageIcon("hey_bro_project_BROS/src/View/img/button1.PNG").getImage().getScaledInstance(207, 52, 0);
@@ -130,7 +115,8 @@ public class Main_UI extends JFrame {
 		this.add(mainPanel);
 		
 		clickEvent(plusLabel, new GroupRegistor_UI(this, mainPanel, session)); //수정
-		clickEvent(join, new JoinGroup_UI(this,mainPanel, session));
+		clickEvent(join, new GroupSearch_UI(this,mainPanel, session));
+		clickEvent(in, new JoinGroup_UI(this, mainPanel, session)); //수정
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

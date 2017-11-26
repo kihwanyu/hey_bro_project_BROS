@@ -139,12 +139,12 @@ public class Gleader_Calendar_UI{
 
 
 
-		Image icon_1 = new ImageIcon("hey_bro_project_BROS/src/View/img/button1.PNG").getImage().getScaledInstance(207, 52, 0);
+	/*	Image icon_1 = new ImageIcon("hey_bro_project_BROS/src/View/img/button1.PNG").getImage().getScaledInstance(207, 52, 0);
 		JButton edit = new JButton(new ImageIcon(icon_1));
 		edit.setLocation(30, 420);
-		edit.setSize(180, 52);
+		edit.setSize(180, 52);*/
 
-		Image icon_2 = new ImageIcon("hey_bro_project_BROS/src/View/img/button2.PNG").getImage().getScaledInstance(205, 48, 0);
+		Image icon_2 = new ImageIcon("hey_bro_project_BROS/src/View/img/Group_edit.PNG").getImage().getScaledInstance(205, 48, 0);
 		JButton qa = new JButton(new ImageIcon(icon_2));
 		qa.setLocation(30, 490);
 		qa.setSize(180, 52);
@@ -182,7 +182,7 @@ public class Gleader_Calendar_UI{
 		mf.add(cPanel);
 		mf.add(listB);
 		mf.add(png);
-		mf.add(edit);
+		//mf.add(edit);
 		mf.add(qa);
 		mf.add(out);
 		mf.add(textGl);

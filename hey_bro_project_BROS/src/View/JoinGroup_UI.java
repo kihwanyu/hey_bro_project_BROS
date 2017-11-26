@@ -47,7 +47,7 @@ public class JoinGroup_UI extends JPanel {
 		//panel.setBounds(0, 0, 800, 500);
 		//panel.setLayout(null);
 		//라벨 생성
-		JLabel lb1 = new JLabel("모임참여");
+		JLabel lb1 = new JLabel("모임 입장");
 		
 		lb1.setLocation(350, 50);
 		lb1.setSize(200, 100);
@@ -74,6 +74,7 @@ public class JoinGroup_UI extends JPanel {
 				label.setIcon(new ImageIcon(img));*/		
 			}
 		});
+		
 		//버튼 생성
 		
 		JButton btn1 = new JButton("뒤로가기");
