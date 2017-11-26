@@ -70,6 +70,9 @@ public class Controller {
 			case "MemberSatting.do":
 				member = mDao.memberSetting(session);
 				break;
+			case "MemberDelete.do":
+				mDao.memberDelete(session);
+				break;
 			default:
 				break;
 			}
