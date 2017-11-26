@@ -3,6 +3,8 @@ package View;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
@@ -11,17 +13,19 @@ import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class Gleader_Calendar_UI{
+public class Gleader_Calendar_UI extends JFrame{
+	private JFrame present;
    //
-   public void calendar(){
-      JFrame mf = new JFrame();      
-      mf.setLayout(null);
-      mf.setBackground(Color.WHITE);
+   public Gleader_Calendar_UI(JFrame superFrame){
+	   this.present = this;
+      //JFrame mf = new JFrame();      
+      this.setLayout(null);
+      this.setBackground(Color.WHITE);
       //프레임 크기
-      mf.setBounds(100, 50, 1100, 800);
+      this.setBounds(100, 50, 1100, 800);
       //프레임 이름
-      mf.setTitle("Hey~bro");
-      mf.setResizable(false);
+      this.setTitle("Hey~bro");
+      this.setResizable(false);
 
       //달력 패널 
       JPanel cjp = new JPanel();
@@ -124,6 +128,15 @@ public class Gleader_Calendar_UI{
       //뒤로가기 버튼
       JButton backB = new JButton("뒤로가기");
       backB.setBounds(69, 670, 100, 30);
+      backB.addActionListener(new ActionListener(){
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			superFrame.setVisible(true);
+			frameSetVisible();
+		}
+    	  
+      });
 
       JPanel mainPanel = new JPanel();
       mainPanel.setBackground(Color.WHITE);
@@ -143,11 +156,22 @@ public class Gleader_Calendar_UI{
       JButton edit = new JButton(new ImageIcon(icon_1));
       edit.setLocation(30, 420);
       edit.setSize(180, 52);*/
-
+      
+      //모임수정
       Image icon_2 = new ImageIcon("hey_bro_project_BROS/src/View/img/Group_edit.PNG").getImage().getScaledInstance(205, 48, 0);
       JButton qa = new JButton(new ImageIcon(icon_2));
       qa.setLocation(30, 490);
       qa.setSize(180, 52);
+      qa.addActionListener(new ActionListener(){
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+			new GroupEdit_UI(present);
+			frameSetVisible();
+		}
+    	  
+      });
 
       Image icon_3 = new ImageIcon("hey_bro_project_BROS/src/View/img/모임 삭제 버튼.PNG").getImage().getScaledInstance(206, 50, 0);
       JButton out = new JButton(new ImageIcon(icon_3));
@@ -166,36 +190,38 @@ public class Gleader_Calendar_UI{
       JLabel png = new JLabel(new ImageIcon(icon_4));
       png.setLocation(0, 3);
       png.setSize(48, 45);
+      
+      
+      this.add(cjp);
 
-      mf.add(cjp);
+      this.add(text1);
+      this.add(text2);
+      this.add(text3);
+      this.add(text4);
+      this.add(text5);
+      this.add(text6);
 
-      mf.add(text1);
-      mf.add(text2);
-      mf.add(text3);
-      mf.add(text4);
-      mf.add(text5);
-      mf.add(text6);
-
-      mf.add(backB);
-      mf.add(gtf);
-      mf.add(dayP);
-      mf.add(cPanel);
-      mf.add(listB);
-      mf.add(png);
+      this.add(backB);
+      this.add(gtf);
+      this.add(dayP);
+      this.add(cPanel);
+      this.add(listB);
+      this.add(png);
       //mf.add(edit);
-      mf.add(qa);
-      mf.add(out);
-      mf.add(textGl);
-      mf.add(textGln);
-      mf.add(userPanel);
-      mf.add(mainPanel);
+      this.add(qa);
+      this.add(out);
+      this.add(textGl);
+      this.add(textGln);
+      this.add(userPanel);
+      this.add(mainPanel);
 
 
-      mf.setVisible(true);
-      mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      this.setVisible(true);
+      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      
    }
-   public static void main(String[] args){
-      Gleader_Calendar_UI u = new Gleader_Calendar_UI();
-      u.calendar();
-   }
+   public void frameSetVisible(){
+	      this.setVisible(false);
+	   }
+
 }

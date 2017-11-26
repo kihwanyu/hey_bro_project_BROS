@@ -3,6 +3,8 @@ package View;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -126,6 +128,15 @@ public class User_Celendar_UI extends JFrame{
       //뒤로가기 버튼
       JButton backB = new JButton("뒤로가기");
       backB.setBounds(69, 670, 100, 30);
+      backB.addActionListener(new ActionListener(){
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			superFrame.setVisible(true);
+			frameSetVisible();
+		}
+    	  
+      });
 
       JPanel mainPanel = new JPanel();
       mainPanel.setBackground(Color.WHITE);

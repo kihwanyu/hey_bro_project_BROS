@@ -10,6 +10,9 @@ public class Controller {
 	//Member
 	MemberDAO mDao = new MemberDAO();
 	Member member;
+	GroupDAO gDao = new GroupDAO();
+	Group group;
+	
 	public void process(String key, String userId, String userPw, String userName
 			, String userGender, String birthday, String email, String pictureUrl){
 		switch (key) {
@@ -22,8 +25,6 @@ public class Controller {
 		}
 	}
 	//Group
-	GroupDAO gDao = new GroupDAO();
-	Group group;
 	public void process(String key, String gName, String interests, String pw, String content, String news, String leader){
 		switch (key) {
 		case "GroupRegister.do" :
@@ -101,5 +102,18 @@ public class Controller {
 				break;
 			}
 			return result;
+		}
+		
+		public Group process(String key, Group group){
+			switch(key){
+			case "GroupUpdate" : 
+				gDao.groupUpdate(group);
+				break;
+			default : 
+				break;
+			}
+			
+			
+			return group;
 		}
 }

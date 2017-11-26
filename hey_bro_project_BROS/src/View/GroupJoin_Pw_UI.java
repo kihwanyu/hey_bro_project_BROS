@@ -63,7 +63,7 @@ public class GroupJoin_Pw_UI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new User_Celendar_UI(present);
+				new Gleader_Calendar_UI(present);
 				frameSetVisible();
 			}
 			
