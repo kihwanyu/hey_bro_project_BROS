@@ -275,6 +275,7 @@ public class MemberDAO {
 		
 		Collection<Member> memberValues = memberMap.values();
 		memberArrayList.addAll(memberValues);
+		prop.clear();
 		for(int i = 0; i < memberArrayList.size(); i++){
 			if(memberArrayList.get(i).getUserId().equals(m.getUserId())){
 				System.out.println(memberArrayList.get(i));
@@ -447,19 +448,22 @@ public class MemberDAO {
 		
 		for(int i = 0; i < memberArrayList.size(); i++){
 			if(session.getUserId().equals(memberArrayList.get(i).getUserId())){
+				System.out.println(memberArrayList.get(i));
 				memberArrayList.remove(i);
 				break;
 			}
 		}
 		
 		for(int i = 0; i < memberArrayList.size(); i++){
-				memberMap.put(i, memberArrayList.get(i));
+			System.out.println(memberArrayList.get(i));
+			memberMap.put(i, memberArrayList.get(i));
 		}
 		
 		Set<Integer> keys = memberMap.keySet();
 		Iterator<Integer> memIter = keys.iterator();
 		
 		try {
+			prop.clear();
 			while(memIter.hasNext()){
 				int key = memIter.next();
 				prop.setProperty(String.valueOf(key).toString(), memberMap.get(key).toString());
