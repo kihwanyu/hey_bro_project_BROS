@@ -8,10 +8,13 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class SearchIDPW_UI extends JPanel{
+import Controller.Controller;
+
+public class FindMember_UI extends JPanel{
 	//
 
 	/**
@@ -19,7 +22,9 @@ public class SearchIDPW_UI extends JPanel{
 	 */
 	private static final long serialVersionUID = -3082337671775367566L;
 
-	public SearchIDPW_UI(){
+	Controller c = new Controller();
+	
+	public FindMember_UI(){
 		
 		//JFrame mf = new JFrame();
 		this.setBounds(0,0,800,500);
@@ -297,9 +302,70 @@ public class SearchIDPW_UI extends JPanel{
 		//메인 프레임 담기
 
 		
-		this.setVisible(true);
-		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		idBtn.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				String str = c.process("FindIdMember.do", text.getText(), text2.getText(), text3.getText());
+				JOptionPane.showMessageDialog(null, str);
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		pwBtn.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				String str = c.process("FindPwMember.do", text4.getText(), text5.getText(), text6.getText());
+				JOptionPane.showMessageDialog(null, str);			
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 
 }
