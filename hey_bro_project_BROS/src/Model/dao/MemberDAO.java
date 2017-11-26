@@ -397,4 +397,80 @@ public class MemberDAO {
 		}
 		return "존재하지 않는 회원정보입니다.";	
 	}
+	public void memberDelete(Session session) {
+		Properties prop = new Properties();
+		ArrayList<Member> memberArrayList = new ArrayList<>(); 
+		HashMap<Integer, Member> memberMap = new HashMap<>();
+		// registered 등록된
+		String rUserId;
+		String rUserPw;
+		String rUserName;
+		String rUserGender;
+		String rBirthday;
+		String rEmail;
+		String rPictureUrl;
+		
+		try {
+			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\members.xml"));
+			//System.out.println(prop.size());
+			for(int i = 0; i < prop.size(); i++){
+				String str;
+				
+				String[] str_arr = new String[7];
+				
+				str = prop.getProperty(String.valueOf(i).toString());
+				if(str!=null){
+					str_arr = str.split(", ");
+					/*for(String s : str_arr){
+						System.out.println(s);
+					}*/
+					
+					rUserId = str_arr[0];
+					rUserPw = str_arr[1];
+					rUserName = str_arr[2];
+					rUserGender = str_arr[3];
+					rBirthday = str_arr[4];
+					rEmail = str_arr[5];
+					rPictureUrl = str_arr[6];	
+					
+					Member member = new Member(rUserId, rUserPw, rUserName, rUserGender, rBirthday, rEmail, rPictureUrl);
+
+					memberArrayList.add(member);
+				}
+			}	
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		for(int i = 0; i < memberArrayList.size(); i++){
+			if(session.getUserId().equals(memberArrayList.get(i).getUserId())){
+				memberArrayList.remove(i);
+				break;
+			}
+		}
+		
+		for(int i = 0; i < memberArrayList.size(); i++){
+				memberMap.put(i, memberArrayList.get(i));
+		}
+		
+		Set<Integer> keys = memberMap.keySet();
+		Iterator<Integer> memIter = keys.iterator();
+		
+		try {
+			while(memIter.hasNext()){
+				int key = memIter.next();
+				prop.setProperty(String.valueOf(key).toString(), memberMap.get(key).toString());
+			}
+			
+			prop.storeToXML(new FileOutputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\members.xml"),String.valueOf(new Date()).toString());
+			//System.out.println("성공적으로 회원가입이 완료되었습니다.");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
