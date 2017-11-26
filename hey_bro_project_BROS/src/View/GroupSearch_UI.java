@@ -37,7 +37,7 @@ public class GroupSearch_UI extends JPanel {
 
 	public GroupSearch_UI(JFrame superFrame, JPanel superPanel, Session session/*수정*/){
 		
-		//
+		
 		m = c.process("MemberSatting.do", session); //수정
 		this.session = session; //수정
 		this.panel = this.tempPanel;
