@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Color;
 import java.awt.FileDialog;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -10,7 +11,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.regex.Matcher;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -47,33 +47,47 @@ public class MemberRegister_UI extends JPanel {
 		final int MEMBER_LIBEL_LOCATION_X = 80;
 		final int MEMBER_TEXT_LOCATION_X = MEMBER_LIBEL_LOCATION_X+110; 
 		
+		
+		
 		String defaltImgUrl = "hey_bro_project_BROS/src/Model/Data/img/dog.jpg";
 		
 		JPanel title_p = new JPanel();
 		
+		
 		this.setLayout(null);
 		this.setLocation(0, 0);
 
+		JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/Starry Night Over the Rhone 22.jpg"));
+		
+		background.setBounds(0, 0, 796, 530);
+		this.add(background);
+		
 		JLabel title_lb = new JLabel("회원가입");
 		
-		JLabel id_lb = new JLabel("아이디 : \n");
+		JLabel id_lb = new JLabel("아 이 디  \n");
 		id_lb.setLocation(MEMBER_LIBEL_LOCATION_X, 50);
 		id_lb.setSize(150,50);
-		JLabel pw_lb1 = new JLabel("비밀번호 : \n");
+		id_lb.setForeground(new Color(177, 187, 204));
+		JLabel pw_lb1 = new JLabel("비 밀 번 호  \n");
 		pw_lb1.setLocation(MEMBER_LIBEL_LOCATION_X, 90);
 		pw_lb1.setSize(150,50);
-		JLabel pw_lb2 = new JLabel("비밀번호 재입력 : \n");
+		pw_lb1.setForeground(new Color(177, 187, 204));
+		JLabel pw_lb2 = new JLabel("비 밀 번 호  확 인  \n");
 		pw_lb2.setLocation(MEMBER_LIBEL_LOCATION_X, 130);
 		pw_lb2.setSize(150,50);
-		JLabel name_lb = new JLabel("이름 : \n");
+		pw_lb2.setForeground(new Color(177, 187, 204));
+		JLabel name_lb = new JLabel("이        름  \n");
 		name_lb.setLocation(MEMBER_LIBEL_LOCATION_X, 210);
 		name_lb.setSize(150,50);
-		JLabel birthday_lb = new JLabel("생년월일 : \n");
+		name_lb.setForeground(new Color(177, 187, 204));
+		JLabel birthday_lb = new JLabel("생 년 월 일  \n");
 		birthday_lb.setLocation(MEMBER_LIBEL_LOCATION_X, 250);
 		birthday_lb.setSize(150,50);
-		JLabel email_lb = new JLabel("E-Mail : ");
+		birthday_lb.setForeground(new Color(177, 187, 204));
+		JLabel email_lb = new JLabel("E - M a i l  ");
 		email_lb.setLocation(MEMBER_LIBEL_LOCATION_X, 290);
 		email_lb.setSize(150,50);
+		email_lb.setForeground(new Color(177, 187, 204));
 		
 		Image userIng_img = new ImageIcon(defaltImgUrl).getImage().getScaledInstance(200, 200, 0);
 		userIng_lb = new JLabel();
@@ -155,41 +169,87 @@ public class MemberRegister_UI extends JPanel {
 		JRadioButton man = new JRadioButton("남");
 		man.setLocation(MEMBER_TEXT_LOCATION_X+10, 180);
 		man.setSize(90,30);
+		man.setOpaque(false);
+		man.setForeground(new Color(177, 187, 204));
 		JRadioButton woman = new JRadioButton("여");
 		woman.setLocation(MEMBER_TEXT_LOCATION_X+100, 180);
 		woman.setSize(90,30);
+		woman.setOpaque(false);
+		woman.setForeground(new Color(177, 187, 204));
 		ButtonGroup gender = new ButtonGroup();
 		
 		gender.add(man);
 		gender.add(woman);
 		
-		this.setBounds(0,0,800,500);
-		this.add(title_p,"North");
+		background.setBounds(0,0,800,500);
+		background.add(title_p,"North");
+		
+		
+		
+		
+		 Image icon = new ImageIcon("hey_bro_project_BROS/src/View/img/Button-Back-2-512.png").getImage().getScaledInstance(40, 40, 0);
+	      JLabel back = new JLabel(new ImageIcon(icon));
+	      back.setBounds(10, 390, 50, 50);
+	      back.setOpaque(false);
+	      
+	      back.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				loginPage();
+			}
+	    	  
+	      });
 		
 		title_p.add(title_lb);
 		
-		this.add(id_lb);
-		this.add(overlap_bt);
-		this.add(id_text);
-		this.add(pw_lb1);
-		this.add(pw_text1);
-		this.add(pw_lb2);
-		this.add(pw_text2);
-		this.add(name_text);
-		this.add(name_lb);
-		this.add(man);
-		this.add(woman);
-		this.add(birthday_lb);
-		this.add(yearList);
-		this.add(monthList);
+		background.add(id_lb);
+		background.add(overlap_bt);
+		background.add(id_text);
+		background.add(pw_lb1);
+		background.add(pw_text1);
+		background.add(pw_lb2);
+		background.add(pw_text2);
+		background.add(name_text);
+		background.add(name_lb);
+		background.add(man);
+		background.add(woman);
+		background.add(birthday_lb);
+		background.add(yearList);
+		background.add(monthList);
+		background.add(back);
 		
-		this.add(email_lb);
-		this.add(email_text);
-		this.add(userIng_lb);
-		this.add(imageOpen_Bt);
-		this.add(register_bt);
-		this.add(deleteAll_bt);
-		this.add(dateList);
+		background.add(email_lb);
+		background.add(email_text);
+		background.add(userIng_lb);
+		background.add(imageOpen_Bt);
+		background.add(register_bt);
+		background.add(deleteAll_bt);
+		background.add(dateList);
 		
 		textDelete(id_text);
 		textDelete(pw_text1);
@@ -476,10 +536,14 @@ public class MemberRegister_UI extends JPanel {
 		// replaceAll("\\\\","\\\\\\\\")은 문자열 에서 "\"를 "\\"로 고친다.
 		Image newImage = new ImageIcon(fileDirectory).getImage().getScaledInstance(200, 200, 0);
 		userIng_lb.setIcon(new ImageIcon(newImage));
+JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/Starry Night Over the Rhone 22.jpg"));
+		
+		background.setBounds(0, 0, 796, 530);
+		add(background);
 		 
 
-		this.revalidate();
-		this.repaint();
+		background.revalidate();
+		background.repaint();
 		return fileDirectory;
 	}
 	public void loginPage() {		

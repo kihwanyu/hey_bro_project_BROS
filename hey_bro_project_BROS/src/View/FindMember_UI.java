@@ -2,9 +2,11 @@ package View;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,27 +25,31 @@ public class FindMember_UI extends JPanel{
 	private static final long serialVersionUID = -3082337671775367566L;
 
 	Controller c = new Controller();
+	private static JFrame superFrame;
 	
 	public FindMember_UI(){
 		
 		//JFrame mf = new JFrame();
 		this.setBounds(0,0,800,500);
-	
+		JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/Starry Night Over the Rhone 22.jpg"));
+		
+		background.setBounds(0, 0, 796, 530);
+		this.add(background);
 		
 		//panel1 : 아이디 찾기
 		//JPanel pan1 = new JPanel();
 		this.setLayout(null);
 				
 		JLabel lb1 = new JLabel("아이디 찾기");
-		lb1.setLocation(170, 50);
+		lb1.setLocation(155, 50);
 		lb1.setSize(300,50);
 		lb1.setFont(new Font(Font.DIALOG, Font.BOLD, 25));
-		
+		lb1.setOpaque(false);
 		
 		JTextField text = new JTextField(15);
 		text.setLocation(100, 150);
 		text.setSize(250, 30);
-		text.setText("이름");
+		text.setText("이 름");
 		text.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -80,7 +86,7 @@ public class FindMember_UI extends JPanel{
 		JTextField text2 = new JTextField(15);
 		text2.setLocation(100, 200);
 		text2.setSize(250, 30);
-		text2.setText("생년월일");
+		text2.setText("생 년 월 일");
 		text2.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -117,7 +123,7 @@ public class FindMember_UI extends JPanel{
 		JTextField text3 = new JTextField(15);
 		text3.setLocation(100, 250);
 		text3.setSize(250, 30);
-		text3.setText("이메일 주소");
+		text3.setText("이 메 일  주 소");
 		text3.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -156,11 +162,11 @@ public class FindMember_UI extends JPanel{
 		
 		//패널에 컴포넌트 담기
 		
-		this.add(text);
-		this.add(text2);
-		this.add(lb1);
-		this.add(text3);
-		this.add(idBtn);
+		background.add(text);
+		background.add(text2);
+		background.add(lb1);
+		background.add(text3);
+		background.add(idBtn);
 		
 		
 		//panel2 찾기
@@ -168,17 +174,18 @@ public class FindMember_UI extends JPanel{
 		//JPanel pan2 = new JPanel();
 		this.setLayout(null);
 		//this.setBackground(Color.PINK);
-		JLabel lb2 = new JLabel("비밀번호 찾기");
-		lb2.setLocation(480, 50);
+		JLabel lb2 = new JLabel("비밀번호  찾기");
+		lb2.setLocation(490, 50);
 		lb2.setSize(200,50);
 		lb2.setFont(new Font(Font.DIALOG, Font.BOLD, 25));
-				
+		lb2.setOpaque(false);
+	
 		this.add(lb2);
 				
 		JTextField text4 = new JTextField(15);
 		text4.setLocation(440, 150);
 		text4.setSize(250, 30);
-		text4.setText("아이디");
+		text4.setText("아 이 디");
 		text4.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -215,7 +222,7 @@ public class FindMember_UI extends JPanel{
 		JTextField text5 = new JTextField(15);
 		text5.setLocation(440, 200);
 		text5.setSize(250, 30);
-		text5.setText("생년월일");
+		text5.setText("생 년 월 일");
 		text5.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -252,7 +259,7 @@ public class FindMember_UI extends JPanel{
 		JTextField text6 = new JTextField(15);
 		text6.setLocation(440, 250);
 		text6.setSize(250, 30);
-		text6.setText("이메일 주소");
+		text6.setText("이 메 일  주 소");
 		text6.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -293,11 +300,11 @@ public class FindMember_UI extends JPanel{
 		
 		//패널에 컴포넌트 담기
 		
-		this.add(text4);
-		this.add(text5);
-		this.add(lb2);
-		this.add(text6);
-		this.add(pwBtn);
+		background.add(text4);
+		background.add(text5);
+		background.add(lb2);
+		background.add(text6);
+		background.add(pwBtn);
 		
 		//메인 프레임 담기
 
@@ -366,6 +373,48 @@ public class FindMember_UI extends JPanel{
 				
 			}
 		});
+		
+		Image icon = new ImageIcon("hey_bro_project_BROS/src/View/img/Button-Back-2-512.png").getImage().getScaledInstance(40, 40, 0);
+	      JLabel back = new JLabel(new ImageIcon(icon));
+	      back.setBounds(10, 390, 50, 50);
+	      background.add(back);
+	      back.setOpaque(false);
+	      
+	      back.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				new Login_UI();
+				
+			}
+	    	  
+	      });
+		
 	}
+	
+	
 
 }

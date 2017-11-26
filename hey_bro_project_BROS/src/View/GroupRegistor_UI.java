@@ -2,9 +2,11 @@ package View;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -37,18 +39,23 @@ public class GroupRegistor_UI extends JPanel {
 		this.setBounds(0, 0, 800, 500);
 		this.setLayout(null);
 		
+		Image icon = new ImageIcon("hey_bro_project_BROS/src/View/img/maxresdefault.jpg").getImage().getScaledInstance(796, 530, 0);
+		JLabel background=new JLabel(new ImageIcon(icon));
+		background.setBounds(0, 0, 796, 530);
+		this.add(background);
+		
 		JPanel bgPanel = new JPanel();
 		bgPanel.setSize(800, 500);
-		bgPanel.setBackground(Color.white);
+		bgPanel.setOpaque(false);
 		
 		//Group registration
 		JLabel title = new JLabel("모임추가");
 		title.setFont(new Font(Font.DIALOG, Font.BOLD, 28));
-		title.setLocation(316,10);
+		title.setLocation(316,25);
 		title.setSize(300, 30);
 		
 		//Group Name
-		JLabel gName = new JLabel("모임명");
+		JLabel gName = new JLabel("모 임 명");
 		gName.setLocation(70,80);
 		gName.setSize(200, 30);
 		//�뜝�룞�삕�뜝�뙂紐뚯삕 �뜝�뙏�룞�삕�듃 �뜝�떗�벝�삕
@@ -59,8 +66,8 @@ public class GroupRegistor_UI extends JPanel {
 		
 		
 		//Group Interests
-		JLabel glike = new JLabel("모임 관심사");
-		glike.setLocation(450,80);
+		JLabel glike = new JLabel("모 임  관 심 사");
+		glike.setLocation(440,80);
 		glike.setSize(200, 30);
 		// �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�뙏�룞�삕�듃 �뜝�떗�벝�삕
 		JTextField gltf = new JTextField(20);
@@ -68,8 +75,8 @@ public class GroupRegistor_UI extends JPanel {
 		gltf.setSize(200, 30);
 		
 		//Input pw
-		JLabel gPw = new JLabel("비밀번호 입력");
-		gPw.setLocation(50,120);
+		JLabel gPw = new JLabel("비 밀 번 호  ");
+		gPw.setLocation(60,120);
 		gPw.setSize(200, 30);
 		//�뜝�룞�삕艅섇뜝�떕占� �뜝�뙃琉꾩삕 �뜝�뙏�룞�삕�듃 �뜝�떗�벝�삕
 		JPasswordField gPwtf = new JPasswordField(20);
@@ -77,7 +84,7 @@ public class GroupRegistor_UI extends JPanel {
 		gPwtf.setSize(200, 30);
 		
 		//Check pw
-		JLabel regPw = new JLabel("비밀번호 재입력");
+		JLabel regPw = new JLabel("비 밀 번 호  재 입 력");
 		regPw.setLocation(425, 120);
 		regPw.setSize(200, 30);
 		//�뜝�룞�삕艅섇뜝�떕占� �뜝�룞�삕 �뜝�뙃琉꾩삕 �뜝�뙏�룞�삕�듃 �뜝�떗�벝�삕
@@ -86,7 +93,7 @@ public class GroupRegistor_UI extends JPanel {
 		regPwtf.setSize(200, 30);
 		
 		//Group Content
-		JLabel content = new JLabel("모임 내용");
+		JLabel content = new JLabel("모 임  내 용");
 		content.setLocation(170,180);
 		content.setSize(200, 30);
 		// �뜝�뙏�룞�삕�듃
@@ -95,7 +102,7 @@ public class GroupRegistor_UI extends JPanel {
 		ctf.setSize(300, 160);
 		
 		//Notification
-		JLabel news = new JLabel("공지사항");
+		JLabel news = new JLabel("공 지 사 항");
 		news.setLocation(565, 180);
 		news.setSize(200, 30);
 		//�뜝�뙏�룞�삕�듃
@@ -104,7 +111,7 @@ public class GroupRegistor_UI extends JPanel {
 		newstf.setSize(300, 160);
 		
 		//Confirm button
-		JButton btn = new JButton("확인");
+		JButton btn = new JButton("확 인");
 		btn.setLocation(400,400);
 		btn.setSize(100, 30);
 		btn.setBackground(new Color(5, 150, 255));
@@ -116,10 +123,7 @@ public class GroupRegistor_UI extends JPanel {
 				
 				if(gPwtf.getText().equals(regPwtf.getText())){
 					
-					c.process("GroupRegister.do", gntf.getText(), gltf.getText(), gPwtf.getText(), ctf.getText(), newstf.getText(), session.getUserId());
-					JOptionPane.showMessageDialog(null, "그룹 생성이 완료되었습니다.", "title", JOptionPane.PLAIN_MESSAGE);
-					//로그인 페이지로 이동
-					main_UI(); //수정
+					
 				}
 				
 				
@@ -134,7 +138,10 @@ public class GroupRegistor_UI extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
+				c.process("GroupRegister.do", gntf.getText(), gltf.getText(), gPwtf.getText(), ctf.getText(), newstf.getText(), session.getUserId());
+				JOptionPane.showMessageDialog(null, "그룹 생성이 완료되었습니다.", "title", JOptionPane.PLAIN_MESSAGE);
+				//로그인 페이지로 이동
+				main_UI(); //수정
 				
 			}
 
@@ -161,7 +168,7 @@ public class GroupRegistor_UI extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				main_UI(); //수정
+				
 				
 			}
 
@@ -173,8 +180,7 @@ public class GroupRegistor_UI extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
+				main_UI(); //수정
 			}
 
 			@Override
@@ -192,22 +198,22 @@ public class GroupRegistor_UI extends JPanel {
 		});
 		
 		
-		this.add(title, "North");
-		this.add(gName);
-		this.add(gntf);
-		this.add(glike);
-		this.add(gltf);
-		this.add(gPw);
-		this.add(gPwtf);
-		this.add(regPw);
-		this.add(regPwtf);
-		this.add(content);
-		this.add(ctf);
-		this.add(news);
-		this.add(newstf);
-		this.add(btn );
-		this.add(btn2);
-		this.add(bgPanel);
+		background.add(title, "North");
+		background.add(gName);
+		background.add(gntf);
+		background.add(glike);
+		background.add(gltf);
+		background.add(gPw);
+		background.add(gPwtf);
+		background.add(regPw);
+		background.add(regPwtf);
+		background.add(content);
+		background.add(ctf);
+		background.add(news);
+		background.add(newstf);
+		background.add(btn );
+		background.add(btn2);
+		background.add(bgPanel);
 		//this.add(mainPanel);
 		
 		//mf.setVisible(true);

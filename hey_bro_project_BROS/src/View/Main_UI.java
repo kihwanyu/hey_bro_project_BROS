@@ -36,11 +36,10 @@ public class Main_UI extends JFrame {
       
       this.setLayout(null);
       this.setBackground(Color.WHITE);
-
       this.setBounds(400, 200, 800, 500);
-
+      
       mainPanel = new JPanel();
-      mainPanel.setBackground(Color.WHITE);
+      mainPanel.setBackground(Color.white);
       mainPanel.setLayout(null);
       mainPanel.setBounds(0, 0, 800, 500);
       
