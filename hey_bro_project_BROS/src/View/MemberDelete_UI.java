@@ -19,6 +19,7 @@ public class MemberDelete_UI extends JPanel {
 	private Controller c = new Controller(); //수정
 	private Member m = new Member(); //수정
 	private Session session; //수정
+	JRadioButton check = new JRadioButton();
 	//
 	/**
 	 * 
@@ -58,7 +59,6 @@ public class MemberDelete_UI extends JPanel {
 		label2.setBounds(350, 375, 111, 47);
 		
 		//?솗?씤 泥댄겕
-		JRadioButton check = new JRadioButton();
 		check.setBackground(null);
 		check.setBounds(270, 335, 20, 20);
 		
@@ -77,7 +77,6 @@ public class MemberDelete_UI extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				loginPage();
 				
 			}
 
@@ -95,8 +94,13 @@ public class MemberDelete_UI extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
+				if(check.isSelected()){
+					c.process("MemberDelete.do", session);
+					loginPage();	
+					JOptionPane.showMessageDialog(null, "회원이 탈퇴되었습니다.");
+				} else {
+					JOptionPane.showMessageDialog(null, "약관에 동의해주세요.");
+				}
 			}
 
 			@Override
@@ -117,10 +121,5 @@ public class MemberDelete_UI extends JPanel {
 		} catch (Exception e) {
 
 		}
-		
 	}
-	
-	
-
-
 }
