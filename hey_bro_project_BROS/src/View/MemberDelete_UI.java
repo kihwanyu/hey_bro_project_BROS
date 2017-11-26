@@ -49,5 +49,7 @@ public class MemberDelete_UI extends JPanel {
 		this.add(label);
 		this.add(bg);
 	}
+	
+	
 
 }

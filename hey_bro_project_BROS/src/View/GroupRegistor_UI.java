@@ -6,23 +6,34 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import Controller.Controller;
+import Model.vo.Member;
 import Model.vo.Session;
 
 public class GroupRegistor_UI extends JPanel {
+	private JFrame superFrame;
+	private Controller c = new Controller(); //수정
+	private Member m = new Member(); //수정
+	private Session session; //수정
 	//private JPanel mainPanel;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4430678642605584542L;
 
-	public GroupRegistor_UI(Session session){
-	//	JFrame mf = new JFrame("占쏙옙占쏙옙 占쏙옙占쏙옙占�");
+	public GroupRegistor_UI(JFrame superFrame, JPanel panel, Session session){
+	//	JFrame mf = new JFrame("�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝占�");
 		//
+		
+		m = c.process("MemberSatting.do", session); //수정
+		this.session = session; //수정
+		this.superFrame = superFrame; //수정
 		this.setBounds(0, 0, 800, 500);
 		this.setLayout(null);
 		
@@ -37,10 +48,10 @@ public class GroupRegistor_UI extends JPanel {
 		title.setSize(300, 30);
 		
 		//Group Name
-		JLabel gName = new JLabel("모임명");
+		JLabel gName = new JLabel("모임명 : ");
 		gName.setLocation(70,80);
 		gName.setSize(200, 30);
-		//占쏙옙占쌈몌옙 占쌔쏙옙트 占십듸옙
+		//�뜝�룞�삕�뜝�뙂紐뚯삕 �뜝�뙏�룞�삕�듃 �뜝�떗�벝�삕
 		JTextField gntf = new JTextField(20);
 		gntf.setLocation(150, 80);
 		gntf.setSize(200, 30);
@@ -51,25 +62,25 @@ public class GroupRegistor_UI extends JPanel {
 		JLabel glike = new JLabel("모임 관심사 : ");
 		glike.setLocation(450,80);
 		glike.setSize(200, 30);
-		// 占쏙옙占쏙옙占쏙옙 占쌔쏙옙트 占십듸옙
+		// �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�뙏�룞�삕�듃 �뜝�떗�벝�삕
 		JTextField gltf = new JTextField(20);
 		gltf.setLocation(540, 80);
 		gltf.setSize(200, 30);
 		
 		//Input pw
-		JLabel gPw = new JLabel("비밀번호 입력 : ");
-		gPw.setLocation(50,120);
+		JLabel gPw = new JLabel("비밀번호 : ");
+		gPw.setLocation(70,120);
 		gPw.setSize(200, 30);
-		//占쏙옙橘占싫� 占쌉뤄옙 占쌔쏙옙트 占십듸옙
+		//�뜝�룞�삕艅섇뜝�떕占� �뜝�뙃琉꾩삕 �뜝�뙏�룞�삕�듃 �뜝�떗�벝�삕
 		JPasswordField gPwtf = new JPasswordField(20);
 		gPwtf.setLocation(150, 120);
 		gPwtf.setSize(200, 30);
 		
 		//Check pw
-		JLabel regPw = new JLabel("비밀번호 재입력 : ");
-		regPw.setLocation(425, 120);
+		JLabel regPw = new JLabel("비밀번호 확인 : ");
+		regPw.setLocation(450, 120);
 		regPw.setSize(200, 30);
-		//占쏙옙橘占싫� 占쏙옙 占쌉뤄옙 占쌔쏙옙트 占십듸옙
+		//�뜝�룞�삕艅섇뜝�떕占� �뜝�룞�삕 �뜝�뙃琉꾩삕 �뜝�뙏�룞�삕�듃 �뜝�떗�벝�삕
 		JPasswordField regPwtf = new JPasswordField(20);
 		regPwtf.setLocation(540, 120);
 		regPwtf.setSize(200, 30);
@@ -78,7 +89,7 @@ public class GroupRegistor_UI extends JPanel {
 		JLabel content = new JLabel("모임 내용");
 		content.setLocation(170,180);
 		content.setSize(200, 30);
-		// 占쌔쏙옙트
+		// �뜝�뙏�룞�삕�듃
 		JTextField ctf = new JTextField(20);
 		ctf.setLocation(50, 220);
 		ctf.setSize(300, 160);
@@ -87,14 +98,14 @@ public class GroupRegistor_UI extends JPanel {
 		JLabel news = new JLabel("공지사항");
 		news.setLocation(565, 180);
 		news.setSize(200, 30);
-		//占쌔쏙옙트
+		//�뜝�뙏�룞�삕�듃
 		JTextField newstf = new JTextField(20);
 		newstf.setLocation(440, 220);
 		newstf.setSize(300, 160);
 		
 		//Confirm button
 		JButton btn = new JButton("확인");
-		btn.setLocation(400,400);
+		btn.setLocation(440,400);
 		btn.setSize(100, 30);
 		btn.setBackground(new Color(5, 150, 255));
 
@@ -102,11 +113,7 @@ public class GroupRegistor_UI extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			
-				if(gPwtf.getPassword().equals(regPwtf.getPassword())){
-					
-				}
-				
+				main_UI(); //수정
 				
 			}
 
@@ -137,7 +144,7 @@ public class GroupRegistor_UI extends JPanel {
 		});
 		
 		//Cancel Button
-		JButton btn2 = new JButton("뒤로 가기");
+		JButton btn2 = new JButton("취소");
 		btn2.setLocation(250,400);
 		btn2.setSize(100, 30);
 		btn2.setBackground(new Color(5, 150, 255));
@@ -145,7 +152,7 @@ public class GroupRegistor_UI extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new	Main_UI(session);
+				main_UI(); //수정
 				
 			}
 
@@ -196,6 +203,18 @@ public class GroupRegistor_UI extends JPanel {
 		
 		//mf.setVisible(true);
 		//mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	
+	//수정
+	public void main_UI() {		
+		superFrame.setVisible(false);//현재 프레임의 비전을끄고
+		try {
+			superFrame.add(new Main_UI(session)); //새로운 프레임을 만든다.
+		} catch (Exception e) {
+
+		}
+		
 	}
 	
 }

@@ -39,50 +39,52 @@ public class Main_UI extends JFrame {
 		mainPanel.setBackground(Color.WHITE);
 		mainPanel.setLayout(null);
 		mainPanel.setBounds(0, 0, 800, 500);
+		
 		JPanel userPanel = new JPanel();
-
 		userPanel.setLocation(0, 0);
 		userPanel.setBackground(Color.LIGHT_GRAY);
 		userPanel.setSize(200, 500);
 		//icon_ : 좌측버튼
 		//icon : 우측버튼
+		
+		//모임추가
 		Image icon = new ImageIcon("hey_bro_project_BROS/src/View/img/main_1.PNG").getImage().getScaledInstance(140, 139, 0);
 		JButton plusLabel = new JButton(new ImageIcon(icon));
-
 		plusLabel.setLocation(250, 200);
-		//userPanel2.setBackground(Color.blue);
 		plusLabel.setSize(130, 130);
 
+		//모임참여
 		Image icon2 = new ImageIcon("hey_bro_project_BROS/src/View/img/main_2.PNG").getImage().getScaledInstance(140, 139, 0);
 		JButton join = new JButton(new ImageIcon(icon2));
-		
 		join.setLocation(450, 200);
-		//userPanel3.setBackground(Color.green);
 		join.setSize(130, 130);
 		
+		//모임입장
 		Image icon3 = new ImageIcon("hey_bro_project_BROS/src/View/img/main_3.PNG").getImage().getScaledInstance(139, 139, 0);
 		JButton in = new JButton(new ImageIcon(icon3));
-
 		in.setLocation(650, 200);
-		//userPanel4.setBackground(Color.RED);
 		in.setSize(130, 130);
+		
 		//회원 정보 수정
 		Image icon_1 = new ImageIcon("hey_bro_project_BROS/src/View/img/button1.PNG").getImage().getScaledInstance(207, 52, 0);
 		JButton edit = new JButton(new ImageIcon(icon_1));
 		edit.setLocation(10, 100);
 		edit.setSize(180, 52);
+		
 		//Q/A
 		clickEvent(edit, new MemberUpdate_UI(this, session));
 		Image icon_2 = new ImageIcon("hey_bro_project_BROS/src/View/img/button2.PNG").getImage().getScaledInstance(205, 48, 0);
 		JButton qa = new JButton(new ImageIcon(icon_2));
 		qa.setLocation(10, 170);
 		qa.setSize(180, 52);
+		
 		//회원탈퇴
 		Image icon_3 = new ImageIcon("hey_bro_project_BROS/src/View/img/button3.PNG").getImage().getScaledInstance(206, 50, 0);
 		JButton out = new JButton(new ImageIcon(icon_3));
 		out.setLocation(10, 350);
 		out.setSize(180, 52);
 		clickEvent(out, new MemberDelete_UI());
+		
 		//text
 		JLabel text1 = new JLabel("님 환영합니다.");
 		text1.setLocation(110, 3);
@@ -108,9 +110,12 @@ public class Main_UI extends JFrame {
 		mainPanel.add(userPanel);
 		this.add(mainPanel);
 		
-		clickEvent(join, new JoinGroup_UI(this,mainPanel));
+		clickEvent(in, new GroupRegistor_UI(this, mainPanel, session));
+		clickEvent(plusLabel, new GroupRegistor_UI(this, mainPanel, session));
+		clickEvent(join, new JoinGroup_UI(this,mainPanel, session));
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		//mf.add();
 
 		/*//아이콘 이미지 변경
