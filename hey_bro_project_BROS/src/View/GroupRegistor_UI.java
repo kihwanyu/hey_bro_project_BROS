@@ -113,11 +113,11 @@ public class GroupRegistor_UI extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			
-				if(gPwtf.getPassword().equals(regPwtf.getPassword())){
+				
+				if(gPwtf.getText().equals(regPwtf.getText())){
 					
 					c.process("GroupRegister.do", gntf.getText(), gltf.getText(), gPwtf.getText(), ctf.getText(), newstf.getText(), session.getUserId());
-					JOptionPane.showMessageDialog(null, "그룹 생성이 완료되었습니다.");
+					JOptionPane.showMessageDialog(null, "그룹 생성이 완료되었습니다.", "title", JOptionPane.PLAIN_MESSAGE);
 					//로그인 페이지로 이동
 					main_UI(); //수정
 				}
