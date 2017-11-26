@@ -3,7 +3,7 @@ package Model.vo;
 public class Group {
 	private String number;
 	
-	
+	//
 	private String gName;
 	private String interests;
 	private String pw;
