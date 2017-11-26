@@ -85,5 +85,18 @@ public class Controller {
 				break;
 			}
 		}
-	
+		public String process(String key, String type, String birthday, String email){
+			String result = null;
+			switch (key) {
+			case "FindIdMember.do":
+				result = mDao.findIdMember(type, birthday, email);
+				break;
+			case "FindPwMember.do":
+				result = mDao.findPwMember(type, birthday, email);
+				break;
+			default:
+				break;
+			}
+			return result;
+		}
 }

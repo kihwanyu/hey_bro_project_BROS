@@ -94,7 +94,7 @@ public class Login_UI extends JFrame{
 		panel.add(btnIdPw);
 		
 		clickEvent(btnInit,new MemberRegister_UI(this));
-		clickEvent(btnIdPw,new SearchIDPW_UI());
+		clickEvent(btnIdPw,new FindMember_UI());
 		
 		btnLogin.addMouseListener(new MouseListener() {
 			

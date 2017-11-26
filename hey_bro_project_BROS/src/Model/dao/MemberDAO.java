@@ -239,7 +239,6 @@ public class MemberDAO {
 		String rPictureUrl;
 		
 		try {
-			prop.clear();
 			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\members.xml"));
 			//System.out.println(prop.size());
 			for(int i = 0; i < prop.size(); i++){
@@ -294,31 +293,108 @@ public class MemberDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-		
-		//Set<Integer> keys = memberMap.keySet();
-		//Iterator<Integer> memIter = keys.iterator();
-		
-		/*try {
-			while(memIter.hasNext()){
-				int key = memIter.next();
-				if(m.getUserId().equals(memberMap.get(key).getUserId())){
-					memberMap.get(key).setUserId(m.getUserId());
-					memberMap.get(key).setUserPw(m.getUserPw());
-					memberMap.get(key).setUserName(m.getUserName());
-					memberMap.get(key).setGender(m.getGender());
-					memberMap.get(key).setBirthday(m.getBirthday());
-					memberMap.get(key).setEmail(m.getEmail());
-					System.out.println("성공적으로 정보수정이 완료되었습니다.");
+	}
+	
+	public String findIdMember(String userName, String birthday, String email) {
+		Properties prop = new Properties();
+		ArrayList<Member> memeberList = new ArrayList<>();
+		// registered 등록된
+				String rUserId;
+				String rUserPw;
+				String rUserName;
+				String rUserGender;
+				String rBirthday;
+				String rEmail;
+				String rPictureUrl;
+		try {
+			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\members.xml"));
+			//System.out.println(prop.size());
+			for(int i = 0; i < prop.size(); i++){
+				String str;
+				
+				String[] str_arr = new String[6];
+				
+				str = prop.getProperty(String.valueOf(i).toString());
+				if(str!=null){
+
+					str_arr = str.split(", ");
+	
+					rUserId = str_arr[0];
+					rUserPw = str_arr[1];
+					rUserName = str_arr[2];
+					rUserGender = str_arr[3];
+					rBirthday = str_arr[4];
+					rEmail = str_arr[5];
+					rPictureUrl = str_arr[6];	
+					
+					Member member = new Member(rUserId, rUserPw, rUserName, rUserGender, rBirthday, rEmail, rPictureUrl);
+					memeberList.add(member);					
 				}
-				prop.setProperty(String.valueOf(key).toString(), memberMap.get(key).toString());
-			}
-			
-			prop.storeToXML(new FileOutputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\members.xml"),String.valueOf(new Date()).toString());
+			}	
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}*/
+		}
+		for(int i = 0; i < memeberList.size(); i++){
+			if(memeberList.get(i).getUserName().equals(userName)&&
+				memeberList.get(i).getBirthday().equals(birthday)&&
+				memeberList.get(i).getEmail().equals(email)){
+				return "회원의 아이디는 " + memeberList.get(i).getUserId() + "입니다.";
+			}
+		}
+		return "존재하지 않는 회원정보입니다.";	
+	}
+	public String findPwMember(String userId, String birthday, String email) {
+		Properties prop = new Properties();
+		ArrayList<Member> memeberList = new ArrayList<>();
+		// registered 등록된
+				String rUserId;
+				String rUserPw;
+				String rUserName;
+				String rUserGender;
+				String rBirthday;
+				String rEmail;
+				String rPictureUrl;
+		try {
+			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\members.xml"));
+			//System.out.println(prop.size());
+			for(int i = 0; i < prop.size(); i++){
+				String str;
+				
+				String[] str_arr = new String[6];
+				
+				str = prop.getProperty(String.valueOf(i).toString());
+				if(str!=null){
+
+					str_arr = str.split(", ");
+	
+					rUserId = str_arr[0];
+					rUserPw = str_arr[1];
+					rUserName = str_arr[2];
+					rUserGender = str_arr[3];
+					rBirthday = str_arr[4];
+					rEmail = str_arr[5];
+					rPictureUrl = str_arr[6];	
+					
+					Member member = new Member(rUserId, rUserPw, rUserName, rUserGender, rBirthday, rEmail, rPictureUrl);
+					memeberList.add(member);					
+				}
+			}	
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		for(int i = 0; i < memeberList.size(); i++){
+			if(memeberList.get(i).getUserId().equals(userId)&&
+				memeberList.get(i).getBirthday().equals(birthday)&&
+				memeberList.get(i).getEmail().equals(email)){
+				return "회원의 비밀번호는 " + memeberList.get(i).getUserPw() + "입니다.";
+			}
+		}
+		return "존재하지 않는 회원정보입니다.";	
 	}
 }
