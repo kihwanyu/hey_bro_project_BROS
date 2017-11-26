@@ -9,13 +9,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class GroupEdit_UI extends JFrame{
+public class GroupUpdate_UI extends JFrame{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1436779561881168592L;
 
-	public GroupEdit_UI(){
+	public GroupUpdate_UI(){
 		JFrame mf = new JFrame("모임 수정");
 		
 		mf.setBounds(400, 200, 800, 500);
