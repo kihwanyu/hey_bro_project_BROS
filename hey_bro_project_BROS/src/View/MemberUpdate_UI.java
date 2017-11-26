@@ -84,9 +84,13 @@ public class MemberUpdate_UI extends JPanel {
 		imageOpen_Bt.setLocation(MEMBER_TEXT_LOCATION_X+320, 285);
 		imageOpen_Bt.setSize(150,40);
 		JButton update_bt = new JButton("수정 하기");
-		update_bt.setLocation(MEMBER_TEXT_LOCATION_X+125, 350);
+		update_bt.setLocation(MEMBER_TEXT_LOCATION_X+270, 350);
 		update_bt.setSize(150,40);
-	
+		JButton cancle_bt = new JButton("뒤로 가기");
+		cancle_bt.setLocation(MEMBER_TEXT_LOCATION_X, 350);
+		cancle_bt.setSize(150, 40);
+		
+		
 		//아이디
 		JTextField id_text = new JTextField(10);
 		id_text.setText(m.getUserId());
@@ -196,6 +200,7 @@ public class MemberUpdate_UI extends JPanel {
 		this.add(userIng_lb);
 		this.add(imageOpen_Bt);
 		this.add(update_bt);
+		this.add(cancle_bt);
 
 		this.add(dateList);
 		
@@ -296,6 +301,8 @@ public class MemberUpdate_UI extends JPanel {
 				
 			}
 			
+			
+			
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
@@ -314,7 +321,45 @@ public class MemberUpdate_UI extends JPanel {
 				
 			}
 		});
+	
+		cancle_bt.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				main_UI();
+				//메인으로
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+	
 	}
+	
+	
 	//text박스 클릭시 텍스트박스에 있는 문자열을 지워주는 메소드.
 	public void textDelete(JTextField tf){
 		tf.addMouseListener(new MouseListener() {
@@ -426,5 +471,16 @@ public class MemberUpdate_UI extends JPanel {
 		}
 		
 	}
+	
+	public void main_UI() {		
+		superFrame.setVisible(false);//현재 프레임의 비전을끄고
+		try {
+			superFrame.add(new Main_UI(session)); //새로운 프레임을 만든다.
+		} catch (Exception e) {
+
+		}
+		
+	}
+	
 }
 	
