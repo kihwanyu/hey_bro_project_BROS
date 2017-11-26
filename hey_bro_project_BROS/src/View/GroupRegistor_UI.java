@@ -14,20 +14,26 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import Controller.Controller;
+import Model.vo.Member;
 import Model.vo.Session;
 
 public class GroupRegistor_UI extends JPanel {
+	private JFrame superFrame; //수정
+	private Controller c = new Controller();
+	private Member m = new Member(); //수정
+	private Session session; //수정
 	//private JPanel mainPanel;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4430678642605584542L;
-	private Controller c = new Controller();
-	private static JFrame superFrame;
 	
-	public GroupRegistor_UI(Session session){
+	public GroupRegistor_UI(JFrame superFrame, JPanel panel, Session session /*JFrame superFrame, JPanel panel 수정*/){
 	//	JFrame mf = new JFrame("�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝占�");
 		//
+		m = c.process("MemberSatting.do", session); //수정
+		this.session = session; //수정
+		this.superFrame = superFrame; //수정
 		this.setBounds(0, 0, 800, 500);
 		this.setLayout(null);
 		
@@ -113,7 +119,7 @@ public class GroupRegistor_UI extends JPanel {
 					c.process("GroupRegister.do", gntf.getText(), gltf.getText(), gPwtf.getText(), ctf.getText(), newstf.getText(), session.getUserId());
 					JOptionPane.showMessageDialog(null, "그룹 생성이 완료되었습니다.");
 					//로그인 페이지로 이동
-					loginPage();
+					main_UI(); //수정
 				}
 				
 				
@@ -155,7 +161,7 @@ public class GroupRegistor_UI extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new	Main_UI(session);
+				main_UI(); //수정
 				
 			}
 
@@ -212,6 +218,15 @@ public class GroupRegistor_UI extends JPanel {
 		superFrame.setVisible(false);//현재 프레임의 비전을끄고
 		try {
 			superFrame.add(new Login_UI()); //새로운 프레임을 만든다.
+		} catch (Exception e) {
+
+		}
+		
+	}
+	public void main_UI() {		
+		superFrame.setVisible(false);//현재 프레임의 비전을끄고
+		try {
+			superFrame.add(new Main_UI(session)); //새로운 프레임을 만든다.
 		} catch (Exception e) {
 
 		}

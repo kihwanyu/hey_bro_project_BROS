@@ -2,18 +2,37 @@ package View;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
+import Controller.Controller;
+import Model.vo.Member;
+import Model.vo.Session;
+
 public class MemberDelete_UI extends JPanel {
+	private JPanel panel;	//수정
+	private JFrame superFrame;	//수정
+	private JPanel superPanel; 	//수정
+	private JPanel tempPanel;	//수정
+	private Controller c = new Controller(); //수정
+	private Member m = new Member(); //수정
+	private Session session; //수정
 	//
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6557046076929215948L;
 
-	public MemberDelete_UI() {
+	public MemberDelete_UI(JFrame superFrame, JPanel superPanel, Session session/*수정*/) {
 		//JFrame mf = new JFrame();
+		m = c.process("MemberSatting.do", session); //수정
+		this.session = session; //수정
+		this.panel = this.tempPanel; //수정
+		this.superFrame = superFrame; //수정
+		this.tempPanel = this.panel; //수정
+		this.superPanel = superPanel; //수정
 		
 		this.setBounds(0, 0, 800, 500);
 		this.setLayout(null);
@@ -48,6 +67,60 @@ public class MemberDelete_UI extends JPanel {
 		this.add(name);
 		this.add(label);
 		this.add(bg);
+		
+		clickEvent(label2, superPanel); //수정
 	}
+	
+	//수정
+	public void clickEvent(JButton button, JPanel panel){
+		button.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				loginPage();
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}});
+
+			
+			
+	
+	}
+	//수정
+	public void loginPage() {		
+		superFrame.setVisible(false);//현재 프레임의 비전을끄고
+		try {
+			superFrame.add(new Login_UI()); //새로운 프레임을 만든다.
+		} catch (Exception e) {
+
+		}
+		
+	}
+	
+	
+
 
 }

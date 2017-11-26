@@ -13,18 +13,27 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import Controller.Controller;
+import Model.vo.Member;
+import Model.vo.Session;
+
 public class JoinGroup_UI extends JPanel {
 	private JPanel panel;
 	private JFrame superFrame;
 	private JPanel superPanel;
 	private JPanel tempPanel;
+	private Controller c = new Controller(); //수정
+	private Member m = new Member(); //수정
+	private Session session; //수정
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5276751205814558579L;
 
-	public JoinGroup_UI(JFrame superFrame, JPanel superPanel){
+	public JoinGroup_UI(JFrame superFrame, JPanel superPanel, Session session/*수정*/){
+		m = c.process("MemberSatting.do", session); //수정
+		this.session = session; //수정
 		this.panel = this.tempPanel;
 		this.superFrame = superFrame;
 		this.tempPanel = this.panel;
@@ -132,7 +141,7 @@ public class JoinGroup_UI extends JPanel {
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
-				nextPage(panel);				
+				main_UI(); //수정				
 			}
 			
 			@Override
@@ -167,4 +176,15 @@ public class JoinGroup_UI extends JPanel {
 		this.repaint(); //다시 적용(갱신)
 		
 	}
+	
+	//수정
+		public void main_UI() {		
+			superFrame.setVisible(false);//현재 프레임의 비전을끄고
+			try {
+				superFrame.add(new Main_UI(session)); //새로운 프레임을 만든다.
+			} catch (Exception e) {
+
+			}
+			
+		}
 }
