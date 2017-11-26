@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 import Controller.Controller;
 import Model.vo.Member;
 import Model.vo.Session;
-
+//
 public class GroupSearch_UI extends JPanel {
 	private JPanel panel;
 	private JFrame superFrame;

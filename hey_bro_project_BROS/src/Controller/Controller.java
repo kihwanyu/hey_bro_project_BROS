@@ -7,7 +7,7 @@ import Model.dao.MemberDAO;
 import Model.vo.Group;
 import Model.vo.Member;
 import Model.vo.Session;
-
+//
 public class Controller {
 	//Member
 	MemberDAO mDao = new MemberDAO();

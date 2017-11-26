@@ -197,7 +197,7 @@ public class GroupDAO {
 	}
 	//구주승 (그룹장 구별?)
 	public void groupJoin() {
-
+//
 	}
 	public ArrayList<String> groupListSearch(String userId, int type) {
 		ArrayList<String> groupList = new ArrayList<>();
