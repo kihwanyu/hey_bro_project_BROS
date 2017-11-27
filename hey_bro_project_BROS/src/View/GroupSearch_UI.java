@@ -30,6 +30,7 @@ public class GroupSearch_UI extends JPanel {
 	private ArrayList<String> groupArr = new ArrayList<>();
 	private String [] groups;
 	private JComboBox<String> groupList;
+	private String groupSession;
 	/**
 	 * 
 	 */
@@ -61,8 +62,8 @@ public class GroupSearch_UI extends JPanel {
 		
 		
 		//콤보박스 생성
-		String [] groups = {"모임을 선택해주세요", "BROS", "샛별고 동문회", "샛별대 동문회"};
-
+		String [] groups = new String[3];
+		
 		JComboBox<String> groupList = new JComboBox<>(groups);
 		groupList.setSelectedIndex(0);
 		groupList.setLocation(200, 230);
@@ -160,8 +161,10 @@ public class GroupSearch_UI extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				new GroupJoin_Pw_UI(superFrame);
-
+				
+				
+				groupSession = groupList.getItemAt(groupList.getSelectedIndex());
+				new GroupJoin_Pw_UI(superFrame, groupSession);
 				frameSetVisible();
 			}
 

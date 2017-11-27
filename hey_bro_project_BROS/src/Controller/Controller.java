@@ -54,13 +54,16 @@ public class Controller {
 	}
 	
 	//메소드 중첩(오버로딩)
-	public Boolean process(String key, String userId, String userPw){
+	public Boolean process(String key, String type1, String type2){
+		//String key, String Pw, String session
 		Boolean result = false;
 		switch (key) {
 		case "Login.do":
-			result = mDao.Login(userId, userPw);
+			result = mDao.Login(type1, type2);
 			break;
-			
+		case "groupJoin.do":
+			result = gDao.rLogin(type1, type2);
+			break;
 		default:
 			break;
 		}
@@ -116,4 +119,6 @@ public class Controller {
 			}
 			return groupList;
 		}
+		
+		
 }
