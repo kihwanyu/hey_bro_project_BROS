@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -88,6 +89,51 @@ public class Main_UI extends JFrame {
       JButton qa = new JButton(new ImageIcon(icon_2));
       qa.setLocation(10, 170);
       qa.setSize(180, 52);
+      qa.addMouseListener(new MouseAdapter(){
+    	  public void mouseReleased(MouseEvent e){
+    		  JOptionPane.showMessageDialog(null, "문의 전화는 02-1234-5678로 주시기 바랍니다.", "Q&A", JOptionPane.PLAIN_MESSAGE);
+    	  }
+      });
+      
+      //LOGOUT
+      JLabel logout = new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/exit.png"));
+		background.add(logout);
+		logout.setBounds(728, 20, 45, 45);
+		logout.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				superFrame.dispose();
+				new Login_UI();
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+      
       
       //회원탈퇴
       Image icon_3 = new ImageIcon("hey_bro_project_BROS/src/View/img/button3.PNG").getImage().getScaledInstance(206, 50, 0);
@@ -103,6 +149,9 @@ public class Main_UI extends JFrame {
       JLabel text2 = new JLabel(m.getUserName());
       text2.setLocation(65, 3);
       text2.setSize(60, 50);
+      
+      
+      
 
       Image icon_4 = new ImageIcon(m.getPictureUrl()).getImage().getScaledInstance(48, 45, 0);
       JLabel png = new JLabel(new ImageIcon(icon_4));
@@ -117,7 +166,7 @@ public class Main_UI extends JFrame {
       background.add(qa);
       background.add(out);
       background.add(text1);
-      
+     
       background.add(text2);
       background.add(userPanel);
       this.add(mainPanel);
