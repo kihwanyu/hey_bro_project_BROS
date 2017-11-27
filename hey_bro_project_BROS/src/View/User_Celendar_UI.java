@@ -13,10 +13,17 @@ import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import Controller.Controller;
+import Model.vo.Member;
+import Model.vo.Session;
+
 public class User_Celendar_UI extends JFrame{
-//
-   public User_Celendar_UI(JFrame superFrame/*수정*/, String groupSession){
+   
+   private Controller c = new Controller();
+   private Member m = new Member();
+   public User_Celendar_UI(JFrame superFrame/*수정*/, String groupSession,Session session){
       //JFrame mf = new JFrame();      
+      m = c.process("MemberSatting.do", session);
       this.setLayout(null);
       this.setBackground(Color.WHITE);
       //프레임 크기
@@ -160,7 +167,7 @@ public class User_Celendar_UI extends JFrame{
       JLabel textGl = new JLabel("님은 모임원입니다.");
       textGl.setLocation(90, 43);
       textGl.setSize(120, 50);
-      JLabel textGln = new JLabel("조성식");
+      JLabel textGln = new JLabel(m.getUserName());
       textGln.setLocation(45, 43);
       textGln.setSize(60, 50);
 
@@ -177,7 +184,7 @@ public class User_Celendar_UI extends JFrame{
       this.add(text4);
       this.add(text5);
       this.add(text6);
-      
+
       this.add(backB);
       this.add(gtf);
       this.add(dayP);
@@ -195,41 +202,41 @@ public class User_Celendar_UI extends JFrame{
 
       this.setVisible(true);
       this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      
+
       //수정
       backB.addMouseListener(new MouseListener(){
 
          @Override
          public void mouseClicked(MouseEvent e) {
             // TODO Auto-generated method stub
-            
+
          }
 
          @Override
          public void mouseEntered(MouseEvent e) {
             // TODO Auto-generated method stub
-            
+
          }
 
          @Override
          public void mouseExited(MouseEvent e) {
             // TODO Auto-generated method stub
-            
+
          }
 
          @Override
          public void mousePressed(MouseEvent e) {
             superFrame.setVisible(true);
             frameSetVisible();
-                        
+
          }
 
          @Override
          public void mouseReleased(MouseEvent e) {
             // TODO Auto-generated method stub
-            
+
          }
-         
+
       });
    }
    //수정

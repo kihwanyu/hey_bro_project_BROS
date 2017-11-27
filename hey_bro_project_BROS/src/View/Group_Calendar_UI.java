@@ -87,9 +87,11 @@ public class Group_Calendar_UI{
 		JPanel cPanel = new JPanel(); 
 		cPanel.setBounds(594, 30, 110, 30);
 
+		Calendar calendar = new GregorianCalendar(2017,11,1);
+		
 		Date value = utilTodayCalendar.getTime(); // 현재날짜
 		utilTodayCalendar.add(utilTodayCalendar.MONTH, -1); 
-
+		//1금요일~7목요일
 		Date start = utilTodayCalendar.getTime();
 		utilTodayCalendar.add(Calendar.YEAR, 50);//+50 하면 현재 날짜
 
@@ -98,113 +100,91 @@ public class Group_Calendar_UI{
 		SpinnerDateModel dateModel = new SpinnerDateModel(value, start, end, Calendar.MONTH);
 		JSpinner dateSpinner = new JSpinner(dateModel);
 		dateSpinner.setEditor(new JSpinner.DateEditor(dateSpinner, "yyyy/MM"));
+		
 		cPanel.add(dateSpinner);
 
-		int dateOperationMonth = utilTodayCalendar.get(Calendar.MONTH)+2;
+		//int dateOperationMonth = calendar.get(Calendar.MONTH)+1;
 		/*String[] date_str = new String[6];
 		date_str = String.valueOf(dateSpinner.getValue()).split(" ");
 		System.out.println(dateSpinner.getValue());*/
-		dateOperationCalendar = new GregorianCalendar(2017,dateOperationMonth,1);
-		int key = dateOperationCalendar.get(Calendar.DAY_OF_WEEK); // 월요일
+		//dateOperationCalendar = new GregorianCalendar(2017,dateOperationMonth,1);
+		//int key = dateOperationCalendar.get(Calendar.DAY_OF_WEEK); // 월요일
 		//System.out.println("Calendar" + dateOperationCalendar.toString());
 		//System.out.println("dateOperationCalendar_Calendar.DAY_OF_WEEK = " + dateOperationCalendar.get(Calendar.DAY_OF_WEEK));
 		//System.out.println(dateOperationCalendar.get(Calendar.DAY_OF_MONTH));
 
-		int year = dateOperationCalendar.get(Calendar.YEAR);
-		int month = dateOperationCalendar.get(Calendar.MONTH);
-		int day_of_week = dateOperationCalendar.get(Calendar.DAY_OF_WEEK);
+		int year = calendar.get(Calendar.YEAR);
+		int month = calendar.get(Calendar.MONTH);
+		int date = calendar.get(Calendar.DATE);
+		int day_of_week = calendar.get(Calendar.DAY_OF_WEEK);
+		
+		System.out.println(year + " "+ month + " " +date+" "+ day_of_week);
 		
 		ArrayList<String> dateList = new ArrayList<>();
 		
 		for(int i = 0; i < date_bt.length; i++){
-			date_bt[i] = new JButton("null");
-			//System.out.println(date_bt[i].getText());
-			//date_bt[i].setText(dateList.get(i));
+			date_bt[i] = new JButton(String.valueOf(i));
+			System.out.println(date_bt[i].getText());
 		}
 		
 		if((0 == (year % 4) && 0 != (year %100)) || 0 == year%400) {
-			System.out.println("들어옴!");
+			//System.out.println("들어옴!");
 			if(month==2) {
 				for(int i = 0; i < 29; i++){
-						//date_bt[i] = new JButton();
 						dateList.add(String.valueOf(i+1).toString());
-						//String str = String.valueOf(i+1).toString();
-						//date_bt[i].setText(str);
 					
 				}
 			}
 			else if(month==4||month==6||month==9||month==11){
 				for(int i = 0; i < 30; i++){
-					//date_bt[i] = new JButton();
 					dateList.add(String.valueOf(i+1).toString());
-					//String str = String.valueOf(i+1).toString();
-					//date_bt[i].setText(str);	
 				}
 			}
 			else {
 				for(int i = 0; i < 31; i++){
-					//date_bt[i] = new JButton();
 					dateList.add(String.valueOf(i+1).toString());
-					/*String str = String.valueOf(i+1).toString();
-					date_bt[i].setText(str);*/
 				}
 			}
 		}
 		else if(month==2){
 			for(int i = 0; i < 28; i++){
-				//date_bt[i] = new JButton();
 				dateList.add(String.valueOf(i+1).toString());
-				/*String str = String.valueOf(i+1).toString();
-				date_bt[i].setText(str);*/
 			}
 		}
 		else if(month==4||month==6||month==9||month==11){
 			for(int i = 0; i < 30; i++){
-				//date_bt[i] = new JButton();
 				dateList.add(String.valueOf(i+1).toString());
-				/*String str = String.valueOf(i+1).toString();
-				date_bt[i].setText(str);*/
 			}
 		}
 		else {
 			for(int i = 0; i < date_bt.length; i++){
 				
-				//date_bt[i] = new JButton();
 				dateList.add(String.valueOf(i+1).toString());
-				
-				/*String str = String.valueOf(i+1).toString();
-				date_bt[i].setText(str);*/	
 			}
 		}
-		int count = 0;
 		
-		dateList.add(0,"");
-		dateList.add(1,"");
-		dateList.add(2,"");
-
-		dateList.add(33,"");
-		dateList.add(34,"");
-		dateList.add(35,"");
-		dateList.add(36,"");
-		dateList.add(37,"");
-		dateList.add(38,"");
-		dateList.add(39,"");
-		dateList.add(40,"");
-		dateList.add(41,"");
-		dateList.add(42,"");
-		dateList.add(43,"");
-		dateList.add(44,"");
-		
-		for(int i = 0; i < date_bt.length; i++){
-			
-			if(!date_bt[i].getText().equals("null")){
-				date_bt[i].setText(dateList.get(count).toString());
-				System.out.println(count);
-				//mf.add(date_bt[i]);
-				count++;
-			} else {	
-				date_bt[i].setText("");
+		switch (day_of_week) {
+		case 4:
+			break;
+		case 6:
+			for(int i = 0; i < 3; i++){
+				dateList.add(i,"");
 			}
+			for(int i = 33; i < 45; i++){
+				dateList.add(i,"");
+			}
+			break;
+
+		default:
+			break;
+		}
+
+		
+		int count = 0;
+		for(int i = 0; i < date_bt.length; i++){
+			date_bt[i].setText(dateList.get(count).toString());
+			System.out.println(count);
+			count++;
 		}
 		
 		for(int i = 0; i < dateList.size(); i++){
@@ -260,7 +240,7 @@ public class Group_Calendar_UI{
 		png.setLocation(0, 3);
 		png.setSize(48, 45);
 
-		mf.add(cjp);
+		
 
 		/*mf.add(text1);
 		mf.add(text2);
@@ -275,8 +255,11 @@ public class Group_Calendar_UI{
 			mf.add(date_text[i]);
 		}
 		for(int i = 0; i < date_bt.length; i++){
-			mf.add(date_bt[i]);
+			cjp.add(date_bt[i]);
 		}
+		
+		mf.add(cjp);
+		
 		mf.add(backB);
 		mf.add(gtf);
 		mf.add(dayP);
@@ -290,12 +273,13 @@ public class Group_Calendar_UI{
 		mf.add(textGln);
 		mf.add(userPanel);
 		mf.add(mainPanel);
-
+		
 
 		mf.setVisible(true);
 		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
+		mf.revalidate();
+		mf.repaint();
 	}
 
 	public static void main(String[] args){
