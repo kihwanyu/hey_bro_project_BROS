@@ -218,6 +218,8 @@ public class GroupRegistor_UI extends JPanel {
 			}
 
 		});
+		
+		//조성식 수정
 		JButton groupOverlab = new JButton("중복");
 		groupOverlab.setBounds(350, 80, 60, 28);
 		groupOverlab.addMouseListener(new MouseListener(){
