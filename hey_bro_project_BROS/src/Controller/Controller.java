@@ -61,8 +61,11 @@ public class Controller {
 		case "Login.do":
 			result = mDao.Login(type1, type2);
 			break;
-		case "groupJoin.do":
+		case "rLogin.do":
 			result = gDao.rLogin(type1, type2);
+			break;
+		case "gorupJoin.do":
+			result = gDao.groupJoin(type1, type2);
 			break;
 		default:
 			break;

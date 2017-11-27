@@ -3,7 +3,7 @@ package Model.vo;
 public class Group {
 	private String number;
 	
-	
+	private String userId;
 	private String gName;
 	private String interests;
 	private String pw;
@@ -17,6 +17,11 @@ public class Group {
 	
 	public Group(String gName) {
 		this.gName = gName;
+	}
+	
+	public Group(String gName, String userId) {
+		this.gName = gName;
+		this.userId =userId;	
 	}
 
 	public Group(String gName, String interests, String pw, String content, String news, String leader) {
@@ -68,7 +73,7 @@ public class Group {
 		return leader;
 	}
 	public void setLeader(String leader) {
-		leader = leader;
+		this.leader = leader;
 	}
 	public String getgName() {
 		return gName;
