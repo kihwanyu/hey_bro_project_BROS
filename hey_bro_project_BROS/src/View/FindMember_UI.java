@@ -316,6 +316,7 @@ public class FindMember_UI extends JPanel{
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				
 				new Login_UI();
 				
 			}
@@ -410,5 +411,8 @@ public class FindMember_UI extends JPanel{
 			}
 		});
 	}
+	
+	
+	
 
 }
