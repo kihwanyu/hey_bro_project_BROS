@@ -120,6 +120,8 @@ public class GroupRegistor_UI extends JPanel {
 					JOptionPane.showMessageDialog(null, "그룹 생성이 완료되었습니다.", "title", JOptionPane.PLAIN_MESSAGE);
 					//로그인 페이지로 이동
 					main_UI(); //수정
+				} else {
+					JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다.", "title", JOptionPane.PLAIN_MESSAGE);
 				}
 				
 				
