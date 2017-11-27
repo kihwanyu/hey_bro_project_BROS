@@ -3,12 +3,15 @@ package View;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -17,6 +20,7 @@ public class Group_Calendar_UI{
 	//
 	public void calendar(){
 		JFrame mf = new JFrame();      
+		JButton[] date_bt = new JButton[43];
 		mf.setLayout(null);
 		mf.setBackground(Color.WHITE);
 		//프레임 크기
@@ -29,11 +33,14 @@ public class Group_Calendar_UI{
 		JPanel cjp = new JPanel();
 		cjp.setBounds(300, 130, 700, 500);
 		cjp.setLayout(new GridLayout(6, 7, 0, 70));
-		Object[] obj = new Object[43];
-		for (int i = 1; i < obj.length; i++) {
-			String str2 = String.valueOf(i);
-			cjp.add(new JButton(str2));   
+
+		for (int i = 1; i < date_bt.length; i++) {
+			date_bt[i] = new JButton();
+			String str = String.valueOf(i).toString();
+			date_bt[i].setText(str);
+			cjp.add(date_bt[i]);   
 		}
+
 		JPanel[] date_text = new JPanel[6];
 		JTextField[][] date_textField = new JTextField[6][7];
 		//final int CAL_SIZE = 45;
@@ -75,20 +82,63 @@ public class Group_Calendar_UI{
 		// 상단 날짜표시 스피너
 		JPanel cPanel = new JPanel(); 
 		cPanel.setBounds(594, 30, 110, 30);
-		Calendar calendar = Calendar.getInstance();
+		Calendar calendar = new GregorianCalendar();
 
 		Date value = calendar.getTime(); // 현재날짜
-		calendar.add(calendar.YEAR, -50); // 현재날짜에서 50 년 뺀것
+		calendar.add(calendar.MONTH, -1); 
 
 		Date start = calendar.getTime();
-		calendar.add(Calendar.YEAR, 100);//+50 하면 현재 날짜
+		calendar.add(Calendar.YEAR, 50);//+50 하면 현재 날짜
 
 		Date end = calendar.getTime();
 
 		SpinnerDateModel dateModel = new SpinnerDateModel(value, start, end, Calendar.MONTH);
-		JSpinner spinner3 = new JSpinner(dateModel);
-		spinner3.setEditor(new JSpinner.DateEditor(spinner3, "yyyy/MM"));
-		cPanel.add(spinner3);
+		JSpinner dateSpinner = new JSpinner(dateModel);
+		dateSpinner.setEditor(new JSpinner.DateEditor(dateSpinner, "yyyy/MM"));
+		cPanel.add(dateSpinner);
+		
+		System.out.println(dateSpinner.getValue());
+		
+		
+		
+		/*if((0 == (year % 4) && 0 != (year %100)) || 0 == year%400) {
+			if(month==2) {
+				for(int i = 0; i < 29; i++){
+					date[i] = 1+i;
+					dateList.addItem(String.valueOf(date[i]).toString());	
+				}
+			}
+			else if(month==4||month==6||month==9||month==11){
+				for(int i = 0; i < 30; i++){
+					date[i] = 1+i;
+					dateList.addItem(String.valueOf(date[i]).toString());	
+				}
+			}
+			else {
+				for(int i = 0; i < 31; i++){
+					date[i] = 1+i;
+					dateList.addItem(String.valueOf(date[i]).toString());	
+				}
+			}
+		}
+		else if(month==2){
+			for(int i = 0; i < 28; i++){
+				date[i] = 1+i;
+				dateList.addItem(String.valueOf(date[i]).toString());	
+			}
+		}
+		else if(month==4||month==6||month==9||month==11){
+			for(int i = 0; i < 30; i++){
+				date[i] = 1+i;
+				dateList.addItem(String.valueOf(date[i]).toString());	
+			}
+		}
+		else {
+			for(int i = 0; i < 31; i++){
+				date[i] = 1+i;
+				dateList.addItem(String.valueOf(date[i]).toString());	
+			}
+		}*/
 		
 		//우측 상단 리스트 버튼 
 		JButton listB = new JButton("L I S T");
@@ -171,36 +221,18 @@ public class Group_Calendar_UI{
 
 		mf.setVisible(true);
 		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		
-		spinner3.addMouseListener(new MouseListener() {
-			
+	}
+	public void birthdayComboList(JComboBox<String> standard, JComboBox<String> yearList,
+			JComboBox<String> monthList, JComboBox<String> dateList, int[] date){
+		standard.addItemListener(new ItemListener() {
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
+			public void itemStateChanged(ItemEvent e) {
+				dateList.removeAllItems();
+				//System.out.println(Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex())));
+				int year = Integer.parseInt(yearList.getItemAt(yearList.getSelectedIndex()));
+				int month = Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex()));
 				
 			}
 		});

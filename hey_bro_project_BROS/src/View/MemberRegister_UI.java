@@ -416,7 +416,6 @@ public class MemberRegister_UI extends JPanel {
 	public void birthdayComboList(JComboBox<String> standard, JComboBox<String> yearList,
 			 JComboBox<String> monthList, JComboBox<String> dateList, int[] date){
 		standard.addItemListener(new ItemListener() {
-			
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				dateList.removeAllItems();
