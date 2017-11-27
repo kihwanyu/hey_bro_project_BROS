@@ -82,7 +82,7 @@ public class Group_Calendar_UI{
 		cPanel.setBounds(594, 30, 110, 30);
 
 		Calendar calendar = new GregorianCalendar(2017,8,1);
-		//8월은 9월
+		//8월은 9월 //
 		//calendar.set(Calendar.DAY_OF_WEEK,1); 
 		
 		Date value = utilTodayCalendar.getTime(); // 현재날짜
