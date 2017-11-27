@@ -115,7 +115,6 @@ public class GroupDAO {
 					pw = str_arr[2];
 
 
-
 					/*//용도는 다르지만 아이디와 비밀번호를 묶어 놓을 수 있어서 세션 클래스를 사용한다.
 					sessionList.add(new Session(rUserId, rUserPw));*/
 				}

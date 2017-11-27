@@ -44,23 +44,62 @@ public class MemberDelete_UI extends JPanel {
 		bg.setBackground(Color.LIGHT_GRAY);
 	
 		//?öå?õê?ù¥Î¶? ?ùºÎ≤?
-		String userName = "¡∂º∫Ωƒ";
+		String userName = session.getUserId();
 		JLabel name = new JLabel(userName);
-		name.setBounds(380, 179, 50, 50);
+		name.setBounds(380, 164, 50, 50);
 		
 		//Î¨∏Íµ¨ ?ùºÎ≤?
-		Image icon = new ImageIcon("hey_bro_project_BROS/src/View/img/out.PNG").getImage().getScaledInstance(612, 358, 0);
+		Image icon = new ImageIcon("hey_bro_project_BROS/src/View/img/memberdeletion.png").getImage().getScaledInstance(800, 490, 0);
 		JLabel label = new JLabel(new ImageIcon(icon));
-		label.setBounds(100, 70, 612, 358);
+		label.setBounds(0, 0, 800, 490);
 		
 		//?Éà?á¥Î≤ÑÌäº
 		Image icon2 = new ImageIcon("hey_bro_project_BROS/src/View/img/button.PNG").getImage().getScaledInstance(111, 47, 0);
 		JButton label2 = new JButton(new ImageIcon(icon2));
-		label2.setBounds(350, 375, 111, 47);
+		label2.setBounds(340, 395, 111, 47);
 		
 		//?ôï?ù∏ Ï≤¥ÌÅ¨
 		check.setBackground(null);
-		check.setBounds(270, 335, 20, 20);
+		check.setBounds(261, 355, 20, 20);
+		check.setOpaque(false);
+		
+		JLabel back = new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/prevButton.png"));
+		label.add(back);
+		back.setBounds(20, 395, 45, 45);
+		back.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				new Main_UI(session);
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
 		
 		this.add(check);
 		this.add(label2);
