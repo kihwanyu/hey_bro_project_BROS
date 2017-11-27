@@ -18,7 +18,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Group_Calendar_UI{
-	//
+	////
 	public void calendar(){
 		JFrame mf = new JFrame();      
 		JButton[] date_bt = new JButton[42];
@@ -87,7 +87,7 @@ public class Group_Calendar_UI{
 		JPanel cPanel = new JPanel(); 
 		cPanel.setBounds(594, 30, 110, 30);
 
-		Calendar calendar = new GregorianCalendar(2017,11,1);
+		Calendar calendar = new GregorianCalendar(2018,8,28);
 		
 		Date value = utilTodayCalendar.getTime(); // 현재날짜
 		utilTodayCalendar.add(utilTodayCalendar.MONTH, -1); 
@@ -119,15 +119,70 @@ public class Group_Calendar_UI{
 		int day_of_week = calendar.get(Calendar.DAY_OF_WEEK);
 		
 		System.out.println(year + " "+ month + " " +date+" "+ day_of_week);
-		
+		System.out.println();
 		ArrayList<String> dateList = new ArrayList<>();
-		
+		int date_valueArr = 0;
+		int day_of_weekArr = 0;
 		for(int i = 0; i < date_bt.length; i++){
 			date_bt[i] = new JButton(String.valueOf(i));
 			System.out.println(date_bt[i].getText());
 		}
-		
+		switch (day_of_week) {
+		case 1:
+			day_of_weekArr = 5;
+			break;
+		case 2:
+			day_of_weekArr = 6; 
+			break;
+		case 3:
+			day_of_weekArr = 0;
+			break;
+		case 4:
+			day_of_weekArr = 1;
+			break;
+		case 5:
+			day_of_weekArr = 2;
+			break;
+		case 6:
+			day_of_weekArr = 3;
+			break;
+		case 7:
+			day_of_weekArr = 4;
+			break;
+		default:
+			
+			break;
+		}
 		if((0 == (year % 4) && 0 != (year %100)) || 0 == year%400) {
+			if(month==2) {
+				date_valueArr = 29;
+			}
+			else if(month==4||month==6||month==9||month==11){
+				date_valueArr = 30;
+			}
+			else {
+				date_valueArr = 31;
+			}
+		}
+		else if(month==2){
+			date_valueArr = 28;
+		}
+		else if(month==4||month==6||month==9||month==11){
+			date_valueArr = 30;
+		}
+		else {
+			date_valueArr = 31;
+		}
+		for(int i = 0; i < day_of_weekArr; i++){
+			dateList.add("");
+		}
+		for(int i = 0; i < date_valueArr; i++){
+			dateList.add(String.valueOf(i+1).toString());
+		}
+		for(int i = date_valueArr; i < date_bt.length; i ++){
+			dateList.add("");
+		}
+		/*if((0 == (year % 4) && 0 != (year %100)) || 0 == year%400) {
 			//System.out.println("들어옴!");
 			if(month==2) {
 				for(int i = 0; i < 29; i++){
@@ -152,8 +207,24 @@ public class Group_Calendar_UI{
 			}
 		}
 		else if(month==4||month==6||month==9||month==11){
+			switch (day_of_week) {
+			case 4:
+				break;
+			case 6:
+				for(int i = 0; i < 3; i++){
+					dateList.add(i,"");
+				}
+				break;
+
+			default:
+				break;
+			}
+			
 			for(int i = 0; i < 30; i++){
 				dateList.add(String.valueOf(i+1).toString());
+			}
+			for(int i = 30; i < date_bt.length; i++){
+				dateList.add("");
 			}
 		}
 		else {
@@ -161,24 +232,9 @@ public class Group_Calendar_UI{
 				
 				dateList.add(String.valueOf(i+1).toString());
 			}
-		}
+		}*/
 		
-		switch (day_of_week) {
-		case 4:
-			break;
-		case 6:
-			for(int i = 0; i < 3; i++){
-				dateList.add(i,"");
-			}
-			for(int i = 33; i < 45; i++){
-				dateList.add(i,"");
-			}
-			break;
-
-		default:
-			break;
-		}
-
+		
 		
 		int count = 0;
 		for(int i = 0; i < date_bt.length; i++){
