@@ -264,6 +264,8 @@ public class GroupRegistor_UI extends JPanel {
 			}
 
 		});
+		
+		//조성식 수정
 		regPwtf.addKeyListener(new KeyListener(){
 
 			@Override
