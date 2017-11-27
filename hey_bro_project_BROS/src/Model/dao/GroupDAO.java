@@ -233,5 +233,46 @@ public class GroupDAO {
 		
 		return groupList;
 	}	
+	
+	//조성식 수정 그룹명 중복확인
+	public boolean groupTitleOverlap(String groupTitle){
+		Properties prop = new Properties();
+		ArrayList<String> groupTitleList = new ArrayList<>();
+		String rGroupTitle;
+		
+		try {
+			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\groups.xml"));
+			for(int i = 0; i < prop.size(); i++){
+				String str;
+				
+				String[] str_arr = new String[6];
+				
+				str = prop.getProperty(String.valueOf(i).toString());
+				if(str!=null){
+
+					str_arr = str.split(", ");
+	
+					
+					rGroupTitle = str_arr[1];
+					
+					groupTitleList.add(rGroupTitle);
+				}
+			}	
+		} catch (InvalidPropertiesFormatException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		for(int i = 0; i < groupTitleList.size(); i++ ) {
+			if(groupTitleList.get(i).equals(groupTitle)){
+				//System.out.println("중복되었습니다.");
+				return false;
+			}
+		}
+		
+		return true;
+	}
 }
 
