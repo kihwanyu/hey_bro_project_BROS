@@ -5,7 +5,7 @@ import java.awt.Font;
 import javax.swing.*;
 
 public class ScheduleRegister extends JFrame{
-//
+
    JPanel mp = new JPanel();
    public void scheduleRegister(){
       this.setBounds(100, 50, 800, 500);
