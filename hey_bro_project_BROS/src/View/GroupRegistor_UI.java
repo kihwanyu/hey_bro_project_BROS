@@ -2,6 +2,8 @@ package View;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -18,10 +20,12 @@ import Model.vo.Member;
 import Model.vo.Session;
 
 public class GroupRegistor_UI extends JPanel {
+	private	static boolean loginBoolean = false; //수정
 	private JFrame superFrame; //수정
 	private Controller c = new Controller();
 	private Member m = new Member(); //수정
 	private Session session; //수정
+	private Session groupSession;
 	//private JPanel mainPanel;
 	/**
 	 * 
@@ -55,7 +59,6 @@ public class GroupRegistor_UI extends JPanel {
 		JTextField gntf = new JTextField(20);
 		gntf.setLocation(150, 80);
 		gntf.setSize(200, 30);
-		
 		
 		
 		//Group Interests
@@ -152,6 +155,29 @@ public class GroupRegistor_UI extends JPanel {
 			
 		});
 		
+		//조성식 수정
+		gntf.addKeyListener(new KeyListener(){
+
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				loginBoolean = false;		
+				btn.setEnabled(false);
+			}
+
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
 		//Cancel Button
 		JButton btn2 = new JButton("뒤로 가기");
 		btn2.setLocation(250,400);
@@ -191,7 +217,54 @@ public class GroupRegistor_UI extends JPanel {
 			
 		});
 		
+		//조성식 수정
+		JButton titleOverlab = new JButton("중복");
+		titleOverlab.setBounds(353, 80, 60, 30);
+		titleOverlab.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				boolean result = c.process("GroupTitleOverlap.do", gName.getText());		
+				
+				System.out.println(result);
+				if(result){
+					JOptionPane.showMessageDialog(null, "사용가능한 모임명 입니다.");
+					//가입하기 버튼 활성화
+					loginBoolean = true;
+					btn.setEnabled(true);
+				} else {
+					JOptionPane.showMessageDialog(null, "모임명이 중복 되었습니다.");
+				}
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		
+		this.add(titleOverlab);
 		this.add(title, "North");
 		this.add(gName);
 		this.add(gntf);
