@@ -15,7 +15,7 @@ import javax.swing.*;
 
 public class User_Celendar_UI extends JFrame{
 //
-   public User_Celendar_UI(JFrame superFrame/*수정*/){
+   public User_Celendar_UI(JFrame superFrame/*수정*/, String groupSession){
       //JFrame mf = new JFrame();      
       this.setLayout(null);
       this.setBackground(Color.WHITE);

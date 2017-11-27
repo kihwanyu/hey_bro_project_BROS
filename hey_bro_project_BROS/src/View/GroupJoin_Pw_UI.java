@@ -10,19 +10,24 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import Controller.Controller;
 
 public class GroupJoin_Pw_UI extends JFrame {
 	/**
 	 * 
 	 */
+	Controller c = new Controller();
 	private JFrame superFrame;
 	private JFrame present;
-	
+	private String groupSession;
 	private static final long serialVersionUID = 5827244684650823215L;
 
-	public GroupJoin_Pw_UI(JFrame superFrame){
+	public GroupJoin_Pw_UI(JFrame superFrame, String groupSession){
+		this.groupSession = groupSession;
 		this.superFrame = superFrame;
 		this.present = this;
 		//JFrame mf = new JFrame("모임 참여");
@@ -63,8 +68,15 @@ public class GroupJoin_Pw_UI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new User_Celendar_UI(present);
-				frameSetVisible();
+				Boolean result = c.process("groupJoin.do", gPwtf.getText(), groupSession);
+				//System.out.println(gPwtf.getText());
+				//System.out.println(groupSession);
+				if(result){
+				new User_Celendar_UI(present, groupSession);
+				frameSetVisible();		
+				} else {
+					JOptionPane.showMessageDialog(null, "비밀번호가 맞지않습니다.");
+				}		
 			}
 			
 		});
@@ -118,6 +130,7 @@ public class GroupJoin_Pw_UI extends JFrame {
 		});
 	
 	}
+	
 	public void frameSetVisible(){
 		this.setVisible(false);
 	}

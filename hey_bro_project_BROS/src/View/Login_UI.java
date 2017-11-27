@@ -1,10 +1,13 @@
 package View;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,7 +18,6 @@ import javax.swing.JTextField;
 
 import Controller.Controller;
 import Model.vo.Session;
-import sun.security.util.Password;
 
 public class Login_UI extends JFrame{
 	//
@@ -44,8 +46,9 @@ public class Login_UI extends JFrame{
 		panel.setBounds(400, 200, 800, 500);
 		
 		this.placeLoginPanel(panel);
-
+		
 		this.add(panel);
+		
 
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -53,16 +56,25 @@ public class Login_UI extends JFrame{
 
 	public void placeLoginPanel(JPanel panel){
 		panel.setLayout(null); 
+		JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/Starry Night Over the Rhone 2.jpg"));
+		background.setBounds(0, 0, 800, 500);
+		panel.add(background);
 		
-		JLabel userLabel = new JLabel("ID");
+		
+		JLabel userLabel = new JLabel("I    D");
 		userLabel.setBounds(230, 190, 80, 25);
-		panel.add(userLabel);
-		JLabel passLabel = new JLabel("PW");
+		background.add(userLabel);
+		userLabel.setForeground(new Color(227, 237, 247));
+		JLabel passLabel = new JLabel("P W");
 		passLabel.setBounds(230, 220, 80, 25);
-		panel.add(passLabel);
-		JLabel loginLabel = new JLabel("LOGIN");
-		loginLabel.setBounds(345, 150, 80, 25);
-		panel.add(loginLabel);
+		background.add(passLabel);
+		passLabel.setForeground(new Color(227, 237, 247));
+		
+		JLabel loginLabel = new JLabel("L  O  G  I  N");
+		loginLabel.setBounds(340, 150, 100, 25);
+		loginLabel.setForeground(new Color(227, 237, 247));
+		loginLabel.setFont(new Font(Font.DIALOG, Font.PLAIN, 18));
+		background.add(loginLabel);
 		
 		userText = new JTextField(20);
 		userText.setBounds(320, 190, 160, 25);
@@ -74,7 +86,7 @@ public class Login_UI extends JFrame{
 
 		btnInit = new JButton("회원가입");
 		btnInit.setBounds(230, 260, 115, 25);
-		panel.add(btnInit);
+		background.add(btnInit);
 		btnInit.addActionListener(new ActionListener() {
 
 			@Override
@@ -86,12 +98,12 @@ public class Login_UI extends JFrame{
 
 		btnLogin = new JButton("로그인");
 		btnLogin.setBounds(490, 220, 100, 25);
-		panel.add(btnLogin);
+		background.add(btnLogin);
 	
 		
 		btnIdPw = new JButton("ID/PW찾기");
 		btnIdPw.setBounds(365, 260, 115, 25);
-		panel.add(btnIdPw);
+		background.add(btnIdPw);
 		
 		clickEvent(btnInit,new MemberRegister_UI(this));
 		clickEvent(btnIdPw,new FindMember_UI());

@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,6 +27,10 @@ public class FindMember_UI extends JPanel{
 	
 	public FindMember_UI(){
 		
+		JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/Starry Night Over the Rhone 2.jpg"));
+		background.setBounds(0, 0, 800, 500);
+		this.add(background);
+		
 		//JFrame mf = new JFrame();
 		this.setBounds(0,0,800,500);
 	
@@ -34,16 +39,16 @@ public class FindMember_UI extends JPanel{
 		//JPanel pan1 = new JPanel();
 		this.setLayout(null);
 				
-		JLabel lb1 = new JLabel("아이디 찾기");
-		lb1.setLocation(170, 50);
+		JLabel lb1 = new JLabel("아이디  찾기");
+		lb1.setLocation(145, 50);
 		lb1.setSize(300,50);
 		lb1.setFont(new Font(Font.DIALOG, Font.BOLD, 25));
-		
+		lb1.setForeground(new Color(227, 237, 247));
 		
 		JTextField text = new JTextField(15);
 		text.setLocation(100, 150);
 		text.setSize(250, 30);
-		text.setText("이름");
+		text.setText(" 이 름");
 		text.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -80,7 +85,7 @@ public class FindMember_UI extends JPanel{
 		JTextField text2 = new JTextField(15);
 		text2.setLocation(100, 200);
 		text2.setSize(250, 30);
-		text2.setText("생년월일");
+		text2.setText(" 생 년 월 일");
 		text2.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -117,7 +122,7 @@ public class FindMember_UI extends JPanel{
 		JTextField text3 = new JTextField(15);
 		text3.setLocation(100, 250);
 		text3.setSize(250, 30);
-		text3.setText("이메일 주소");
+		text3.setText(" 이 메 일  주 소");
 		text3.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -154,13 +159,13 @@ public class FindMember_UI extends JPanel{
 		idBtn.setLocation(100, 300);
 		idBtn.setSize(250, 30);
 		
-		//패널에 컴포넌트 담기
+		//패널에 컴포넌트 담기 
 		
-		this.add(text);
-		this.add(text2);
-		this.add(lb1);
-		this.add(text3);
-		this.add(idBtn);
+		background.add(text);
+		background.add(text2);
+		background.add(lb1);
+		background.add(text3);
+		background.add(idBtn);
 		
 		
 		//panel2 찾기
@@ -172,13 +177,14 @@ public class FindMember_UI extends JPanel{
 		lb2.setLocation(480, 50);
 		lb2.setSize(200,50);
 		lb2.setFont(new Font(Font.DIALOG, Font.BOLD, 25));
-				
+		lb2.setForeground(new Color(227, 237, 247));
+		
 		this.add(lb2);
 				
 		JTextField text4 = new JTextField(15);
 		text4.setLocation(440, 150);
 		text4.setSize(250, 30);
-		text4.setText("아이디");
+		text4.setText(" 아 이 디");
 		text4.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -215,7 +221,7 @@ public class FindMember_UI extends JPanel{
 		JTextField text5 = new JTextField(15);
 		text5.setLocation(440, 200);
 		text5.setSize(250, 30);
-		text5.setText("생년월일");
+		text5.setText(" 생 년 월 일");
 		text5.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -252,7 +258,7 @@ public class FindMember_UI extends JPanel{
 		JTextField text6 = new JTextField(15);
 		text6.setLocation(440, 250);
 		text6.setSize(250, 30);
-		text6.setText("이메일 주소");
+		text6.setText(" 이 메 일  주 소");
 		text6.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -291,13 +297,50 @@ public class FindMember_UI extends JPanel{
 		pwBtn.setLocation(440, 300);
 		pwBtn.setSize(250, 30);
 		
+		JLabel back = new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/prevButton.png"));
+		background.add(back);
+		back.setBounds(20, 395, 45, 45);
+		back.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				new Login_UI();
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
 		//패널에 컴포넌트 담기
 		
-		this.add(text4);
-		this.add(text5);
-		this.add(lb2);
-		this.add(text6);
-		this.add(pwBtn);
+		background.add(text4);
+		background.add(text5);
+		background.add(lb2);
+		background.add(text6);
+		background.add(pwBtn);
 		
 		//메인 프레임 담기
 

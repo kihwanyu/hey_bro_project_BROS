@@ -104,7 +104,7 @@ public class JoinGroup_UI extends JPanel {
          
          @Override
          public void mousePressed(MouseEvent e) {
-            new GroupJoin_Pw_UI(superFrame);
+           // new GroupJoin_Pw_UI(superFrame);
 
             frameSetVisible();
          }

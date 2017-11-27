@@ -52,7 +52,14 @@ public class MemberUpdate_UI extends JPanel {
 		final int MEMBER_TEXT_LOCATION_X = MEMBER_LIBEL_LOCATION_X+110; 
 		
 		JLabel title_lb = new JLabel("회원 정보 수정");
-		
+		/*title_lb.setOpaque(false);
+		 JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/20100414201035!Matissedance.png"));
+			background.setBounds(0, 0, 800, 500);
+			title_lb.add(background);*/
+	      
+	    
+	      
+	      
 		JLabel id_lb = new JLabel("아이디 : \n");
 		id_lb.setLocation(MEMBER_LIBEL_LOCATION_X, 50);
 		id_lb.setSize(150,50);
@@ -179,7 +186,7 @@ public class MemberUpdate_UI extends JPanel {
 
 		
 		this.add(title_lb);
-		
+		//this.add(background);
 		this.add(id_lb);
 
 		this.add(id_text);

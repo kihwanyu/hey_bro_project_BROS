@@ -63,8 +63,8 @@ public class GroupDAO {
 					rNews = str_arr[5];
 					rLeader = str_arr[6];
 
-					new Group(rNum,rGname, rInterests, rPw, rContent, rNews, rLeader);
-					groupMap.put(groupMap.size(), group);
+					
+					groupMap.put(groupMap.size(), new Group(rNum,rGname, rInterests, rPw, rContent, rNews, rLeader));
 				}
 
 			}
@@ -93,31 +93,42 @@ public class GroupDAO {
 			e.printStackTrace();
 		}
 	}
-	//방 입장 비밀번호 확인 
-	public boolean rLogin(String Pw){
+	//방 참여 비밀번호 확인 
+	public boolean rLogin(String Pw, String groupSession){
 		Properties prop = new Properties();
-		ArrayList<Session> sessionList = new ArrayList<>();
-		String pw;
+		Map<Integer,Group> groupMap = new HashMap<>();
 
+		String rNum;
+		String rGname;
+		String rInterests;
+		String rPw;
+		String rContent;
+		String rNews;
+		String rLeader;
 		try {
 			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS/src/Model/Data/xml/groups.xml"));
-
+			
 			for(int i = 0; i < prop.size(); i++){
 				String str;
 
-				String[] str_arr = new String[6];
-
+				String[] str_arr = new String[7];
+				String file_str = null;
 				str = prop.getProperty(String.valueOf(i).toString());
 				if(str!=null){
-
+					
 					str_arr = str.split(", ");
+					
+					rNum = str_arr[0];
+					rGname = str_arr[1];
+					rInterests = str_arr[2];
+					rPw = str_arr[3];
+					rContent = str_arr[4];
+					rNews = str_arr[5];
+					rLeader = str_arr[6];
 
-					pw = str_arr[2];
-
-
-
-					/*//용도는 다르지만 아이디와 비밀번호를 묶어 놓을 수 있어서 세션 클래스를 사용한다.
-					sessionList.add(new Session(rUserId, rUserPw));*/
+					
+					groupMap.put(groupMap.size(), new Group(rNum,rGname, rInterests, rPw, rContent, rNews, rLeader));
+					//file_str = "hey_bro_project_BROS/src/Model/Data/xml/"+rGName+".xml";
 				}
 			}	
 
@@ -126,8 +137,23 @@ public class GroupDAO {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		return true; 
+		
+		Set<Integer> keys = groupMap.keySet();
+		Iterator<Integer> iter = keys.iterator();
+		
+		while(iter.hasNext()){
+			int key = iter.next();
+			System.out.println("[key]:"+key);
+			if(groupMap.get(key).getgName().equals(groupSession)&&
+					groupMap.get(key).getPw().equals(Pw)){
+				System.out.println("getName["+key+"]"+groupMap.get(key).getgName());
+				System.out.println("getPw["+key+"]"+groupMap.get(key).getPw());
+				//prop.storeToXML(new FileOutputStream(file_str), "comment");
+				System.out.println("확인 완료");
+				return true;
+			}
+		}
+		return false;
 
 	}
 	//조성식 수정
@@ -136,7 +162,6 @@ public class GroupDAO {
 		Map<Integer, Group> groupMap = new HashMap<>();
 		ArrayList<Group> groupArrayList = new ArrayList<>();
 
-		//
 		String rNum;
 		String rGname;
 		String rInterests;
@@ -186,7 +211,6 @@ public class GroupDAO {
 			prop.setProperty(String.valueOf(i).toString(), groupArrayList.get(i).toString());
 
 		}
-		//
 		try {
 			prop.storeToXML(new FileOutputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\members.xml"), String.valueOf(new Date()).toString());
 		} catch (FileNotFoundException e) {
@@ -195,8 +219,8 @@ public class GroupDAO {
 			e.printStackTrace();
 		}
 	}
-	//구주승 (그룹장 구별?)
-	public void groupJoin() {
+	//구주승 (그룹장으로  그룹 검색하기)
+	public void groupSearch() {
 
 	}
 	public ArrayList<String> groupListSearch(String userId, int type) {
@@ -220,6 +244,7 @@ public class GroupDAO {
 					rLeader = str_arr[6];
 					if(rLeader.equals(userId)) {
 						groupList.add(rGname);
+						//System.out.println(rGname);
 					}		
 				}
 			}
@@ -233,46 +258,9 @@ public class GroupDAO {
 		
 		return groupList;
 	}	
-	
-	//조성식 수정 그룹명 중복확인
-	public boolean groupTitleOverlap(String groupTitle){
-		Properties prop = new Properties();
-		ArrayList<String> groupTitleList = new ArrayList<>();
-		String rGroupTitle;
+	//구주승 그룹장 과 그룸명을 저장해서 그 이 외의 사람들은 그룹 원으로 인식하는 기능 
+	public void groupJoin(){
 		
-		try {
-			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\groups.xml"));
-			for(int i = 0; i < prop.size(); i++){
-				String str;
-				
-				String[] str_arr = new String[6];
-				
-				str = prop.getProperty(String.valueOf(i).toString());
-				if(str!=null){
-
-					str_arr = str.split(", ");
-	
-					
-					rGroupTitle = str_arr[1];
-					
-					groupTitleList.add(rGroupTitle);
-				}
-			}	
-		} catch (InvalidPropertiesFormatException e) {
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		for(int i = 0; i < groupTitleList.size(); i++ ) {
-			if(groupTitleList.get(i).equals(groupTitle)){
-				//System.out.println("중복되었습니다.");
-				return false;
-			}
-		}
-		
-		return true;
 	}
 }
 

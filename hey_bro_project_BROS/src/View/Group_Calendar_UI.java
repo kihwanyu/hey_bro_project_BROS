@@ -55,14 +55,14 @@ public class Group_Calendar_UI{
 			}
 		}
 		for(int i = 0; i < date_textField.length; i++){	
-			System.out.println(y);
+			//System.out.println(y);
 			date_text[i].setBounds(300, y, 700, 70);
 			date_text[i].setLayout(new GridLayout(1,7,0,0));
 			y += 95;
 		}
 		for(int i = 0; i < date_text.length; i++){
 			for(int j = 0; j < date_textField[i].length; j++){
-				System.out.println(j);
+				//System.out.println(j);
 				date_text[i].add(date_textField[i][j]);
 			}
 		}
@@ -114,68 +114,102 @@ public class Group_Calendar_UI{
 		int month = dateOperationCalendar.get(Calendar.MONTH);
 		int day_of_week = dateOperationCalendar.get(Calendar.DAY_OF_WEEK);
 		
-		switch (key) {
-		case 6:
-			ArrayList<String> dateList = new ArrayList<>();
-			if((0 == (year % 4) && 0 != (year %100)) || 0 == year%400) {
-				if(month==2) {
-					for(int i = 0; i < 29; i++){
-						if(day_of_week==4){
-							date_bt[i] = new JButton();
-							dateList.add(String.valueOf(i+1).toString());
-							//String str = String.valueOf(i+1).toString();
-							//date_bt[i].setText(str);
-						}
-					}
-				}
-				else if(month==4||month==6||month==9||month==11){
-					for(int i = 0; i < 30; i++){
-						date_bt[i] = new JButton();
+		ArrayList<String> dateList = new ArrayList<>();
+		
+		for(int i = 0; i < date_bt.length; i++){
+			date_bt[i] = new JButton("null");
+			//System.out.println(date_bt[i].getText());
+			//date_bt[i].setText(dateList.get(i));
+		}
+		
+		if((0 == (year % 4) && 0 != (year %100)) || 0 == year%400) {
+			System.out.println("들어옴!");
+			if(month==2) {
+				for(int i = 0; i < 29; i++){
+						//date_bt[i] = new JButton();
 						dateList.add(String.valueOf(i+1).toString());
 						//String str = String.valueOf(i+1).toString();
-						//date_bt[i].setText(str);	
-					}
-				}
-				else {
-					for(int i = 0; i < 31; i++){
-						date_bt[i] = new JButton();
-						date_bt[i] = new JButton();
-						dateList.add(String.valueOf(i+1).toString());
-						/*String str = String.valueOf(i+1).toString();
-						date_bt[i].setText(str);*/
-					}
-				}
-			}
-			else if(month==2){
-				for(int i = 0; i < 28; i++){
-					date_bt[i] = new JButton();
-					dateList.add(String.valueOf(i+1).toString());
-					/*String str = String.valueOf(i+1).toString();
-					date_bt[i].setText(str);*/
+						//date_bt[i].setText(str);
+					
 				}
 			}
 			else if(month==4||month==6||month==9||month==11){
 				for(int i = 0; i < 30; i++){
-					date_bt[i] = new JButton();
+					//date_bt[i] = new JButton();
+					dateList.add(String.valueOf(i+1).toString());
+					//String str = String.valueOf(i+1).toString();
+					//date_bt[i].setText(str);	
+				}
+			}
+			else {
+				for(int i = 0; i < 31; i++){
+					//date_bt[i] = new JButton();
 					dateList.add(String.valueOf(i+1).toString());
 					/*String str = String.valueOf(i+1).toString();
 					date_bt[i].setText(str);*/
 				}
 			}
-			else {
-				for(int i = 0; i < 31; i++){
-					date_bt[i] = new JButton();
-					dateList.add(String.valueOf(i+1).toString());
-					/*String str = String.valueOf(i+1).toString();
-					date_bt[i].setText(str);*/	
-				}
+		}
+		else if(month==2){
+			for(int i = 0; i < 28; i++){
+				//date_bt[i] = new JButton();
+				dateList.add(String.valueOf(i+1).toString());
+				/*String str = String.valueOf(i+1).toString();
+				date_bt[i].setText(str);*/
 			}
-			break;
+		}
+		else if(month==4||month==6||month==9||month==11){
+			for(int i = 0; i < 30; i++){
+				//date_bt[i] = new JButton();
+				dateList.add(String.valueOf(i+1).toString());
+				/*String str = String.valueOf(i+1).toString();
+				date_bt[i].setText(str);*/
+			}
+		}
+		else {
+			for(int i = 0; i < date_bt.length; i++){
+				
+				//date_bt[i] = new JButton();
+				dateList.add(String.valueOf(i+1).toString());
+				
+				/*String str = String.valueOf(i+1).toString();
+				date_bt[i].setText(str);*/	
+			}
+		}
+		int count = 0;
+		
+		dateList.add(0,"");
+		dateList.add(1,"");
+		dateList.add(2,"");
 
-		default:
-			break;
+		dateList.add(33,"");
+		dateList.add(34,"");
+		dateList.add(35,"");
+		dateList.add(36,"");
+		dateList.add(37,"");
+		dateList.add(38,"");
+		dateList.add(39,"");
+		dateList.add(40,"");
+		dateList.add(41,"");
+		dateList.add(42,"");
+		dateList.add(43,"");
+		dateList.add(44,"");
+		
+		for(int i = 0; i < date_bt.length; i++){
+			
+			if(!date_bt[i].getText().equals("null")){
+				date_bt[i].setText(dateList.get(count).toString());
+				System.out.println(count);
+				//mf.add(date_bt[i]);
+				count++;
+			} else {	
+				date_bt[i].setText("");
+			}
 		}
 		
+		for(int i = 0; i < dateList.size(); i++){
+			System.out.println("arrayList["+i+"] : " + dateList.get(i) );
+		}
 		//우측 상단 리스트 버튼 
 		JButton listB = new JButton("L I S T");
 		listB.setBounds(900, 20, 100, 40);
@@ -239,6 +273,9 @@ public class Group_Calendar_UI{
 
 		for(int i = 0; i < date_textField.length; i++){
 			mf.add(date_text[i]);
+		}
+		for(int i = 0; i < date_bt.length; i++){
+			mf.add(date_bt[i]);
 		}
 		mf.add(backB);
 		mf.add(gtf);

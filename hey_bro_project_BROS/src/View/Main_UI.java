@@ -22,6 +22,7 @@ public class Main_UI extends JFrame {
    private Controller c = new Controller();
    private Member m = new Member();
    private JFrame superFrame; //수정
+   
    /**
     * 
     */
@@ -36,11 +37,17 @@ public class Main_UI extends JFrame {
       
       this.setLayout(null);
       this.setBackground(Color.WHITE);
-
+     
       this.setBounds(400, 200, 800, 500);
+      
 
       mainPanel = new JPanel();
-      mainPanel.setBackground(Color.WHITE);
+      mainPanel.setOpaque(false);
+      
+     // mainPanel.setBackground(Color.WHITE);
+      JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/20100414201035!Matissedance.png"));
+		background.setBounds(0, 0, 800, 500);
+		mainPanel.add(background);
       mainPanel.setLayout(null);
       mainPanel.setBounds(0, 0, 800, 500);
       
@@ -102,21 +109,25 @@ public class Main_UI extends JFrame {
       png.setLocation(0, 3);
       png.setSize(48, 45);
 
-      mainPanel.add(png);
-      mainPanel.add(plusLabel);
-      mainPanel.add(join);
-      mainPanel.add(in);
-      mainPanel.add(edit);
-      mainPanel.add(qa);
-      mainPanel.add(out);
-      mainPanel.add(text1);
-      mainPanel.add(text2);
-      mainPanel.add(userPanel);
+      background.add(png);
+      background.add(plusLabel);
+      background.add(join);
+      background.add(in);
+      background.add(edit);
+      background.add(qa);
+      background.add(out);
+      background.add(text1);
+      
+      background.add(text2);
+      background.add(userPanel);
       this.add(mainPanel);
       
       clickEvent(plusLabel, new GroupRegistor_UI(this, mainPanel, session)); //수정
-      clickEvent(join, new GroupSearch_UI(this,mainPanel, session));
+      clickEvent(join, new GroupSearch_UI(this, mainPanel, session));
       clickEvent(in, new JoinGroup_UI(this, mainPanel, session)); //수정
+           
+     
+      
       this.setVisible(true);
       this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       
