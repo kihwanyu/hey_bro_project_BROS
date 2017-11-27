@@ -38,24 +38,24 @@ public class MemberRegister_UI extends JPanel {
 	private static String pictureUrl = null;
 	private static JLabel userIng_lb;
 	private static String gender_text = "남"; // 디폴트 인자
-	
+
 	private static final long serialVersionUID = -753271555181998155L;
 
 	public MemberRegister_UI(JFrame superFrame){
 		this.superFrame = superFrame;
-		
+
 		final int MEMBER_LIBEL_LOCATION_X = 80;
 		final int MEMBER_TEXT_LOCATION_X = MEMBER_LIBEL_LOCATION_X+110; 
-		
+
 		String defaltImgUrl = "hey_bro_project_BROS/src/Model/Data/img/dog.jpg";
-		
+
 		JPanel title_p = new JPanel();
-		
+
 		this.setLayout(null);
 		this.setLocation(0, 0);
 
 		JLabel title_lb = new JLabel("회원가입");
-		
+
 		JLabel id_lb = new JLabel("아이디 : \n");
 		id_lb.setLocation(MEMBER_LIBEL_LOCATION_X, 50);
 		id_lb.setSize(150,50);
@@ -74,14 +74,14 @@ public class MemberRegister_UI extends JPanel {
 		JLabel email_lb = new JLabel("E-Mail : ");
 		email_lb.setLocation(MEMBER_LIBEL_LOCATION_X, 290);
 		email_lb.setSize(150,50);
-		
+
 		Image userIng_img = new ImageIcon(defaltImgUrl).getImage().getScaledInstance(200, 200, 0);
 		userIng_lb = new JLabel();
-		
+
 		userIng_lb.setIcon(new ImageIcon(userIng_img));
 		userIng_lb.setLocation(MEMBER_LIBEL_LOCATION_X+400, 10);	
 		userIng_lb.setSize(300,300);
-		
+
 		JButton overlap_bt = new JButton("중복검사"); 
 		overlap_bt.setLocation(MEMBER_TEXT_LOCATION_X+160, 59);
 		overlap_bt.setSize(90,30);
@@ -122,7 +122,7 @@ public class MemberRegister_UI extends JPanel {
 		int[] year = new int[80];
 		int[] month = new int [12];
 		int[] date = new int [31];
-		
+
 		for(int i = 0; i < year.length; i++){
 			year[i] = 1940+i;
 			yearList.addItem(String.valueOf(year[i]).toString());
@@ -131,12 +131,12 @@ public class MemberRegister_UI extends JPanel {
 			month[i] = 1+i;
 			monthList.addItem(String.valueOf(month[i]).toString());
 		}
-		
+
 		for(int i = 0; i < 31; i++){
 			date[i] = 1+i;
 			dateList.addItem(String.valueOf(date[i]).toString());	
 		}
-		
+
 		yearList.setSelectedIndex(0); 
 		yearList.setLocation(MEMBER_TEXT_LOCATION_X, 260);
 		yearList.setSize(55,30);
@@ -150,7 +150,7 @@ public class MemberRegister_UI extends JPanel {
 		email_text.setText("이메일을 입력해주세요.");
 		email_text.setLocation(MEMBER_TEXT_LOCATION_X, 300);
 		email_text.setSize(150,30);
-		
+
 		//성별.
 		JRadioButton man = new JRadioButton("남");
 		man.setLocation(MEMBER_TEXT_LOCATION_X+10, 180);
@@ -159,15 +159,15 @@ public class MemberRegister_UI extends JPanel {
 		woman.setLocation(MEMBER_TEXT_LOCATION_X+100, 180);
 		woman.setSize(90,30);
 		ButtonGroup gender = new ButtonGroup();
-		
+
 		gender.add(man);
 		gender.add(woman);
-		
+
 		this.setBounds(0,0,800,500);
 		this.add(title_p,"North");
-		
+
 		title_p.add(title_lb);
-		
+
 		this.add(id_lb);
 		this.add(overlap_bt);
 		this.add(id_text);
@@ -182,7 +182,7 @@ public class MemberRegister_UI extends JPanel {
 		this.add(birthday_lb);
 		this.add(yearList);
 		this.add(monthList);
-		
+
 		this.add(email_lb);
 		this.add(email_text);
 		this.add(userIng_lb);
@@ -190,76 +190,76 @@ public class MemberRegister_UI extends JPanel {
 		this.add(register_bt);
 		this.add(deleteAll_bt);
 		this.add(dateList);
-		
+
 		textDelete(id_text);
 		textDelete(pw_text1);
 		textDelete(pw_text2);
 		textDelete(name_text);
 		textDelete(email_text);
-		
+
 		birthdayComboList(monthList , yearList, monthList, dateList, date);
 		birthdayComboList(yearList , yearList, monthList, dateList, date);
 		man.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				gender_text = "남";
 			}
 		});
 		woman.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				gender_text = "여";
 			}
 		});
 		imageOpen_Bt.addMouseListener(new MouseListener() {
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent e) {
 				pictureUrl = imgOpen();	
-				
+
 			}
-			
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
 		//아이디텍스트 이벤트 - 중복검사후 다시 아아디를 바꾸려고하면 가입하기 버튼이 비활성화
 		id_text.addKeyListener(new KeyListener() {
-			
+
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void keyPressed(KeyEvent e) {
 				loginBoolean = false;
@@ -271,50 +271,50 @@ public class MemberRegister_UI extends JPanel {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent e) {
 				boolean result = c.process("MemberIdOverlap.do", id_text.getText());
-				
+
 				System.out.println(result);
 				if(result){
-					 JOptionPane.showMessageDialog(null, "사용가능한 아아디 입니다.");
-					 //가입하기 버튼 활성화
-					 loginBoolean = true;
-					 register_bt.setEnabled(true);
+					JOptionPane.showMessageDialog(null, "사용가능한 아아디 입니다.");
+					//가입하기 버튼 활성화
+					loginBoolean = true;
+					register_bt.setEnabled(true);
 				} else {
 					JOptionPane.showMessageDialog(null, "아이디가 중복 되었습니다.");
 				}
 			}
-			
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
 		register_bt.addMouseListener(new MouseListener() {
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent e) {	
 				String month_text;
@@ -333,8 +333,8 @@ public class MemberRegister_UI extends JPanel {
 						date_text=String.valueOf(dateCompareValue).toString();
 					}
 					String birthday = yearList.getItemAt(yearList.getSelectedIndex()) 
-										+ month_text + date_text;
-							
+							+ month_text + date_text;
+
 					if(pw_text1.getText().equals(pw_text2.getText())){
 						c.process("MemberRegister.do", id_text.getText(), pw_text1.getText(), name_text.getText(), gender_text, birthday, email_text.getText(), pictureUrl);
 						JOptionPane.showMessageDialog(null, "회원가입이 성공적으로 이루어졌습니다.");
@@ -345,20 +345,20 @@ public class MemberRegister_UI extends JPanel {
 					}
 				}
 			}
-			
+
 			@Override
 			public void mouseExited(MouseEvent e) {
-				
+
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				
+
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 			}
 		});
 		//모든 텍스트 박스의 문자열을 초기값으로 바꾸어준다.
@@ -373,39 +373,39 @@ public class MemberRegister_UI extends JPanel {
 				yearList.setSelectedIndex(0);
 				monthList.setSelectedIndex(0);;
 				dateList.setSelectedIndex(0);
-				
+
 				email_text.setText("이메일을 입력해주세요.");				
 			}
 		});
-		
-		
+
+
 	}
 	//text박스 클릭시 텍스트박스에 있는 문자열을 지워주는 메소드.
 	public void textDelete(JTextField tf){
 		tf.addMouseListener(new MouseListener() {
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent e) {
 				tf.setText("");				
 			}
-			
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				
+
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				tf.setText("");
@@ -414,7 +414,7 @@ public class MemberRegister_UI extends JPanel {
 	}
 	//윤년을 계산하여, 월에 대한 일을 List에 저장하는 메소드. 
 	public void birthdayComboList(JComboBox<String> standard, JComboBox<String> yearList,
-			 JComboBox<String> monthList, JComboBox<String> dateList, int[] date){
+			JComboBox<String> monthList, JComboBox<String> dateList, int[] date){
 		standard.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
@@ -422,7 +422,7 @@ public class MemberRegister_UI extends JPanel {
 				//System.out.println(Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex())));
 				int year = Integer.parseInt(yearList.getItemAt(yearList.getSelectedIndex()));
 				int month = Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex()));
-				 if((0 == (year % 4) && 0 != (year %100)) || 0 == year%400) {
+				if((0 == (year % 4) && 0 != (year %100)) || 0 == year%400) {
 					if(month==2) {
 						for(int i = 0; i < 29; i++){
 							date[i] = 1+i;
@@ -475,7 +475,7 @@ public class MemberRegister_UI extends JPanel {
 		// replaceAll("\\\\","\\\\\\\\")은 문자열 에서 "\"를 "\\"로 고친다.
 		Image newImage = new ImageIcon(fileDirectory).getImage().getScaledInstance(200, 200, 0);
 		userIng_lb.setIcon(new ImageIcon(newImage));
-		 
+
 
 		this.revalidate();
 		this.repaint();
@@ -488,7 +488,6 @@ public class MemberRegister_UI extends JPanel {
 		} catch (Exception e) {
 
 		}
-		
+
 	}
 }
-	

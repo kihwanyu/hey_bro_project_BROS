@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -20,7 +21,7 @@ public class Group_Calendar_UI{
 	//
 	public void calendar(){
 		JFrame mf = new JFrame();      
-		JButton[] date_bt = new JButton[43];
+		JButton[] date_bt = new JButton[42];
 		mf.setLayout(null);
 		mf.setBackground(Color.WHITE);
 		//프레임 크기
@@ -34,12 +35,15 @@ public class Group_Calendar_UI{
 		cjp.setBounds(300, 130, 700, 500);
 		cjp.setLayout(new GridLayout(6, 7, 0, 70));
 
-		for (int i = 1; i < date_bt.length; i++) {
+		Calendar utilTodayCalendar = new GregorianCalendar();
+		Calendar dateOperationCalendar = new GregorianCalendar(); 
+
+		/*for (int i = 1; i < date_bt.length; i++) {
 			date_bt[i] = new JButton();
 			String str = String.valueOf(i).toString();
 			date_bt[i].setText(str);
 			cjp.add(date_bt[i]);   
-		}
+		}*/
 
 		JPanel[] date_text = new JPanel[6];
 		JTextField[][] date_textField = new JTextField[6][7];
@@ -82,63 +86,95 @@ public class Group_Calendar_UI{
 		// 상단 날짜표시 스피너
 		JPanel cPanel = new JPanel(); 
 		cPanel.setBounds(594, 30, 110, 30);
-		Calendar calendar = new GregorianCalendar();
 
-		Date value = calendar.getTime(); // 현재날짜
-		calendar.add(calendar.MONTH, -1); 
+		Date value = utilTodayCalendar.getTime(); // 현재날짜
+		utilTodayCalendar.add(utilTodayCalendar.MONTH, -1); 
 
-		Date start = calendar.getTime();
-		calendar.add(Calendar.YEAR, 50);//+50 하면 현재 날짜
+		Date start = utilTodayCalendar.getTime();
+		utilTodayCalendar.add(Calendar.YEAR, 50);//+50 하면 현재 날짜
 
-		Date end = calendar.getTime();
+		Date end = utilTodayCalendar.getTime();
 
 		SpinnerDateModel dateModel = new SpinnerDateModel(value, start, end, Calendar.MONTH);
 		JSpinner dateSpinner = new JSpinner(dateModel);
 		dateSpinner.setEditor(new JSpinner.DateEditor(dateSpinner, "yyyy/MM"));
 		cPanel.add(dateSpinner);
+
+		int dateOperationMonth = utilTodayCalendar.get(Calendar.MONTH)+2;
+		/*String[] date_str = new String[6];
+		date_str = String.valueOf(dateSpinner.getValue()).split(" ");
+		System.out.println(dateSpinner.getValue());*/
+		dateOperationCalendar = new GregorianCalendar(2017,dateOperationMonth,1);
+		int key = dateOperationCalendar.get(Calendar.DAY_OF_WEEK); // 월요일
+		//System.out.println("Calendar" + dateOperationCalendar.toString());
+		//System.out.println("dateOperationCalendar_Calendar.DAY_OF_WEEK = " + dateOperationCalendar.get(Calendar.DAY_OF_WEEK));
+		//System.out.println(dateOperationCalendar.get(Calendar.DAY_OF_MONTH));
+
+		int year = dateOperationCalendar.get(Calendar.YEAR);
+		int month = dateOperationCalendar.get(Calendar.MONTH);
+		int day_of_week = dateOperationCalendar.get(Calendar.DAY_OF_WEEK);
 		
-		System.out.println(dateSpinner.getValue());
-		
-		
-		
-		/*if((0 == (year % 4) && 0 != (year %100)) || 0 == year%400) {
-			if(month==2) {
-				for(int i = 0; i < 29; i++){
-					date[i] = 1+i;
-					dateList.addItem(String.valueOf(date[i]).toString());	
+		switch (key) {
+		case 6:
+			ArrayList<String> dateList = new ArrayList<>();
+			if((0 == (year % 4) && 0 != (year %100)) || 0 == year%400) {
+				if(month==2) {
+					for(int i = 0; i < 29; i++){
+						if(day_of_week==4){
+							date_bt[i] = new JButton();
+							dateList.add(String.valueOf(i+1).toString());
+							//String str = String.valueOf(i+1).toString();
+							//date_bt[i].setText(str);
+						}
+					}
+				}
+				else if(month==4||month==6||month==9||month==11){
+					for(int i = 0; i < 30; i++){
+						date_bt[i] = new JButton();
+						dateList.add(String.valueOf(i+1).toString());
+						//String str = String.valueOf(i+1).toString();
+						//date_bt[i].setText(str);	
+					}
+				}
+				else {
+					for(int i = 0; i < 31; i++){
+						date_bt[i] = new JButton();
+						date_bt[i] = new JButton();
+						dateList.add(String.valueOf(i+1).toString());
+						/*String str = String.valueOf(i+1).toString();
+						date_bt[i].setText(str);*/
+					}
+				}
+			}
+			else if(month==2){
+				for(int i = 0; i < 28; i++){
+					date_bt[i] = new JButton();
+					dateList.add(String.valueOf(i+1).toString());
+					/*String str = String.valueOf(i+1).toString();
+					date_bt[i].setText(str);*/
 				}
 			}
 			else if(month==4||month==6||month==9||month==11){
 				for(int i = 0; i < 30; i++){
-					date[i] = 1+i;
-					dateList.addItem(String.valueOf(date[i]).toString());	
+					date_bt[i] = new JButton();
+					dateList.add(String.valueOf(i+1).toString());
+					/*String str = String.valueOf(i+1).toString();
+					date_bt[i].setText(str);*/
 				}
 			}
 			else {
 				for(int i = 0; i < 31; i++){
-					date[i] = 1+i;
-					dateList.addItem(String.valueOf(date[i]).toString());	
+					date_bt[i] = new JButton();
+					dateList.add(String.valueOf(i+1).toString());
+					/*String str = String.valueOf(i+1).toString();
+					date_bt[i].setText(str);*/	
 				}
 			}
+			break;
+
+		default:
+			break;
 		}
-		else if(month==2){
-			for(int i = 0; i < 28; i++){
-				date[i] = 1+i;
-				dateList.addItem(String.valueOf(date[i]).toString());	
-			}
-		}
-		else if(month==4||month==6||month==9||month==11){
-			for(int i = 0; i < 30; i++){
-				date[i] = 1+i;
-				dateList.addItem(String.valueOf(date[i]).toString());	
-			}
-		}
-		else {
-			for(int i = 0; i < 31; i++){
-				date[i] = 1+i;
-				dateList.addItem(String.valueOf(date[i]).toString());	
-			}
-		}*/
 		
 		//우측 상단 리스트 버튼 
 		JButton listB = new JButton("L I S T");
@@ -222,21 +258,9 @@ public class Group_Calendar_UI{
 		mf.setVisible(true);
 		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		
+
 	}
-	public void birthdayComboList(JComboBox<String> standard, JComboBox<String> yearList,
-			JComboBox<String> monthList, JComboBox<String> dateList, int[] date){
-		standard.addItemListener(new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				dateList.removeAllItems();
-				//System.out.println(Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex())));
-				int year = Integer.parseInt(yearList.getItemAt(yearList.getSelectedIndex()));
-				int month = Integer.parseInt(monthList.getItemAt(monthList.getSelectedIndex()));
-				
-			}
-		});
-	}
+
 	public static void main(String[] args){
 		Group_Calendar_UI u = new Group_Calendar_UI();
 		u.calendar();
