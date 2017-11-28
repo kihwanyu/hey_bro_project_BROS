@@ -95,7 +95,7 @@ public class GroupDAO {
 		//리더 추가
 		prop.clear();
 		String fileName = "hey_bro_project_BROS/src/Model/Data/xml/"+gName+".xml";
-		prop.setProperty(gName, leader);
+		prop.setProperty(String.valueOf(0), leader);
 		try{
 			prop.storeToXML(new FileOutputStream(fileName),String.valueOf(new Date()).toString());
 		}catch(Exception e){
@@ -287,7 +287,7 @@ public class GroupDAO {
 				//str = group.toString();
 				//String[] str_arr = new String[3];
 				str = prop.getProperty(String.valueOf(i).toString());
-
+				//System.out.println(str);
 				if(str!=null){
 					ruserName = str;
 					
@@ -303,9 +303,12 @@ public class GroupDAO {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//System.out.println("userNameListSize : "+userNameList.size());
+		//userNameList.add(userName);
 		for(int i = 0; i < userNameList.size(); i++) {
-			if(!userNameList.get(i).equals(userName)) {
-				userNameList.add(userName);
+			if(userNameList.get(i).equals(userName)) {
+				System.out.println(i);
+				//userNameList.add(userName);
 				result = true;
 				break;
 			}
