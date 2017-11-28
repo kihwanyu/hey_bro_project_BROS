@@ -1,47 +1,62 @@
 package View;
 
 import java.awt.Color;
+import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Image;
-
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-public class Group_Calendar_UI{
+public class Group_Calendar_UI extends Frame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1411365908257953013L;
 	////
+	private JButton date_bt[];
+	private JComboBox<String> monthList;
+	private ArrayList<String> dateList = new ArrayList<>();
 	public void calendar(){
-		JFrame mf = new JFrame();      
-		JButton[] date_bt = new JButton[42];
-		mf.setLayout(null);
-		mf.setBackground(Color.WHITE);
+		int[] month = new int [12];
+		//JFrame this = new JFrame();      
+		date_bt = new JButton[42];
+		monthList = new JComboBox<>();
+		this.setLayout(null);
+		this.setBackground(Color.WHITE);
 		//프레임 크기
-		mf.setBounds(100, 50, 1100, 800);
+		this.setBounds(100, 50, 1100, 800);
 		//프레임 이름
-		mf.setTitle("Hey~bro");
-		mf.setResizable(false);
+		this.setTitle("Hey~bro");
+		this.setResizable(false);
 		int y = 155;
+		
 		//달력 패널 
 		JPanel cjp = new JPanel();
 		cjp.setBounds(300, 130, 700, 500);
 		cjp.setLayout(new GridLayout(6, 7, 0, 70));
-
+		for(int i = 0; i < date_bt.length; i++){
+			date_bt[i] = new JButton(String.valueOf(i));
+		}
+		for(int i = 0; i < month.length; i++){
+			month[i] = 1+i;
+			monthList.addItem(String.valueOf(month[i]).toString());
+		}
+		
 		Calendar utilTodayCalendar = new GregorianCalendar();
-		//Calendar dateOperationCalendar = new GregorianCalendar(); 
-
-		/*for (int i = 1; i < date_bt.length; i++) {
-			date_bt[i] = new JButton();
-			String str = String.valueOf(i).toString();
-			date_bt[i].setText(str);
-			cjp.add(date_bt[i]);   
-		}*/
 
 		JPanel[] date_text = new JPanel[6];
 		JTextField[][] date_textField = new JTextField[6][7];
-		//final int CAL_SIZE = 45;
+		
 		for(int i = 0; i < date_textField.length; i++){
 			date_text[i] = new JPanel();
 			for(int j = 0; j < date_textField[i].length; j++){
@@ -80,10 +95,11 @@ public class Group_Calendar_UI{
 		// 상단 날짜표시 스피너
 		JPanel cPanel = new JPanel(); 
 		cPanel.setBounds(594, 30, 110, 30);
-
-		Calendar calendar = new GregorianCalendar(2017,8,1);
-		//8월은 9월 //
-		//calendar.set(Calendar.DAY_OF_WEEK,1); 
+		
+		
+		Calendar calendar = new GregorianCalendar(utilTodayCalendar.get(Calendar.YEAR),
+				utilTodayCalendar.get(Calendar.MONTH),1);
+		//8월은 9 //
 		
 		Date value = utilTodayCalendar.getTime(); // 현재날짜
 		utilTodayCalendar.add(Calendar.YEAR, -1); 
@@ -93,37 +109,167 @@ public class Group_Calendar_UI{
 
 		Date end = utilTodayCalendar.getTime();
 
-		SpinnerDateModel dateModel = new SpinnerDateModel(value, start, end, Calendar.MONTH);
+		SpinnerDateModel dateModel = new SpinnerDateModel(value, start, end, Calendar.YEAR);
 		JSpinner dateSpinner = new JSpinner(dateModel);
-		dateSpinner.setEditor(new JSpinner.DateEditor(dateSpinner, "yyyy/MM"));
+		dateSpinner.setEditor(new JSpinner.DateEditor(dateSpinner, "yyyy"));
+		//dateSpinner.setBackground(Color.WHITE);
 		
 		cPanel.add(dateSpinner);
+		cPanel.setBackground(Color.WHITE);
+		cPanel.setLocation(50+525, 30);
+		monthList.setSelectedIndex(calendar.get(Calendar.MONTH));
+		monthList.setBounds(50+620, 35, 40, 22);
+		
+		monthList.setVisible(true);
+		//달력버튼출력 메소드
+		CalendarButtonUpdate(calendar,utilTodayCalendar.get(Calendar.MONTH)+1);
+		
+		/*for(int i = 0; i < dateList.size(); i++){
+			System.out.println("arrayList["+i+"] : " + dateList.get(i) );
+		}*/
 
-		//int dateOperationMonth = calendar.get(Calendar.MONTH)+1;
-		/*String[] date_str = new String[6];
-		date_str = String.valueOf(dateSpinner.getValue()).split(" ");
-		System.out.println(dateSpinner.getValue());*/
-		//dateOperationCalendar = new GregorianCalendar(2017,dateOperationMonth,1);
-		//int key = dateOperationCalendar.get(Calendar.DAY_OF_WEEK); // 월요일
-		//System.out.println("Calendar" + dateOperationCalendar.toString());
-		//System.out.println("dateOperationCalendar_Calendar.DAY_OF_WEEK = " + dateOperationCalendar.get(Calendar.DAY_OF_WEEK));
-		//System.out.println(dateOperationCalendar.get(Calendar.DAY_OF_MONTH));
+		//뒤로가기 버튼
+		JButton backB = new JButton("뒤로가기");
+		backB.setBounds(69, 670, 100, 30);
 
+		JPanel mainPanel = new JPanel();
+		mainPanel.setBackground(Color.WHITE);
+		mainPanel.setSize(1100, 800);
+		JPanel userPanel = new JPanel();
+
+
+		userPanel.setLocation(0, 0);
+		userPanel.setBackground(Color.LIGHT_GRAY);
+		userPanel.setSize(240, 800);
+		//icon_ : 좌측버튼
+		//icon : 우측버튼
+
+		Image icon_2 = new ImageIcon("hey_bro_project_BROS/src/View/img/Group_edit.PNG").getImage().getScaledInstance(205, 48, 0);
+		JButton groupUpdate_bt = new JButton(new ImageIcon(icon_2));
+		groupUpdate_bt.setLocation(30, 490);
+		groupUpdate_bt.setSize(180, 52);
+
+		Image icon_3 = new ImageIcon("hey_bro_project_BROS/src/View/img/모임 삭제 버튼.PNG").getImage().getScaledInstance(206, 50, 0);
+		JButton groupDelete_bt = new JButton(new ImageIcon(icon_3));
+		groupDelete_bt.setLocation(30, 560);
+		groupDelete_bt.setSize(180, 52);
+
+		//text
+		JLabel textGl = new JLabel("님은 모임장입니다.");
+		textGl.setLocation(90, 43);
+		textGl.setSize(120, 50);
+		JLabel textGln = new JLabel("조성식");
+		textGln.setLocation(45, 43);
+		textGln.setSize(60, 50);
+
+		Image icon_4 = new ImageIcon("img/button4.PNG").getImage().getScaledInstance(48, 45, 0);
+		JLabel png = new JLabel(new ImageIcon(icon_4));
+		png.setLocation(0, 3);
+		png.setSize(48, 45);
+
+		for(int i = 0; i < date_textField.length; i++){
+			this.add(date_text[i]);
+		}
+		for(int i = 0; i < date_bt.length; i++){
+			cjp.add(date_bt[i]);
+		}
+		dateSpinner.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				String[] dateSpinnerYear = String.valueOf(dateSpinner.getValue()).split(" ");
+				String monthlistValue = String.valueOf(monthList.getSelectedItem());
+				CalendarButtonUpdate(new GregorianCalendar(Integer.parseInt(dateSpinnerYear[5]), Integer.parseInt(monthlistValue)-1, 1),Integer.parseInt(monthlistValue));
+			}
+		});
+		monthList.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				String[] dateSpinnerYear = String.valueOf(dateSpinner.getValue()).split(" ");
+				String monthlistValue = String.valueOf(monthList.getSelectedItem());
+				CalendarButtonUpdate(new GregorianCalendar(Integer.parseInt(dateSpinnerYear[5]), Integer.parseInt(monthlistValue)-1 , 1),Integer.parseInt(monthlistValue));
+			}
+		});
+		groupUpdate_bt.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				new GroupUpdate_UI(
+						);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+		groupDelete_bt.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				new GroupUpdate_UI();
+				thisSetVisibleFalse();
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		this.add(cjp);
+		this.add(monthList);
+		this.add(backB);
+		this.add(gtf);
+		this.add(dayP);
+		this.add(cPanel);
+		this.add(png);
+		this.add(groupUpdate_bt);
+		this.add(groupDelete_bt);
+		this.add(textGl);
+		this.add(textGln);
+		this.add(userPanel);
+		this.add(mainPanel);
+		
+		this.setVisible(true);
+
+		this.revalidate();
+		this.repaint();
+	}
+	public void CalendarButtonUpdate(Calendar calendar, int monthValue){
+		dateList.clear();
 		int year = calendar.get(Calendar.YEAR);
-		int month = calendar.get(Calendar.MONTH);
-		int date = calendar.get(Calendar.DATE);
+		int month = monthValue;
+
 		int day_of_week = calendar.get(Calendar.DAY_OF_WEEK);
-		System.out.println("getFirst"+calendar.getFirstDayOfWeek());
-		System.out.println(year + " "+ month + " " +date+" "+ day_of_week);
-		System.out.println(calendar.toString());
-		//System.out.println();
-		ArrayList<String> dateList = new ArrayList<>();
+		
 		int date_valueArr = 0;
 		int day_of_weekArr = 0;
-		for(int i = 0; i < date_bt.length; i++){
-			date_bt[i] = new JButton(String.valueOf(i));
-			//System.out.println(date_bt[i].getText());
-		}
+		
 		switch (day_of_week) {
 		case 1:
 			day_of_weekArr = 0;
@@ -147,22 +293,6 @@ public class Group_Calendar_UI{
 			day_of_weekArr = 6;
 			break;
 		}
-		/*if(month==2){
-			for(int i = 0; i < 2; i++){
-				day_of_weekArr -= 1;
-				if(day_of_weekArr==-1){
-					day_of_weekArr = 6;
-				}
-			}		
-		}
-		else if(month==4||month==6||month==9||month==10){
-			
-		} else {
-			day_of_weekArr -= 1;
-			if(day_of_weekArr==-1){
-				day_of_weekArr = 6;
-			}
-		}*/
 		if((0 == (year % 4) && 0 != (year %100)) || 0 == year%400) {
 			if(month==2) {
 				date_valueArr = 29;
@@ -189,114 +319,24 @@ public class Group_Calendar_UI{
 		for(int i = 0; i < date_valueArr; i++){
 			dateList.add(String.valueOf(i+1).toString());
 		}
-		for(int i = date_valueArr; i < date_bt.length; i ++){
+		for(int i = date_valueArr+3; i < date_bt.length; i ++){
 			dateList.add("");
 		}		
 		
-		int count = 0;
 		for(int i = 0; i < date_bt.length; i++){
-			date_bt[i].setText(dateList.get(count).toString());
-			System.out.println(count);
-			count++;
+			try {
+				date_bt[i].setText(dateList.get(i).toString());
+			} catch (Exception e) {
+				break;
+			}			
 		}
-		
-		for(int i = 0; i < dateList.size(); i++){
-			System.out.println("arrayList["+i+"] : " + dateList.get(i) );
-		}
-		//우측 상단 리스트 버튼 
-		JButton listB = new JButton("L I S T");
-		listB.setBounds(900, 20, 100, 40);
-
-		//뒤로가기 버튼
-		JButton backB = new JButton("뒤로가기");
-		backB.setBounds(69, 670, 100, 30);
-
-		JPanel mainPanel = new JPanel();
-		mainPanel.setBackground(Color.WHITE);
-		mainPanel.setSize(1100, 800);
-		JPanel userPanel = new JPanel();
-
-
-		userPanel.setLocation(0, 0);
-		userPanel.setBackground(Color.LIGHT_GRAY);
-		userPanel.setSize(240, 800);
-		//icon_ : 좌측버튼
-		//icon : 우측버튼
-
-
-
-		/*   Image icon_1 = new ImageIcon("hey_bro_project_BROS/src/View/img/button1.PNG").getImage().getScaledInstance(207, 52, 0);
-      JButton edit = new JButton(new ImageIcon(icon_1));
-      edit.setLocation(30, 420);
-      edit.setSize(180, 52);*/
-
-		Image icon_2 = new ImageIcon("hey_bro_project_BROS/src/View/img/Group_edit.PNG").getImage().getScaledInstance(205, 48, 0);
-		JButton qa = new JButton(new ImageIcon(icon_2));
-		qa.setLocation(30, 490);
-		qa.setSize(180, 52);
-
-		Image icon_3 = new ImageIcon("hey_bro_project_BROS/src/View/img/모임 삭제 버튼.PNG").getImage().getScaledInstance(206, 50, 0);
-		JButton out = new JButton(new ImageIcon(icon_3));
-		out.setLocation(30, 560);
-		out.setSize(180, 52);
-
-		//text
-		JLabel textGl = new JLabel("님은 모임장입니다.");
-		textGl.setLocation(90, 43);
-		textGl.setSize(120, 50);
-		JLabel textGln = new JLabel("조성식");
-		textGln.setLocation(45, 43);
-		textGln.setSize(60, 50);
-
-		Image icon_4 = new ImageIcon("img/button4.PNG").getImage().getScaledInstance(48, 45, 0);
-		JLabel png = new JLabel(new ImageIcon(icon_4));
-		png.setLocation(0, 3);
-		png.setSize(48, 45);
-
-		
-
-		/*mf.add(text1);
-		mf.add(text2);
-		mf.add(text3);
-		mf.add(text4);
-		mf.add(text5);
-		mf.add(text6);*/
-
-
-
-		for(int i = 0; i < date_textField.length; i++){
-			mf.add(date_text[i]);
-		}
-		for(int i = 0; i < date_bt.length; i++){
-			cjp.add(date_bt[i]);
-		}
-		
-		mf.add(cjp);
-		
-		mf.add(backB);
-		mf.add(gtf);
-		mf.add(dayP);
-		mf.add(cPanel);
-		mf.add(listB);
-		mf.add(png);
-		//mf.add(edit);
-		mf.add(qa);
-		mf.add(out);
-		mf.add(textGl);
-		mf.add(textGln);
-		mf.add(userPanel);
-		mf.add(mainPanel);
-		
-
-		mf.setVisible(true);
-		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		mf.revalidate();
-		mf.repaint();
 	}
-
+	public void thisSetVisibleFalse(){
+		this.setVisible(false);
+	}
 	public static void main(String[] args){
 		Group_Calendar_UI u = new Group_Calendar_UI();
 		u.calendar();
+		
 	}
 }

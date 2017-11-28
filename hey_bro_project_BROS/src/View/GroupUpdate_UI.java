@@ -2,6 +2,7 @@ package View;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Panel;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -120,6 +121,6 @@ public class GroupUpdate_UI extends JFrame{
 		this.add(mainPanel);
 		
 		this.setVisible(true);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
