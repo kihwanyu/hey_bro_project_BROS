@@ -1,18 +1,13 @@
 package Controller;
 
-import java.util.ArrayList;
-
-import Model.dao.GroupDAO;
 import Model.dao.MemberDAO;
-import Model.vo.Group;
 import Model.vo.Member;
 import Model.vo.Session;
 
-public class Controller {
-	//Member
+public class MemberController {
 	MemberDAO mDao = new MemberDAO();
-	
 	Member member;
+	
 	public void process(String key, String userId, String userPw, String userName
 			, String userGender, String birthday, String email, String pictureUrl){
 		switch (key) {
@@ -23,22 +18,7 @@ public class Controller {
 		default:
 			break;
 		}
-	}
-	//Group
-	GroupDAO gDao = new GroupDAO();
-	Group group;
-	public void process(String key, String gName, String interests, String pw, String content, String news, String leader){
-		switch (key) {
-		case "GroupRegister.do" :
-			gDao.groupRegister(gName, interests, pw, content, news, leader);
-			break;
-			
-		default:
-			break;
-		}
-	}
-	
-	
+	}	
 	
 	//메소드 중첩(오버로딩)
 	public Boolean process(String key, String userId){
@@ -54,18 +34,12 @@ public class Controller {
 	}
 	
 	//메소드 중첩(오버로딩)
-	public Boolean process(String key, String type1, String type2){
+	public Boolean process(String key, String userId, String userPw){
 		//String key, String Pw, String session
 		Boolean result = false;
 		switch (key) {
 		case "Login.do":
-			result = mDao.Login(type1, type2);
-			break;
-		case "rLogin.do":
-			result = gDao.rLogin(type1, type2);
-			break;
-		case "groupJoin.do":
-			result = gDao.groupJoin(type1, type2);
+			result = mDao.Login(userId, userPw);
 			break;
 		default:
 			break;
@@ -110,30 +84,5 @@ public class Controller {
 				break;
 			}
 			return result;
-		}
-		public ArrayList<String> process(String key, String userId, int type){
-			ArrayList<String> groupList = new ArrayList();
-			switch (key) {
-			case "GroupListSearch.do" :
-				groupList = gDao.groupListSearch(userId,type);
-				break;
-			default:
-				break;
-			}
-			return groupList;
-		}
-		public ArrayList<String> process(String key, String type1, Boolean type2){
-			//String key, String Pw, String session
-			ArrayList<String> arrList = new ArrayList<>();
-			switch (key) {
-			case "groupCombo.do" :
-				//System.out.println("요기요");
-				arrList = gDao.groupCombo(type1);
-				break;
-			default:
-				break;
-			}
-			return arrList;
-		}
-		
+		}		
 }

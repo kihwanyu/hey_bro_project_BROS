@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Controller.Controller;
+import Controller.MemberController;
 import Model.dao.GroupDAO;
 import Model.vo.Session;
 
@@ -23,7 +23,7 @@ public class GroupJoin_Pw_UI extends JFrame {
 	 * 
 	 */
 	//
-	Controller c = new Controller();
+	MemberController c = new MemberController();
 	GroupDAO g = new GroupDAO();
 	private JFrame superFrame;
 	private JFrame present;

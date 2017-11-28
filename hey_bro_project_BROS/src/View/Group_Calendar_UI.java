@@ -18,7 +18,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import Model.vo.Session;
-import javafx.scene.control.Spinner;
 
 public class Group_Calendar_UI extends Frame{
 	/**
@@ -178,24 +177,48 @@ public class Group_Calendar_UI extends Frame{
 			this.add(date_text[i]);
 		}
 		for(int i = 0; i < date_bt.length; i++){
-			date_bt_Click_event(date_bt[i]);
+			if(!date_bt[i].getText().equals("")){
+				date_bt_Click_event(date_bt[i]);
+			} else {
+				date_bt[i].setEnabled(false);
+			}		
 			cjp.add(date_bt[i]);
 		}
 		
 		dateSpinner.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
+				for(int i = 0; i < date_bt.length; i++){
+					date_bt[i].setEnabled(true);
+				}
 				String[] dateSpinnerYear = String.valueOf(dateSpinner.getValue()).split(" ");
 				String monthlistValue = String.valueOf(monthList.getSelectedItem());
 				CalendarButtonUpdate(new GregorianCalendar(Integer.parseInt(dateSpinnerYear[5]), Integer.parseInt(monthlistValue)-1, 1),Integer.parseInt(monthlistValue));
+				for(int i = 0; i < date_bt.length; i++){
+					if(!date_bt[i].getText().equals("")){
+						date_bt_Click_event(date_bt[i]);
+					} else {
+						date_bt[i].setEnabled(false);
+					}		
+				}
 			}
 		});
 		monthList.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
+				for(int i = 0; i < date_bt.length; i++){
+					date_bt[i].setEnabled(true);
+				}
 				String[] dateSpinnerYear = String.valueOf(dateSpinner.getValue()).split(" ");
 				String monthlistValue = String.valueOf(monthList.getSelectedItem());
 				CalendarButtonUpdate(new GregorianCalendar(Integer.parseInt(dateSpinnerYear[5]), Integer.parseInt(monthlistValue)-1 , 1),Integer.parseInt(monthlistValue));
+				for(int i = 0; i < date_bt.length; i++){
+					if(!date_bt[i].getText().equals("")){
+						date_bt_Click_event(date_bt[i]);
+					} else {
+						date_bt[i].setEnabled(false);
+					}		
+				}
 			}
 		});
 		
@@ -231,7 +254,8 @@ public class Group_Calendar_UI extends Frame{
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+				new GroupDelete(session);
+				thisSetVisibleFalse();
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -350,10 +374,7 @@ public class Group_Calendar_UI extends Frame{
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
-				String[] dateSpinnerYear = String.valueOf(dateSpinner.getValue()).split(" ");
-				String monthListValue = String.valueOf(monthList.getSelectedItem());
-				new GroupListForMembers(session,dateSpinnerYear[5],monthListValue,button.getText());
-				thisSetVisibleFalse();
+				
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -365,7 +386,10 @@ public class Group_Calendar_UI extends Frame{
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				String[] dateSpinnerYear = String.valueOf(dateSpinner.getValue()).split(" ");
+				String monthListValue = String.valueOf(monthList.getSelectedItem());
+				new GroupListForMembers(session,dateSpinnerYear[5],monthListValue,button.getText());
+				thisSetVisibleFalse();
 			}
 		});
 	}

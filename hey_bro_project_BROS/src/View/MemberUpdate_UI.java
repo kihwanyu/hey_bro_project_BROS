@@ -21,7 +21,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import Controller.Controller;
+import Controller.MemberController;
 import Model.vo.Member;
 import Model.vo.Session;
 
@@ -31,7 +31,7 @@ public class MemberUpdate_UI extends JPanel {
 	/**
 	 * 
 	 */
-	static private Controller c = new Controller();
+	static private MemberController c = new MemberController();
 	static private Member m = new Member();
 	private static String pictureUrl = null;
 	private static JLabel userIng_lb;

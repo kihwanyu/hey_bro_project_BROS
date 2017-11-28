@@ -16,14 +16,16 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Controller.Controller;
+import Controller.GroupController;
+import Controller.MemberController;
 import Model.vo.Member;
 import Model.vo.Session;
 
 public class GroupRegistor_UI extends JPanel {
 	private	static boolean loginBoolean = false; //27일 조성식 수정
 	private JFrame superFrame; //수정
-	private Controller c = new Controller();
+	private GroupController gc = new GroupController();
+	private MemberController mc = new MemberController();
 	private Member m = new Member(); //수정
 	private Session session; //수정
 	//private JPanel mainPanel;
@@ -36,7 +38,7 @@ public class GroupRegistor_UI extends JPanel {
 		//	JFrame mf = new JFrame("�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝占�");
 		//
 		
-		m = c.process("MemberSatting.do", session); //수정
+		m = mc.process("MemberSatting.do", session); //수정
 		this.session = session; //수정
 		this.superFrame = superFrame; //수정
 		this.setBounds(0, 0, 800, 500);
@@ -135,7 +137,7 @@ public class GroupRegistor_UI extends JPanel {
 
 				if(gPwtf.getText().equals(regPwtf.getText())){
 
-					c.process("GroupRegister.do", gntf.getText(), gltf.getText(), gPwtf.getText(), ctf.getText(), newstf.getText(), session.getUserId());
+					gc.process("GroupRegister.do", gntf.getText(), gltf.getText(), gPwtf.getText(), ctf.getText(), newstf.getText(), session.getUserId());
 					JOptionPane.showMessageDialog(null, "그룹 생성이 완료되었습니다.", "title", JOptionPane.PLAIN_MESSAGE);
 					//로그인 페이지로 이동
 					main_UI(); //수정
@@ -256,7 +258,7 @@ public class GroupRegistor_UI extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				boolean result = c.process("MemberIdOverlap.do", gntf.getText());
+				boolean result = mc.process("MemberIdOverlap.do", gntf.getText());
 
 				System.out.println(result);
 				if(result){

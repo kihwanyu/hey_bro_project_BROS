@@ -15,7 +15,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Controller.Controller;
+import Controller.GroupController;
+import Controller.MemberController;
 import Model.vo.Member;
 import Model.vo.Session;
 
@@ -24,7 +25,8 @@ public class GroupSearch_UI extends JPanel {
    private JFrame superFrame;
    private JPanel superPanel;
    private JPanel tempPanel;
-   private Controller c = new Controller(); //수정
+   private GroupController gc = new GroupController(); //수정
+   private MemberController mc = new MemberController(); //수정
    private Member m = new Member(); //수정
    private Session session; //수정
    private ArrayList<String> groupArr = new ArrayList<>();
@@ -39,7 +41,7 @@ public class GroupSearch_UI extends JPanel {
    public GroupSearch_UI(JFrame superFrame, JPanel superPanel, Session session/*수정*/){
       
       
-      m = c.process("MemberSatting.do", session); //수정
+      m = mc.process("MemberSatting.do", session); //수정
       this.session = session; //수정
       this.panel = this.tempPanel;
       this.superFrame = superFrame;
@@ -87,7 +89,7 @@ public class GroupSearch_UI extends JPanel {
 
          @Override
          public void mousePressed(MouseEvent e) {
-            groupArr = c.process("GroupListSearch.do", gNtf.getText(), 1);
+            groupArr = gc.process("GroupListSearch.do", gNtf.getText());
             
             String[] groups_values = new String[groupArr.size()];
             //

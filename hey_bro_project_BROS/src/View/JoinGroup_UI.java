@@ -14,7 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import Controller.Controller;
+import Controller.GroupController;
+import Controller.MemberController;
 import Model.vo.Member;
 import Model.vo.Session;
 
@@ -23,7 +24,8 @@ public class JoinGroup_UI extends JPanel {
 	private JFrame superFrame;
 	private JPanel superPanel;
 	private JPanel tempPanel;
-	private Controller c = new Controller(); //수정
+	private MemberController mc = new MemberController(); //수정
+	private GroupController gc = new GroupController(); //수정
 	private Member m = new Member(); //수정
 	private Session session; //수정
 	private ArrayList<String> groupListArr = new ArrayList<>();
@@ -34,8 +36,8 @@ public class JoinGroup_UI extends JPanel {
 
 	public JoinGroup_UI(JFrame superFrame, JPanel superPanel, Session session/*수정*/){
 		System.out.println("요기요");
-		m = c.process("MemberSatting.do", session); //수정
-		groupListArr = c.process("groupCombo.do", session.getUserId(), true);
+		m = mc.process("MemberSatting.do", session); //수정
+		groupListArr = gc.process("groupCombo.do", session.getUserId());
 		for (int i = 0; i < groupListArr.size(); i++) {
 			groupListArr.set(i, groupListArr.get(i).replace(".xml", ""));
 		}

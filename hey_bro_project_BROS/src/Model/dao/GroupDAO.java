@@ -235,7 +235,7 @@ public class GroupDAO {
 	public void groupSearch() {
 
 	}
-	public ArrayList<String> groupListSearch(String userId, int type) {
+	public ArrayList<String> groupListSearch(String userId) {
 		ArrayList<String> groupList = new ArrayList<>();
 		Properties prop = new Properties();
 
@@ -327,7 +327,7 @@ public class GroupDAO {
 		//prop.clear();
 		//prop.setProperty(gName,userName);
 		try {
-			prop.storeToXML(new FileOutputStream("hey_bro_project_BROS/src/Model/Data/xml/Group/"+gName+".xml"),String.valueOf(new Date()).toString());
+			prop.storeToXML(new FileOutputStream("hey_bro_project_BROS/src/Model/Data/xml/group/"+gName+".xml"),String.valueOf(new Date()).toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

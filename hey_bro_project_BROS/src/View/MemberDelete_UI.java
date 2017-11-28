@@ -7,7 +7,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
-import Controller.Controller;
+import Controller.MemberController;
 import Model.vo.Member;
 import Model.vo.Session;
 
@@ -16,7 +16,7 @@ public class MemberDelete_UI extends JPanel {
 	private JFrame superFrame;	//수정
 	private JPanel superPanel; 	//수정
 	private JPanel tempPanel;	//수정
-	private Controller c = new Controller(); //수정
+	private MemberController c = new MemberController(); //수정
 	private Member m = new Member(); //수정
 	private Session session; //수정
 	JRadioButton check = new JRadioButton();

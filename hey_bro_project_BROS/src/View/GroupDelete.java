@@ -2,6 +2,8 @@ package View;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -10,18 +12,24 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-public class GroupDelete extends JPanel{
+import Model.vo.Session;
+
+public class GroupDelete extends JFrame{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -956000051309938863L;
-	public GroupDelete() {
+	
+	private Session session = new Session();
+	public GroupDelete(Session session) {
 		//JFrame mf = new JFrame();
-
+		
+		this.session = session;
+		
 		this.setBounds(300, 250, 800, 500);
 		this.setLayout(null);
-		//mf.setTitle("Hey~bro");
-		//mf.setResizable(false);
+		this.setTitle("Hey~bro");
+		this.setResizable(false);
 
 		//
 		
@@ -59,8 +67,40 @@ public class GroupDelete extends JPanel{
 		this.add(label);
 		this.add(bg);
 
-		//mf.setVisible(true);
-		//mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		back.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				new Group_Calendar_UI(session);				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	/*public static void main(String[] args){
 		new GroupDelete();

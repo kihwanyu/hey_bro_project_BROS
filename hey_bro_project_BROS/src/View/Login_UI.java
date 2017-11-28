@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Controller.Controller;
+import Controller.MemberController;
 import Model.vo.Session;
 
 public class Login_UI extends JFrame{
@@ -24,7 +24,7 @@ public class Login_UI extends JFrame{
 	/**
 	 * 
 	 */
-	Controller c = new Controller();
+	MemberController c = new MemberController();
 	//세션역활을 해줄 세션 클래스
 	Session session = new Session();
 	

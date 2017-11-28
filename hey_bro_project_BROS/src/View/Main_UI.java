@@ -14,14 +14,14 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import Controller.Controller;
+import Controller.MemberController;
 import Model.vo.Member;
 import Model.vo.Session;
 
 public class Main_UI extends JFrame {
 	//
 	private JPanel mainPanel;
-	private Controller c = new Controller();
+	private MemberController c = new MemberController();
 	private Member m = new Member();
 	private JFrame superFrame; //¼öÁ¤
 	

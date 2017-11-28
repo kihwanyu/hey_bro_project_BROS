@@ -24,7 +24,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import Controller.Controller;
+import Controller.MemberController;
 
 public class MemberRegister_UI extends JPanel {
 	//
@@ -32,7 +32,7 @@ public class MemberRegister_UI extends JPanel {
 	 * 
 	 */
 
-	private Controller c = new Controller();
+	private MemberController c = new MemberController();
 	private	static boolean loginBoolean = false;
 	private static JFrame superFrame;
 	private static String pictureUrl = null;

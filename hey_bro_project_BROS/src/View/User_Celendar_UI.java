@@ -13,13 +13,13 @@ import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import Controller.Controller;
+import Controller.MemberController;
 import Model.vo.Member;
 import Model.vo.Session;
 
 public class User_Celendar_UI extends JFrame{
    
-   private Controller c = new Controller();
+   private MemberController c = new MemberController();
    private Member m = new Member();
    public User_Celendar_UI(JFrame superFrame/*¼öÁ¤*/, String groupSession,Session session){
       //JFrame mf = new JFrame();      

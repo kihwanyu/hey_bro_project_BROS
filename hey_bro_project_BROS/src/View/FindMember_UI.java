@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Controller.Controller;
+import Controller.MemberController;
 
 public class FindMember_UI extends JPanel{
 	//
@@ -23,7 +23,7 @@ public class FindMember_UI extends JPanel{
 	 */
 	private static final long serialVersionUID = -3082337671775367566L;
 
-	Controller c = new Controller();
+	MemberController c = new MemberController();
 	private static JFrame superFrame;
 	
 	public FindMember_UI(JFrame superFrame){
