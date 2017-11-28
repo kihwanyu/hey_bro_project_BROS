@@ -24,9 +24,10 @@ public class FindMember_UI extends JPanel{
 	private static final long serialVersionUID = -3082337671775367566L;
 
 	Controller c = new Controller();
+	private static JFrame superFrame;
 	
-	public FindMember_UI(){
-		
+	public FindMember_UI(JFrame superFrame){
+		this.superFrame = superFrame;
 		JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/Starry Night Over the Rhone 2.jpg"));
 		background.setBounds(0, 0, 800, 500);
 		this.add(background);
@@ -316,8 +317,8 @@ public class FindMember_UI extends JPanel{
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				new Login_UI();
-				
+			 loginPage();
+			 
 			}
 
 			@Override
@@ -409,6 +410,16 @@ public class FindMember_UI extends JPanel{
 				
 			}
 		});
+	}
+	
+	public void loginPage() {		
+		superFrame.setVisible(false);//현재 프레임의 비전을끄고
+		try {
+			superFrame.add(new Login_UI()); //새로운 프레임을 만든다.
+		} catch (Exception e) {
+
+		}
+		
 	}
 
 }
