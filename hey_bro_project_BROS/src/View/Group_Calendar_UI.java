@@ -184,7 +184,38 @@ public class Group_Calendar_UI extends Frame{
 			}		
 			cjp.add(date_bt[i]);
 		}
-		
+		backB.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				new Main_UI(session);
+				thisSetVisibleFalse();
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		dateSpinner.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
@@ -399,7 +430,6 @@ public class Group_Calendar_UI extends Frame{
 	public static void main(String[] args){
 		Session session = new Session("11", "11");
 		
-		new Group_Calendar_UI(session);
-		
+		new Group_Calendar_UI(session);	
 	}
 }

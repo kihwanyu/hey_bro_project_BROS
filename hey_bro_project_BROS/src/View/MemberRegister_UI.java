@@ -47,7 +47,7 @@ public class MemberRegister_UI extends JPanel {
 		final int MEMBER_LIBEL_LOCATION_X = 80;
 		final int MEMBER_TEXT_LOCATION_X = MEMBER_LIBEL_LOCATION_X+110; 
 		
-		String defaltImgUrl = "hey_bro_project_BROS/src/Model/Data/img/dog.jpg";
+		String defaltImgUrl = "hey_bro_project_BROS/src/Model/Data/img/defalt.png";
 		
 		JPanel title_p = new JPanel();
 		
