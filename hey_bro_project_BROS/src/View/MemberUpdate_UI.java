@@ -1,4 +1,5 @@
 package View;
+import java.awt.Color;
 import java.awt.FileDialog;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -52,32 +53,38 @@ public class MemberUpdate_UI extends JPanel {
 		final int MEMBER_TEXT_LOCATION_X = MEMBER_LIBEL_LOCATION_X+110; 
 		
 		JLabel title_lb = new JLabel("회원 정보 수정");
-		/*title_lb.setOpaque(false);
-		 JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/20100414201035!Matissedance.png"));
+		title_lb.setOpaque(false);
+		 JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/maxresdefault (1).png"));
 			background.setBounds(0, 0, 800, 500);
-			title_lb.add(background);*/
+			this.add(background);
 	      
 	    
 	      
 	      
-		JLabel id_lb = new JLabel("아이디 : \n");
+		JLabel id_lb = new JLabel("아 이 디  \n");
 		id_lb.setLocation(MEMBER_LIBEL_LOCATION_X, 50);
 		id_lb.setSize(150,50);
-		JLabel pw_lb1 = new JLabel("비밀번호 : \n");
+		id_lb.setForeground(new Color(54, 58, 66));
+		JLabel pw_lb1 = new JLabel("비 밀 번 호  \n");
 		pw_lb1.setLocation(MEMBER_LIBEL_LOCATION_X, 90);
 		pw_lb1.setSize(150,50);
-		JLabel pw_lb2 = new JLabel("비밀번호 재입력 : \n");
+		pw_lb1.setForeground(new Color(54, 58, 66));
+		JLabel pw_lb2 = new JLabel("비 밀 번 호  확 인\n");
 		pw_lb2.setLocation(MEMBER_LIBEL_LOCATION_X, 130);
 		pw_lb2.setSize(150,50);
-		JLabel name_lb = new JLabel("이름 : \n");
+		pw_lb2.setForeground(new Color(54, 58, 66));
+		JLabel name_lb = new JLabel("이       름  \n");
 		name_lb.setLocation(MEMBER_LIBEL_LOCATION_X, 210);
 		name_lb.setSize(150,50);
-		JLabel birthday_lb = new JLabel("생년월일 : \n");
+		name_lb.setForeground(new Color(54, 58, 66));
+		JLabel birthday_lb = new JLabel("생 년 월 일  \n");
 		birthday_lb.setLocation(MEMBER_LIBEL_LOCATION_X, 250);
 		birthday_lb.setSize(150,50);
-		JLabel email_lb = new JLabel("E-Mail : ");
+		birthday_lb.setForeground(new Color(54, 58, 66));
+		JLabel email_lb = new JLabel("E - M a i l  ");
 		email_lb.setLocation(MEMBER_LIBEL_LOCATION_X, 290);
 		email_lb.setSize(150,50);
+		email_lb.setForeground(new Color(54, 58, 66));
 		
 		Image userIng_img = new ImageIcon(defaltImgUrl).getImage().getScaledInstance(200, 200, 0);
 		userIng_lb = new JLabel();
@@ -96,6 +103,7 @@ public class MemberUpdate_UI extends JPanel {
 		JButton cancle_bt = new JButton("뒤로 가기");
 		cancle_bt.setLocation(MEMBER_TEXT_LOCATION_X, 350);
 		cancle_bt.setSize(150, 40);
+		
 		
 		
 		//아이디
@@ -169,9 +177,11 @@ public class MemberUpdate_UI extends JPanel {
 		JRadioButton man = new JRadioButton("남");
 		man.setLocation(MEMBER_TEXT_LOCATION_X+10, 180);
 		man.setSize(90,30);
+		man.setOpaque(false);
 		JRadioButton woman = new JRadioButton("여");
 		woman.setLocation(MEMBER_TEXT_LOCATION_X+100, 180);
 		woman.setSize(90,30);
+		woman.setOpaque(false);
 		ButtonGroup gender = new ButtonGroup();
 		if(m.getGender().equals("남")){
 			man.setSelected(true);
@@ -185,29 +195,29 @@ public class MemberUpdate_UI extends JPanel {
 		this.setBounds(0,0,800,500);
 
 		
-		this.add(title_lb);
+		background.add(title_lb);
 		//this.add(background);
-		this.add(id_lb);
+		background.add(id_lb);
 
-		this.add(id_text);
-		this.add(pw_lb1);
-		this.add(pw_text1);
-		this.add(pw_lb2);
-		this.add(pw_text2);
-		this.add(name_text);
-		this.add(name_lb);
-		this.add(man);
-		this.add(woman);
-		this.add(birthday_lb);
-		this.add(yearList);
-		this.add(monthList);
+		background.add(id_text);
+		background.add(pw_lb1);
+		background.add(pw_text1);
+		background.add(pw_lb2);
+		background.add(pw_text2);
+		background.add(name_text);
+		background.add(name_lb);
+		background.add(man);
+		background.add(woman);
+		background.add(birthday_lb);
+		background.add(yearList);
+		background.add(monthList);
 		
-		this.add(email_lb);
-		this.add(email_text);
-		this.add(userIng_lb);
-		this.add(imageOpen_Bt);
-		this.add(update_bt);
-		this.add(cancle_bt);
+		background.add(email_lb);
+		background.add(email_text);
+		background.add(userIng_lb);
+		background.add(imageOpen_Bt);
+		background.add(update_bt);
+		background.add(cancle_bt);
 
 		this.add(dateList);
 		
