@@ -64,7 +64,7 @@ public class Controller {
 		case "rLogin.do":
 			result = gDao.rLogin(type1, type2);
 			break;
-		case "gorupJoin.do":
+		case "groupJoin.do":
 			result = gDao.groupJoin(type1, type2);
 			break;
 		default:

@@ -79,6 +79,7 @@ public class GroupJoin_Pw_UI extends JFrame {
 				Boolean result = c.process("rLogin.do", gPwtf.getText(), groupSession);
 
 				if(result){
+					//System.out.println("GroupJoin_Pw_UI");
 					boolean result1 = c.process("groupJoin.do", groupSession, session.getUserId());
 					if(result1) {
 						new User_Celendar_UI(present, groupSession, session);
