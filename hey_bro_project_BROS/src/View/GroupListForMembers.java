@@ -3,6 +3,7 @@ package View;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -29,24 +30,28 @@ import Model.vo.Schedule;
 import Model.vo.Session;
 
 
-public class GroupListForMembers {
+public class GroupListForMembers extends Frame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2079468117320843313L;
 	private JPanel mainPanel;
 	private JFrame superFrame;
 	private Member m = new Member();
 	private Group g = new Group();
 	private Schedule s = new Schedule();
 	private Session session = new Session();
-	Properties prop = new Properties();
-	
-	
-	public GroupListForMembers(Session session){
+	private String year;
+	private String month;
+	private String date;
+	public GroupListForMembers(Session session, String year, String month, String date){
+		this.year = year;
+		this.month = month;
+		this.date = date;
+		//JFrame mf = new JFrame();		
+		this.setBounds(300, 100, 800, 500);
+		this.setLayout(null);
 		
-		JFrame mf = new JFrame();		
-		mf.setBounds(300, 100, 800, 500);
-		mf.setLayout(null);
-		
-	
-	
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBounds(0, 0, 800, 500);
@@ -90,9 +95,9 @@ public class GroupListForMembers {
 		
 		
 		Object [][] data = null;
-		for(int i =0; i<prop.size();i++){			
+		/*for(int i =0; i<prop.size();i++){			
 			data[i] = new Object[] {s.getDate(), s.getStartHour(), s.getStartMin(), s.getEndHour(), s.getEndMin(), s.getsContent()};			
-		}
+		}*/
 		 
 		 String[] columnNames = {"일", "시작시간", "종료시간", "일정명" , "일정내용" };		
 		 
@@ -164,12 +169,12 @@ public class GroupListForMembers {
 		panel.add(table);
 		panel.add(sp);
 		panel.add(back);		
-		mf.add(panel);
+		this.add(panel);
 	
 		
 		
-		mf.setVisible(true);
-		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+//		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
 	}

@@ -17,16 +17,23 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import Model.vo.Session;
+import javafx.scene.control.Spinner;
+
 public class Group_Calendar_UI extends Frame{
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1411365908257953013L;
 	////
 	private JButton date_bt[];
 	private JComboBox<String> monthList;
 	private ArrayList<String> dateList = new ArrayList<>();
-	public void calendar(){
+	private Session session = new Session();
+	private JSpinner dateSpinner;
+	public Group_Calendar_UI(Session session){
+		this.session = session;
 		int[] month = new int [12];
 		//JFrame this = new JFrame();      
 		date_bt = new JButton[42];
@@ -110,7 +117,7 @@ public class Group_Calendar_UI extends Frame{
 		Date end = utilTodayCalendar.getTime();
 
 		SpinnerDateModel dateModel = new SpinnerDateModel(value, start, end, Calendar.YEAR);
-		JSpinner dateSpinner = new JSpinner(dateModel);
+		dateSpinner = new JSpinner(dateModel);
 		dateSpinner.setEditor(new JSpinner.DateEditor(dateSpinner, "yyyy"));
 		//dateSpinner.setBackground(Color.WHITE);
 		
@@ -171,8 +178,10 @@ public class Group_Calendar_UI extends Frame{
 			this.add(date_text[i]);
 		}
 		for(int i = 0; i < date_bt.length; i++){
+			date_bt_Click_event(date_bt[i]);
 			cjp.add(date_bt[i]);
 		}
+		
 		dateSpinner.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
@@ -189,6 +198,7 @@ public class Group_Calendar_UI extends Frame{
 				CalendarButtonUpdate(new GregorianCalendar(Integer.parseInt(dateSpinnerYear[5]), Integer.parseInt(monthlistValue)-1 , 1),Integer.parseInt(monthlistValue));
 			}
 		});
+		
 		groupUpdate_bt.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -196,8 +206,8 @@ public class Group_Calendar_UI extends Frame{
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
-				new GroupUpdate_UI(
-						);
+				new GroupUpdate_UI();
+				thisSetVisibleFalse();
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -221,8 +231,7 @@ public class Group_Calendar_UI extends Frame{
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
-				new GroupUpdate_UI();
-				thisSetVisibleFalse();
+				
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -331,12 +340,42 @@ public class Group_Calendar_UI extends Frame{
 			}			
 		}
 	}
+	
+	public void date_bt_Click_event(JButton button){
+			button.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				String[] dateSpinnerYear = String.valueOf(dateSpinner.getValue()).split(" ");
+				String monthListValue = String.valueOf(monthList.getSelectedItem());
+				new GroupListForMembers(session,dateSpinnerYear[5],monthListValue,button.getText());
+				thisSetVisibleFalse();
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+	}
 	public void thisSetVisibleFalse(){
 		this.setVisible(false);
 	}
 	public static void main(String[] args){
-		Group_Calendar_UI u = new Group_Calendar_UI();
-		u.calendar();
+		Session session = new Session("11", "11");
+		
+		new Group_Calendar_UI(session);
 		
 	}
 }
