@@ -305,14 +305,24 @@ public class GroupDAO {
 		}
 		//System.out.println("userNameListSize : "+userNameList.size());
 		//userNameList.add(userName);
+		int a = 0;
 		for(int i = 0; i < userNameList.size(); i++) {
-			if(userNameList.get(i).equals(userName)) {
-				System.out.println(i);
-				//userNameList.add(userName);
-				result = true;
-				break;
+			if(!userNameList.get(i).equals(userName)){
+				a = 0;
+			}else if (userNameList.get(i).equals(userName)){
+				a = 1;
 			}
 		}
+		if(a==0){
+			userNameList.add(userName);
+			result = true;	
+		}
+		/*if(!userNameList.get(i).equals(userName)) {
+				System.out.println(i);
+				if(userNameList.get(i).equals(userName)){
+				break;
+				}
+			}*/
 		
 		
 		prop.clear();
