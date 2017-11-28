@@ -122,6 +122,18 @@ public class Controller {
 			}
 			return groupList;
 		}
-		
+		public ArrayList<String> process(String key, String type1, Boolean type2){
+			//String key, String Pw, String session
+			ArrayList<String> arrList = new ArrayList<>();
+			switch (key) {
+			case "groupCombo.do" :
+				//System.out.println("¿ä±â¿ä");
+				arrList = gDao.groupCombo(type1);
+				break;
+			default:
+				break;
+			}
+			return arrList;
+		}
 		
 }
