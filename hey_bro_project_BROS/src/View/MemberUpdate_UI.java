@@ -213,7 +213,7 @@ public class MemberUpdate_UI extends JPanel {
 		background.add(monthList);
 		
 		background.add(email_lb);
-		background.add(email_text);
+		background.add(email_text);		
 		background.add(userIng_lb);
 		background.add(imageOpen_Bt);
 		background.add(update_bt);
