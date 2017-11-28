@@ -49,7 +49,7 @@ public class Main_UI extends JFrame {
 		mainPanel.setOpaque(false);
 
 		// mainPanel.setBackground(Color.WHITE);
-		JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/20100414201035!Matissedance.png"));
+		JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/KakaoTalk_20171128_192855342.png"));
 		background.setBounds(0, 0, 800, 500);
 		mainPanel.add(background);
 		mainPanel.setLayout(null);
@@ -57,7 +57,7 @@ public class Main_UI extends JFrame {
 
 		JPanel userPanel = new JPanel();
 		userPanel.setLocation(0, 0);
-		userPanel.setBackground(Color.LIGHT_GRAY);
+		userPanel.setOpaque(false);
 		userPanel.setSize(200, 500);
 		//icon_ : 좌측버튼
 		//icon : 우측버튼
@@ -149,9 +149,11 @@ public class Main_UI extends JFrame {
 		JLabel text1 = new JLabel("님 환영합니다.");
 		text1.setLocation(110, 3);
 		text1.setSize(100, 50);
+		text1.setForeground(new Color(237, 243, 255));
 		JLabel text2 = new JLabel(m.getUserName());
 		text2.setLocation(65, 3);
 		text2.setSize(60, 50);
+		text2.setForeground(new Color(237, 243, 255));
 
 
 

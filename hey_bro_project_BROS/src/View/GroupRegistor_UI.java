@@ -7,6 +7,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -45,16 +46,24 @@ public class GroupRegistor_UI extends JPanel {
 		bgPanel.setSize(800, 500);
 		bgPanel.setBackground(Color.white);
 
+		JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/maxresdefault.png"));
+		background.setBounds(0, 0, 800, 500);
+		bgPanel.add(background);
+		
+		
 		//Group registration
 		JLabel title = new JLabel("모임추가");
 		title.setFont(new Font(Font.DIALOG, Font.BOLD, 28));
-		title.setLocation(316,10);
+		title.setLocation(350,30);
 		title.setSize(300, 30);
+		title.setForeground(new Color(79, 43, 11));
+				
 
 		//Group Name
 		JLabel gName = new JLabel("모임명");
 		gName.setLocation(70,80);
 		gName.setSize(200, 30);
+		gName.setForeground(new Color(79, 43, 11));
 		//�뜝�룞�삕�뜝�뙂紐뚯삕 �뜝�뙏�룞�삕�듃 �뜝�떗�벝�삕
 		JTextField gntf = new JTextField(20);
 		gntf.setLocation(150, 80);
@@ -66,6 +75,7 @@ public class GroupRegistor_UI extends JPanel {
 		JLabel glike = new JLabel("모임 관심사");
 		glike.setLocation(450,80);
 		glike.setSize(200, 30);
+		glike.setForeground(new Color(79, 43, 11));
 		// �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�뙏�룞�삕�듃 �뜝�떗�벝�삕
 		JTextField gltf = new JTextField(20);
 		gltf.setLocation(540, 80);
@@ -75,6 +85,7 @@ public class GroupRegistor_UI extends JPanel {
 		JLabel gPw = new JLabel("비밀번호 입력");
 		gPw.setLocation(50,120);
 		gPw.setSize(200, 30);
+		gPw.setForeground(new Color(79, 43, 11));
 		//�뜝�룞�삕艅섇뜝�떕占� �뜝�뙃琉꾩삕 �뜝�뙏�룞�삕�듃 �뜝�떗�벝�삕
 		JPasswordField gPwtf = new JPasswordField(20);
 		gPwtf.setLocation(150, 120);
@@ -84,6 +95,7 @@ public class GroupRegistor_UI extends JPanel {
 		JLabel regPw = new JLabel("비밀번호 재입력");
 		regPw.setLocation(425, 120);
 		regPw.setSize(200, 30);
+		regPw.setForeground(new Color(79, 43, 11));
 		//�뜝�룞�삕艅섇뜝�떕占� �뜝�룞�삕 �뜝�뙃琉꾩삕 �뜝�뙏�룞�삕�듃 �뜝�떗�벝�삕
 		JPasswordField regPwtf = new JPasswordField(20);
 		regPwtf.setLocation(540, 120);
@@ -93,6 +105,7 @@ public class GroupRegistor_UI extends JPanel {
 		JLabel content = new JLabel("모임 내용");
 		content.setLocation(170,180);
 		content.setSize(200, 30);
+		content.setForeground(new Color(79, 43, 11));
 		// �뜝�뙏�룞�삕�듃
 		JTextField ctf = new JTextField(20);
 		ctf.setLocation(50, 220);
@@ -102,14 +115,16 @@ public class GroupRegistor_UI extends JPanel {
 		JLabel news = new JLabel("공지사항");
 		news.setLocation(565, 180);
 		news.setSize(200, 30);
+		news.setForeground(new Color(79, 43, 11));
 		//�뜝�뙏�룞�삕�듃
 		JTextField newstf = new JTextField(20);
 		newstf.setLocation(440, 220);
 		newstf.setSize(300, 160);
+		newstf.setForeground(new Color(79, 43, 11));
 
 		//Confirm button
 		JButton btn = new JButton("확인");
-		btn.setLocation(400,400);
+		btn.setLocation(440,400);
 		btn.setSize(100, 30);
 		btn.setBackground(new Color(5, 150, 255));
 		btn.setEnabled(false);
@@ -127,8 +142,6 @@ public class GroupRegistor_UI extends JPanel {
 				} else {
 					JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다.", "title", JOptionPane.PLAIN_MESSAGE);
 				}
-
-
 
 			}
 
@@ -176,7 +189,6 @@ public class GroupRegistor_UI extends JPanel {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 		});
