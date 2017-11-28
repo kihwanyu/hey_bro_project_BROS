@@ -219,7 +219,7 @@ public class MemberUpdate_UI extends JPanel {
 		background.add(update_bt);
 		background.add(cancle_bt);
 
-		this.add(dateList);
+		background.add(dateList);
 		
 		textDelete(id_text);
 		textDelete(pw_text1);
