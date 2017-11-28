@@ -96,7 +96,7 @@ public class GroupSearch_UI extends JPanel {
             for(int i = 0; i < groupArr.size(); i++) {
                groups_values[i] = groupArr.get(i);
                groupList.addItem(groups_values[i]);
-               System.out.println(groups_values[i]);
+              // System.out.println(groups_values[i]);
             }
             //System.out.println(groups[1]);
             

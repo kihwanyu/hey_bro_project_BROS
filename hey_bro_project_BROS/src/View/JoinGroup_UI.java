@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -25,14 +26,20 @@ public class JoinGroup_UI extends JPanel {
    private Controller c = new Controller(); //수정
    private Member m = new Member(); //수정
    private Session session; //수정
-   
+   private ArrayList<String> groupListArr = new ArrayList<>();
    /**
     * 
     */
    private static final long serialVersionUID = -5276751205814558579L;
-
+   
    public JoinGroup_UI(JFrame superFrame, JPanel superPanel, Session session/*수정*/){
+	  System.out.println("요기요");
       m = c.process("MemberSatting.do", session); //수정
+      groupListArr = c.process("groupCombo.do", session.getUserId(), true);
+      for (int i = 0; i < groupListArr.size(); i++) {
+		groupListArr.set(i, groupListArr.get(i).replace(".xml", ""));
+      }
+      
       this.session = session; //수정
       this.panel = this.tempPanel;
       this.superFrame = superFrame;
@@ -55,11 +62,12 @@ public class JoinGroup_UI extends JPanel {
       
       
       //콤보박스 생성
-      String [] groups = {"모임을 선택해주세요", "BROS", "샛별고 동문회", "샛별대 동문회"};
+      String [] groups = new String[groupListArr.size()];
+      groupListArr.toArray(groups);
       
       
       JComboBox<String> groupList = new JComboBox<>(groups);
-      groupList.setSelectedIndex(0);
+      //groupList.setSelectedIndex(0);
       groupList.setLocation(200, 150);
       groupList.setSize(390, 50);
       
@@ -69,6 +77,7 @@ public class JoinGroup_UI extends JPanel {
          public void actionPerformed(ActionEvent e) {
             JComboBox<String> cb = (JComboBox<String>) e.getSource(); //선택한 콤보박스
             String name = (String)cb.getSelectedItem(); //선택된 아이템을 스트링에다가 형변환해서 담음
+            
             
             /*Image img = new ImageIcon("images/"+name + ".PNG").getImage().getScaledInstance(150,150,0); //확장자가 다 똑같다는 전제 하에..
             label.setIcon(new ImageIcon(img));*/      
