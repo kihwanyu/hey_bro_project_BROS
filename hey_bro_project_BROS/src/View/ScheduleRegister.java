@@ -8,8 +8,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
-
-
+import Controller.ScheduleController;
 import Model.vo.Session;
 
 public class ScheduleRegister extends JFrame{
@@ -18,7 +17,7 @@ public class ScheduleRegister extends JFrame{
 	 */
 	private static final long serialVersionUID = 1438654689820281120L;
 	private JPanel mp = new JPanel();
-	
+	private ScheduleController sc = new ScheduleController();
 	private Session session = new Session();
 	private String year;
 	private String month;
@@ -106,6 +105,42 @@ public class ScheduleRegister extends JFrame{
 		JButton scheduleRegister_bt = new JButton("일정 추가");
 		scheduleRegister_bt.setLocation(500, 420);
 		scheduleRegister_bt.setSize(100,30);
+		scheduleRegister_bt.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+			      String startTime = (String) hourList1.getSelectedItem()+(String) miniteList1.getSelectedItem();
+		            String endTime = (String) hourList2.getSelectedItem()+(String) miniteList2.getSelectedItem();
+		            
+		            sc.process("Schedule.do", 0, gName, session.getUserId(), date, startTime, endTime, titleTf.getText(),contentsTf.getText());
+		            JOptionPane.showMessageDialog(null, "일정이 추가되었습니다.", "title", JOptionPane.PLAIN_MESSAGE);
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		JButton return_bt = new JButton("뒤로가기");
 		return_bt.setLocation(650, 30);
 		return_bt.setSize(100,30);
