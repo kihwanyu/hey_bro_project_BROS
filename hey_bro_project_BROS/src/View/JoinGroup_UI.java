@@ -120,7 +120,7 @@ public class JoinGroup_UI extends JPanel {
 			public void mousePressed(MouseEvent e) {
 				System.out.println(name);
 				g = gc.process("GroupSetting.do", name, true);
-				
+				//
 				new Group_Calendar_UI(session, name);
 				frameSetVisible();
 			}

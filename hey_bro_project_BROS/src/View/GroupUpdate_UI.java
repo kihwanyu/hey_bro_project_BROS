@@ -29,7 +29,7 @@ public class GroupUpdate_UI extends JFrame{
 	private static final long serialVersionUID = 1436779561881168592L;
 
 	public GroupUpdate_UI(Session session, Group g, String groupName){
-		
+		//
 		this.session = session;
 		System.out.println(groupName);
 		System.out.println("гоюл?");

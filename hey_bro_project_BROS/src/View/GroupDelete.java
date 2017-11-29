@@ -21,7 +21,7 @@ public class GroupDelete extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = -956000051309938863L;
-
+	//
 	private Session session = new Session();
 	public GroupDelete(Session session, String gName) {
 		//JFrame mf = new JFrame();

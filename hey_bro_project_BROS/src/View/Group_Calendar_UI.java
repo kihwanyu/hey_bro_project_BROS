@@ -36,6 +36,7 @@ public class Group_Calendar_UI extends Frame{
 	private Group group = new Group();
 	private String gName;
 	public Group_Calendar_UI(Session session, String gName/*방이름*/){
+		//
 		this.gName = gName;
 		// 프레임의 사이즈를 구합니다.
 		Dimension frameSize = this.getSize();

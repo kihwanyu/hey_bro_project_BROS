@@ -190,6 +190,7 @@ public class Main_UI extends JFrame {
 		clickEvent(plusLabel, new GroupRegistor_UI(this, mainPanel, session)); //수정
 		clickEvent(join, new GroupSearch_UI(this, mainPanel, session));
 		clickEvent(in, new JoinGroup_UI(this, mainPanel, session)); //수정
+		//
 
 
 

@@ -242,6 +242,7 @@ public class GroupDAO {
 		String rContent;
 		String rNews;
 		String rLeader;
+		//
 
 		try {
 			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\groups.xml"));

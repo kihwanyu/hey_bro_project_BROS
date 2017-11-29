@@ -67,7 +67,7 @@ public class GroupController {
 		Group group = new Group();
 		switch(key){
 		case "GroupSetting.do" :
-			group = gDao.groupSetting(gName);
+			group = gDao.groupSetting(gName);//
 			break;
 
 		default :
