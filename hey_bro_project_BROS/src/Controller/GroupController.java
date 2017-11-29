@@ -25,7 +25,9 @@ public class GroupController {
 		//
 		Boolean result = false;
 		switch (key) {
+		
 		case "rLogin.do":
+			System.out.println("rLogin.do");
 			result = gDao.rLogin(groupPw, session);
 			break;
 		case "groupJoin.do":

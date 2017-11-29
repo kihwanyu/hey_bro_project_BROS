@@ -1,6 +1,7 @@
 package Model.vo;
 
 public class Schedule {
+	private int number;
 	private String groupName;
 	private String userName;
 	private String date;
@@ -12,9 +13,10 @@ public class Schedule {
 	public Schedule() {
 		super();
 	}
-	public Schedule(String groupName, String userName, String date, int startTime, int endTime, String title,
+	public Schedule(int number,String groupName, String userName, String date, int startTime, int endTime, String title,
 			String contents) {
 		super();
+		this.number = number;
 		this.groupName = groupName;
 		this.userName = userName;
 		this.date = date;
@@ -22,6 +24,13 @@ public class Schedule {
 		this.endTime = endTime;
 		this.title = title;
 		this.contents = contents;
+	}
+	
+	public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
 	}
 	public String getGroupName() {
 		return groupName;
@@ -67,7 +76,7 @@ public class Schedule {
 	}
 	@Override
 	public String toString() {
-		return groupName + ", " + userName + ", " + date + ", "
+		return number+ ", " + groupName + ", " + userName + ", " + date + ", "
 				+ startTime + ", " + endTime + ", " + title + ", " + contents;
 	}
 }
