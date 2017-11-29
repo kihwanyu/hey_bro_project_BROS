@@ -239,7 +239,7 @@ public class User_Celendar_UI extends JFrame{
 
       });
    }
-   //수정
+   //수정//
    public void frameSetVisible(){
       this.setVisible(false);
    }

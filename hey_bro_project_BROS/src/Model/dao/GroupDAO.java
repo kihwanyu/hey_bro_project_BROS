@@ -169,6 +169,67 @@ public class GroupDAO {
 
 	}
 	//조성식 수정
+	public Group groupSetting(String gName){
+		System.out.println("안녕하냐");
+		Properties prop = new Properties();
+		ArrayList<Group> groupArrayList = new ArrayList();
+		
+		String rNumber;
+		String rGName;
+		String rInterests;
+		String rPw;
+		String rContent;
+		String rNews;
+		String rLeader;
+		
+		try{
+			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\groups.xml"));
+			
+			for(int i = 0 ; i < prop.size(); i++){
+				String str;
+				
+				String[] str_arr = new String[7];
+				
+				str = prop.getProperty(String.valueOf(i).toString());
+				
+				if(str != null){
+					str_arr = str.split(", ");
+					
+					rNumber = str_arr[0];
+					rGName = str_arr[1];
+					rInterests = str_arr[2];
+					rPw = str_arr[3];
+					rContent = str_arr[4];
+					rNews = str_arr[5];
+					rLeader = str_arr[6];
+					
+					Group group = new Group(rGName, rInterests, rPw, rContent, rNews, rLeader);
+					
+					groupArrayList.add(group);
+					
+					System.out.println(groupArrayList.get(i));
+					
+				}
+			}
+		}catch(InvalidPropertiesFormatException e){
+			e.printStackTrace();
+		}catch(FileNotFoundException e){
+			e.printStackTrace();
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		for(int i = 0; i < groupArrayList.size(); i++){
+			if(gName.equals(groupArrayList.get(i).getgName())){
+				System.out.println(groupArrayList.get(i));
+				
+				return groupArrayList.get(i);
+			}
+		}
+		
+		return null;
+	}
+	
+	//조성식
 	public void groupUpdate(Group g){
 		Properties prop = new Properties();
 		Map<Integer, Group> groupMap = new HashMap<>();
@@ -181,6 +242,7 @@ public class GroupDAO {
 		String rContent;
 		String rNews;
 		String rLeader;
+		//
 
 		try {
 			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\groups.xml"));
@@ -191,6 +253,7 @@ public class GroupDAO {
 				String[] str_arr = new String[7];
 
 				str = prop.getProperty(String.valueOf(i).toString());
+				
 				if(str != null){
 					str_arr = str.split(", ");
 
@@ -202,7 +265,7 @@ public class GroupDAO {
 					rNews = str_arr[5];
 					rLeader = str_arr[6];
 
-					Group group = new Group(rNum, rGname, rInterests, rPw, rContent, rNews, rLeader);
+					Group group = new Group(rGname, rInterests, rPw, rContent, rNews, rLeader);
 					groupMap.put(groupMap.size(), group);
 				}
 			}
@@ -216,8 +279,11 @@ public class GroupDAO {
 
 		Collection<Group> groupValues = groupMap.values();
 		groupArrayList.addAll(groupValues);
+		
+		prop.clear();
 		for(int i = 0; i < groupArrayList.size(); i++){
-			if(groupArrayList.get(i).getNumber().equals(g.getNumber())){
+			if(groupArrayList.get(i).getgName().equals(g.getgName())){
+				
 				groupArrayList.set(i, g);
 			}
 			prop.setProperty(String.valueOf(i).toString(), groupArrayList.get(i).toString());
@@ -225,6 +291,7 @@ public class GroupDAO {
 		}
 		try {
 			prop.storeToXML(new FileOutputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\members.xml"), String.valueOf(new Date()).toString());
+		
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

@@ -25,7 +25,7 @@ public class GroupController {
 		//
 		Boolean result = false;
 		switch (key) {
-		
+
 		case "rLogin.do":
 			System.out.println("rLogin.do");
 			result = gDao.rLogin(groupPw, session);
@@ -50,5 +50,30 @@ public class GroupController {
 			break;
 		}
 		return groupList;
+	}
+	public void process(String key, Group group){
+		switch (key){
+		case "GroupUpdate.do" :
+			gDao.groupUpdate(group);
+			break;
+
+		default : 
+			break;
+		}
+	}
+
+	public Group process(String key, String gName, boolean type){
+		System.out.println("ÀÚÀÚ");
+		Group group = new Group();
+		switch(key){
+		case "GroupSetting.do" :
+			group = gDao.groupSetting(gName);//
+			break;
+
+		default :
+			break;
+		}
+
+		return group;
 	}
 }

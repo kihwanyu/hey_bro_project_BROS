@@ -24,7 +24,7 @@ public class ScheduleRegister extends JFrame{
 	private String month;
 	private String date;
 
-	public ScheduleRegister(Session session, String year, String month, String date){
+	public ScheduleRegister(Session session, String year, String month, String date, String gName){
 		this.session = session;
 		this.year = year;
 		this.month = month;
@@ -167,7 +167,7 @@ public class ScheduleRegister extends JFrame{
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
-				new GroupListForMembers(session, year, month, date);
+				new GroupListForMembers(session, year, month, date, gName);
 				thisSetVisibleFalse();
 			}
 			
