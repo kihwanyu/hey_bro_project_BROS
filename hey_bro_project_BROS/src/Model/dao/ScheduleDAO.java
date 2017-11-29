@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -68,6 +69,7 @@ public class ScheduleDAO {
          e.printStackTrace();
       }
       Schedule schedule = new Schedule(number, groupName, userName, date, startTime, endTime, title, contents);
+      
       gScheduleMap.put(gScheduleMap.size(), schedule);
       
       Set<Integer> keys = gScheduleMap.keySet();
@@ -86,6 +88,72 @@ public class ScheduleDAO {
          e.printStackTrace();
       }
    }   
-   //
+   
+   public ArrayList<Schedule> prcess(String date, String groupName){
+	   System.out.println("æ»≥Á«œ¥œ?");
+	   System.out.println(date);
+	      Properties prop = new Properties();
+	      ArrayList<Schedule> scheduleList = new ArrayList<>();
+	      
+	      int rnumber = 0;
+	      String rgroupName;
+	      String ruserName;
+	      String rdate;
+	      String rstartTime;
+	      String rendTime;
+	      String rtitle;
+	      String rcontents;
+	      
+	      try {
+	    	  
+	    	  prop.loadFromXML(new FileInputStream("hey_bro_project_BROS/src/Model/Data/xml/Schedule.xml"));
+	         for(int i = 0; i < prop.size(); i++){
+	            String str;
+	            
+	            String[] str_arr = new String[8];
+	            
+	            //System.out.println(prop.getProperty(String.valueOf(i).toString()));
+	            str = prop.getProperty(String.valueOf(i).toString());
+	            if(str!=null){
+	               //System.out.println(str);
+	               str_arr = str.split(", ");
+	               /*for(String s : str_arr){
+	                  System.out.println(s);
+	               }*/
+	               
+	               str_arr[0] = String.valueOf(rnumber);
+	               rgroupName = str_arr[1];
+	               ruserName = str_arr[2];
+	               rdate = str_arr[3];
+	               rstartTime = str_arr[4];
+	               rendTime = str_arr[5];
+	               rtitle = str_arr[6];   
+	               rcontents = str_arr[7];
+	               
+	               
+	               Schedule schedule = new Schedule(rnumber,rgroupName,ruserName,rdate,rstartTime,rendTime,rtitle,rcontents);
+	               scheduleList.add(schedule);
+	               System.out.println(scheduleList.size());
+	            }
+	         }   
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+	      
+	      ArrayList<Schedule> copyList = new ArrayList<>();
+	      for(int i = 0; i <scheduleList.size(); i++){
+	    	  if(date.equals(scheduleList.get(i).getDate()) && groupName.equals(scheduleList.get(i).getGroupName())){
+	    		copyList.add(new Schedule(scheduleList.get(i).getStartTime(), scheduleList.get(i).getEndTime(), scheduleList.get(i).getTitle(), scheduleList.get(i).getContents()));  
+	    	  }
+	      }
+	   
+	   System.out.println(copyList.size());
+	   
+	   return copyList;
+   }
+   
+
+	   
+   
       
 }

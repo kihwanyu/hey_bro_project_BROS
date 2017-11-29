@@ -131,7 +131,7 @@ public class ScheduleRegister extends JFrame{
                String startTime = (String) hourList1.getSelectedItem()+(String) miniteList1.getSelectedItem();
                   String endTime = (String) hourList2.getSelectedItem()+(String) miniteList2.getSelectedItem();
                   
-                  sc.process("Schedule.do", 0, gName, session.getUserId(), date, startTime, endTime, titleTf.getText(),contentsTf.getText());
+                  sc.process("Schedule.do", 0, gName, session.getUserId(),year + month + date, startTime, endTime, titleTf.getText(),contentsTf.getText());
                   JOptionPane.showMessageDialog(null, "일정이 추가되었습니다.", "title", JOptionPane.PLAIN_MESSAGE);
          }
 
