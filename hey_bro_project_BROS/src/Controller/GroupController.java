@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import Model.dao.GroupDAO;
 import Model.vo.Group;
+import Model.vo.Session;
 
 public class GroupController {
+	private Session session = new Session();
 	GroupDAO gDao = new GroupDAO();
 	Group group;
 
@@ -19,6 +21,7 @@ public class GroupController {
 		default:
 			break;
 		}
+				
 	}
 	//메소드 중첩(오버로딩)
 	public Boolean process(String key, String groupPw, String session){
@@ -51,4 +54,15 @@ public class GroupController {
 		}
 		return groupList;
 	}
+	
+	//Group Deletion
+	
+	public void process(String key, Session session){
+		switch(key){
+		case "GroupDelete.do" :
+			gDao.groupDelete(session);
+				break;
+		}
+	}
+	
 }
