@@ -63,7 +63,6 @@ public class GroupController {
 	}
 
 	public Group process(String key, String gName, boolean type){
-		System.out.println("ÀÚÀÚ");
 		Group group = new Group();
 		switch(key){
 		case "GroupSetting.do" :

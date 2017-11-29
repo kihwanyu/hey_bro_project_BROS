@@ -70,7 +70,7 @@ public class MemberUpdate_UI extends JPanel {
 			this.add(background);
 	      
 	    
-	      
+	   
 	      
 		JLabel id_lb = new JLabel("¾Æ ÀÌ µð  \n");
 		id_lb.setLocation(MEMBER_LIBEL_LOCATION_X, 50);

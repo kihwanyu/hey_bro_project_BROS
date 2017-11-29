@@ -19,7 +19,9 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import Controller.ScheduleController;
 import Model.vo.Group;
+import Model.vo.Schedule;
 import Model.vo.Session;
 
 public class Group_Calendar_UI extends Frame{
@@ -35,8 +37,13 @@ public class Group_Calendar_UI extends Frame{
 	private JSpinner dateSpinner;
 	private Group group = new Group();
 	private String gName;
+	private ArrayList<String> scheduleList = new ArrayList<>();
+	private ArrayList<Schedule> tempScheduleList = new ArrayList<>();
+	private	ScheduleController sc = new ScheduleController();
+	private JTextArea[][] date_textArea = new JTextArea[6][7];
 	public Group_Calendar_UI(Session session, String gName/*방이름*/){
 		//
+
 		this.gName = gName;
 		// 프레임의 사이즈를 구합니다.
 		Dimension frameSize = this.getSize();
@@ -77,24 +84,31 @@ public class Group_Calendar_UI extends Frame{
 		Calendar utilTodayCalendar = new GregorianCalendar();
 
 		JPanel[] date_text = new JPanel[6];
-		JTextField[][] date_textField = new JTextField[6][7];
 
-		for(int i = 0; i < date_textField.length; i++){
+		for(int i = 0; i < date_textArea.length; i++){
 			date_text[i] = new JPanel();
-			for(int j = 0; j < date_textField[i].length; j++){
-				date_textField[i][j] = new JTextField(""); 
+			for(int j = 0; j < date_textArea[i].length; j++){
+				date_textArea[i][j] = new JTextArea(""); 
+				/*sp[i][j] = new JScrollPane(date_textArea[i][j]);
+				sp[i][j].setSize(10,10);
+				this.add(sp[i][j]); 스크롤이 적용안됨*/
 			}
 		}
-		for(int i = 0; i < date_textField.length; i++){	
+		for(int i = 0; i < date_textArea.length; i++){	
 			//System.out.println(y);
 			date_text[i].setBounds(300, y, 700, 70);
 			date_text[i].setLayout(new GridLayout(1,7,0,0));
 			y += 95;
 		}
-		for(int i = 0; i < date_text.length; i++){
-			for(int j = 0; j < date_textField[i].length; j++){
+		//수정
+
+		for(int i = 0; i < date_textArea.length; i++){
+			for(int j = 0; j < date_textArea[i].length; j++){
 				//System.out.println(j);
-				date_text[i].add(date_textField[i][j]);
+				date_text[i].add(date_textArea[i][j]);
+				date_textArea[i][j].setEditable(false);
+				date_textArea[i][j].setBackground(new Color(255,255,245));
+				date_textArea[i][j].setLineWrap(true);
 			}
 		}
 
@@ -110,8 +124,9 @@ public class Group_Calendar_UI extends Frame{
 		dayP.setLayout(new GridLayout(1,7));
 		String[] days = {"일","월","화","수","목","금","토"}; 
 		for (int i = 0; i < 7; i++) {
-			String str = days[i];
-			dayP.add(new JTextField("              "+str));
+			JTextField days_text = new JTextField("              "+days[i]);
+			//days_text.setEnabled(false);
+			dayP.add(days_text);
 		}
 		//
 		// 상단 날짜표시 스피너
@@ -141,10 +156,16 @@ public class Group_Calendar_UI extends Frame{
 		cPanel.setLocation(50+525, 30);
 		monthList.setSelectedIndex(calendar.get(Calendar.MONTH));
 		monthList.setBounds(50+620, 35, 40, 22);
-
+		tempScheduleList = sc.process("ScheduleSatting.do",gName,
+				String.valueOf(calendar.get(Calendar.YEAR)+1),
+				String.valueOf(calendar.get(Calendar.MONTH)+1));
+		System.out.println(tempScheduleList.size());
 		monthList.setVisible(true);
 		//달력버튼출력 메소드
+
 		CalendarButtonUpdate(calendar,utilTodayCalendar.get(Calendar.MONTH)+1);
+
+
 
 		/*for(int i = 0; i < dateList.size(); i++){
 			System.out.println("arrayList["+i+"] : " + dateList.get(i) );
@@ -189,7 +210,7 @@ public class Group_Calendar_UI extends Frame{
 		png.setLocation(0, 3);
 		png.setSize(48, 45);
 
-		for(int i = 0; i < date_textField.length; i++){
+		for(int i = 0; i < date_text.length; i++){
 			this.add(date_text[i]);
 		}
 		for(int i = 0; i < date_bt.length; i++){
@@ -342,6 +363,7 @@ public class Group_Calendar_UI extends Frame{
 	}
 	public void CalendarButtonUpdate(Calendar calendar, int monthValue){
 		dateList.clear();
+		
 		int year = calendar.get(Calendar.YEAR);
 		int month = monthValue;
 
@@ -410,6 +432,49 @@ public class Group_Calendar_UI extends Frame{
 				break;
 			}			
 		}
+		for(int i = 0; i < date_bt.length; i++){
+			try {
+				date_bt[i].setText(dateList.get(i).toString());
+
+			} catch (Exception e) {
+				break;
+			}			
+		}
+		//달력 텍스트 에어리어 띄우기
+		int count = 0;
+		for(int i = 0; i < dateList.size(); i++){
+			
+			if(!dateList.get(i).equals("")){
+				String[] tempScheduleListDate_str = tempScheduleList.get(count).getDate().split("/");
+				if(Integer.parseInt(tempScheduleListDate_str[2])<10){
+					tempScheduleListDate_str[2] = tempScheduleListDate_str[2].substring(1);
+				}
+
+				if(String.valueOf(year).equals(tempScheduleListDate_str[0])&&
+						String.valueOf(month).equals(tempScheduleListDate_str[1])&&
+						dateList.get(i).equals(tempScheduleListDate_str[2])){
+					String str = "["+ tempScheduleList.get(count).getTitle() + "] " + tempScheduleList.get(count).getTitle() + "\n";
+					System.out.println(tempScheduleList.get(count).getDate());
+					scheduleList.add(str);
+					System.out.println(scheduleList.toString());
+					count++;
+				} else {
+					scheduleList.add("");
+				}
+			} else {
+				scheduleList.add("");
+			}
+		}
+		count = 0;
+		for(int i = 0; i < date_textArea.length; i++){			
+			for(int j = 0; j < date_textArea[i].length; j++){
+				date_textArea[i][j].setText(scheduleList.get(count));
+				count++;
+				System.out.println(date_textArea[i][j].getText());
+			}
+		}
+		this.revalidate();
+		this.repaint();
 	}
 
 	public void date_bt_Click_event(JButton button){
@@ -443,9 +508,9 @@ public class Group_Calendar_UI extends Frame{
 	public void thisSetVisibleFalse(){
 		this.setVisible(false);
 	}
-/*	public static void main(String[] args){
+	public static void main(String[] args){
 		Session session = new Session("11", "11");
 
-		new Group_Calendar_UI(session);	
-	}*/
+		new Group_Calendar_UI(session, "BROS");	
+	}
 }

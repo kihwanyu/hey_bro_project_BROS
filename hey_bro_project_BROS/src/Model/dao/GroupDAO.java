@@ -219,10 +219,12 @@ public class GroupDAO {
 			e.printStackTrace();
 		}
 		for(int i = 0; i < groupArrayList.size(); i++){
-			if(gName.equals(groupArrayList.get(i).getgName())){
-				System.out.println(groupArrayList.get(i));
-				
-				return groupArrayList.get(i);
+			if(groupArrayList.get(i).getgName()!=null){
+				if(gName.equals(groupArrayList.get(i).getgName())){
+					System.out.println(groupArrayList.get(i));
+					
+					return groupArrayList.get(i);
+				}
 			}
 		}
 		
