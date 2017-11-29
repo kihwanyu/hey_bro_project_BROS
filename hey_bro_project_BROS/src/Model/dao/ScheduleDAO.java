@@ -34,6 +34,8 @@ public class ScheduleDAO {
       String rcontents;
       
       try {
+    	  
+    	  prop.loadFromXML(new FileInputStream("hey_bro_project_BROS/src/Model/Data/xml/Schedule.xml"));
          for(int i = 0; i < prop.size(); i++){
             String str;
             
@@ -66,10 +68,11 @@ public class ScheduleDAO {
          e.printStackTrace();
       }
       Schedule schedule = new Schedule(number, groupName, userName, date, startTime, endTime, title, contents);
-
+      gScheduleMap.put(gScheduleMap.size(), schedule);
+      
       Set<Integer> keys = gScheduleMap.keySet();
       Iterator<Integer> scheduleIter = keys.iterator();
-         
+     
       try {
          while(scheduleIter.hasNext()){
             int key = scheduleIter.next();
