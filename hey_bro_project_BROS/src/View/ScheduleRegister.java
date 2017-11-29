@@ -15,6 +15,7 @@ public class ScheduleRegister extends JFrame{
 	/**
 	 * 
 	 */
+	//
 	private static final long serialVersionUID = 1438654689820281120L;
 	private JPanel mp = new JPanel();
 	private ScheduleController sc = new ScheduleController();

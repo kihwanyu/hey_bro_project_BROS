@@ -1,6 +1,6 @@
 package Model.vo;
 
-public class Schedule {
+public class Schedule {//
 	private int number;
 	private String groupName;
 	private String userName;
