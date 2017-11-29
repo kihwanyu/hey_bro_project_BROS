@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 
 import Controller.GroupController;
 import Controller.MemberController;
+import Model.vo.Group;
 import Model.vo.Member;
 import Model.vo.Session;
 
@@ -29,6 +30,8 @@ public class JoinGroup_UI extends JPanel {
 	private Member m = new Member(); //수정
 	private Session session; //수정
 	private ArrayList<String> groupListArr = new ArrayList<>();
+	private Group g;
+	private String name;
 	/**
 	 * 
 	 */
@@ -78,7 +81,7 @@ public class JoinGroup_UI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JComboBox<String> cb = (JComboBox<String>) e.getSource(); //선택한 콤보박스
-				String name = (String)cb.getSelectedItem(); //선택된 아이템을 스트링에다가 형변환해서 담음
+				name = (String)cb.getSelectedItem(); //선택된 아이템을 스트링에다가 형변환해서 담음
 
 
 				/*Image img = new ImageIcon("images/"+name + ".PNG").getImage().getScaledInstance(150,150,0); //확장자가 다 똑같다는 전제 하에..
@@ -115,7 +118,10 @@ public class JoinGroup_UI extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				new Group_Calendar_UI(session);
+				System.out.println(name);
+				g = gc.process("GroupSetting.do", name, true);
+				
+				new Group_Calendar_UI(session, name);
 				frameSetVisible();
 			}
 

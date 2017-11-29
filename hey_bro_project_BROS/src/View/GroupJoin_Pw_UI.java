@@ -86,7 +86,7 @@ public class GroupJoin_Pw_UI extends JFrame {
 					//System.out.println("GroupJoin_Pw_UI");
 					boolean result1 = c.process("groupJoin.do", groupSession, session.getUserId());
 					if(result1) {
-						new Group_Calendar_UI(session);
+						new Group_Calendar_UI(session, groupSession);
 						frameSetVisible();
 					} else {
 						JOptionPane.showMessageDialog(null, "이 모임에 이미 가입된 회원입니다.");

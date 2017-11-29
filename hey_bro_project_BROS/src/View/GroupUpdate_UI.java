@@ -5,23 +5,39 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Panel;
 import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Controller.GroupController;
 import Model.vo.Group;
+import Model.vo.Session;
 
 public class GroupUpdate_UI extends JFrame{
 	/**
 	 * 
 	 */
 	static private Group g = new Group();
+	private GroupController gc = new GroupController();
+	private Session session;
 	private static final long serialVersionUID = 1436779561881168592L;
 
-	public GroupUpdate_UI(){
+	public GroupUpdate_UI(Session session, Group g, String groupName){
+		
+		this.session = session;
+		System.out.println(groupName);
+		System.out.println("하이?");
+		g = gc.process("GroupSetting.do", groupName, true);
+		String leader = g.getLeader();
+		System.out.println(leader);
+		
+		
 		JFrame mf = new JFrame("모임 수정");
 		// 프레임의 사이즈를 구합니다.
 		Dimension frameSize = this.getSize();
@@ -114,6 +130,48 @@ public class GroupUpdate_UI extends JFrame{
 		btn.setLocation(340,400);
 		btn.setSize(100, 30);
 		btn.setBackground(new Color(5, 150, 255));
+		btn.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				Group group = new Group(gntf.getText(), gltf.getText(), gPwtf.getText(), ctf.getText(), newstf.getText(), leader);
+				gc.process("GroupUpdate.do", group);
+				
+				if(gPwtf.getText().equals(regPwtf.getText())){
+					JOptionPane.showMessageDialog(null, "모임수정이 성공적으로 이루어졌습니다.");
+					new Group_Calendar_UI(session, groupName);
+					
+				}else{
+					JOptionPane.showMessageDialog(null, "비밀번호가 일치 하지 않습니다.\n다시 입력해주세요");
+				}
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 
 		this.add(title, "North");
 		this.add(gName);

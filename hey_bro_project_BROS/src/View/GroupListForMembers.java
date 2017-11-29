@@ -44,7 +44,7 @@ public class GroupListForMembers extends Frame {
 	private String year;
 	private String month;
 	private String date;
-	public GroupListForMembers(Session session, String year, String month, String date){
+	public GroupListForMembers(Session session, String year, String month, String date, String gName){
 		// 프레임의 사이즈를 구합니다.
 				Dimension frameSize = this.getSize();
 				// 내 모니터의 크기를 구합니다.
@@ -137,7 +137,7 @@ public class GroupListForMembers extends Frame {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				new Group_Calendar_UI(session);
+				new Group_Calendar_UI(session, gName);
 				thisSetVisibleFalse();
 			}
 
@@ -169,7 +169,7 @@ public class GroupListForMembers extends Frame {
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
-				new ScheduleRegister(session,year,month,date);
+				new ScheduleRegister(session,year,month,date, gName);
 				thisSetVisibleFalse();
 			}
 			
@@ -213,11 +213,11 @@ public class GroupListForMembers extends Frame {
 	public void thisSetVisibleFalse(){
 		this.setVisible(false);
 	}
-	public static void main(String[] args){
+/*	public static void main(String[] args){
 		Session session = new Session("11", "11");
 
 		new GroupListForMembers(session, "2017", "11", "29");
 	}
-
+*/
 
 }

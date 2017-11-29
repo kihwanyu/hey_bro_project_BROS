@@ -19,6 +19,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import Model.vo.Group;
 import Model.vo.Session;
 
 public class Group_Calendar_UI extends Frame{
@@ -32,7 +33,10 @@ public class Group_Calendar_UI extends Frame{
 	private ArrayList<String> dateList = new ArrayList<>();
 	private Session session = new Session();
 	private JSpinner dateSpinner;
-	public Group_Calendar_UI(Session session){
+	private Group group = new Group();
+	private String gName;
+	public Group_Calendar_UI(Session session, String gName/*방이름*/){
+		this.gName = gName;
 		// 프레임의 사이즈를 구합니다.
 		Dimension frameSize = this.getSize();
 		// 내 모니터의 크기를 구합니다.
@@ -271,7 +275,7 @@ public class Group_Calendar_UI extends Frame{
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
-				new GroupUpdate_UI();
+				new GroupUpdate_UI(session, group, gName);
 				thisSetVisibleFalse();
 			}
 			@Override
@@ -296,7 +300,7 @@ public class Group_Calendar_UI extends Frame{
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
-				new GroupDelete(session);
+				new GroupDelete(session, gName);
 				thisSetVisibleFalse();
 			}
 			@Override
@@ -430,7 +434,7 @@ public class Group_Calendar_UI extends Frame{
 			public void mouseClicked(MouseEvent e) {
 				String[] dateSpinnerYear = String.valueOf(dateSpinner.getValue()).split(" ");
 				String monthListValue = String.valueOf(monthList.getSelectedItem());
-				new GroupListForMembers(session,dateSpinnerYear[5],monthListValue,button.getText());
+				new GroupListForMembers(session,dateSpinnerYear[5],monthListValue,button.getText(), gName);
 				thisSetVisibleFalse();
 			}
 		});
@@ -438,9 +442,9 @@ public class Group_Calendar_UI extends Frame{
 	public void thisSetVisibleFalse(){
 		this.setVisible(false);
 	}
-	public static void main(String[] args){
+/*	public static void main(String[] args){
 		Session session = new Session("11", "11");
 
 		new Group_Calendar_UI(session);	
-	}
+	}*/
 }

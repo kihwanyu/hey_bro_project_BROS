@@ -23,7 +23,7 @@ public class GroupDelete extends JFrame{
 	private static final long serialVersionUID = -956000051309938863L;
 
 	private Session session = new Session();
-	public GroupDelete(Session session) {
+	public GroupDelete(Session session, String gName) {
 		//JFrame mf = new JFrame();
 		// 프레임의 사이즈를 구합니다.
 		Dimension frameSize = this.getSize();
@@ -88,7 +88,7 @@ public class GroupDelete extends JFrame{
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				new Group_Calendar_UI(session);				
+				new Group_Calendar_UI(session, gName);				
 			}
 
 			@Override
