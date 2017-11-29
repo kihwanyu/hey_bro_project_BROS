@@ -1,99 +1,73 @@
 package Model.vo;
 
 public class Schedule {
-	private String gName;
-	private String sName;
-	private int year;
-	private int month;
-	private int date;
-	private int startHour;
-	private int startMin;
-	private int endHour;
-	private int endMin;
-	private String sContent;
+	private String groupName;
+	private String userName;
+	private String date;
+	private int startTime;
+	private int endTime;
+	private String title;
+	private String contents;
+	
 	public Schedule() {
 		super();
 	}
-	public Schedule(String gName, String sName, int year, int month, int date, int startHour, int startMin, int endHour,
-			int endMin, String sContent) {
+	public Schedule(String groupName, String userName, String date, int startTime, int endTime, String title,
+			String contents) {
 		super();
-		this.gName = gName;
-		this.sName = sName;
-		this.year = year;
-		this.month = month;
+		this.groupName = groupName;
+		this.userName = userName;
 		this.date = date;
-		this.startHour = startHour;
-		this.startMin = startMin;
-		this.endHour = endHour;
-		this.endMin = endMin;
-		this.sContent = sContent;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.title = title;
+		this.contents = contents;
 	}
-	public String getgName() {
-		return gName;
+	public String getGroupName() {
+		return groupName;
 	}
-	public void setgName(String gName) {
-		this.gName = gName;
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
 	}
-	public String getsName() {
-		return sName;
+	public String getUserName() {
+		return userName;
 	}
-	public void setsName(String sName) {
-		this.sName = sName;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public int getYear() {
-		return year;
-	}
-	public void setYear(int year) {
-		this.year = year;
-	}
-	public int getMonth() {
-		return month;
-	}
-	public void setMonth(int month) {
-		this.month = month;
-	}
-	public int getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(int date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
-	public int getStartHour() {
-		return startHour;
+	public int getStartTime() {
+		return startTime;
 	}
-	public void setStartHour(int startHour) {
-		this.startHour = startHour;
+	public void setStartTime(int startTime) {
+		this.startTime = startTime;
 	}
-	public int getStartMin() {
-		return startMin;
+	public int getEndTime() {
+		return endTime;
 	}
-	public void setStartMin(int startMin) {
-		this.startMin = startMin;
+	public void setEndTime(int endTime) {
+		this.endTime = endTime;
 	}
-	public int getEndHour() {
-		return endHour;
+	public String getTitle() {
+		return title;
 	}
-	public void setEndHour(int endHour) {
-		this.endHour = endHour;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	public int getEndMin() {
-		return endMin;
+	public String getContents() {
+		return contents;
 	}
-	public void setEndMin(int endMin) {
-		this.endMin = endMin;
-	}
-	public String getsContent() {
-		return sContent;
-	}
-	public void setsContent(String sContent) {
-		this.sContent = sContent;
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
 	@Override
 	public String toString() {
-		return gName + ", " + sName + ", " + year + ", " + month + ", "
-				+ date + ", " + startHour + ", " + startMin + ", " + endHour + ", "
-				+ endMin + ", " + sContent;
+		return groupName + ", " + userName + ", " + date + ", "
+				+ startTime + ", " + endTime + ", " + title + ", " + contents;
 	}
-	
-	
 }

@@ -27,6 +27,7 @@ public class MemberDelete_UI extends JPanel {
 	private static final long serialVersionUID = 6557046076929215948L;
 
 	public MemberDelete_UI(JFrame superFrame, JPanel superPanel, Session session/*수정*/) {
+		
 		//JFrame mf = new JFrame();
 		m = c.process("MemberSatting.do", session); //수정
 		this.session = session; //수정

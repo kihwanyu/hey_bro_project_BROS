@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Calendar;
@@ -35,7 +36,7 @@ public class GroupListForMembers extends Frame {
 	 * 
 	 */
 	private static final long serialVersionUID = 2079468117320843313L;
-
+	
 	private Member m = new Member();
 	private Group g = new Group();
 	private Schedule s = new Schedule();
@@ -44,12 +45,24 @@ public class GroupListForMembers extends Frame {
 	private String month;
 	private String date;
 	public GroupListForMembers(Session session, String year, String month, String date){
+		// 프레임의 사이즈를 구합니다.
+				Dimension frameSize = this.getSize();
+				// 내 모니터의 크기를 구합니다.
+				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+				/*
+				* 그래서 프레임의 위치를
+				* (모니터화면 가로 - 프레임화면 가로) / 2,
+				* (모니터화면 세로 - 프레임화면 세로) / 2 이렇게 설정한다.
+				*/
+				
+		
 		this.session = session;
 		this.year = year;
 		this.month = month;
 		this.date = date;
 		//JFrame mf = new JFrame();		
 		this.setBounds(100, 50, 1100, 800);
+		this.setLocation((screenSize.width - frameSize.width)/7, (screenSize.height - frameSize.height)/8);
 		this.setLayout(null);
 
 		JPanel panel = new JPanel();

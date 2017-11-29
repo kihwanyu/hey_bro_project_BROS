@@ -1,7 +1,9 @@
 package View;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -27,13 +29,23 @@ public class FindMember_UI extends JPanel{
 	private static JFrame superFrame;
 	
 	public FindMember_UI(JFrame superFrame){
+		// 프레임의 사이즈를 구합니다.
+				Dimension frameSize = this.getSize();
+				// 내 모니터의 크기를 구합니다.
+				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+				/*
+				* 그래서 프레임의 위치를
+				* (모니터화면 가로 - 프레임화면 가로) / 2,
+				* (모니터화면 세로 - 프레임화면 세로) / 2 이렇게 설정한다.
+				*/
+				this.setLocation((screenSize.width - frameSize.width)/4, (screenSize.height - frameSize.height)/4);
 		this.superFrame = superFrame;
 		JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/Starry Night Over the Rhone 2.jpg"));
 		background.setBounds(0, 0, 800, 500);
 		this.add(background);
 		
 		//JFrame mf = new JFrame();
-		this.setBounds(0,0,800,500);
+		this.setSize(800,500);
 	
 		
 		//panel1 : 아이디 찾기

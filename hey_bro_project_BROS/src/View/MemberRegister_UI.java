@@ -1,8 +1,10 @@
 package View;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FileDialog;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -42,6 +44,16 @@ public class MemberRegister_UI extends JPanel {
 	private static final long serialVersionUID = -753271555181998155L;
 
 	public MemberRegister_UI(JFrame superFrame){
+		// 프레임의 사이즈를 구합니다.
+				Dimension frameSize = this.getSize();
+				// 내 모니터의 크기를 구합니다.
+				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+				/*
+				* 그래서 프레임의 위치를
+				* (모니터화면 가로 - 프레임화면 가로) / 2,
+				* (모니터화면 세로 - 프레임화면 세로) / 2 이렇게 설정한다.
+				*/
+				this.setLocation((screenSize.width - frameSize.width)/4, (screenSize.height - frameSize.height)/4);
 		this.superFrame = superFrame;
 		
 		final int MEMBER_LIBEL_LOCATION_X = 80;
@@ -52,7 +64,6 @@ public class MemberRegister_UI extends JPanel {
 		JPanel title_p = new JPanel();
 		
 		this.setLayout(null);
-		this.setLocation(0, 0);
 		JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/Starry Night Over the Rhone 2.jpg"));
 		background.setBounds(0, 0, 800, 500);
 		this.add(background);

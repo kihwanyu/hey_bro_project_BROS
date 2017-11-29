@@ -1,7 +1,9 @@
 package View;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -27,7 +29,7 @@ public class Login_UI extends JFrame{
 	MemberController c = new MemberController();
 	//세션역활을 해줄 세션 클래스
 	Session session = new Session();
-	
+
 	private static final long serialVersionUID = 4965601877104326133L;
 	private JPanel panel;
 	private JButton btnLogin;
@@ -38,17 +40,27 @@ public class Login_UI extends JFrame{
 	//
 
 	public Login_UI() {
+		// 프레임의 사이즈를 구합니다.
+		Dimension frameSize = this.getSize();
+		// 내 모니터의 크기를 구합니다.
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		/*
+		 * 그래서 프레임의 위치를
+		 * (모니터화면 가로 - 프레임화면 가로) / 2,
+		 * (모니터화면 세로 - 프레임화면 세로) / 2 이렇게 설정한다.
+		 */
+		this.setLocation((screenSize.width - frameSize.width)/4, (screenSize.height - frameSize.height)/4);
 		// setting
 		this.setTitle("HEY~BRO");
 		this.setResizable(false);
 		this.setBounds(400, 200, 800, 500);
 		panel = new JPanel();
 		panel.setBounds(400, 200, 800, 500);
-		
+
 		this.placeLoginPanel(panel);
-		
+
 		this.add(panel);
-		
+
 
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -59,8 +71,8 @@ public class Login_UI extends JFrame{
 		JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/Starry Night Over the Rhone 2.jpg"));
 		background.setBounds(0, 0, 800, 500);
 		panel.add(background);
-		
-		
+
+
 		JLabel userLabel = new JLabel("I    D");
 		userLabel.setBounds(230, 190, 80, 25);
 		background.add(userLabel);
@@ -69,20 +81,20 @@ public class Login_UI extends JFrame{
 		passLabel.setBounds(230, 220, 80, 25);
 		background.add(passLabel);
 		passLabel.setForeground(new Color(227, 237, 247));
-		
+
 		JLabel loginLabel = new JLabel("L  O  G  I  N");
 		loginLabel.setBounds(340, 150, 100, 25);
 		loginLabel.setForeground(new Color(227, 237, 247));
 		loginLabel.setFont(new Font(Font.DIALOG, Font.PLAIN, 18));
 		background.add(loginLabel);
-		
+
 		userText = new JTextField(20);
 		userText.setBounds(320, 190, 160, 25);
 		panel.add(userText);
 		passText = new JPasswordField(20);
 		passText.setBounds(320, 220, 160, 25);
 		panel.add(passText);
-	
+
 
 		btnInit = new JButton("회원가입");
 		btnInit.setBounds(230, 260, 115, 25);
@@ -99,30 +111,30 @@ public class Login_UI extends JFrame{
 		btnLogin = new JButton("로그인");
 		btnLogin.setBounds(490, 220, 100, 25);
 		background.add(btnLogin);
-	
-		
+
+
 		btnIdPw = new JButton("ID/PW찾기");
 		btnIdPw.setBounds(365, 260, 115, 25);
 		background.add(btnIdPw);
-		
+
 		clickEvent(btnInit,new MemberRegister_UI(this));
 		clickEvent(btnIdPw,new FindMember_UI(this));
-		
+
 		btnLogin.addMouseListener(new MouseListener() {
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent e) {
 				/*String passwordStr = "";
 				StringBuilder sb = new StringBuilder();
-				
+
 				char[] passwordChar = passText.getPassword();
-				
+
 				for(int i = 0; i < passwordChar.length; i++){
 					sb.append(passwordChar[i]);
 				}*/
@@ -131,30 +143,30 @@ public class Login_UI extends JFrame{
 					//로그인 성공시 비밀번호와 패스워드를 세션으로 얻는다.
 					session.setUserId(userText.getText());
 					session.setUserPw(passText.getText());
-					
+
 					new Main_UI(session);
 					frameSetVisible();
 				} else {
 					JOptionPane.showMessageDialog(null, "로그인 실패 \n\"아이디와 비밀번호를 다시확인해주세요.\"");
 				}			
 			}
-			
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
 	}	
@@ -163,13 +175,13 @@ public class Login_UI extends JFrame{
 	}
 	public void clickEvent(JButton button, JPanel panel){
 		button.addMouseListener(new MouseListener() {
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent e) {
 				nextPage(panel);
@@ -178,23 +190,23 @@ public class Login_UI extends JFrame{
 				panel.revalidate();
 				panel.repaint();
 			}
-			
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
 	}

@@ -1,7 +1,9 @@
 package View;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FileDialog;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -41,7 +43,16 @@ public class MemberUpdate_UI extends JPanel {
 	private static final long serialVersionUID = 3878058214731925430L;
 	
 	public MemberUpdate_UI(JFrame superFrame, Session session){
-		
+		// 프레임의 사이즈를 구합니다.
+				Dimension frameSize = this.getSize();
+				// 내 모니터의 크기를 구합니다.
+				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+				/*
+				* 그래서 프레임의 위치를
+				* (모니터화면 가로 - 프레임화면 가로) / 2,
+				* (모니터화면 세로 - 프레임화면 세로) / 2 이렇게 설정한다.
+				*/
+				this.setLocation((screenSize.width - frameSize.width)/4, (screenSize.height - frameSize.height)/4);
 		m = c.process("MemberSatting.do", session);
 		
 		this.session = session;

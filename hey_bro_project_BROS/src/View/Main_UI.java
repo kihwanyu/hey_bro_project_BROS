@@ -1,7 +1,9 @@
 package View;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -32,7 +34,16 @@ public class Main_UI extends JFrame {
 
 	public Main_UI(Session session){
 
-
+		// 프레임의 사이즈를 구합니다.
+				Dimension frameSize = this.getSize();
+				// 내 모니터의 크기를 구합니다.
+				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+				/*
+				* 그래서 프레임의 위치를
+				* (모니터화면 가로 - 프레임화면 가로) / 2,
+				* (모니터화면 세로 - 프레임화면 세로) / 2 이렇게 설정한다.
+				*/
+				this.setLocation((screenSize.width - frameSize.width)/4, (screenSize.height - frameSize.height)/4);
 		//jo1
 		//로그인에서 받을 세션을 메인화면으로 가지고 온다.
 		//로그인한 아이디로 맴버정보를 가져와 세팅한다.

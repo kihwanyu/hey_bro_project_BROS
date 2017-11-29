@@ -1,9 +1,11 @@
 package View;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
@@ -23,7 +25,7 @@ public class Group_Calendar_UI extends Frame{
 	/**
 	 * 
 	 */
-	
+
 	private static final long serialVersionUID = 1411365908257953013L;
 	////
 	private JButton date_bt[];
@@ -32,6 +34,16 @@ public class Group_Calendar_UI extends Frame{
 	private Session session = new Session();
 	private JSpinner dateSpinner;
 	public Group_Calendar_UI(Session session){
+		// 프레임의 사이즈를 구합니다.
+		Dimension frameSize = this.getSize();
+		// 내 모니터의 크기를 구합니다.
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		/*
+		 * 그래서 프레임의 위치를
+		 * (모니터화면 가로 - 프레임화면 가로) / 2,
+		 * (모니터화면 세로 - 프레임화면 세로) / 2 이렇게 설정한다.
+		 */
+		this.setLocation((screenSize.width - frameSize.width)/7, (screenSize.height - frameSize.height)/8);
 		this.session = session;
 		int[] month = new int [12];
 		//JFrame this = new JFrame();      
@@ -40,12 +52,12 @@ public class Group_Calendar_UI extends Frame{
 		this.setLayout(null);
 		this.setBackground(Color.WHITE);
 		//프레임 크기
-		this.setBounds(100, 50, 1100, 800);
+		this.setSize(1100, 800);
 		//프레임 이름
 		this.setTitle("Hey~bro");
 		this.setResizable(false);
 		int y = 155;
-		
+
 		//달력 패널 
 		JPanel cjp = new JPanel();
 		cjp.setBounds(300, 130, 700, 500);
@@ -57,12 +69,12 @@ public class Group_Calendar_UI extends Frame{
 			month[i] = 1+i;
 			monthList.addItem(String.valueOf(month[i]).toString());
 		}
-		
+
 		Calendar utilTodayCalendar = new GregorianCalendar();
 
 		JPanel[] date_text = new JPanel[6];
 		JTextField[][] date_textField = new JTextField[6][7];
-		
+
 		for(int i = 0; i < date_textField.length; i++){
 			date_text[i] = new JPanel();
 			for(int j = 0; j < date_textField[i].length; j++){
@@ -101,12 +113,12 @@ public class Group_Calendar_UI extends Frame{
 		// 상단 날짜표시 스피너
 		JPanel cPanel = new JPanel(); 
 		cPanel.setBounds(594, 30, 110, 30);
-		
-		
+
+
 		Calendar calendar = new GregorianCalendar(utilTodayCalendar.get(Calendar.YEAR),
 				utilTodayCalendar.get(Calendar.MONTH),1);
 		//8월은 9 //
-		
+
 		Date value = utilTodayCalendar.getTime(); // 현재날짜
 		utilTodayCalendar.add(Calendar.YEAR, -1); 
 		//1금요일~7목요일
@@ -119,17 +131,17 @@ public class Group_Calendar_UI extends Frame{
 		dateSpinner = new JSpinner(dateModel);
 		dateSpinner.setEditor(new JSpinner.DateEditor(dateSpinner, "yyyy"));
 		//dateSpinner.setBackground(Color.WHITE);
-		
+
 		cPanel.add(dateSpinner);
 		cPanel.setBackground(Color.WHITE);
 		cPanel.setLocation(50+525, 30);
 		monthList.setSelectedIndex(calendar.get(Calendar.MONTH));
 		monthList.setBounds(50+620, 35, 40, 22);
-		
+
 		monthList.setVisible(true);
 		//달력버튼출력 메소드
 		CalendarButtonUpdate(calendar,utilTodayCalendar.get(Calendar.MONTH)+1);
-		
+
 		/*for(int i = 0; i < dateList.size(); i++){
 			System.out.println("arrayList["+i+"] : " + dateList.get(i) );
 		}*/
@@ -185,35 +197,35 @@ public class Group_Calendar_UI extends Frame{
 			cjp.add(date_bt[i]);
 		}
 		backB.addMouseListener(new MouseListener() {
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent e) {
 				new Main_UI(session);
 				thisSetVisibleFalse();
 			}
-			
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
 		dateSpinner.addChangeListener(new ChangeListener() {
@@ -252,11 +264,11 @@ public class Group_Calendar_UI extends Frame{
 				}
 			}
 		});
-		
+
 		groupUpdate_bt.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -265,23 +277,23 @@ public class Group_Calendar_UI extends Frame{
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				
+
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				
+
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 			}
 		});
 		groupDelete_bt.addMouseListener(new MouseListener() {
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -291,20 +303,20 @@ public class Group_Calendar_UI extends Frame{
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		
+
 		this.add(cjp);
 		this.add(monthList);
 		this.add(backB);
@@ -318,7 +330,7 @@ public class Group_Calendar_UI extends Frame{
 		this.add(textGln);
 		this.add(userPanel);
 		this.add(mainPanel);
-		
+
 		this.setVisible(true);
 
 		this.revalidate();
@@ -330,10 +342,10 @@ public class Group_Calendar_UI extends Frame{
 		int month = monthValue;
 
 		int day_of_week = calendar.get(Calendar.DAY_OF_WEEK);
-		
+
 		int date_valueArr = 0;
 		int day_of_weekArr = 0;
-		
+
 		switch (day_of_week) {
 		case 1:
 			day_of_weekArr = 0;
@@ -386,7 +398,7 @@ public class Group_Calendar_UI extends Frame{
 		for(int i = date_valueArr+3; i < date_bt.length; i ++){
 			dateList.add("");
 		}		
-		
+
 		for(int i = 0; i < date_bt.length; i++){
 			try {
 				date_bt[i].setText(dateList.get(i).toString());
@@ -395,25 +407,25 @@ public class Group_Calendar_UI extends Frame{
 			}			
 		}
 	}
-	
+
 	public void date_bt_Click_event(JButton button){
-			button.addMouseListener(new MouseListener() {
-			
+		button.addMouseListener(new MouseListener() {
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				
+
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				
+
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -429,7 +441,7 @@ public class Group_Calendar_UI extends Frame{
 	}
 	public static void main(String[] args){
 		Session session = new Session("11", "11");
-		
+
 		new Group_Calendar_UI(session);	
 	}
 }
