@@ -9,25 +9,28 @@ public class ScheduleController {
 	ScheduleDAO sDao = new ScheduleDAO();
 	Schedule schedule;
 
-	public void process(String key,int number,String groupName, String userName,
+	public void process(String key,String groupName, String userName,
 			String date, String startTime, String endTime, String title, String contents){
 		switch(key){
-		case "Schedule.do" :
-			sDao.scheduleRegistor(number, groupName, userName, date, startTime, endTime, title, contents);
+		case "ScheduleRegister.do" :
+			sDao.scheduleRegistor(groupName, userName, date, startTime, endTime, title, contents);
 			break;
-		default : break;
-		}
-		//
-	}
-	public ArrayList<Schedule> process(String key, String date, String groupName){
-		switch(key){
-		case "ScheduleList.do" : 
-		return	sDao.prcess(date, groupName);
-		
 		default : 
 			break;
 		}
-		return null;
+		//
 	}
 
+	public ArrayList<Schedule> process(String key, String gName) {
+		ArrayList<Schedule> scheduleArrayList = new ArrayList<>();
+		switch (key) {
+		case "ScheduleSatting.do":
+			scheduleArrayList = sDao.scheduleSatting(gName);
+			break;
+
+		default:
+			break;
+		}
+		return scheduleArrayList;
+	}
 }
