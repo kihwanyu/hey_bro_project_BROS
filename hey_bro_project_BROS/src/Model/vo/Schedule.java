@@ -26,6 +26,15 @@ public class Schedule {//
 		this.contents = contents;
 	}
 	
+	public Schedule(String startTime, String endTime, String title, String contents){
+		super();
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.title = title;
+		this.contents = contents;
+		
+	}
+	
 	public int getNumber() {
 		return number;
 	}
