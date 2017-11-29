@@ -296,7 +296,6 @@ public class GroupDAO {
 	}
 	//조성식 수정
 	public Group groupSetting(String gName){
-		System.out.println("안녕하냐");
 		Properties prop = new Properties();
 		ArrayList<Group> groupArrayList = new ArrayList();
 		

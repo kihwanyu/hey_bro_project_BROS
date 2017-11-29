@@ -89,7 +89,7 @@ public class GroupListForMembers extends Frame {
 		currentMonth.setBounds(100, 35, 400, 100);
 		currentMonth.setFont(new Font(Font.DIALOG, Font.BOLD, 30));
 
-		list = sc.process("ScheduleList.do", year + month + date, gName);
+		//list = sc.process("ScheduleList.do", year + month + date, gName);
 
 
 
