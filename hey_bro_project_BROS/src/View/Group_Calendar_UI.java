@@ -19,8 +19,11 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import Controller.GroupController;
+import Controller.MemberController;
 import Controller.ScheduleController;
 import Model.vo.Group;
+import Model.vo.Member;
 import Model.vo.Schedule;
 import Model.vo.Session;
 
@@ -36,14 +39,18 @@ public class Group_Calendar_UI extends Frame{
 	private Session session = new Session();
 	private JSpinner dateSpinner;
 	private Group group = new Group();
+	private Member member = new Member();
 	private String gName;
 	private ArrayList<String> scheduleList = new ArrayList<>();
 	private ArrayList<Schedule> tempScheduleList = new ArrayList<>();
 	private	ScheduleController sc = new ScheduleController();
+	private GroupController gc = new GroupController();
+	private MemberController mc = new MemberController();
 	private JTextArea[][] date_textArea = new JTextArea[6][7];
 	public Group_Calendar_UI(Session session, String gName/*방이름*/){
 		//
-
+		this.group = gc.process("GroupSetting.do", gName, true); 
+		this.member = mc.process("MemberSatting.do", session);
 		this.gName = gName;
 		// 프레임의 사이즈를 구합니다.
 		Dimension frameSize = this.getSize();
@@ -65,7 +72,7 @@ public class Group_Calendar_UI extends Frame{
 		//프레임 크기
 		this.setSize(1100, 800);
 		//프레임 이름
-		this.setTitle("Hey~bro");
+		this.setTitle(group.getgName());
 		this.setResizable(false);
 		int y = 155;
 
@@ -114,7 +121,7 @@ public class Group_Calendar_UI extends Frame{
 
 		// 모임 내용 텍스트 필드
 		JTextField gtf = new JTextField();
-		gtf.setText("모임 내용");
+		gtf.setText(group.getContent());
 		gtf.setSize(170, 160);
 		gtf.setLocation(35, 130);
 
@@ -201,7 +208,7 @@ public class Group_Calendar_UI extends Frame{
 		JLabel textGl = new JLabel("님은 모임장입니다.");
 		textGl.setLocation(90, 43);
 		textGl.setSize(120, 50);
-		JLabel textGln = new JLabel("조성식");
+		JLabel textGln = new JLabel(member.getUserName());
 		textGln.setLocation(45, 43);
 		textGln.setSize(60, 50);
 
@@ -363,7 +370,7 @@ public class Group_Calendar_UI extends Frame{
 	}
 	public void CalendarButtonUpdate(Calendar calendar, int monthValue){
 		dateList.clear();
-		
+		scheduleList.clear();
 		int year = calendar.get(Calendar.YEAR);
 		int month = monthValue;
 
@@ -445,32 +452,41 @@ public class Group_Calendar_UI extends Frame{
 		for(int i = 0; i < dateList.size(); i++){
 			
 			if(!dateList.get(i).equals("")){
-				String[] tempScheduleListDate_str = tempScheduleList.get(count).getDate().split("/");
-				if(Integer.parseInt(tempScheduleListDate_str[2])<10){
-					tempScheduleListDate_str[2] = tempScheduleListDate_str[2].substring(1);
-				}
+				try {
+					String[] tempScheduleListDate_str = tempScheduleList.get(count).getDate().split("/");
+					if(Integer.parseInt(tempScheduleListDate_str[2])<10){
+						tempScheduleListDate_str[2] = tempScheduleListDate_str[2].substring(1);
+					}
 
-				if(String.valueOf(year).equals(tempScheduleListDate_str[0])&&
-						String.valueOf(month).equals(tempScheduleListDate_str[1])&&
-						dateList.get(i).equals(tempScheduleListDate_str[2])){
-					String str = "["+ tempScheduleList.get(count).getTitle() + "] " + tempScheduleList.get(count).getTitle() + "\n";
-					System.out.println(tempScheduleList.get(count).getDate());
-					scheduleList.add(str);
-					System.out.println(scheduleList.toString());
-					count++;
-				} else {
-					scheduleList.add("");
+					if(String.valueOf(year).equals(tempScheduleListDate_str[0])&&
+							String.valueOf(month).equals(tempScheduleListDate_str[1])&&
+							dateList.get(i).equals(tempScheduleListDate_str[2])){
+						String str = "["+ tempScheduleList.get(count).getUserName() + "] " + tempScheduleList.get(count).getTitle() + "\n";
+						System.out.println(tempScheduleList.get(count).getDate());
+						scheduleList.add(str);
+						System.out.println(scheduleList.toString());
+						count++;
+					} else {
+						scheduleList.add("");
+					}
+				} catch (Exception e) {
+					break;
 				}
+				
 			} else {
 				scheduleList.add("");
 			}
 		}
 		count = 0;
-		for(int i = 0; i < date_textArea.length; i++){			
-			for(int j = 0; j < date_textArea[i].length; j++){
+		for(int i = 0; i < date_textArea.length; i++){		
+			try{
+			for(int j = 0; j < date_textArea[i].length; j++){		
 				date_textArea[i][j].setText(scheduleList.get(count));
 				count++;
 				System.out.println(date_textArea[i][j].getText());
+			}
+			} catch (Exception e) {
+				break;
 			}
 		}
 		this.revalidate();
@@ -507,10 +523,5 @@ public class Group_Calendar_UI extends Frame{
 	}
 	public void thisSetVisibleFalse(){
 		this.setVisible(false);
-	}
-	public static void main(String[] args){
-		Session session = new Session("11", "11");
-
-		new Group_Calendar_UI(session, "BROS");	
 	}
 }

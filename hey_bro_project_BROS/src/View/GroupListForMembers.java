@@ -25,6 +25,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+
 import Model.vo.Group;
 import Model.vo.Member;
 import Model.vo.Schedule;
@@ -104,7 +106,7 @@ public class GroupListForMembers extends Frame {
 		String[] columnNames = {"시작시간", "종료시간", "일정명" , "일정내용" };		
 
 		DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
-
+	
 		JTable table = new JTable(dtm);
 		table.setBounds(100, 180, 900, 500);
 		//table.setAutoCreateRowSorter(true);
@@ -127,6 +129,37 @@ public class GroupListForMembers extends Frame {
 		back.setBounds(900,70,100,30);
 		JButton scheduleRegister_bt = new JButton("일정 추가");
 		scheduleRegister_bt.setBounds(900,720,100,30);
+		table.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("MousePressed");
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		back.addMouseListener(new MouseListener(){
 
 			@Override

@@ -131,10 +131,26 @@ public class ScheduleRegister extends JFrame{
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				String startTime = (String) hourList1.getSelectedItem()+(String) miniteList1.getSelectedItem();
-				String endTime = (String) hourList2.getSelectedItem()+(String) miniteList2.getSelectedItem();
 				
-				sc.process("Schedule.do", gName, session.getUserId(), year+"/"+month+"/"+date, startTime, endTime, titleTf.getText(),contentsTf.getText());
+				String startTime_h = (String) hourList1.getSelectedItem();
+				String startTime_m = (String) miniteList1.getSelectedItem();
+				String endTime_h = (String) hourList2.getSelectedItem();
+				String endTime_m = (String) miniteList2.getSelectedItem();
+				
+				if(Integer.parseInt(startTime_h) < 10){
+					startTime_h = "0" + startTime_h;
+				}
+				if(Integer.parseInt(startTime_m) < 10){
+					startTime_m = "0" + startTime_m;
+				}
+				if(Integer.parseInt(endTime_h) < 10){
+					endTime_h = "0" + endTime_h;
+				}
+				if(Integer.parseInt(endTime_m) < 10){
+					endTime_m = "0" + endTime_m;
+				}
+				
+				sc.process("Schedule.do", gName, session.getUserId(), year+"/"+month+"/"+date, startTime_h+":"+startTime_m, endTime_h+":"+endTime_m, titleTf.getText(),contentsTf.getText());
 				JOptionPane.showMessageDialog(null, "일정이 추가되었습니다.", "title", JOptionPane.PLAIN_MESSAGE);
 			}
 

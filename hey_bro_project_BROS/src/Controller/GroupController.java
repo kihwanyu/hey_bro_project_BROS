@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Model.dao.GroupDAO;
 import Model.vo.Group;
+import Model.vo.Session;
 
 public class GroupController {
 	GroupDAO gDao = new GroupDAO();
