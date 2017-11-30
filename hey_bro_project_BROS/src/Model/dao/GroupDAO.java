@@ -529,7 +529,7 @@ public class GroupDAO {
 	public void leaveGroup(Session session, String gName){
 		Properties prop = new Properties();
 		ArrayList<String> userNameList = new ArrayList<>();
-		Map<String,Group> groupMap = new HashMap<>();
+	
 
 		String rgName;
 		String ruserName;
@@ -548,22 +548,27 @@ public class GroupDAO {
 				
 				userNameList.add(str);
 			//	System.out.println(i +": "+ str + ":D");
+				/*System.out.println("prop.size: "+prop.size());
+				System.out.println("userNameList.size: "+ userNameList.size());*/
 				
 				if(str!=null){
 					ruserName = str; //ruserName에 담음 
-				//	System.out.println(ruserName + ":O");
-					
-					if(ruserName.equals(session.getUserId())){
+					System.out.println(ruserName + ":O");
+										
+				if(ruserName.equals(session.getUserId())){
+					for(int j = 0; j<userNameList.size();j++){
+						if(userNameList.get(j).equals(session.getUserId())){
 						//현재 사용자 ID와 ruserName이 같다면
-					//	System.out.println(ruserName + "&" + session.getUserId());
-					//	System.out.println("userNameList" + userNameList);
-						for(int j = 0; j<userNameList.size();j++){
-							
-							//System.out.println(":M" + userNameList.get(j));
-							//System.out.println(":<"+userNameList.get(i));
+							System.out.println(ruserName + "&" + session.getUserId());
+							System.out.println("userNameList" + userNameList);{
+						
 							userNameList.remove(j); //해당 인덱스 삭제
+									break;
+							}
+						
 						}
 					}
+				}
 				}
 			}	
 		} catch (InvalidPropertiesFormatException e) {
