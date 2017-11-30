@@ -56,19 +56,20 @@ public class GroupDelete extends JFrame{
 
 
 		//Î¨∏Íµ¨ ?ùºÎ≤?
-		Image icon = new ImageIcon("hey_bro_project_BROS/src/View/img/delete.PNG").getImage().getScaledInstance(612, 358, 0);
+		Image icon = new ImageIcon("hey_bro_project_BROS/src/View/img/leavegroup2.png").getImage().getScaledInstance(800, 500, 0);
 		JLabel label = new JLabel(new ImageIcon(icon));
-		label.setBounds(100, 70, 612, 358);
+		label.setBounds(0, 0, 800, 500);
 
 		//?Éà?á¥Î≤ÑÌäº
 		Image icon2 = new ImageIcon("hey_bro_project_BROS/src/View/img/delete_bt.PNG").getImage().getScaledInstance(100, 39, 0);
 		JButton label2 = new JButton(new ImageIcon(icon2));
-		label2.setBounds(350, 375, 100, 39);
+		label2.setBounds(350, 397, 100, 39);
 		
 		//?ôï?ù∏ Ï≤¥ÌÅ¨
 		JRadioButton check = new JRadioButton();
 		check.setBackground(null);
-		check.setBounds(280, 345, 20, 20);
+		check.setBounds(271, 360, 16, 25);
+		check.setOpaque(false);
 		
 		label2.addMouseListener(new MouseListener(){
 
