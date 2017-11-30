@@ -547,18 +547,17 @@ public class GroupDAO {
 				
 				
 				userNameList.add(str);
-				System.out.println(i +": "+ str + ":D");
+			//	System.out.println(i +": "+ str + ":D");
 				
 				if(str!=null){
 					ruserName = str; //ruserName에 담음 
-					System.out.println(ruserName + ":O");
+				//	System.out.println(ruserName + ":O");
 					
 					if(ruserName.equals(session.getUserId())){
 						//현재 사용자 ID와 ruserName이 같다면
-						System.out.println(ruserName + "&" + session.getUserId());
-						System.out.println("userNameList" + userNameList);
+					//	System.out.println(ruserName + "&" + session.getUserId());
+					//	System.out.println("userNameList" + userNameList);
 						for(int j = 0; j<userNameList.size();j++){
-							
 							
 							//System.out.println(":M" + userNameList.get(j));
 							//System.out.println(":<"+userNameList.get(i));

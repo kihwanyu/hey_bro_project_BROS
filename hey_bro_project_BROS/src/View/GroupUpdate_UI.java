@@ -3,7 +3,6 @@ package View;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Panel;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -14,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import com.sun.glass.events.WindowEvent;
 
 import Controller.GroupController;
 import Model.vo.Group;
@@ -32,7 +33,7 @@ public class GroupUpdate_UI extends JFrame{
 		//
 		this.session = session;
 		System.out.println(groupName);
-		System.out.println("하이?");
+		//System.out.println("하이?");
 		g = gc.process("GroupSetting.do", groupName, true);
 		String leader = g.getLeader();
 		System.out.println(leader);
@@ -157,6 +158,7 @@ public class GroupUpdate_UI extends JFrame{
 				
 				if(gPwtf.getText().equals(regPwtf.getText())){
 					JOptionPane.showMessageDialog(null, "모임수정이 성공적으로 이루어졌습니다.");
+					
 					new Group_Calendar_UI(session, groupName);
 					
 				}else{
