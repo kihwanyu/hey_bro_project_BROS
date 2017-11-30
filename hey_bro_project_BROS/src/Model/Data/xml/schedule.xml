@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<comment>Thu Nov 30 04:54:01 KST 2017</comment>
-<entry key="6">6, BROS, 11, 2017/11/24, 01:01, 05:01, 면접, 5시까지오세요.</entry>
-<entry key="5">5, BROS, rlghks94, 2017/11/08, 10:01, 10:10, 프로젝트 제출, 10시까지 제출해주세요.</entry>
-<entry key="4">4, BROS, rlghks94, 2017/11/14, 15:30, 16:30, 저녘식사, 역삼역으로오세요.</entry>
-<entry key="3">3, BROS, rlghks94, 2017/11/15, 15:30, 16:30, 저녘식사, 역삼역으로오세요.</entry>
-<entry key="2">2, BROS, rlghks94, 2017/11/05, 15:30, 16:30, 저녘식사, 역삼역으로오세요.</entry>
-<entry key="1">1, BROS, rlghks94, 2017/11/04, 15:30, 16:30, 저녘식사, 역삼역으로오세요.</entry>
-<entry key="0">0, BROS, rlghks94, 2017/11/28, 15:30, 16:30, 저녘식사, 역삼역으로오세요.</entry>
+<comment>Thu Nov 30 19:53:48 KST 2017</comment>
+<entry key="3">3, BROS, 11, 2017/11/01, 01:01, 01:01, 123, 123</entry>
+<entry key="2">2, BROS, 11, 2017/11/02, 01:01, 01:01, afe, qewr</entry>
+<entry key="1">1, BROS, 11, 2017/11/01, 01:01, 01:01, 한정란, 구주승 조성식 유기환</entry>
+<entry key="0">0, BROS, 11, 2017/11/01, 05:05, 10:10, 구주승, 유기환 조성식</entry>
 </properties>

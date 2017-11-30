@@ -137,7 +137,7 @@ public class ScheduleDAO {
 			e.printStackTrace();
 		}
 		scheduleArrayList.sort(new ScheduleSortASC());
-		System.out.println(scheduleArrayList.toString());
+		System.out.println("스케쥴 리스트 : " + scheduleArrayList);
 		return scheduleArrayList;
 	}
 

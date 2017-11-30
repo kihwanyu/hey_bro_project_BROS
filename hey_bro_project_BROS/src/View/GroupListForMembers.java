@@ -48,6 +48,7 @@ public class GroupListForMembers extends Frame {
 	private String month;
 	private String date;
 	private ArrayList<Schedule> list = new ArrayList<>();
+	private ArrayList<Schedule> tableList = new ArrayList<>();
 	public GroupListForMembers(Session session, String year, String month, String date, String gName){
 		// 프레임의 사이즈를 구합니다.
 		Dimension frameSize = this.getSize();
@@ -64,6 +65,9 @@ public class GroupListForMembers extends Frame {
 		this.year = year;
 		this.month = month;
 		this.date = date;
+		System.out.println("year:"+year);
+		System.out.println("month:"+month);
+		System.out.println("date:"+date);
 		//JFrame mf = new JFrame();		
 		this.setBounds(100, 50, 1100, 800);
 		this.setLocation((screenSize.width - frameSize.width)/7, (screenSize.height - frameSize.height)/8);
@@ -85,60 +89,80 @@ public class GroupListForMembers extends Frame {
 
 		JLabel currentMonth = new JLabel();
 		String cmonth = year + " 년 " + month + " 월 " + date + " 일"; 
+		String yearStr = year;
+		String monthStr = month;
+		String dateStr = date;
 		currentMonth.setText(cmonth);
 		currentMonth.setBounds(100, 35, 400, 100);
 		currentMonth.setFont(new Font(Font.DIALOG, Font.BOLD, 30));
-
-		//list = sc.process("ScheduleList.do", year + month + date, gName);
-
-
+		if(Integer.parseInt(year) < 10){
+			yearStr = "0"+year;
+		}
+		if(Integer.parseInt(month) < 10){
+			monthStr = "0"+month;
+		}
+		if(Integer.parseInt(date) < 10){
+			dateStr = "0"+date;
+		}
+		String smonth = yearStr + "/" + monthStr + "/" + dateStr;
+		System.out.println("smonth:"+smonth);
+		list.clear();
+		list = sc.process("ScheduleSatting.do", gName);
+		for (int i = 0; i < list.size(); i++) {
+			
+			System.out.println("First_list 확인 : " + list.get(i));
+		}
+		for(int i = 0; i < list.size(); i++){
+			//System.out.println(list.get(i).getDate());
+			if((smonth.equals(list.get(i).getDate()))){
+				System.out.println("삭제 list 확인 : " + list.get(i));
+				tableList.add(list.get(i));
+			}
+		}
+		for (int i = 0; i < tableList.size(); i++) {
+			
+			System.out.println("tableList 확인 : " + tableList.get(i));
+		}
 
 		//table1
 		String str;
 
-		String[] str_arr = new String[list.size()];
+		String[][] str_arr = new String[tableList.size()][4];
+
+		String[] copy;
+
+	//	System.out.println("copy.length : " + copy.length);
 		
-		System.out.println("str_arr.size() = "+str_arr.length);
-		for(int i = 0; i < str_arr.length; i++){
-			str_arr[i] = list.get(i).toString();
+		String strT;
+		String strE;
+		String strti;
+		String strc;
+		ArrayList<String> copyList = new ArrayList<>();
+		for(int i = 0; i < tableList.size(); i++){
+				strT = tableList.get(i).getStartTime();
+				strE = tableList.get(i).getEndTime();
+				strti = tableList.get(i).getTitle();
+				strc = tableList.get(i).getContents();
+				copyList.add(strT+ ", " + strE + ", " + strti + ", " + strc);
 		}
-
-		Object[][] data = new Object[list.size()][4];
-		for(int i = 0; i < data.length; i++){
-			for(int j = 0; j < data.length; j++){
-				data[i][j] = new Object();
-			}
-		}
-		for(int i = 0; i < data.length; i++){
+		
+		copy = copyList.toString().split(", ");
+		
+		Object[][] data = new Object[tableList.size()][4];
+		int count = 0;
+		for(int i = 0; i < data.length; i++){	
+			
 			for(int j = 0; j < data[i].length; j++){
-				try {
-					data[i][j] = str_arr[j];
-				} catch (Exception e) {
-					break;
-				}
-				
+				data[i][j] = copy[count];
+				count++;
 			}
-
-
-
-
 		}
-		/*			Object [][] data = {
-					{"a", "b", "c", "d"},
-					{"a", "b", "c", "d"},
-					{"a", "b", "c", "d"},
-					{"a", "b", "c", "d"},
-					{"a", "b", "c", "d"},
-					{"a", "b", "c", "d"},
-			};
-		 */
-
-
-
-		//Object [][] data = null;
-		/*for(int i =0; i<prop.size();i++){			
-			data[i] = new Object[] {s.getDate(), s.getStartHour(), s.getStartMin(), s.getEndHour(), s.getEndMin(), s.getsContent()};			
-		}*/
+		for(int i = 0; i < data.length; i++){	
+			for(int j = 0; j < data[i].length; j++){
+				System.out.println(data[i][j]);
+			}
+		}
+		
 
 		String[] columnNames = {"시작시간", "종료시간", "일정명" , "일정내용" };		
 
