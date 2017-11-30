@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -38,7 +40,7 @@ public class JoinGroup_UI extends JPanel {
 	private static final long serialVersionUID = -5276751205814558579L;
 
 	public JoinGroup_UI(JFrame superFrame, JPanel superPanel, Session session/*수정*/){
-		System.out.println("요기요");
+		//System.out.println("요기요");
 		m = mc.process("MemberSatting.do", session); //수정
 		groupListArr = gc.process("groupCombo.do", session.getUserId());
 		for (int i = 0; i < groupListArr.size(); i++) {
@@ -56,14 +58,22 @@ public class JoinGroup_UI extends JPanel {
 		this.setLayout(null);
 		panel.setBounds(0, 0, 800, 500);
 		panel.setLayout(null);
+	
 		//panel.setBounds(0, 0, 800, 500);
 		//panel.setLayout(null);
+		
+		//배경
+		JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/maxresdefault.png"));
+		background.setBounds(0, 0, 800, 500);
+		this.add(background);
+		
 		//라벨 생성
 		JLabel lb1 = new JLabel("모임 입장");
 
-		lb1.setLocation(350, 50);
+		lb1.setLocation(340, 5);
 		lb1.setSize(200, 100);
 		lb1.setFont(new Font(Font.DIALOG, Font.BOLD, 28));
+		lb1.setForeground(new Color(79, 43, 11));
 
 
 		//콤보박스 생성
@@ -91,7 +101,7 @@ public class JoinGroup_UI extends JPanel {
 
 		//버튼 생성
 
-		JButton btn1 = new JButton("뒤로가기");
+		JButton btn1 = new JButton("뒤로 가기");
 		btn1.setLocation(200, 300);
 		btn1.setSize(180, 50);
 
@@ -101,10 +111,10 @@ public class JoinGroup_UI extends JPanel {
 
 		//메인프레임에 담기
 		//this.add(panel);
-		panel.add(lb1);
-		panel.add(groupList);
-		panel.add(btn1);
-		panel.add(btn2);
+		background.add(lb1);
+		background.add(groupList);
+		background.add(btn1);
+		background.add(btn2);
 		this.add(panel);
 		clickEvent(btn1, superPanel);
 

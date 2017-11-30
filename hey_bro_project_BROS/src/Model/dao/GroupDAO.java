@@ -98,7 +98,7 @@ public class GroupDAO {
 		}
 		//리더 추가
 		prop.clear();
-		String fileName = "hey_bro_project_BROS/src/Model/Data/xml/Group/"+gName+".xml";
+		String fileName = "hey_bro_project_BROS/src/Model/Data/xml/group/"+gName+".xml";
 		prop.setProperty(String.valueOf(0), leader);
 		try{
 			prop.storeToXML(new FileOutputStream(fileName),String.valueOf(new Date()).toString());
@@ -132,8 +132,7 @@ public class GroupDAO {
 				
 				for(int i = 0; i < prop.size(); i++){
 					String str;
-					Group group = new Group();
-					str = group.toString();
+				
 					String[] str_arr = new String[7];
 					str = prop.getProperty(String.valueOf(i).toString());
 
@@ -150,9 +149,9 @@ public class GroupDAO {
 						rNews = str_arr[5];
 						rLeader = str_arr[6];
 
-						Group group1 = new Group(rNum, rGname, rInterests, rPw, rContent, rNews, rLeader);
+						Group group = new Group(rNum, rGname, rInterests, rPw, rContent, rNews, rLeader);
 						
-						groupList.add(group1);
+						groupList.add(group);
 						
 					}
 				}
@@ -168,12 +167,11 @@ public class GroupDAO {
 				e.printStackTrace();
 			}
 			
-			for(int i = 0; i<groupList.size();i++){
+			/*for(int i = 0; i<groupList.size();i++){
 				System.out.println(":D");
 				System.out.println(groupList.get(i));
-			}
-			
-			
+			}*/
+						
 			for(int i=0; i<groupList.size();i++){
 				System.out.println(groupList.get(i).getLeader() + "랑 " + groupList.get(i).getgName());
 				System.out.println(session.getUserId());
@@ -524,26 +522,51 @@ public class GroupDAO {
 			e.printStackTrace();
 		}
 
-
 		return result;
 	}
 	
 	//그룹 탈퇴
-	public void leaveGroup(String gName, String userName){
+	public void leaveGroup(Session session, String gName){
 		Properties prop = new Properties();
 		ArrayList<String> userNameList = new ArrayList<>();
 		Map<String,Group> groupMap = new HashMap<>();
 
 		String rgName;
 		String ruserName;
-		String rLeader;
+		String rKey;
 		
 		try {
-			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS/src/Model/Data/xml/Group/"+gName+".xml"));
+			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS/src/Model/Data/xml/group/"+gName+".xml"));
+			//해당하는 그룹 xml 파일 소환
 			
-			
-			
-			
+			for(int i = 0; i < prop.size(); i++){
+				String str;
+				
+				str = prop.getProperty(String.valueOf(i).toString());
+				//str에 prop에 있는 해당 그룹 아이디 저장
+				
+				
+				userNameList.add(str);
+				System.out.println(i +": "+ str + ":D");
+				
+				if(str!=null){
+					ruserName = str; //ruserName에 담음 
+					System.out.println(ruserName + ":O");
+					
+					if(ruserName.equals(session.getUserId())){
+						//현재 사용자 ID와 ruserName이 같다면
+						System.out.println(ruserName + "&" + session.getUserId());
+						System.out.println("userNameList" + userNameList);
+						for(int j = 0; j<userNameList.size();j++){
+							
+							
+							//System.out.println(":M" + userNameList.get(j));
+							//System.out.println(":<"+userNameList.get(i));
+							userNameList.remove(j); //해당 인덱스 삭제
+						}
+					}
+				}
+			}	
 		} catch (InvalidPropertiesFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -554,7 +577,20 @@ public class GroupDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	
 		
+		prop.clear();
+		for(int i = 0; i < userNameList.size(); i++){
+			prop.setProperty(String.valueOf(i).toString(), userNameList.get(i).toString());
+			//새로운 userNameList를 prop에 다시 저장
+		}
+		
+		try {
+			prop.storeToXML(new FileOutputStream("hey_bro_project_BROS/src/Model/Data/xml/group/"+gName+".xml"),String.valueOf(new Date()).toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 	
 	

@@ -29,8 +29,19 @@ public class GroupController {
 			case "GroupDelete.do" :
 				gDao.groupDelete(session);
 					break;
+			
 			}
 		}
+	
+	//Leave a group
+		public void process(String key, Session session, String gName){
+		switch(key){
+		case "LeaveGroup.do" : 
+			gDao.leaveGroup(session, gName);
+		  }				
+	   }
+
+		
 	
 	//메소드 중첩(오버로딩)
 	public Boolean process(String key, String groupPw, String session){
