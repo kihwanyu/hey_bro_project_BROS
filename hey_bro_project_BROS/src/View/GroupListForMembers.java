@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -186,8 +188,17 @@ public class GroupListForMembers extends Frame {
 
 		JScrollPane sp = new JScrollPane(table);
 
+		/*JButton exit = new JButton("종료");
+		exit.setBounds(20,720,100,30);
+		exit.addActionListener(new ActionListener(){
 
-
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+			
+		});*/
+		
 
 		JButton back = new JButton("뒤로 가기");
 		back.setBounds(900,70,100,30);
@@ -257,7 +268,6 @@ public class GroupListForMembers extends Frame {
 
 			}
 		});
-
 
 		panel.add(lb1);
 		panel.add(lb2);	

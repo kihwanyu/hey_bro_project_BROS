@@ -162,6 +162,7 @@ public class ScheduleRegister extends JFrame{
 				}
 				sc.process("ScheduleRegister.do", gName, session.getUserId(), yearStr+"/"+monthStr+"/"+dateStr, startTime_h+":"+startTime_m, endTime_h+":"+endTime_m, titleTf.getText(),contentsTf.getText());
 				JOptionPane.showMessageDialog(null, "일정이 추가되었습니다.", "title", JOptionPane.PLAIN_MESSAGE);
+				new Group_Calendar_UI(session, gName);
 			}
 
 			@Override
