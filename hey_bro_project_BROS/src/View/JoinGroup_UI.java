@@ -58,15 +58,15 @@ public class JoinGroup_UI extends JPanel {
 		this.setLayout(null);
 		panel.setBounds(0, 0, 800, 500);
 		panel.setLayout(null);
-	
+
 		//panel.setBounds(0, 0, 800, 500);
 		//panel.setLayout(null);
-		
+
 		//배경
 		JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/maxresdefault.png"));
 		background.setBounds(0, 0, 800, 500);
 		this.add(background);
-		
+
 		//라벨 생성
 		JLabel lb1 = new JLabel("모임 입장");
 
@@ -93,9 +93,6 @@ public class JoinGroup_UI extends JPanel {
 				JComboBox<String> cb = (JComboBox<String>) e.getSource(); //선택한 콤보박스
 				name = (String)cb.getSelectedItem(); //선택된 아이템을 스트링에다가 형변환해서 담음
 
-
-				/*Image img = new ImageIcon("images/"+name + ".PNG").getImage().getScaledInstance(150,150,0); //확장자가 다 똑같다는 전제 하에..
-            label.setIcon(new ImageIcon(img));*/      
 			}
 		});
 
@@ -130,9 +127,16 @@ public class JoinGroup_UI extends JPanel {
 			public void mousePressed(MouseEvent e) {
 				System.out.println(name);
 				g = gc.process("GroupSetting.do", name, true);
-				//
-				new Group_Calendar_UI(session, name);
-				frameSetVisible();
+
+				if(g.getLeader().equals(session.getUserId())){
+					
+					new Group_Calendar_UI(session, name);
+					frameSetVisible();
+					
+				}else {
+					new Main_UI(session);
+					frameSetVisible();
+				}
 			}
 
 			@Override
