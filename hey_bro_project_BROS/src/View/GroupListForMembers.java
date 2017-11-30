@@ -148,7 +148,7 @@ public class GroupListForMembers extends Frame {
 				strc = tableList.get(i).getContents();
 				copyList.add(strN+ ", " + strT+ ", " + strS + ", " + strE + ", " + strti + ", " + strc);
 		}
-		
+		//
 		copy = copyList.toString().split(", ");
 		
 		Object[][] data = new Object[tableList.size()][6];
