@@ -37,7 +37,7 @@ public class MemberRegister_UI extends JPanel {
 	private MemberController c = new MemberController();
 	private	static boolean loginBoolean = false;
 	private static JFrame superFrame;
-	private static String pictureUrl = null;
+	private static String pictureUrl = "hey_bro_project_BROS/src/Model/Data/img/defalt.png";
 	private static JLabel userIng_lb;
 	private static String gender_text = "남"; // 디폴트 인자
 	
