@@ -80,14 +80,14 @@ public class ScheduleRegister extends JFrame{
 		JComboBox<String> miniteList1 = new JComboBox<>();
 		int[] minite1 = new int[59];
 		for(int i = 0; i < minite1.length; i++){
-			minite1[i] = 1+i;
+			minite1[i] = 0+i;
 			miniteList1.addItem(String.valueOf(minite1[i]).toString());
 		}
 		miniteList1.setLocation(290, 360);
-		miniteList1.setSize(50,30);
+		miniteList1.setSize(50, 30);
 		//종료시간 라벨
 		JLabel endL = new JLabel("종료 시간");
-		endL.setBounds(390, 350, 120,50);
+		endL.setBounds(390, 350, 120, 50);
 		//종료 시간 과 분
 		JComboBox<String> hourList2 = new JComboBox<>();
 		int[] hour2 = new int[24];
@@ -99,9 +99,9 @@ public class ScheduleRegister extends JFrame{
 		hourList2.setSize(50,30);
 
 		JComboBox<String> miniteList2 = new JComboBox<>();
-		int[] minite2 = new int[60];
+		int[] minite2 = new int[59];
 		for(int i = 0; i < minite2.length; i++){
-			minite2[i] = 1+i;
+			minite2[i] = 0+i;
 			miniteList2.addItem(String.valueOf(minite2[i]).toString());
 		}
 		miniteList2.setLocation(520, 360);
@@ -162,6 +162,7 @@ public class ScheduleRegister extends JFrame{
 				}
 				sc.process("ScheduleRegister.do", gName, session.getUserId(), yearStr+"/"+monthStr+"/"+dateStr, startTime_h+":"+startTime_m, endTime_h+":"+endTime_m, titleTf.getText(),contentsTf.getText());
 				JOptionPane.showMessageDialog(null, "일정이 추가되었습니다.", "title", JOptionPane.PLAIN_MESSAGE);
+				new Group_Calendar_UI(session, gName);
 			}
 
 			@Override
