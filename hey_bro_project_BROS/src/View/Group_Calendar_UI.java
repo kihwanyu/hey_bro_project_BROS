@@ -20,6 +20,8 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+
 import Controller.GroupController;
 import Controller.ScheduleController;
 import Model.vo.Group;
@@ -47,7 +49,7 @@ public class Group_Calendar_UI extends Frame{
 
 	private ScheduleController sc = new ScheduleController();
 	public Group_Calendar_UI(Session session, String gName/*방이름*/){
-		
+
 		group = gc.process("GroupSetting.do", gName, true);
 		this.gName = gName;
 		// 프레임의 사이즈를 구합니다.
@@ -160,6 +162,7 @@ public class Group_Calendar_UI extends Frame{
 
 		monthList.setVisible(true);
 		//달력버튼출력 메소드
+		tempScheduleList.clear();
 		tempScheduleList = sc.process("ScheduleSatting.do", gName);
 		CalendarButtonUpdate(calendar,utilTodayCalendar.get(Calendar.MONTH)+1);
 
@@ -418,28 +421,75 @@ public class Group_Calendar_UI extends Frame{
 		for(int i = date_valueArr+3; i < date_bt.length; i ++){
 			dateList.add("");
 		}		
+		ArrayList<Schedule> thisMonthScheduleList = new ArrayList<>();
+		//SimpleDateFormat dateParse = new SimpleDateFormat("yyyy/MM");
+		
+		String thisMonthDate = year+"/"+month;
+		for(int i = 0; i < tempScheduleList.size(); i++){
+			String[] tempScheduleStr = String.valueOf(tempScheduleList.get(i).getDate()).split("/");
+			if(Integer.parseInt(tempScheduleStr[1])<10){
+				tempScheduleStr[1] = tempScheduleStr[1].substring(1);
+			}
+			String tempScheduleStrYearMonth = tempScheduleStr[0] +"/" + tempScheduleStr[1];
+			if(tempScheduleStrYearMonth.equals(thisMonthDate)){
+				thisMonthScheduleList.add(tempScheduleList.get(i));
+			}	
+		}
+		
 		int count = 0;
-		//System.out.println(dateList.toString());
+		int temp = 0;
+		int indexTemp = 0;
+		boolean countingQuestion = true;
 		for(int i = 0; i < dateList.size(); i++){
-			//try{
+			countingQuestion = true;
 			if(!dateList.get(i).equals("")){
+
 				try {
-					String[] tempScheduleStr = String.valueOf(tempScheduleList.get(count).getDate()).split("/");
+					//System.out.println(tempScheduleList.get(count).getDate());
+					String[] tempScheduleStr = String.valueOf(thisMonthScheduleList.get(count).getDate()).split("/");
 					if(Integer.parseInt(tempScheduleStr[2])<10){
 						tempScheduleStr[2] = tempScheduleStr[2].substring(1);
-						System.out.println(tempScheduleStr[2]);
+						//System.out.println(tempScheduleStr[2]);
 					}
-
-					if(dateList.get(i).equals(tempScheduleStr[2])){
-						String str = "["+tempScheduleList.get(count).getUserName()+"] " + tempScheduleList.get(count).getTitle();
-						scheduleList.add(str);
-						count++;
-					} else {
-						scheduleList.add("");
+					if(Integer.parseInt(tempScheduleStr[1])<10){
+						tempScheduleStr[1] = tempScheduleStr[1].substring(1);
+						//System.out.println(tempScheduleStr[2]);
 					}
-				} catch (Exception e) {
-					break;
-				}		
+					if(temp!=0){
+						if(temp==Integer.parseInt(tempScheduleStr[2])&&
+								String.valueOf(year).equals(tempScheduleStr[0])&&
+								String.valueOf(month).equals(tempScheduleStr[1])){
+							//System.out.println(temp);
+							StringBuilder sb = new StringBuilder();
+							String str = "["+thisMonthScheduleList.get(count).getUserName()+"] " + thisMonthScheduleList.get(count).getTitle()+"\n";
+							System.out.println(str);
+							sb.append(scheduleList.get(indexTemp));
+							System.out.println(scheduleList.get(indexTemp));
+							sb.append(str);
+							scheduleList.set(indexTemp, sb.toString());
+							countingQuestion = false;
+							count++;
+							i--;
+						}
+					} 
+					if(countingQuestion){
+						if(dateList.get(i).equals(tempScheduleStr[2])&&
+								String.valueOf(year).equals(tempScheduleStr[0])&&
+								String.valueOf(month).equals(tempScheduleStr[1])){
+							String str = "["+thisMonthScheduleList.get(count).getUserName()+"] " + thisMonthScheduleList.get(count).getTitle() +"\n";
+							scheduleList.add(str);
+							if(temp < Integer.parseInt(tempScheduleStr[2])){ 
+								temp = Integer.parseInt(tempScheduleStr[2]);
+								indexTemp = i;
+							}				
+							count++;
+						} else {
+							scheduleList.add("");
+						}
+					}	
+				} catch (IndexOutOfBoundsException e) {
+					e.printStackTrace();
+				}						
 			} else {
 				scheduleList.add("");
 			} 
@@ -497,5 +547,4 @@ public class Group_Calendar_UI extends Frame{
 	public void thisSetVisibleFalse(){
 		this.setVisible(false);
 	}
-	
 }
