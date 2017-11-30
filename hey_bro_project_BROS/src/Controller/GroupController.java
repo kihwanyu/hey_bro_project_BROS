@@ -99,6 +99,7 @@ public class GroupController {
 
 		return group;
 	}
+	//조성식 수정(그룹 중복검사)//
 	public Boolean process(String key, String groupPw_groupName, Session session){
 		//
 		Boolean result = false;

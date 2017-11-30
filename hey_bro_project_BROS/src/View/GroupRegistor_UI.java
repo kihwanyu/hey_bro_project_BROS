@@ -256,6 +256,7 @@ public class GroupRegistor_UI extends JPanel {
 
 			}
 
+			//조성식 수정 (그룹명 중복검사)
 			@Override
 			public void mousePressed(MouseEvent e) {
 				boolean result = gc.process("GroupNameOverlap.do", gntf.getText(), session);
