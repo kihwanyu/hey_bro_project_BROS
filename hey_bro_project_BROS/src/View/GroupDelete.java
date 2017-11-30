@@ -170,7 +170,8 @@ public class GroupDelete extends JFrame{
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				new Group_Calendar_UI(session, gName);				
+				new Group_Calendar_UI(session, gName);
+				setVisible();
 			}
 
 			@Override
@@ -203,6 +204,9 @@ public class GroupDelete extends JFrame{
 		} catch (Exception e) {
 		}
 		
+	}
+	public void setVisible(){
+		this.setVisible(false);
 	}
 	
 	

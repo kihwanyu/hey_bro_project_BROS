@@ -6,6 +6,8 @@ import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
@@ -175,6 +177,18 @@ public class Group_Calendar_UI extends Frame{
 		mainPanel.setBackground(Color.WHITE);
 		mainPanel.setSize(1100, 800);
 		JPanel userPanel = new JPanel();
+		
+		
+		JButton exitBtn = new JButton("Á¾·á");
+		exitBtn.setBounds(980, 30, 100, 30);
+		exitBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+			
+		});
 
 
 		userPanel.setLocation(0, 0);
@@ -337,7 +351,8 @@ public class Group_Calendar_UI extends Frame{
 
 			}
 		});
-
+		
+		
 		this.add(cjp);
 		this.add(monthList);
 		this.add(backB);
@@ -345,6 +360,7 @@ public class Group_Calendar_UI extends Frame{
 		this.add(dayP);
 		this.add(cPanel);
 		this.add(png);
+		this.add(exitBtn);
 		this.add(groupUpdate_bt);
 		this.add(groupDelete_bt);
 		this.add(textGl);
