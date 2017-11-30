@@ -140,5 +140,17 @@ public class ScheduleDAO {
 		System.out.println("스케쥴 리스트 : " + scheduleArrayList);
 		return scheduleArrayList;
 	}
+	
+	public void scheduleUpdate(Schedule schedule) {
+		Properties prop = new Properties();
+		Map<Integer,Member> memberMap = new HashMap<>();
+		ArrayList<Member> memberArrayList = new ArrayList<>(); 
+		
+		String title;
+		String contents;
+		String startTime;
+		String endTime;
+		
+	}
 
 }
