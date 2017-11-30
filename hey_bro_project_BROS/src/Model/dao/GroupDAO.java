@@ -421,9 +421,44 @@ public class GroupDAO {
 			e.printStackTrace();
 		}
 	}
-	//구주승 (그룹장으로  그룹 검색하기)
-	public void groupSearch() {
+	//조성식(그룹 중복검사)
+	public boolean GroupNameOverlap(String groupName){
+		Properties prop = new Properties();
+		ArrayList<String> groupNameList = new ArrayList<>();
+		String rGroupName;
+		try {
+			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\groups.xml"));
+			//System.out.println(prop.size());
+			for(int i = 0; i < prop.size(); i++){
+				String str;
+				
+				String[] str_arr = new String[7];
+				
+				str = prop.getProperty(String.valueOf(i).toString());
+				if(str!=null){
 
+					str_arr = str.split(", ");
+	
+					System.out.println("groupName = " + str_arr[1]);
+					rGroupName = str_arr[1];
+					
+					groupNameList.add(rGroupName);
+				}
+			}	
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		for(int i = 0; i < groupNameList.size(); i++ ) {
+			if(groupNameList.get(i).equals(groupName)){
+				//System.out.println("중복되었습니다.");
+				return false;
+			}
+		}
+		return true;
+		
 	}
 	public ArrayList<String> groupListSearch(String userId) {
 		ArrayList<String> groupList = new ArrayList<>();

@@ -179,7 +179,7 @@ public class GroupRegistor_UI extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				loginBoolean = false;
-				btn.setEnabled(false);				
+				//btn.setEnabled(false);				
 			}
 
 			@Override
@@ -258,7 +258,7 @@ public class GroupRegistor_UI extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				boolean result = mc.process("MemberIdOverlap.do", gntf.getText());
+				boolean result = gc.process("GroupNameOverlap.do", gntf.getText(), session);
 
 				System.out.println(result);
 				if(result){
