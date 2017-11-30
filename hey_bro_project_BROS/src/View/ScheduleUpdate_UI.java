@@ -22,8 +22,17 @@ public class ScheduleUpdate_UI extends JFrame{
 
 	static private ScheduleController c = new ScheduleController();
 	static private Schedule s = new Schedule();
-	public void scheduleEdit(Session session, ArrayList<String> copyList, ArrayList<Schedule> tableList, int row, int column){
-
+	private Session session;
+	private String groupName;
+	private String year;
+	private String month;
+	private String date;
+	public void scheduleEdit(Session session, ArrayList<String> copyList, ArrayList<Schedule> tableList, int row, int column, String year, String month, String date, String groupName){
+		this.session = session;
+		this.year = year;
+		this.month = month;
+		this.date = date;
+		this.groupName = groupName;
 		String[] copy;
 		String[] datez;
 
@@ -45,7 +54,7 @@ public class ScheduleUpdate_UI extends JFrame{
 		datez = tableList.toString().split(", ");
 		String data = datez[row*8-5];
 		String gName = datez[row*8-7];
-		int number =Integer.parseInt(datez[row*8-8]);
+		int number =Integer.parseInt(datez[row*8-8].replace("[",""));
 		String[] ymd = datez[row*8-5].split("/");
 		int year0 = Integer.parseInt(ymd[0]);
 		int month0 = Integer.parseInt(ymd[1]);
@@ -65,22 +74,22 @@ public class ScheduleUpdate_UI extends JFrame{
 		JComboBox<String> yearList = new JComboBox<>();
 		JComboBox<String> monthList = new JComboBox<>();
 		JComboBox<String> dateList = new JComboBox<>();
-		int[] year = new int[80];
-		int[] month = new int [12];
-		int[] date = new int [31];
+		int[] yearArr = new int[80];
+		int[] monthArr = new int [12];
+		int[] dateArr = new int [31];
 
-		for(int i = 0; i < year.length; i++){
-			year[i] = 1940+i;
-			yearList.addItem(String.valueOf(year[i]).toString());
+		for(int i = 0; i < yearArr.length; i++){
+			yearArr[i] = 1940+i;
+			yearList.addItem(String.valueOf(yearArr[i]).toString());
 		}
-		for(int i = 0; i < month.length; i++){
-			month[i] = 1+i;
-			monthList.addItem(String.valueOf(month[i]).toString());
+		for(int i = 0; i < monthArr.length; i++){
+			monthArr[i] = 1+i;
+			monthList.addItem(String.valueOf(monthArr[i]).toString());
 		}
 
 		for(int i = 0; i < 31; i++){
-			date[i] = 1+i;
-			dateList.addItem(String.valueOf(date[i]).toString());   
+			dateArr[i] = 1+i;
+			dateList.addItem(String.valueOf(dateArr[i]).toString());   
 		}
 
 		yearList.setLocation(450, 40);
@@ -202,10 +211,9 @@ public class ScheduleUpdate_UI extends JFrame{
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
-				s = new Schedule(number,gName, session.getUserId(),data,starttime,endtime,titleTf.getText(),contentsTf.getText());
-				
-				c.process("ScheduleUpdate.do", s);
-				JOptionPane.showMessageDialog(null, "일정 수정이 성공적으로 이루어졌습니다.");
+				c.process("ScheduleDelete.do", number);
+				Listpage();	
+				JOptionPane.showMessageDialog(null, "일정이 삭제되었습니다.");
 			}
 			
 			@Override
@@ -232,7 +240,7 @@ public class ScheduleUpdate_UI extends JFrame{
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
-				s = new Schedule(number,gName, session.getUserId(),data,starttime,endtime,titleTf.getText(),contentsTf.getText());
+				s = new Schedule(number,gName, session.getUserId(),data,starttime,endtime,titleTf.getText(),contentsTf.getText().replace("]",""));
 				
 				c.process("ScheduleUpdate.do", s);
 				JOptionPane.showMessageDialog(null, "일정 수정이 성공적으로 이루어졌습니다.");
@@ -257,7 +265,12 @@ public class ScheduleUpdate_UI extends JFrame{
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
+	public void Listpage() {		
+		this.setVisible(false);//현재 프레임의 비전을끄고
+		
+		new GroupListForMembers(session, year, month, date, groupName); //새로운 프레임을 만든다.
+		
+	}
 	/*public static void main(String[] args) {
       ScheduleEdit s = new ScheduleEdit();
       s.scheduleEdit();

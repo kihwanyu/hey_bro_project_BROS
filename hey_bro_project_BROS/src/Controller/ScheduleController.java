@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Model.dao.ScheduleDAO;
 import Model.vo.Member;
 import Model.vo.Schedule;
+import Model.vo.Session;
 
 public class ScheduleController {
 	ScheduleDAO sDao = new ScheduleDAO();
@@ -28,7 +29,6 @@ public class ScheduleController {
 		case "ScheduleSatting.do":
 			scheduleArrayList = sDao.scheduleSatting(gName);
 			break;
-
 		default:
 			break;
 		}
@@ -42,5 +42,18 @@ public class ScheduleController {
 		default:
 			break;
 		}
+	}
+	public boolean process(String key, int sNamber){
+		boolean result = false; 
+				
+		switch (key) {
+		case "ScheduleDelete.do":
+			result = sDao.scheduleDelete(sNamber);
+			break;
+		
+		default:
+			break;
+		}
+		return result;
 	}
 }
