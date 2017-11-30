@@ -179,7 +179,7 @@ public class GroupRegistor_UI extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				loginBoolean = false;
-				//btn.setEnabled(false);				
+				btn.setEnabled(false);				
 			}
 
 			@Override
@@ -257,7 +257,6 @@ public class GroupRegistor_UI extends JPanel {
 			}
 
 			//조성식 수정 (그룹명 중복검사)
-			
 			@Override
 			public void mousePressed(MouseEvent e) {
 				boolean result = gc.process("GroupNameOverlap.do", gntf.getText(), session);
@@ -265,9 +264,11 @@ public class GroupRegistor_UI extends JPanel {
 				System.out.println(result);
 				if(result){
 					JOptionPane.showMessageDialog(null, "사용가능한 모임명 입니다.");
+					if(!regPwtf.getText().equals(null)){
 					//가입하기 버튼 활성화
 					loginBoolean = true;
 					btn.setEnabled(true);
+					}
 				} else {
 					JOptionPane.showMessageDialog(null, "모임명이 중복 되었습니다.");
 				}				
@@ -282,12 +283,17 @@ public class GroupRegistor_UI extends JPanel {
 		});
 		
 		//조성식 수정
-		regPwtf.addKeyListener(new KeyListener(){
+		/*regPwtf.addKeyListener(new KeyListener(){
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-				loginBoolean = false;
-				btn.setEnabled(false);				
+				if(regPwtf.getText().equals(null)){
+					loginBoolean = false;
+					btn.setEnabled(false);				
+				}else{
+					loginBoolean = true;
+					btn.setEnabled(true);	
+				}
 			}
 
 			@Override
@@ -302,7 +308,7 @@ public class GroupRegistor_UI extends JPanel {
 				
 			}
 			
-		});
+		});*/
 
 		this.add(groupOverlab);
 		this.add(title, "North");
