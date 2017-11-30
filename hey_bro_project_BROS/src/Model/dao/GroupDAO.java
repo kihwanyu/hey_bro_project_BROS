@@ -415,7 +415,7 @@ public class GroupDAO {
 
 		}
 		try {
-			prop.storeToXML(new FileOutputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\members.xml"), String.valueOf(new Date()).toString());
+			prop.storeToXML(new FileOutputStream("hey_bro_project_BROS/src/Model/Data/xml/groups.xml"), String.valueOf(new Date()).toString());
 		
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
