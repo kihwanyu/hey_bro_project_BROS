@@ -37,7 +37,7 @@ public class ScheduleController {
 	public void process(String key, Member member){
 		switch (key) {
 		case "ScheduleUpdate.do":
-			//sDao.scheduleUpdate(member);
+			////sDao.scheduleUpdate(member);
 			break;
 		default:
 			break;
