@@ -527,6 +527,38 @@ public class GroupDAO {
 
 		return result;
 	}
+	
+	//±×·ì Å»Åð
+	public void leaveGroup(String gName, String userName){
+		Properties prop = new Properties();
+		ArrayList<String> userNameList = new ArrayList<>();
+		Map<String,Group> groupMap = new HashMap<>();
+
+		String rgName;
+		String ruserName;
+		String rLeader;
+		
+		try {
+			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS/src/Model/Data/xml/Group/"+gName+".xml"));
+			
+			
+			
+			
+		} catch (InvalidPropertiesFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	
 	// ±×·ì ÀÔÀå ÄÞº¸¹Ú½º
 	public ArrayList<String> groupCombo(String userId){
 		Properties prop = new Properties();
