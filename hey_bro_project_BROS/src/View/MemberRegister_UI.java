@@ -69,7 +69,7 @@ public class MemberRegister_UI extends JPanel {
 		this.add(background);
 		
 		JLabel title_lb = new JLabel("회원가입");
-	
+		
 		JLabel id_lb = new JLabel("아 이 디  \n");
 		id_lb.setLocation(MEMBER_LIBEL_LOCATION_X, 50);
 		id_lb.setSize(150,50);
@@ -540,7 +540,7 @@ public class MemberRegister_UI extends JPanel {
 		Image newImage = new ImageIcon(fileDirectory).getImage().getScaledInstance(200, 200, 0);
 		userIng_lb.setIcon(new ImageIcon(newImage));
 		 
-
+		//
 		this.revalidate();
 		this.repaint();
 		return fileDirectory;
