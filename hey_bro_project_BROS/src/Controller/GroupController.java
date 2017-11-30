@@ -23,7 +23,7 @@ public class GroupController {
 	}
 	
 	//Group Deletion
-	
+	/*
 		public void process(String key, Session session){
 			switch(key){
 			case "GroupDelete.do" :
@@ -31,13 +31,19 @@ public class GroupController {
 					break;
 			
 			}
-		}
+		}*/
 	
 	//Leave a group
 		public void process(String key, Session session, String gName){
 		switch(key){
 		case "LeaveGroup.do" : 
 			gDao.leaveGroup(session, gName);
+			break;
+			
+		//그룹 삭제
+		case "GroupDelete.do" :
+			gDao.groupDelete(session, gName);
+				break;
 		  }				
 	   }
 

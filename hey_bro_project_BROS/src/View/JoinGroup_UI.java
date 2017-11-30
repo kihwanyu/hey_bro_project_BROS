@@ -42,6 +42,7 @@ public class JoinGroup_UI extends JPanel {
 	public JoinGroup_UI(JFrame superFrame, JPanel superPanel, Session session/*수정*/){
 		//System.out.println("요기요");
 		m = mc.process("MemberSatting.do", session); //수정
+		groupListArr.clear();
 		groupListArr = gc.process("groupCombo.do", session.getUserId());
 		for (int i = 0; i < groupListArr.size(); i++) {
 			groupListArr.set(i, groupListArr.get(i).replace(".xml", ""));

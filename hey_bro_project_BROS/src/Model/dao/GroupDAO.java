@@ -106,83 +106,90 @@ public class GroupDAO {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 	//그룹삭제
-		public void groupDelete(Session session){
-			
-			Properties prop = new Properties();
-			LinkedList<Group> groupList = new LinkedList<>();
-			Map<Integer,Group> groupMap = new HashMap<>();
+	public void groupDelete(Session session, String gName){
+
+		Properties prop = new Properties();
+		LinkedList<Group> groupList = new LinkedList<>();
+		Map<Integer,Group> groupMap = new HashMap<>();
 
 
-			//Registered
+		//Registered
 
-			String rNum;
-			String rGname;
-			String rInterests;
-			String rPw;
-			String rContent;
-			String rNews;
-			String rLeader;
-			
-			
-			try {
-				prop.loadFromXML(new FileInputStream("hey_bro_project_BROS/src/Model/Data/xml/groups.xml"));
-				
-				for(int i = 0; i < prop.size(); i++){
-					String str;
-				
-					String[] str_arr = new String[7];
-					str = prop.getProperty(String.valueOf(i).toString());
-
-					if(str!=null){
-
-						str_arr = str.split(", ");
+		String rNum;
+		String rGname;
+		String rInterests;
+		String rPw;
+		String rContent;
+		String rNews;
+		String rLeader;
 
 
-						rNum = str_arr[0];
-						rGname = str_arr[1];
-						rInterests = str_arr[2];
-						rPw = str_arr[3];
-						rContent = str_arr[4];
-						rNews = str_arr[5];
-						rLeader = str_arr[6];
+		try {
+			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS/src/Model/Data/xml/groups.xml"));
 
-						Group group = new Group(rNum, rGname, rInterests, rPw, rContent, rNews, rLeader);
-						
-						groupList.add(group);
-						
-					}
+			for(int i = 0; i < prop.size(); i++){
+				String str;
+
+				String[] str_arr = new String[7];
+				str = prop.getProperty(String.valueOf(i).toString());
+
+				if(str!=null){
+
+					str_arr = str.split(", ");
+
+
+					rNum = str_arr[0];
+					rGname = str_arr[1];
+					rInterests = str_arr[2];
+					rPw = str_arr[3];
+					rContent = str_arr[4];
+					rNews = str_arr[5];
+					rLeader = str_arr[6];
+
+					Group group = new Group(rNum, rGname, rInterests, rPw, rContent, rNews, rLeader);
+
+					groupList.add(group);
+
 				}
-
-			} catch (InvalidPropertiesFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
-			
-			/*for(int i = 0; i<groupList.size();i++){
+			System.out.println("groupList = " + groupList);
+			System.out.println("groupList.size = " + groupList.size());
+
+		} catch (InvalidPropertiesFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		/*for(int i = 0; i<groupList.size();i++){
 				System.out.println(":D");
 				System.out.println(groupList.get(i));
 			}*/
-						
-			for(int i=0; i<groupList.size();i++){
-				System.out.println(groupList.get(i).getLeader() + "랑 " + groupList.get(i).getgName());
-				System.out.println(session.getUserId());
-				
-				
-				if(session.getUserId().equals(groupList.get(i).getLeader())){
-					
-					 File file = new File("hey_bro_project_BROS/src/Model/Data/xml/group/"+groupList.get(i).getgName()+".xml");
-			        System.out.println("hey_bro_project_BROS/src/Model/Data/xml/group/"+groupList.get(i).getgName() + ".xml");
-			     
-			     
+
+		for(int i=0; i<groupList.size();i++){
+			System.out.println(groupList.get(i).getLeader() + "랑 " + groupList.get(i).getgName());
+			System.out.println(session.getUserId());
+
+
+			if(session.getUserId().equals(groupList.get(i).getLeader()) && gName.equals(groupList.get(i).getgName())){
+				groupList.remove(i);
+				System.out.println("파일삭제 성공");
+				System.out.println("gourpList.size() = " + groupList.size());
+				groupNameDelete(session, gName);
+				break;
+
+				/* File file = new File("hey_bro_project_BROS/src/Model/Data/xml/group/"+groupList.get(i).getgName()+".xml");
+			        System.out.println("hey_bro_project_BROS/src/Model/Data/xml/group/"+groupList.get(i).getgName() + ".xml");*/
+
+				/*  
 			       if( file.exists() ){
 			            if(file.delete()){
 			                System.out.println("파일삭제 성공");
@@ -192,43 +199,43 @@ public class GroupDAO {
 			            }
 			        }else{
 			            System.out.println("파일이 존재하지 않습니다.");
-			        }
+			        }*/
 
-			        
-			         
-				} else{
-					System.out.println("틀림");
-				}	
 
-			}
-			for(int i=0; i<groupList.size();i++){
-				groupMap.put(i, groupList.get(i));
-			}
-			
-			
-			Set<Integer> keys = groupMap.keySet();
-			Iterator<Integer> grIter = keys.iterator();
-					
-			
-			try {
-				prop.clear();
-				while(grIter.hasNext()){
-					int key = grIter.next();
-					prop.setProperty(String.valueOf(key).toString(), groupMap.get(key).toString());
-				}
-				
-				prop.storeToXML(new FileOutputStream("hey_bro_project_BROS/src/Model/Data/xml/groups.xml"),String.valueOf(new Date()).toString());
-				
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			
+
+			} else{
+				System.out.println("틀림");
 			}	
-	
-	
+
+		}
+		for(int i=0; i<groupList.size();i++){
+			groupMap.put(i, groupList.get(i));
+		}
+
+
+		Set<Integer> keys = groupMap.keySet();
+		Iterator<Integer> grIter = keys.iterator();
+
+
+		try {
+			prop.clear();
+			while(grIter.hasNext()){
+				int key = grIter.next();
+				prop.setProperty(String.valueOf(key).toString(), groupMap.get(key).toString());
+			}
+
+			prop.storeToXML(new FileOutputStream("hey_bro_project_BROS/src/Model/Data/xml/groups.xml"),String.valueOf(new Date()).toString());
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+
+	}	
+
+
 	//방 참여 비밀번호 확인 
 	public boolean rLogin(String Pw, String groupSession){
 		Properties prop = new Properties();
@@ -296,7 +303,7 @@ public class GroupDAO {
 	public Group groupSetting(String gName){
 		Properties prop = new Properties();
 		ArrayList<Group> groupArrayList = new ArrayList();
-		
+
 		String rNumber;
 		String rGName;
 		String rInterests;
@@ -304,20 +311,20 @@ public class GroupDAO {
 		String rContent;
 		String rNews;
 		String rLeader;
-		
+
 		try{
 			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\groups.xml"));
-			
+
 			for(int i = 0 ; i < prop.size(); i++){
 				String str;
-				
+
 				String[] str_arr = new String[7];
-				
+
 				str = prop.getProperty(String.valueOf(i).toString());
-				
+
 				if(str != null){
 					str_arr = str.split(", ");
-					
+
 					rNumber = str_arr[0];
 					rGName = str_arr[1];
 					rInterests = str_arr[2];
@@ -325,13 +332,13 @@ public class GroupDAO {
 					rContent = str_arr[4];
 					rNews = str_arr[5];
 					rLeader = str_arr[6];
-					
+
 					Group group = new Group(rGName, rInterests, rPw, rContent, rNews, rLeader);
-					
+
 					groupArrayList.add(group);
-					
+
 					System.out.println(groupArrayList.get(i));
-					
+
 				}
 			}
 		}catch(InvalidPropertiesFormatException e){
@@ -344,14 +351,14 @@ public class GroupDAO {
 		for(int i = 0; i < groupArrayList.size(); i++){
 			if(gName.equals(groupArrayList.get(i).getgName())){
 				System.out.println(groupArrayList.get(i));
-				
+
 				return groupArrayList.get(i);
 			}
 		}
-		
+
 		return null;
 	}
-	
+
 	//조성식
 	public void groupUpdate(Group g){
 		Properties prop = new Properties();
@@ -376,7 +383,7 @@ public class GroupDAO {
 				String[] str_arr = new String[7];
 
 				str = prop.getProperty(String.valueOf(i).toString());
-				
+
 				if(str != null){
 					str_arr = str.split(", ");
 
@@ -402,11 +409,11 @@ public class GroupDAO {
 
 		Collection<Group> groupValues = groupMap.values();
 		groupArrayList.addAll(groupValues);
-		
+
 		prop.clear();
 		for(int i = 0; i < groupArrayList.size(); i++){
 			if(groupArrayList.get(i).getgName().equals(g.getgName())){
-				
+
 				groupArrayList.set(i, g);
 			}
 			prop.setProperty(String.valueOf(i).toString(), groupArrayList.get(i).toString());
@@ -414,7 +421,7 @@ public class GroupDAO {
 		}
 		try {
 			prop.storeToXML(new FileOutputStream("hey_bro_project_BROS/src/Model/Data/xml/groups.xml"), String.valueOf(new Date()).toString());
-		
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -431,21 +438,21 @@ public class GroupDAO {
 			//System.out.println(prop.size());
 			for(int i = 0; i < prop.size(); i++){
 				String str;
-				
+
 				String[] str_arr = new String[7];
-				
+
 				str = prop.getProperty(String.valueOf(i).toString());
 				if(str!=null){
 
 					str_arr = str.split(", ");
-	
+
 					System.out.println("groupName = " + str_arr[1]);
 					rGroupName = str_arr[1];
-					
+
 					groupNameList.add(rGroupName);
 				}
 			}	
-			
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -458,7 +465,7 @@ public class GroupDAO {
 			}
 		}
 		return true;
-		
+
 	}
 	public ArrayList<String> groupListSearch(String userId) {
 		ArrayList<String> groupList = new ArrayList<>();
@@ -559,51 +566,51 @@ public class GroupDAO {
 
 		return result;
 	}
-	
+
 	//그룹 탈퇴
 	public void leaveGroup(Session session, String gName){
 		Properties prop = new Properties();
 		ArrayList<String> userNameList = new ArrayList<>();
-	
+
 
 		String rgName;
 		String ruserName;
 		String rKey;
-		
+
 		try {
 			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS/src/Model/Data/xml/group/"+gName+".xml"));
 			//해당하는 그룹 xml 파일 소환
-			
+
 			for(int i = 0; i < prop.size(); i++){
 				String str;
-				
+
 				str = prop.getProperty(String.valueOf(i).toString());
 				//str에 prop에 있는 해당 그룹 아이디 저장
-				
-				
+
+
 				userNameList.add(str);
-			//	System.out.println(i +": "+ str + ":D");
+				//	System.out.println(i +": "+ str + ":D");
 				/*System.out.println("prop.size: "+prop.size());
 				System.out.println("userNameList.size: "+ userNameList.size());*/
-				
+
 				if(str!=null){
 					ruserName = str; //ruserName에 담음 
 					System.out.println(ruserName + ":O");
-										
-				if(ruserName.equals(session.getUserId())){
-					for(int j = 0; j<userNameList.size();j++){
-						if(userNameList.get(j).equals(session.getUserId())){
-						//현재 사용자 ID와 ruserName이 같다면
-							System.out.println(ruserName + "&" + session.getUserId());
-							System.out.println("userNameList" + userNameList);{
-						
-							userNameList.remove(j); //해당 인덱스 삭제
+
+					if(ruserName.equals(session.getUserId())){
+						for(int j = 0; j<userNameList.size();j++){
+							if(userNameList.get(j).equals(session.getUserId())){
+								//현재 사용자 ID와 ruserName이 같다면
+								System.out.println(ruserName + "&" + session.getUserId());
+								System.out.println("userNameList" + userNameList);{
+
+									userNameList.remove(j); //해당 인덱스 삭제
 									break;
+								}
+
 							}
-						
 						}
 					}
-				}
 				}
 			}	
 		} catch (InvalidPropertiesFormatException e) {
@@ -616,14 +623,14 @@ public class GroupDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-		
+
+
 		prop.clear();
 		for(int i = 0; i < userNameList.size(); i++){
 			prop.setProperty(String.valueOf(i).toString(), userNameList.get(i).toString());
 			//새로운 userNameList를 prop에 다시 저장
 		}
-		
+
 		try {
 			prop.storeToXML(new FileOutputStream("hey_bro_project_BROS/src/Model/Data/xml/group/"+gName+".xml"),String.valueOf(new Date()).toString());
 		} catch (Exception e) {
@@ -631,15 +638,15 @@ public class GroupDAO {
 		}
 
 	}
-	
-	
-	
+
+
+
 	// 그룹 입장 콤보박스
 	public ArrayList<String> groupCombo(String userId){
 		Properties prop = new Properties();
 		ArrayList<String> arrList = new ArrayList<>();
 		try {
-			Files.walk(Paths.get("hey_bro_project_BROS/src/Model/Data/xml/Group")).forEach(filePath -> {
+			Files.walk(Paths.get("hey_bro_project_BROS/src/Model/Data/xml/group")).forEach(filePath -> {
 				if (Files.isRegularFile(filePath)) {
 					try {
 						prop.loadFromXML(new FileInputStream(String.valueOf(filePath)));
@@ -666,5 +673,30 @@ public class GroupDAO {
 		}
 		return arrList;
 	}
+	
+	//조성식 수정
+	public void groupNameDelete(Session session, String gName){
+		System.out.println("들어왔다.");
+
+
+		try {
+			File a = new File("hey_bro_project_BROS/src/Model/Data/xml/group/" + gName + ".xml");
+			if( a.exists() ){
+				a.delete();
+				System.out.println("파일삭제했다아아아아아아아");
+	          
+	        }else{
+	            System.out.println("파일이 존재하지 않습니다.");
+	        }
+
+		}catch(Exception e){
+			System.out.println();
+		}
+
+			
+
+
+	}	
+
 }
 

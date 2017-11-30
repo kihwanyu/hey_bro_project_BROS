@@ -504,7 +504,7 @@ public class Group_Calendar_UI extends Frame{
 						}
 					}	
 				} catch (IndexOutOfBoundsException e) {
-					e.printStackTrace();
+					System.out.println();
 				}						
 			} else {
 				scheduleList.add("");

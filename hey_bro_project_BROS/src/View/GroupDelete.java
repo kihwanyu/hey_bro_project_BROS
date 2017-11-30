@@ -88,10 +88,12 @@ public class GroupDelete extends JFrame{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				if(check.isSelected()){
-					gc.process("GroupDelete.do", session);
+					System.out.println("들어간다~~");
+					gc.process("GroupDelete.do", session, gName);
 					JOptionPane.showMessageDialog(null, "그룹을 삭제했습니다.");
+					new Main_UI(session);
+					setVisible();
 					
-					mainPage();
 				} else {
 					
 					/* File file = new File("hey_bro_project_BROS/src/Model/Data/xml/group/");
