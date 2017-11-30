@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -58,16 +59,22 @@ public class GroupUpdate_UI extends JFrame{
 		mainPanel.setBackground(Color.white);
 
 		//창 이름
-		JLabel title = new JLabel("모임수정");
+		JLabel title = new JLabel("모임 수정");
 		title.setFont(new Font(Font.DIALOG, Font.BOLD, 28));
-		title.setLocation(330,10);
+		title.setLocation(330,20);
 		title.setSize(300, 30);
+		title.setForeground(new Color(74, 84, 91));
 
-
+		//배경
+		 JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/tidying-up-art-ursus-wehrli-1.png"));
+		background.setBounds(0, 0, 800, 500);
+		this.add(background);
+		
 		//모임명 라벨
 		JLabel gName = new JLabel("모임명 : ");
 		gName.setLocation(70,80);
 		gName.setSize(200, 30);
+		gName.setForeground(new Color(74, 84, 91));
 
 		//모임명 텍스트 필드
 		JTextField gntf = new JTextField(20);
@@ -80,16 +87,19 @@ public class GroupUpdate_UI extends JFrame{
 		JLabel glike = new JLabel("모임 관심사 : ");
 		glike.setLocation(450,80);
 		glike.setSize(200, 30);
+		glike.setForeground(new Color(74, 84, 91));
 		// 콘텐츠 텍스트 필드
 		JTextField gltf = new JTextField(20);
 		gltf.setText(g.getInterests());
 		gltf.setLocation(540, 80);
 		gltf.setSize(200, 30);
+		
 
 		//비밀번호 입력 라벨
 		JLabel gPw = new JLabel("비밀번호입력 : ");
 		gPw.setLocation(50,120);
 		gPw.setSize(200, 30);
+		gPw.setForeground(new Color(244, 250, 255));
 		//비밀번호 입력 텍스트 필드
 		JTextField gPwtf = new JTextField(20);
 		gPwtf.setText(g.getPw());
@@ -100,6 +110,7 @@ public class GroupUpdate_UI extends JFrame{
 		JLabel regPw = new JLabel("비밀번호 재입력 : ");
 		regPw.setLocation(425, 120);
 		regPw.setSize(200, 30);
+		regPw.setForeground(new Color(74, 84, 91));
 		//비밀번호 재 입력 텍스트 필드
 		JTextField regPwtf = new JTextField(20);
 		regPwtf.setText(g.getPw());
@@ -110,6 +121,7 @@ public class GroupUpdate_UI extends JFrame{
 		JLabel content = new JLabel("모임 내용");
 		content.setLocation(170,180);
 		content.setSize(200, 30);
+		content.setForeground(new Color(244, 250, 255));
 		// 텍스트
 		JTextField ctf = new JTextField(20);
 		ctf.setText(g.getContent());
@@ -120,6 +132,7 @@ public class GroupUpdate_UI extends JFrame{
 		JLabel news = new JLabel("공지사항");
 		news.setLocation(565, 180);
 		news.setSize(200, 30);
+		news.setForeground(new Color(74, 84, 91));
 		//텍스트
 		JTextField newstf = new JTextField(20);
 		newstf.setText(g.getNews());
@@ -127,7 +140,7 @@ public class GroupUpdate_UI extends JFrame{
 		newstf.setSize(300, 160);
 
 		//추가버튼
-		JButton btn = new JButton("수정완료");
+		JButton btn = new JButton("수정 완료");
 		btn.setLocation(340,400);
 		btn.setSize(100, 30);
 		btn.setBackground(new Color(5, 150, 255));
@@ -174,23 +187,23 @@ public class GroupUpdate_UI extends JFrame{
 			}
 			
 		});
-
-		this.add(title, "North");
-		this.add(gName);
-		this.add(gntf);
-		this.add(glike);
-		this.add(gltf);
-		this.add(gPw);
-		this.add(gPwtf);
-		this.add(regPw);
-		this.add(regPwtf);
-		this.add(content);
-		this.add(ctf);
-		this.add(news);
-		this.add(newstf);
-		this.add(btn , "South");
+		this.add(background);
+		background.add(title, "North");
+		background.add(gName);
+		background.add(gntf);
+		background.add(glike);
+		background.add(gltf);
+		background.add(gPw);
+		background.add(gPwtf);
+		background.add(regPw);
+		background.add(regPwtf);
+		background.add(content);
+		background.add(ctf);
+		background.add(news);
+		background.add(newstf);
+		background.add(btn , "South");
 		this.add(mainPanel);
-
+		
 		this.setVisible(true);
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
