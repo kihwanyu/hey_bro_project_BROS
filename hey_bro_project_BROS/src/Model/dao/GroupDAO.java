@@ -422,7 +422,6 @@ public class GroupDAO {
 		}
 	}
 	//조성식(그룹 중복검사)
-	//
 	public boolean GroupNameOverlap(String groupName){
 		Properties prop = new Properties();
 		ArrayList<String> groupNameList = new ArrayList<>();
