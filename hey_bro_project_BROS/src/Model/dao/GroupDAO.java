@@ -295,7 +295,7 @@ public class GroupDAO {
 	//조성식 수정
 	public Group groupSetting(String gName){
 		Properties prop = new Properties();
-		ArrayList<Group> groupArrayList = new ArrayList();
+		ArrayList<Group> groupArrayList = new ArrayList<>();
 		
 		String rNumber;
 		String rGName;
@@ -332,7 +332,7 @@ public class GroupDAO {
 					
 					System.out.println(groupArrayList.get(i));
 					
-				}
+				}//
 			}
 		}catch(InvalidPropertiesFormatException e){
 			e.printStackTrace();

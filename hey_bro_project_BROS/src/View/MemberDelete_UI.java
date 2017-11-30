@@ -151,7 +151,7 @@ public class MemberDelete_UI extends JPanel {
 
 			
 			
-	
+	//
 	}
 	//¼öÁ¤
 	public void loginPage() {		

@@ -198,11 +198,11 @@ public class GroupListForMembers extends Frame {
 					public void mousePressed(MouseEvent e) {
 						int row = table.getSelectedRow();
 						int column =table.getSelectedColumn();
-						new ScheduleUpdate_UI().scheduleEdit(session,copyList,tableList,row,column);
+						new ScheduleUpdate_UI().scheduleEdit(session,copyList,tableList,row,column,year,month,date,gName);
 						
 						thisSetVisibleFalse();
 					}
-					
+					//
 					@Override
 					public void mouseExited(MouseEvent e) {
 						// TODO Auto-generated method stub
