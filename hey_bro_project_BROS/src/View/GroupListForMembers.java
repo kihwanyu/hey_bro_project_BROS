@@ -132,28 +132,32 @@ public class GroupListForMembers extends Frame {
 		String[] copy;
 
 	//	System.out.println("copy.length : " + copy.length);
-		
+		String strN;
 		String strT;
+		String strS;
 		String strE;
 		String strti;
 		String strc;
 		ArrayList<String> copyList = new ArrayList<>();
 		for(int i = 0; i < tableList.size(); i++){
-				strT = tableList.get(i).getStartTime();
+				strN = String.valueOf(tableList.get(i).getNumber());
+				strT = tableList.get(i).getUserName();
+				strS = tableList.get(i).getStartTime();
 				strE = tableList.get(i).getEndTime();
 				strti = tableList.get(i).getTitle();
 				strc = tableList.get(i).getContents();
-				copyList.add(strT+ ", " + strE + ", " + strti + ", " + strc);
+				copyList.add(strN+ ", " + strT+ ", " + strS + ", " + strE + ", " + strti + ", " + strc);
 		}
 		
 		copy = copyList.toString().split(", ");
 		
-		Object[][] data = new Object[tableList.size()][4];
+		Object[][] data = new Object[tableList.size()][6];
 		int count = 0;
 		for(int i = 0; i < data.length; i++){	
 			
 			for(int j = 0; j < data[i].length; j++){
-				data[i][j] = copy[count];
+				data[i][j] = copy[count].replace("[", "");
+				data[i][j] = String.valueOf(data[i][j]).replace("]", "");
 				count++;
 			}
 		}
@@ -162,9 +166,8 @@ public class GroupListForMembers extends Frame {
 				System.out.println(data[i][j]);
 			}
 		}
-		
 
-		String[] columnNames = {"시작시간", "종료시간", "일정명" , "일정내용" };		
+		String[] columnNames = {"번호","ID","시작시간", "종료시간", "일정명" , "일정내용" };		
 
 		DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
 
