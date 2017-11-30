@@ -83,6 +83,7 @@ public class ScheduleRegister extends JFrame{
 			minite1[i] = 1+i;
 			miniteList1.addItem(String.valueOf(minite1[i]).toString());
 		}
+		//
 		miniteList1.setLocation(290, 360);
 		miniteList1.setSize(50,30);
 		//종료시간 라벨

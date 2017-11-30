@@ -128,7 +128,7 @@ public class GroupUpdate_UI extends JFrame{
 		newstf.setText(g.getNews());
 		newstf.setLocation(440, 220);
 		newstf.setSize(300, 160);
-		
+		//
 		//뒤로가기 버튼
 		JButton backBtn = new JButton("뒤로가기");
 		backBtn.setLocation(250,400);

@@ -61,7 +61,8 @@ public class GroupListForMembers extends Frame {
 		 * (모니터화면 가로 - 프레임화면 가로) / 2,
 		 * (모니터화면 세로 - 프레임화면 세로) / 2 이렇게 설정한다.
 		 */
-
+		
+		//
 
 		this.session = session;
 		this.year = year;

@@ -125,7 +125,7 @@ public class JoinGroup_UI extends JPanel {
 				// TODO Auto-generated method stub
 
 			}
-
+			//
 			@Override
 			public void mousePressed(MouseEvent e) {
 				System.out.println(name);

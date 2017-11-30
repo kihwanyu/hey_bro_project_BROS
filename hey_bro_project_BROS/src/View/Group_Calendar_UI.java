@@ -30,6 +30,7 @@ public class Group_Calendar_UI extends Frame{
 	/**
 	 * 
 	 */
+	//
 	private static final long serialVersionUID = 1411365908257953013L;
 	////
 	private JButton date_bt[];
