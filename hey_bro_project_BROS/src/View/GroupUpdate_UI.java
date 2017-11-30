@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import com.sun.glass.events.WindowEvent;
@@ -111,7 +112,8 @@ public class GroupUpdate_UI extends JFrame{
 		content.setLocation(170,180);
 		content.setSize(200, 30);
 		// 텍스트
-		JTextField ctf = new JTextField(20);
+		JTextArea ctf = new JTextArea();
+		ctf.setBackground(Color.LIGHT_GRAY);
 		ctf.setText(g.getContent());
 		ctf.setLocation(50, 220);
 		ctf.setSize(300, 160);
@@ -121,14 +123,56 @@ public class GroupUpdate_UI extends JFrame{
 		news.setLocation(565, 180);
 		news.setSize(200, 30);
 		//텍스트
-		JTextField newstf = new JTextField(20);
+		JTextArea newstf = new JTextArea();
+		newstf.setBackground(Color.LIGHT_GRAY);
 		newstf.setText(g.getNews());
 		newstf.setLocation(440, 220);
 		newstf.setSize(300, 160);
+		
+		//뒤로가기 버튼
+		JButton backBtn = new JButton("뒤로가기");
+		backBtn.setLocation(250,400);
+		backBtn.setSize(100, 30);
+		backBtn.setBackground(new Color(5, 150, 255));
+		backBtn.addMouseListener(new MouseListener(){
 
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				new Group_Calendar_UI(session, groupName);	
+				setVisible();
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+
+		
+		
 		//추가버튼
 		JButton btn = new JButton("수정완료");
-		btn.setLocation(340,400);
+		btn.setLocation(441,400);
 		btn.setSize(100, 30);
 		btn.setBackground(new Color(5, 150, 255));
 		btn.addMouseListener(new MouseListener(){
@@ -160,7 +204,8 @@ public class GroupUpdate_UI extends JFrame{
 					JOptionPane.showMessageDialog(null, "모임수정이 성공적으로 이루어졌습니다.");
 					
 					new Group_Calendar_UI(session, groupName);
-					
+					setVisible();
+
 				}else{
 					JOptionPane.showMessageDialog(null, "비밀번호가 일치 하지 않습니다.\n다시 입력해주세요");
 				}
@@ -174,7 +219,9 @@ public class GroupUpdate_UI extends JFrame{
 			}
 			
 		});
-
+		
+		
+		this.add(backBtn);
 		this.add(title, "North");
 		this.add(gName);
 		this.add(gntf);
@@ -192,6 +239,10 @@ public class GroupUpdate_UI extends JFrame{
 		this.add(mainPanel);
 
 		this.setVisible(true);
-		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	public void setVisible(){
+		this.setVisible(false);
+	}
+	
 }

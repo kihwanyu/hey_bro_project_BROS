@@ -422,9 +422,6 @@ public class GroupDAO {
 		}
 	}
 	//구주승 (그룹장으로  그룹 검색하기)
-	public void groupSearch() {
-
-	}
 	public ArrayList<String> groupListSearch(String userId) {
 		ArrayList<String> groupList = new ArrayList<>();
 		Properties prop = new Properties();

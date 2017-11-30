@@ -20,6 +20,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import Controller.GroupController;
 import Controller.ScheduleController;
 import Model.vo.Group;
 import Model.vo.Schedule;
@@ -41,10 +42,12 @@ public class Group_Calendar_UI extends Frame{
 	JTextArea[][] date_textArea = new JTextArea[6][7];
 	private Group group = new Group();
 	private String gName;
+	private GroupController gc = new GroupController();
 
 	private ScheduleController sc = new ScheduleController();
 	public Group_Calendar_UI(Session session, String gName/*방이름*/){
-
+		
+		group = gc.process("GroupSetting.do", gName, true);
 		this.gName = gName;
 		// 프레임의 사이즈를 구합니다.
 		Dimension frameSize = this.getSize();
@@ -110,11 +113,12 @@ public class Group_Calendar_UI extends Frame{
 		}
 
 		// 모임 내용 텍스트 필드
-		JTextField gtf = new JTextField();
-		gtf.setText("모임 내용");
+		JTextArea gtf = new JTextArea();
+		gtf.setText(group.getContent());
 		gtf.setSize(170, 160);
 		gtf.setLocation(35, 130);
-
+		gtf.setLineWrap(true);
+		
 		//요일 패널
 		JPanel dayP = new JPanel();
 		dayP.setBounds(300, 100, 700, 30);
@@ -192,7 +196,7 @@ public class Group_Calendar_UI extends Frame{
 		JLabel textGl = new JLabel("님은 모임장입니다.");
 		textGl.setLocation(90, 43);
 		textGl.setSize(120, 50);
-		JLabel textGln = new JLabel("조성식");
+		JLabel textGln = new JLabel(session.getUserId());
 		textGln.setLocation(45, 43);
 		textGln.setSize(60, 50);
 
@@ -495,9 +499,9 @@ public class Group_Calendar_UI extends Frame{
 	public void thisSetVisibleFalse(){
 		this.setVisible(false);
 	}
-	public static void main(String[] args){
+/*	public static void main(String[] args){
 		Session session = new Session("rlghks94", "0526");
 
 		new Group_Calendar_UI(session, "BROS");	
-	}
+	}*/
 }
