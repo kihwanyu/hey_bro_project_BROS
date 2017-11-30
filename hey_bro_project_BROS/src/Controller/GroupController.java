@@ -44,18 +44,18 @@ public class GroupController {
 		
 	
 	//메소드 중첩(오버로딩)
-	public Boolean process(String key, String groupPw, String session){
+	public Boolean process(String key, String groupPw_groupName, String session){
 		//
 		Boolean result = false;
 		switch (key) {
 
 		case "rLogin.do":
 			System.out.println("rLogin.do");
-			result = gDao.rLogin(groupPw, session);
+			result = gDao.rLogin(groupPw_groupName, session);
 			break;
 		case "groupJoin.do":
-			result = gDao.groupJoin(groupPw, session);
-			break;
+			result = gDao.groupJoin(groupPw_groupName, session);
+
 		default:
 			break;
 		}
@@ -98,5 +98,20 @@ public class GroupController {
 		}
 
 		return group;
+	}
+	//조성식 수정(그룹 중복검사)
+	public Boolean process(String key, String groupPw_groupName, Session session){
+		//
+		Boolean result = false;
+		switch (key) {
+
+		case "GroupNameOverlap.do" : //오버로딩 더이상 중첩 불가
+			result = gDao.GroupNameOverlap(groupPw_groupName);
+			break;
+		default:
+			break;
+		}
+		return result;
+	
 	}
 }
