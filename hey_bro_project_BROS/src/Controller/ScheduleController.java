@@ -34,10 +34,10 @@ public class ScheduleController {
 		}
 		return scheduleArrayList;
 	}
-	public void process(String key, Member member){
+	public void process(String key, Schedule schedule){
 		switch (key) {
 		case "ScheduleUpdate.do":
-			////sDao.scheduleUpdate(member);
+			sDao.scheduleUpdate(schedule);
 			break;
 		default:
 			break;

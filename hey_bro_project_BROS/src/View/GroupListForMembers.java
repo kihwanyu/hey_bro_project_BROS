@@ -65,9 +65,9 @@ public class GroupListForMembers extends Frame {
 		this.year = year;
 		this.month = month;
 		this.date = date;
-		System.out.println("year:"+year);
-		System.out.println("month:"+month);
-		System.out.println("date:"+date);
+		//System.out.println("year:"+year);
+		//System.out.println("month:"+month);
+		//System.out.println("date:"+date);
 		//JFrame mf = new JFrame();		
 		this.setBounds(100, 50, 1100, 800);
 		this.setLocation((screenSize.width - frameSize.width)/7, (screenSize.height - frameSize.height)/8);
@@ -105,23 +105,23 @@ public class GroupListForMembers extends Frame {
 			dateStr = "0"+date;
 		}
 		String smonth = yearStr + "/" + monthStr + "/" + dateStr;
-		System.out.println("smonth:"+smonth);
+		//System.out.println("smonth:"+smonth);
 		list.clear();
 		list = sc.process("ScheduleSatting.do", gName);
-		for (int i = 0; i < list.size(); i++) {
+		/*for (int i = 0; i < list.size(); i++) {
 			
 			System.out.println("First_list 확인 : " + list.get(i));
-		}
+		}*/
 		for(int i = 0; i < list.size(); i++){
 			//System.out.println(list.get(i).getDate());
 			if((smonth.equals(list.get(i).getDate()))){
-				System.out.println("삭제 list 확인 : " + list.get(i));
+				//System.out.println("삭제 list 확인 : " + list.get(i));
 				tableList.add(list.get(i));
 			}
 		}
 		for (int i = 0; i < tableList.size(); i++) {
 			
-			System.out.println("tableList 확인 : " + tableList.get(i));
+			//System.out.println("tableList 확인 : " + tableList.get(i));
 		}
 
 		//table1
@@ -141,6 +141,7 @@ public class GroupListForMembers extends Frame {
 		ArrayList<String> copyList = new ArrayList<>();
 		for(int i = 0; i < tableList.size(); i++){
 				strN = String.valueOf(tableList.get(i).getNumber());
+				System.out.println("strN:"+strN);
 				strT = tableList.get(i).getUserName();
 				strS = tableList.get(i).getStartTime();
 				strE = tableList.get(i).getEndTime();
@@ -161,11 +162,11 @@ public class GroupListForMembers extends Frame {
 				count++;
 			}
 		}
-		for(int i = 0; i < data.length; i++){	
+		/*for(int i = 0; i < data.length; i++){	
 			for(int j = 0; j < data[i].length; j++){
 				System.out.println(data[i][j]);
 			}
-		}
+		}*/
 
 		String[] columnNames = {"번호","ID","시작시간", "종료시간", "일정명" , "일정내용" };		
 
@@ -219,7 +220,7 @@ public class GroupListForMembers extends Frame {
 						if(e.getButton()==1) {
 						new ScheduleUpdate_UI();
 						isVisible();
-						System.out.println("눌림");
+						//System.out.println("눌림");
 						}
 					}
 				});
