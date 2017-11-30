@@ -185,7 +185,7 @@ public class GroupListForMembers extends Frame {
 
 		table.setFillsViewportHeight(true);
 		table.setPreferredScrollableViewportSize(new Dimension(500, 150));
-		//table.add
+		//table.add//
 		table.addMouseListener(new MouseListener() {
 			
 			@Override
