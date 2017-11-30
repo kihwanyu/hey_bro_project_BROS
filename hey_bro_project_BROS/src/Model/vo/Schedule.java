@@ -10,9 +10,7 @@ public class Schedule {//
 	private String title;
 	private String contents;
 	
-	public Schedule() {
-		super();
-	}
+
 	public Schedule(int number,String groupName, String userName, String date, String startTime, String endTime, String title,
 			String contents) {
 		super();
@@ -35,6 +33,10 @@ public class Schedule {//
 		
 	}
 	
+	public Schedule() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getNumber() {
 		return number;
 	}

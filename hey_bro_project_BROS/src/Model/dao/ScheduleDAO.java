@@ -96,15 +96,15 @@ public class ScheduleDAO {
 		String rEndTime;
 		String rTitle;
 		String rContents;
-		
+
 		try {
 			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\schedule.xml"));
 			//System.out.println(prop.size());
 			for(int i = 0; i < prop.size(); i++){
 				String str;
-				
+
 				String[] str_arr = new String[8];
-				
+
 				str = prop.getProperty(String.valueOf(i).toString());
 				System.out.println(str);
 				if(str!=null){
@@ -112,8 +112,8 @@ public class ScheduleDAO {
 					/*for(String s : str_arr){
 						System.out.println(s);
 					}*/
-					
-					
+
+
 					rNumber = scheduleArrayList.size();
 					rGroupName = str_arr[1];
 					rUserName = str_arr[2];
@@ -122,7 +122,7 @@ public class ScheduleDAO {
 					rEndTime = str_arr[5];
 					rTitle = str_arr[6];	
 					rContents = str_arr[7];	
-					
+
 					if(rGroupName.equals(gName)){
 						Schedule schedule = new Schedule(rNumber, rGroupName, rUserName, rDate, rStartTime, rEndTime, rTitle, rContents);
 
@@ -130,7 +130,7 @@ public class ScheduleDAO {
 					}		
 				}
 			}	
-			
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -141,4 +141,15 @@ public class ScheduleDAO {
 		return scheduleArrayList;
 	}
 
+	public void scheduleUpdate(Schedule schedule) {
+		Properties prop = new Properties();
+		Map<Integer,Member> memberMap = new HashMap<>();
+		ArrayList<Member> memberArrayList = new ArrayList<>(); 
+		
+		String title;
+		String contents;
+		String startTime;
+		String endTime;
+		
+	}
 }

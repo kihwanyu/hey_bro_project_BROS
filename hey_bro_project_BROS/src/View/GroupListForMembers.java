@@ -23,6 +23,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -132,12 +134,12 @@ public class GroupListForMembers extends Frame {
 		String[] copy;
 
 	//	System.out.println("copy.length : " + copy.length);
-		String strN;
-		String strT;
-		String strS;
-		String strE;
-		String strti;
-		String strc;
+		String strN = null;
+		String strT = null;
+		String strS = null;
+		String strE = null;
+		String strti = null;
+		String strc = null;
 		ArrayList<String> copyList = new ArrayList<>();
 		for(int i = 0; i < tableList.size(); i++){
 				strN = String.valueOf(tableList.get(i).getNumber());
@@ -183,11 +185,47 @@ public class GroupListForMembers extends Frame {
 
 		table.setFillsViewportHeight(true);
 		table.setPreferredScrollableViewportSize(new Dimension(500, 150));
+		//table.add
+		table.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				int row = table.getSelectedRow();
+				int column =table.getSelectedColumn();
+				new ScheduleUpdate_UI().scheduleEdit(session,copyList,tableList,row,column);
+				
+				thisSetVisibleFalse();
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getButton()==1) {
+				new ScheduleUpdate_UI();
+				isVisible();
+				System.out.println("눌림");
+				}
+			}
+		});
 
 		JScrollPane sp = new JScrollPane(table);
-
-
-
 
 		JButton back = new JButton("뒤로 가기");
 		back.setBounds(900,70,100,30);
@@ -275,6 +313,10 @@ public class GroupListForMembers extends Frame {
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
+	}
+	protected void ScheduleUpdate_UI() {
+		// TODO Auto-generated method stub
+		
 	}
 	public void thisSetVisibleFalse(){
 		this.setVisible(false);
