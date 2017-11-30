@@ -193,7 +193,7 @@ public class GroupListForMembers extends Frame {
 				// TODO Auto-generated method stub
 				
 			}
-			
+			//
 			@Override
 			public void mousePressed(MouseEvent e) {
 				int row = table.getSelectedRow();

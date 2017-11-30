@@ -32,7 +32,7 @@ public class Schedule {//
 		this.contents = contents;
 		
 	}
-	
+	//
 	public Schedule() {
 		// TODO Auto-generated constructor stub
 	}
