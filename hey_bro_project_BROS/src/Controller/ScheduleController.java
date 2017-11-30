@@ -3,6 +3,7 @@ package Controller;
 import java.util.ArrayList;
 
 import Model.dao.ScheduleDAO;
+import Model.vo.Member;
 import Model.vo.Schedule;
 
 public class ScheduleController {
@@ -32,5 +33,14 @@ public class ScheduleController {
 			break;
 		}
 		return scheduleArrayList;
+	}
+	public void process(String key, Member member){
+		switch (key) {
+		case "ScheduleUpdate.do":
+			////sDao.scheduleUpdate(member);
+			break;
+		default:
+			break;
+		}
 	}
 }

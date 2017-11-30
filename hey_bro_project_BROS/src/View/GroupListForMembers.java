@@ -183,6 +183,46 @@ public class GroupListForMembers extends Frame {
 
 		table.setFillsViewportHeight(true);
 		table.setPreferredScrollableViewportSize(new Dimension(500, 150));
+		
+		//table.add//
+				table.addMouseListener(new MouseListener() {
+					
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+					//
+					@Override
+					public void mousePressed(MouseEvent e) {
+						int row = table.getSelectedRow();
+						int column =table.getSelectedColumn();
+						new ScheduleUpdate_UI().scheduleEdit(session,copyList,tableList,row,column);
+						
+						thisSetVisibleFalse();
+					}
+					
+					@Override
+					public void mouseExited(MouseEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						if(e.getButton()==1) {
+						new ScheduleUpdate_UI();
+						isVisible();
+						System.out.println("´­¸²");
+						}
+					}
+				});
 
 		JScrollPane sp = new JScrollPane(table);
 
