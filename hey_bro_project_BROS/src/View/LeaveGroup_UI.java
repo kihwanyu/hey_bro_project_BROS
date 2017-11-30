@@ -89,44 +89,10 @@ public class LeaveGroup_UI extends JFrame {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				if(check.isSelected()){
-					gc.process("GroupDelete.do", session);
-					JOptionPane.showMessageDialog(null, "그룹을 삭제했습니다.");
-					
+					gc.process("LeaveGroup.do", session, gName);
+					JOptionPane.showMessageDialog(null, "그룹을 탈퇴했습니다.");
 					mainPage();
 				} else {
-					
-					/* File file = new File("hey_bro_project_BROS/src/Model/Data/xml/group/");
-				       // System.out.println("hey_bro_project_BROS/src/Model/Data/xml/group"+groupList.get(i).getgName());
-				        // System.out.println(groupList.get(i).getLeader());
-				       System.out.println("*");
-				    
-				     
-				         if( file.exists() ){ //파일존재여부확인
-				        	
-				            if(file.isDirectory()){ //파일이 디렉토리인지 확인
-				                File[] files = file.listFiles();
-				          
-				                for( int j=0; j<files.length; j++){
-				                    if(files[j].delete() ){	
-				                    	
-				                        System.out.println(files[j].getName()+" 삭제성공");
-				                    }else{
-				                        System.out.println(files[j].getName()+" 삭제실패");
-				                    }
-				                }
-				            }
-				            
-				            if(file.delete()){
-				                System.out.println("파일삭제 성공");
-				            }else{
-				                System.out.println("파일삭제 실패");
-				            }
-				             
-				        }else{
-				            System.out.println("파일이 존재하지 않습니다.");
-				        }*/
-					
-					
 					JOptionPane.showMessageDialog(null, "안내사항 확인 버튼을 눌러주세요.");
 				}
 				
@@ -150,7 +116,7 @@ public class LeaveGroup_UI extends JFrame {
 
 		
 
-		//버튼 뒤로가기 양도하기
+		//버튼 뒤로가기 
 		Image backI = new ImageIcon("hey_bro_project_BROS/src/View/img/back.PNG").getImage().getScaledInstance(110, 44, 0);
 		JButton back = new JButton(new ImageIcon(backI));
 		back.setBounds(660, 15, 110, 39);
