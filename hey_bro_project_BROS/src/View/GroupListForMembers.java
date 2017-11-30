@@ -202,7 +202,7 @@ public class GroupListForMembers extends Frame {
 						
 						thisSetVisibleFalse();
 					}
-					
+					//
 					@Override
 					public void mouseExited(MouseEvent e) {
 						// TODO Auto-generated method stub

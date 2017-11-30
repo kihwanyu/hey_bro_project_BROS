@@ -22,7 +22,7 @@ public class ScheduleController {
 		}
 		//
 	}
-
+//
 	public ArrayList<Schedule> process(String key, String gName) {
 		ArrayList<Schedule> scheduleArrayList = new ArrayList<>();
 		switch (key) {

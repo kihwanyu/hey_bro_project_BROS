@@ -63,7 +63,7 @@ public class ScheduleDAO {
 					gScheduleMap.put(gScheduleMap.size(), schedule);      
 
 				}
-			}   
+			}   //
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

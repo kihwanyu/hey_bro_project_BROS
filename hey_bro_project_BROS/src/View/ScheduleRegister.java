@@ -74,7 +74,7 @@ public class ScheduleRegister extends JFrame{
 			hour1[i] = 1+i;
 			hourList1.addItem(String.valueOf(hour1[i]).toString());
 		}
-		hourList1.setLocation(230, 360);
+		hourList1.setLocation(230, 360);//
 		hourList1.setSize(50,30);
 
 		JComboBox<String> miniteList1 = new JComboBox<>();

@@ -332,7 +332,7 @@ public class GroupDAO {
 					
 					System.out.println(groupArrayList.get(i));
 					
-				}
+				}//
 			}
 		}catch(InvalidPropertiesFormatException e){
 			e.printStackTrace();

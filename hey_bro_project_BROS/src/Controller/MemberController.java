@@ -45,7 +45,7 @@ public class MemberController {
 			break;
 		}
 		return result;
-	}
+	}//
 	//메소드 중첩(오버로딩)
 	public Member process(String key, Session session){
 		Member member = new Member();
