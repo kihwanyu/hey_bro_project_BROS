@@ -183,18 +183,13 @@ public class Leader_Calendar_UI extends Frame{
 		//icon_ : 좌측버튼
 		//icon : 우측버튼
 
-		Image icon_2 = new ImageIcon("hey_bro_project_BROS/src/View/img/Group_edit.PNG").getImage().getScaledInstance(205, 48, 0);
-		JButton groupUpdate_bt = new JButton(new ImageIcon(icon_2));
-		groupUpdate_bt.setLocation(30, 490);
-		groupUpdate_bt.setSize(180, 52);
-
 		Image icon_3 = new ImageIcon("hey_bro_project_BROS/src/View/img/모임 삭제 버튼.PNG").getImage().getScaledInstance(206, 50, 0);
-		JButton groupDelete_bt = new JButton(new ImageIcon(icon_3));
-		groupDelete_bt.setLocation(30, 560);
-		groupDelete_bt.setSize(180, 52);
+		JButton groupLeave_bt = new JButton(new ImageIcon(icon_3));
+		groupLeave_bt.setLocation(30, 560);
+		groupLeave_bt.setSize(180, 52);
 
 		//text
-		JLabel textGl = new JLabel("님은 모임장입니다.");
+		JLabel textGl = new JLabel("님은 모임원입니다.");
 		textGl.setLocation(90, 43);
 		textGl.setSize(120, 50);
 		JLabel textGln = new JLabel(session.getUserId());
@@ -217,6 +212,38 @@ public class Leader_Calendar_UI extends Frame{
 			}		
 			cjp.add(date_bt[i]);
 		}
+		groupLeave_bt.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				new LeaveGroup_UI(session, gName);
+				thisSetVisibleFalse();
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		backB.addMouseListener(new MouseListener() {
 
 			@Override
@@ -286,57 +313,7 @@ public class Leader_Calendar_UI extends Frame{
 			}
 		});
 
-		groupUpdate_bt.addMouseListener(new MouseListener() {
-			@Override
-			public void mouseReleased(MouseEvent e) {
-
-			}
-			@Override
-			public void mousePressed(MouseEvent e) {
-				new GroupUpdate_UI(session, group, gName);
-				thisSetVisibleFalse();
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-			}
-		});
-		groupDelete_bt.addMouseListener(new MouseListener() {
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-			@Override
-			public void mousePressed(MouseEvent e) {
-				new GroupDelete(session, gName);
-				thisSetVisibleFalse();
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		
 
 		this.add(cjp);
 		this.add(monthList);
@@ -345,8 +322,7 @@ public class Leader_Calendar_UI extends Frame{
 		this.add(dayP);
 		this.add(cPanel);
 		this.add(png);
-		this.add(groupUpdate_bt);
-		this.add(groupDelete_bt);
+		this.add(groupLeave_bt);
 		this.add(textGl);
 		this.add(textGln);
 		this.add(userPanel);
