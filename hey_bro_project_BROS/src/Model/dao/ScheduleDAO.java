@@ -122,7 +122,7 @@ public class ScheduleDAO {
 					rEndTime = str_arr[5];
 					rTitle = str_arr[6];	
 					rContents = str_arr[7];	
-//
+
 					if(rGroupName.equals(gName)){
 						Schedule schedule = new Schedule(rNumber, rGroupName, rUserName, rDate, rStartTime, rEndTime, rTitle, rContents);
 
