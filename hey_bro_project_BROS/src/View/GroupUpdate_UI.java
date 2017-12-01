@@ -166,7 +166,7 @@ public class GroupUpdate_UI extends JFrame{
 
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				new Group_Calendar_UI(session, groupName);	
+				new Leader_Calendar_UI(session, groupName);	
 				setVisible();
 			}
 
@@ -211,7 +211,7 @@ public class GroupUpdate_UI extends JFrame{
 				if(gPwtf.getText().equals(regPwtf.getText())){
 					JOptionPane.showMessageDialog(null, "모임수정이 성공적으로 이루어졌습니다.");
 					
-					new Group_Calendar_UI(session, groupName);
+					new Leader_Calendar_UI(session, groupName);
 					setVisible();
 					
 				}else{

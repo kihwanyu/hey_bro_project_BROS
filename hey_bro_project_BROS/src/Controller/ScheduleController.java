@@ -56,4 +56,15 @@ public class ScheduleController {
 		}
 		return result;
 	}
+	public void process(String key, String userId, boolean types){
+		switch (key) {
+		case "includeNameInGroup.do":
+			sDao.includeNameInGroup(userId);
+			break;
+		
+		default:
+			break;
+		}
+		
+	}
 }

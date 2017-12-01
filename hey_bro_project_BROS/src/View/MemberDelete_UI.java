@@ -7,7 +7,10 @@ import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
+import Controller.GroupController;
 import Controller.MemberController;
+import Controller.ScheduleController;
+import Model.vo.Group;
 import Model.vo.Member;
 import Model.vo.Session;
 
@@ -17,8 +20,11 @@ public class MemberDelete_UI extends JPanel {
 	private JPanel superPanel; 	//수정
 	private JPanel tempPanel;	//수정
 	private MemberController c = new MemberController(); //수정
+	private GroupController gc = new GroupController();
+	private ScheduleController sc = new ScheduleController();
 	private Member m = new Member(); //수정
 	private Session session; //수정
+	private Group g = new Group();
 	JRadioButton check = new JRadioButton();
 	//
 	/**
@@ -136,6 +142,8 @@ public class MemberDelete_UI extends JPanel {
 			public void mousePressed(MouseEvent e) {
 				if(check.isSelected()){
 					c.process("MemberDelete.do", session);
+					gc.process("GroupDelete.do", session);
+					sc.process("ScheduleDelete.do", session.getUserId());
 					loginPage();	
 					JOptionPane.showMessageDialog(null, "회원이 탈퇴되었습니다.");
 				} else {

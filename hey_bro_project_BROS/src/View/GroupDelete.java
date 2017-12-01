@@ -16,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import Controller.GroupController;
+import Controller.ScheduleController;
+import Model.vo.Group;
 import Model.vo.Session;
 
 public class GroupDelete extends JFrame{
@@ -26,7 +28,8 @@ public class GroupDelete extends JFrame{
 	//
 	private Session session = new Session();
 	private GroupController gc = new GroupController();
-	public GroupDelete(Session session, String gName) {
+	private ScheduleController sc = new ScheduleController();
+	public GroupDelete(Session session, String gName, Group group) {
 		//JFrame mf = new JFrame();
 		// 프레임의 사이즈를 구합니다.
 		Dimension frameSize = this.getSize();
@@ -89,6 +92,8 @@ public class GroupDelete extends JFrame{
 			public void mouseReleased(MouseEvent e) {
 				if(check.isSelected()){
 					gc.process("GroupDelete.do", session);
+					sc.process("ScheduleDelete.do", group.getNumber());
+					
 					JOptionPane.showMessageDialog(null, "그룹을 삭제했습니다.");
 					
 					mainPage();
@@ -170,7 +175,7 @@ public class GroupDelete extends JFrame{
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				new Group_Calendar_UI(session, gName);
+				new Leader_Calendar_UI(session, gName);
 				setVisible();
 			}
 
