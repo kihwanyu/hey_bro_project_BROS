@@ -25,22 +25,27 @@ public class User_Celendar_UI extends JFrame{
       //JFrame mf = new JFrame();      
       m = c.process("MemberSatting.do", session);
       this.setLayout(null);
-      this.setBackground(Color.WHITE);
+    //  this.setBackground(Color.WHITE);
       //프레임 크기
       this.setBounds(100, 50, 1100, 800);
       //프레임 이름
       this.setTitle("Hey~bro");
       this.setResizable(false);
+      
 
       //달력 패널 
       JPanel cjp = new JPanel();
       cjp.setBounds(300, 130, 700, 500);
       cjp.setLayout(new GridLayout(6, 7, 0, 70));
+      cjp.setOpaque(false);
       Object[] obj = new Object[43];
       for (int i = 1; i < obj.length; i++) {
          String str2 = String.valueOf(i);
          cjp.add(new JButton(str2));   
       }
+      
+      
+      
       //달력 첫줄 일자 텍스트필드
       JPanel text1 = new JPanel();
       text1.setBounds(300, 155, 700, 70);
@@ -112,6 +117,7 @@ public class User_Celendar_UI extends JFrame{
       JPanel cPanel = new JPanel(); 
       cPanel.setBounds(594, 30, 110, 30);
       Calendar calendar = Calendar.getInstance();
+      cPanel.setOpaque(false);
 
       Date value = calendar.getTime(); // 현재날짜
       calendar.add(calendar.YEAR, -50); // 현재날짜에서 50 년 뺀것
@@ -135,13 +141,18 @@ public class User_Celendar_UI extends JFrame{
       backB.setBounds(69, 670, 100, 30);
 
       JPanel mainPanel = new JPanel();
-      mainPanel.setBackground(Color.WHITE);
+      //mainPanel.setBackground(Color.WHITE);
       mainPanel.setSize(1100, 800);
+   //   mainPanel.setOpaque(false);
       JPanel userPanel = new JPanel();
-
+     
+      JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/GS2840-1000x1000.png"));
+		background.setLocation(0, 0);
+		background.setSize(1100, 800);
+		this.add(background);
 
       userPanel.setLocation(0, 0);
-      userPanel.setBackground(Color.LIGHT_GRAY);
+      userPanel.setBackground(Color.pink);
       userPanel.setSize(240, 800);
       //icon_ : 좌측버튼
       //icon : 우측버튼

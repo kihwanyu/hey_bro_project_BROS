@@ -70,12 +70,19 @@ public class GroupListForMembers extends Frame {
 		//System.out.println("date:"+date);
 		//JFrame mf = new JFrame();		
 		this.setBounds(100, 50, 1100, 800);
-		this.setLocation((screenSize.width - frameSize.width)/7, (screenSize.height - frameSize.height)/8);
+	//	this.setLocation((screenSize.width - frameSize.width)/7, (screenSize.height - frameSize.height)/8);
 		this.setLayout(null);
 
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBounds(0, 0, 1100, 800);
+		panel.setOpaque(false);
+		
+		JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/The Japanese Bridge (The Water-Lily Pond) 1899 05 Claude Monet.png"));
+		background.setLocation(0, 0);
+		background.setSize(1100, 800);
+		this.add(background);
+		
 
 		//Group Name
 		JLabel lb1 = new JLabel(g.getgName());
@@ -177,6 +184,7 @@ public class GroupListForMembers extends Frame {
 		//table.setAutoCreateRowSorter(true);
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setRowHeight(40);
+		table.setOpaque(false);
 		JTableHeader th = table.getTableHeader();
 		th.setBounds(100, 130, 900, 50);
 		th.setReorderingAllowed(false);
@@ -301,14 +309,14 @@ public class GroupListForMembers extends Frame {
 		});
 
 
-		panel.add(lb1);
-		panel.add(lb2);	
-		panel.add(currentMonth);
-		panel.add(th);
-		panel.add(table);
-		panel.add(sp);
-		panel.add(back);	
-		panel.add(scheduleRegister_bt);
+		background.add(lb1);
+		background.add(lb2);	
+		background.add(currentMonth);
+		background.add(th);
+		background.add(table);
+		background.add(sp);
+		background.add(back);	
+		background.add(scheduleRegister_bt);
 		this.add(panel);
 
 

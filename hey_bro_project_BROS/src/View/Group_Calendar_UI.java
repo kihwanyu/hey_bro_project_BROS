@@ -70,7 +70,7 @@ public class Group_Calendar_UI extends Frame{
 		date_bt = new JButton[42];
 		monthList = new JComboBox<>();
 		this.setLayout(null);
-		this.setBackground(Color.WHITE);
+		//this.setBackground(Color.WHITE);
 		//프레임 크기
 		this.setSize(1100, 800);
 		//프레임 이름
@@ -82,6 +82,9 @@ public class Group_Calendar_UI extends Frame{
 		JPanel cjp = new JPanel();
 		cjp.setBounds(300, 130, 700, 500);
 		cjp.setLayout(new GridLayout(6, 7, 0, 70));
+		
+		
+			
 		for(int i = 0; i < date_bt.length; i++){
 			date_bt[i] = new JButton(String.valueOf(i));
 		}
@@ -188,10 +191,12 @@ public class Group_Calendar_UI extends Frame{
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground(Color.WHITE);
 		mainPanel.setSize(1100, 800);
+		
+	
 
 		JPanel userPanel = new JPanel();
 		userPanel.setLocation(0, 0);
-		userPanel.setBackground(Color.LIGHT_GRAY);
+		userPanel.setBackground(Color.ORANGE);
 		userPanel.setSize(240, 800);
 		//icon_ : 좌측버튼
 		//icon : 우측버튼
