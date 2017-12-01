@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<comment>Thu Nov 30 16:38:03 KST 2017</comment>
-<entry key="6">null, 구주승의 모임, 123, 321, 123, 123, 11</entry>
-<entry key="5">null, 321, 123, 123, 123, 123, 123</entry>
-<entry key="4">null, 헬로우, , 1234, , , 유기환</entry>
-<entry key="3">null, 123, , 11, 11, 11, 11</entry>
-<entry key="2">null, 123, 123, 123, 123, 123, 11</entry>
-<entry key="1">null, 142, 123, 123, 123, 123, 11</entry>
-<entry key="0">null, BROS, 프로젝트, 1234, 환영합니다! BROS입니다., 프로젝트 12월 1일까지 완성, rlghks94</entry>
-<entry key="7">11, 11, 11, 남, 19400101, 11, null</entry>
+<comment>Fri Dec 01 12:23:11 KST 2017</comment>
+<entry key="0">11, 11, 11, 남, 19400101, 11, hey_bro_project_BROS/src/Model/Data/img/defalt.png</entry>
 </properties>

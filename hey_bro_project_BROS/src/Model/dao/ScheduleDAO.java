@@ -155,7 +155,8 @@ public class ScheduleDAO {
 		Properties prop = new Properties();
 		Map<Integer,Schedule> scheduleMap = new HashMap<>();
 		ArrayList<Schedule> scheduleArrayList = new ArrayList<>(); 
-
+		System.out.println("넘어온 number = " + s.getNumber());
+		
 		int number;
 		String gName;
 		String userID;
@@ -201,12 +202,16 @@ public class ScheduleDAO {
 		
 		Collection<Schedule> scheduleValues = scheduleMap.values();
 		scheduleArrayList.addAll(scheduleValues);
+		System.out.println("scheduleArrayList.size = " + scheduleArrayList.size());
 		prop.clear();
 		for(int i = 0; i <scheduleArrayList.size(); i++){
-			if(scheduleArrayList.get(i).getNumber()==(s.getNumber())){
-				//System.out.println(scheduleArrayList.get(i));
+			System.out.println(i);
+			if(scheduleArrayList.get(i).getNumber() == s.getNumber()){
+				System.out.println("shceduleArrayList.get(i) = " + scheduleArrayList.get(i));
+				System.out.println("걸렸다");
 				scheduleArrayList.set(i, s);
-				//System.out.println(scheduleArrayList.get(i));
+				System.out.println("shceduleArrayList.get(i) = " + scheduleArrayList.get(i));
+
 			}
 			prop.setProperty(String.valueOf(i).toString(), scheduleArrayList.get(i).toString());
 		}
@@ -305,5 +310,85 @@ public class ScheduleDAO {
 		return result;
 	}
 	
+	public void includeNameInGroup(String userId){
+		Properties prop = new Properties();
+		Map<Integer,Schedule> scheduleMap = new HashMap<>();
+		ArrayList<Schedule> scheduleArrayList = new ArrayList<>(); 
+
+		
+		int number;
+		String gName;
+		String userID;
+		String data;
+		String startTime;
+		String endTime;
+		String title;
+		String contents;
+		
+		try {
+			prop.loadFromXML(new FileInputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\schedule.xml"));
+			//System.out.println(prop.size());
+			for(int i = 0; i < prop.size(); i++){
+				String str;
+
+				String[] str_arr = new String[8];
+
+				str = prop.getProperty(String.valueOf(i).toString());
+				if(str!=null){
+					str_arr = str.split(", ");
+
+					number = Integer.parseInt(str_arr[0]);
+					gName = str_arr[1];
+					userID = str_arr[2];
+					data = str_arr[3];
+					startTime = str_arr[4];
+					endTime = str_arr[5];
+					title = str_arr[6];	
+					contents = str_arr[7];
+					//contents = str_arr[8];
+					//
+					Schedule schedule = new Schedule(number, gName,userID,data,startTime,endTime,title,contents);
+
+					scheduleArrayList.add(schedule);
+				}
+			}	
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		for(int i = 0; i < scheduleArrayList.size(); i++){
+			if(scheduleArrayList.get(i).getUserName().equals(userId)){
+				System.out.println("scheduleArrayList.get(i):"+scheduleArrayList.get(i));
+				scheduleArrayList.remove(i);
+			
+				
+			}
+		}
+		
+		for(int i = 0; i < scheduleArrayList.size(); i++){
+			System.out.println(scheduleArrayList.get(i));
+			scheduleMap.put(i, scheduleArrayList.get(i));
+		}
+		
+		Set<Integer> keys = scheduleMap.keySet();
+		Iterator<Integer> shceIter = keys.iterator();
+		
+		try {
+			prop.clear();
+			while(shceIter.hasNext()){
+				int key = shceIter.next();
+				prop.setProperty(String.valueOf(key).toString(), scheduleMap.get(key).toString());
+			}
+			
+			prop.storeToXML(new FileOutputStream("hey_bro_project_BROS\\src\\Model\\Data\\xml\\schedule.xml"),String.valueOf(new Date()).toString());
+			//System.out.println("성공적으로 회원가입이 완료되었습니다.");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

@@ -137,7 +137,7 @@ public class LeaveGroup_UI extends JFrame {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				new Group_Calendar_UI(session, gName);				
+				new Leader_Calendar_UI(session, gName);				
 			}
 
 			@Override

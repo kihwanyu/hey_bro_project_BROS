@@ -59,7 +59,7 @@ public class GroupListForMembers extends Frame {
 		 * (모니터화면 가로 - 프레임화면 가로) / 2,
 		 * (모니터화면 세로 - 프레임화면 세로) / 2 이렇게 설정한다.
 		 */
-
+		System.out.println("그룹명 = " + g.getgName());
 
 		this.session = session;
 		this.year = year;
@@ -198,7 +198,7 @@ public class GroupListForMembers extends Frame {
 					public void mousePressed(MouseEvent e) {
 						int row = table.getSelectedRow();
 						int column =table.getSelectedColumn();
-						new ScheduleUpdate_UI().scheduleEdit(session,copyList,tableList,row,column,year,month,date,gName);
+						new ScheduleUpdate_UI(session,copyList,tableList,row,column,year,month,date,gName);
 						
 						thisSetVisibleFalse();
 					}
@@ -217,11 +217,12 @@ public class GroupListForMembers extends Frame {
 					
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						if(e.getButton()==1) {
-						new ScheduleUpdate_UI();
+						
+					/*	if(e.getButton()==1) {
+						new ScheduleUpdate_UI(session,copyList,tableList,row,column,year,month,date,gName);
 						isVisible();
 						//System.out.println("눌림");
-						}
+						}*/
 					}
 				});
 
@@ -244,7 +245,7 @@ public class GroupListForMembers extends Frame {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				new Group_Calendar_UI(session, gName);
+				new Leader_Calendar_UI(session, gName);
 				thisSetVisibleFalse();
 			}
 

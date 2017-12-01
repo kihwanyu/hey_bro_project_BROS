@@ -270,6 +270,7 @@ public class GroupRegistor_UI extends JPanel {
 					btn.setEnabled(true);
 					}
 				} else {
+	
 					JOptionPane.showMessageDialog(null, "모임명이 중복 되었습니다.");
 				}				
 			}
@@ -282,33 +283,7 @@ public class GroupRegistor_UI extends JPanel {
 
 		});
 		
-		//조성식 수정
-		/*regPwtf.addKeyListener(new KeyListener(){
 
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if(regPwtf.getText().equals(null)){
-					loginBoolean = false;
-					btn.setEnabled(false);				
-				}else{
-					loginBoolean = true;
-					btn.setEnabled(true);	
-				}
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		});*/
 
 		this.add(groupOverlab);
 		this.add(title, "North");

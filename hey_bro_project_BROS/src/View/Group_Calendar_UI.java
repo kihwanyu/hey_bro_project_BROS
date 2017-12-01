@@ -173,12 +173,7 @@ public class Group_Calendar_UI extends Frame{
 		JButton backB = new JButton("뒤로가기");
 		backB.setBounds(69, 670, 100, 30);
 
-		JPanel mainPanel = new JPanel();
-		mainPanel.setBackground(Color.WHITE);
-		mainPanel.setSize(1100, 800);
-		JPanel userPanel = new JPanel();
-		
-		
+		//종료버튼
 		JButton exitBtn = new JButton("종료");
 		exitBtn.setBounds(980, 30, 100, 30);
 		exitBtn.addActionListener(new ActionListener(){
@@ -187,28 +182,27 @@ public class Group_Calendar_UI extends Frame{
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
 			}
-			
+
 		});
 
+		JPanel mainPanel = new JPanel();
+		mainPanel.setBackground(Color.WHITE);
+		mainPanel.setSize(1100, 800);
 
+		JPanel userPanel = new JPanel();
 		userPanel.setLocation(0, 0);
 		userPanel.setBackground(Color.LIGHT_GRAY);
 		userPanel.setSize(240, 800);
 		//icon_ : 좌측버튼
 		//icon : 우측버튼
 
-		Image icon_2 = new ImageIcon("hey_bro_project_BROS/src/View/img/Group_edit.PNG").getImage().getScaledInstance(205, 48, 0);
-		JButton groupUpdate_bt = new JButton(new ImageIcon(icon_2));
-		groupUpdate_bt.setLocation(30, 490);
-		groupUpdate_bt.setSize(180, 52);
-
-		Image icon_3 = new ImageIcon("hey_bro_project_BROS/src/View/img/모임 삭제 버튼.PNG").getImage().getScaledInstance(206, 50, 0);
-		JButton groupDelete_bt = new JButton(new ImageIcon(icon_3));
-		groupDelete_bt.setLocation(30, 560);
-		groupDelete_bt.setSize(180, 52);
+		/*Image icon_3 = new ImageIcon("hey_bro_project_BROS/src/View/img/모임 삭제 버튼.PNG").getImage().getScaledInstance(206, 50, 0);
+		JButton groupLeave_bt = new JButton(new ImageIcon(icon_3));
+		groupLeave_bt.setLocation(30, 560);
+		groupLeave_bt.setSize(180, 52);*/
 
 		//text
-		JLabel textGl = new JLabel("님은 모임장입니다.");
+		JLabel textGl = new JLabel("님은 모임원입니다.");
 		textGl.setLocation(90, 43);
 		textGl.setSize(120, 50);
 		JLabel textGln = new JLabel(session.getUserId());
@@ -231,6 +225,38 @@ public class Group_Calendar_UI extends Frame{
 			}		
 			cjp.add(date_bt[i]);
 		}
+		/*groupLeave_bt.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				new LeaveGroup_UI(session, gName);
+				thisSetVisibleFalse();
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+		});*/
 		backB.addMouseListener(new MouseListener() {
 
 			@Override
@@ -300,59 +326,8 @@ public class Group_Calendar_UI extends Frame{
 			}
 		});
 
-		groupUpdate_bt.addMouseListener(new MouseListener() {
-			@Override
-			public void mouseReleased(MouseEvent e) {
 
-			}
-			@Override
-			public void mousePressed(MouseEvent e) {
-				new GroupUpdate_UI(session, group, gName);
-				thisSetVisibleFalse();
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-			}
-		});
-		groupDelete_bt.addMouseListener(new MouseListener() {
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-			@Override
-			public void mousePressed(MouseEvent e) {
-				new GroupDelete(session, gName);
-				thisSetVisibleFalse();
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
-		
-		
+		this.add(exitBtn);
 		this.add(cjp);
 		this.add(monthList);
 		this.add(backB);
@@ -360,9 +335,7 @@ public class Group_Calendar_UI extends Frame{
 		this.add(dayP);
 		this.add(cPanel);
 		this.add(png);
-		this.add(exitBtn);
-		this.add(groupUpdate_bt);
-		this.add(groupDelete_bt);
+		//this.add(groupLeave_bt);
 		this.add(textGl);
 		this.add(textGln);
 		this.add(userPanel);
@@ -439,7 +412,7 @@ public class Group_Calendar_UI extends Frame{
 		}		
 		ArrayList<Schedule> thisMonthScheduleList = new ArrayList<>();
 		//SimpleDateFormat dateParse = new SimpleDateFormat("yyyy/MM");
-		
+
 		String thisMonthDate = year+"/"+month;
 		for(int i = 0; i < tempScheduleList.size(); i++){
 			String[] tempScheduleStr = String.valueOf(tempScheduleList.get(i).getDate()).split("/");
@@ -451,7 +424,7 @@ public class Group_Calendar_UI extends Frame{
 				thisMonthScheduleList.add(tempScheduleList.get(i));
 			}	
 		}
-		
+
 		int count = 0;
 		int temp = 0;
 		int indexTemp = 0;
@@ -504,7 +477,7 @@ public class Group_Calendar_UI extends Frame{
 						}
 					}	
 				} catch (IndexOutOfBoundsException e) {
-					//e.printStackTrace();
+					System.out.println();
 				}						
 			} else {
 				scheduleList.add("");

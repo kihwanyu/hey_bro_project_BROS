@@ -1,6 +1,8 @@
 package View;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -22,12 +24,15 @@ public class ScheduleUpdate_UI extends JFrame{
 
 	static private ScheduleController c = new ScheduleController();
 	static private Schedule s = new Schedule();
+	private ArrayList<String> copyList = new ArrayList<>();
 	private Session session;
 	private String groupName;
 	private String year;
 	private String month;
 	private String date;
-	public void scheduleEdit(Session session, ArrayList<String> copyList, ArrayList<Schedule> tableList, int row, int column, String year, String month, String date, String groupName){
+	
+	public ScheduleUpdate_UI(Session session, ArrayList<String> copyList, ArrayList<Schedule> tableList, int row, int column, String year, String month, String date, String groupName){
+		this.copyList = copyList;
 		this.session = session;
 		this.year = year;
 		this.month = month;
@@ -59,7 +64,6 @@ public class ScheduleUpdate_UI extends JFrame{
 		int year0 = Integer.parseInt(ymd[0]);
 		int month0 = Integer.parseInt(ymd[1]);
 		int date0 = Integer.parseInt(ymd[2]);
-
 		System.out.println("이거다"+datez[row*8-8]);
 		this.setBounds(100, 50, 800, 500);
 		this.setLayout(null);
@@ -151,10 +155,19 @@ public class ScheduleUpdate_UI extends JFrame{
 		
 		String starttime = String.valueOf(hourList1.getSelectedIndex())+":"+String.valueOf(miniteList1.getSelectedIndex());
 		
+
 		//뒤로가기 버튼
 		JButton return_bt = new JButton("뒤로가기");
 		return_bt.setLocation(650, 30);
 		return_bt.setSize(100,30);
+		return_bt.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				listPage();
+			}
+			
+		});
 		//일정 수정버튼
 		JButton scheduleDel_bt = new JButton("일정 삭제");
 		scheduleDel_bt.setLocation(650, 170);
@@ -212,8 +225,8 @@ public class ScheduleUpdate_UI extends JFrame{
 			@Override
 			public void mousePressed(MouseEvent e) {
 				c.process("ScheduleDelete.do", number);
-				Listpage();	
 				JOptionPane.showMessageDialog(null, "일정이 삭제되었습니다.");
+				listPage();	
 			}
 			
 			@Override
@@ -244,6 +257,7 @@ public class ScheduleUpdate_UI extends JFrame{
 				
 				c.process("ScheduleUpdate.do", s);
 				JOptionPane.showMessageDialog(null, "일정 수정이 성공적으로 이루어졌습니다.");
+				listPage();
 			}
 			
 			@Override
@@ -265,7 +279,7 @@ public class ScheduleUpdate_UI extends JFrame{
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	public void Listpage() {		
+	public void listPage() {		
 		this.setVisible(false);//현재 프레임의 비전을끄고
 		
 		new GroupListForMembers(session, year, month, date, groupName); //새로운 프레임을 만든다.

@@ -130,11 +130,13 @@ public class JoinGroup_UI extends JPanel {
 
 				if(g.getLeader().equals(session.getUserId())){
 					
-					new Group_Calendar_UI(session, name);
+					new Leader_Calendar_UI(session, name);
+					groupListArr.clear();
 					frameSetVisible();
 					
 				}else {
-					new Main_UI(session);
+					new Group_Calendar_UI(session, name);
+					groupListArr.clear();
 					frameSetVisible();
 				}
 			}
