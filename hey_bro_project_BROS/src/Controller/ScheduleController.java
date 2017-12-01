@@ -27,12 +27,16 @@ public class ScheduleController {
 		ArrayList<Schedule> scheduleArrayList = new ArrayList<>();
 		switch (key) {
 		case "ScheduleSatting.do":
-			scheduleArrayList = sDao.scheduleSatting(gName);
+			return scheduleArrayList = sDao.scheduleSatting(gName);
+			
+			
+		case "ScheduleDelete.do" :
+			sDao.gName(gName);
 			break;
 		default:
 			break;
 		}
-		return scheduleArrayList;
+		return null;
 	}
 	public void process(String key, Schedule schedule){
 		switch (key) {

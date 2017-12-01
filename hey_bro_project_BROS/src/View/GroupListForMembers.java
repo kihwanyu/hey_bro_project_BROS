@@ -26,6 +26,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import Controller.GroupController;
 import Controller.ScheduleController;
 import Model.vo.Group;
 import Model.vo.Member;
@@ -47,6 +48,7 @@ public class GroupListForMembers extends Frame {
 	private String year;
 	private String month;
 	private String date;
+	private GroupController gc = new GroupController();
 	private ArrayList<Schedule> list = new ArrayList<>();
 	private ArrayList<Schedule> tableList = new ArrayList<>();
 	public GroupListForMembers(Session session, String year, String month, String date, String gName){
@@ -245,8 +247,21 @@ public class GroupListForMembers extends Frame {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
+				g = gc.process("GroupSetting.do", gName, true);
+
+				if(g.getLeader().equals(session.getUserId())){
+					
+					new Leader_Calendar_UI(session, gName);
+					thisSetVisibleFalse();
+					
+				}else {
+					new Group_Calendar_UI(session, gName);
+					thisSetVisibleFalse();
+				}
+				
+				/*		if()
 				new Leader_Calendar_UI(session, gName);
-				thisSetVisibleFalse();
+				thisSetVisibleFalse();*/
 			}
 
 			@Override

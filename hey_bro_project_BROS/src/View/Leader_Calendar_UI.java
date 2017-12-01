@@ -53,6 +53,7 @@ public class Leader_Calendar_UI extends Frame{
 	public Leader_Calendar_UI(Session session, String gName/*방이름*/){
 
 		group = gc.process("GroupSetting.do", gName, true);
+		System.out.println("group.getNumber() = " + group.getNumber());
 		this.gName = gName;
 		// 프레임의 사이즈를 구합니다.
 		Dimension frameSize = this.getSize();

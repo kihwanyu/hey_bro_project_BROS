@@ -343,7 +343,7 @@ public class GroupDAO {
 		}
 		for(int i = 0; i < groupArrayList.size(); i++){
 			if(gName.equals(groupArrayList.get(i).getgName())){
-				System.out.println(groupArrayList.get(i));
+				System.out.println("groupArrayList = " + groupArrayList.get(i));
 				
 				return groupArrayList.get(i);
 			}

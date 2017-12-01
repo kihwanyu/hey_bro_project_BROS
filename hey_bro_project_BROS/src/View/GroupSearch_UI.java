@@ -99,8 +99,10 @@ public class GroupSearch_UI extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
+				
+				try{
 				if(session.getUserId().equals(gNtf.getText())){
-					JOptionPane.showMessageDialog(null, "회원님이 생성하신 모임은\n 모임입장을 이용해주세요.");
+					JOptionPane.showMessageDialog(null, "검색하신 모임장이 본인입니다.\n 모임입장을 이용해주세요.");
 					new Main_UI(session);
 					frameSetVisible();
 				}else{
@@ -121,6 +123,9 @@ public class GroupSearch_UI extends JPanel {
 					groupList.setSelectedIndex(0);
 					groupList.setLocation(200, 230);
 					groupList.setSize(390, 50);
+				}
+				}catch(Exception r){
+					JOptionPane.showMessageDialog(null, "검색하신 모임장의 모임이 없습니다.\n 다시 입력해주세요.");
 				}
 
 			}
@@ -178,10 +183,15 @@ public class GroupSearch_UI extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
+				if(!gNtf.getText().equals("")){
+					groupSession = groupList.getItemAt(groupList.getSelectedIndex());
+					new GroupJoin_Pw_UI(superFrame, groupSession, session);
+					frameSetVisible();
 
-				groupSession = groupList.getItemAt(groupList.getSelectedIndex());
-				new GroupJoin_Pw_UI(superFrame, groupSession, session);
-				frameSetVisible();
+				}else{
+					JOptionPane.showMessageDialog(null, "그룹장을 입력하세요.");
+					
+				}
 
 			}//
 

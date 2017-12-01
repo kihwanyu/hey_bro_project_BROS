@@ -91,6 +91,7 @@ public class GroupController {
 		switch(key){
 		case "GroupSetting.do" :
 			group = gDao.groupSetting(gName);//
+			System.out.println(group.getNumber());
 			break;
 
 		default :
