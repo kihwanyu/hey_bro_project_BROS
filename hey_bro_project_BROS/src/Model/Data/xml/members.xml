@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<comment>Fri Dec 01 17:24:23 KST 2017</comment>
-<entry key="1">123, 123, 123, 남, 19400101, 123, hey_bro_project_BROS/src/Model/Data/img/defalt.png</entry>
-<entry key="0">11, 11, 11, 남, 19400101, 11, hey_bro_project_BROS/src/Model/Data/img/defalt.png</entry>
+<comment>Fri Dec 01 17:32:07 KST 2017</comment>
+<entry key="3">조성식321, 1234, 조성식, 남, 19450101, 성식짱@밤샛다.com, C:\\Users\\유기환\\Desktop\\a.jpg</entry>
+<entry key="2">정란123, 1234, 한정란, 여, 19930921, wjdfks@gmail.com, C:\\Users\\유기환\\Desktop\\a.jpg</entry>
+<entry key="1">wntmd123, 1234, 구주승, 남, 20190302, rnwntmd@gmail.com, C:\\Users\\유기환\\Desktop\\a.jpg</entry>
+<entry key="0">rlghks94, 0526, 유기환, 남, 19940501, ddf0526@naver,com, C:\\Users\\유기환\\Desktop\\mug_obj_142951678537513680.jpg</entry>
 </properties>

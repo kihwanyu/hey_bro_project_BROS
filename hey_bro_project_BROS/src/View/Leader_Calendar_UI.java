@@ -178,7 +178,7 @@ public class Leader_Calendar_UI extends Frame{
 		mainPanel.setBackground(Color.WHITE);
 		mainPanel.setSize(1100, 800);
 		JPanel userPanel = new JPanel();
-		
+		userPanel.setBackground(Color.PINK);
 		//종료버튼
 		JButton exitBtn = new JButton("종료");
 		exitBtn.setBounds(980, 30, 100, 30);
