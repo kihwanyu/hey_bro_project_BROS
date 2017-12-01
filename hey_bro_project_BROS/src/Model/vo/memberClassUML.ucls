@@ -67,7 +67,7 @@
   </class>  
   <class id="8" language="java" name="View.FindMember_UI" project="hey_bro_project_BROS" 
     file="/hey_bro_project_BROS/hey_bro_project_BROS/src/View/FindMember_UI.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="672" y="-97"/>    
+    <position height="-1" width="-1" x="651" y="-112"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,31 +75,31 @@
     </display>  
   </class>  
   <association id="9">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="10" name="c">        
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="10" name="session">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="11" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="12">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="13" name="c">        
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="13" name="m">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="14" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="15">    
-    <end type="SOURCE" refId="7" navigable="false">      
+    <end type="SOURCE" refId="6" navigable="false">      
       <attribute id="16" name="c">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
@@ -111,20 +111,20 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="18">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="19" name="member">        
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="19" name="c">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="20" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="21">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="22" name="m">        
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="22" name="member">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="23" minimum="0" maximum="1">        
@@ -147,43 +147,43 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="27">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="28" name="session">        
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="28" name="c">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="29" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="30">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="31" name="c">        
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="31" name="m">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="32" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="33">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="34" name="session">        
+      <attribute id="34" name="c">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="35" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="36">    
-    <end type="SOURCE" refId="4" navigable="false">      
+    <end type="SOURCE" refId="5" navigable="false">      
       <attribute id="37" name="m">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
@@ -196,18 +196,18 @@
   </association>  
   <association id="39">    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="40" name="m">        
+      <attribute id="40" name="session">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="41" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="42">    
-    <end type="SOURCE" refId="8" navigable="false">      
+    <end type="SOURCE" refId="5" navigable="false">      
       <attribute id="43" name="c">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
