@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -74,6 +75,12 @@ public class ScheduleUpdate_UI extends JFrame{
 		titleL.setFont(new Font(Font.DIALOG, Font.BOLD, 26));
 		titleL.setBounds(150, 30, 120, 50);
 
+		
+		JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/GS2840-1000x1000.png"));
+		background.setLocation(0, 0);
+		background.setSize(800, 500);
+		mp.add(background);
+		
 		//일정(년/월/일).
 		JComboBox<String> yearList = new JComboBox<>();
 		JComboBox<String> monthList = new JComboBox<>();
@@ -196,24 +203,25 @@ public class ScheduleUpdate_UI extends JFrame{
 		String endtime = String.valueOf(hourList2.getSelectedIndex())+":"+String.valueOf(miniteList2.getSelectedIndex());
 		//System.out.println("endtime:"+miniteList2.getSelectedIndex());
 		this.add(mp);
-		mp.add(yearList);
-		mp.add(monthList);
-		mp.add(dateList);
+		background.add(yearList);
+		background.add(monthList);
+		background.add(dateList);
 
-		mp.add(scheduleDel_bt);
-		mp.add(return_bt);
-		mp.add(scheduleUpdate_bt);
-		mp.add(miniteList1);
-		mp.add(hourList1);
-		mp.add(miniteList2);
-		mp.add(hourList2);
-		mp.add(contentsL);
-		mp.add(contentsTf);
-		mp.add(startL);
-		mp.add(endL);
-		mp.add(titleL);
-		mp.add(tftitle);
-		mp.add(titleTf);
+		background.add(scheduleDel_bt);
+		background.add(return_bt);
+		background.add(scheduleUpdate_bt);
+		background.add(miniteList1);
+		background.add(hourList1);
+		background.add(miniteList2);
+		background.add(hourList2);
+		background.add(contentsL);
+		background.add(contentsTf);
+		background.add(startL);
+		
+		background.add(endL);
+		background.add(titleL);
+		background.add(tftitle);
+		background.add(titleTf);
 		//
 		
 		scheduleDel_bt.addMouseListener(new MouseListener() {

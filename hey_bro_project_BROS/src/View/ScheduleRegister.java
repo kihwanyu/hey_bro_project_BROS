@@ -1,15 +1,20 @@
 package View;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import Controller.ScheduleController;
 import Model.vo.Session;
@@ -45,12 +50,21 @@ public class ScheduleRegister extends JFrame{
 
 		this.setSize(800, 500);
 		this.setLayout(null);
+		
 		mp.setSize(800, 500);
 		mp.setLayout(null);
+		
+		
 		//창 타이틀
 		JLabel titleL = new JLabel("일정 추가");
 		titleL.setFont(new Font(Font.DIALOG, Font.BOLD, 26));
 		titleL.setBounds(150, 10, 120, 50);
+		
+		//배경
+		JLabel background=new JLabel(new ImageIcon("hey_bro_project_BROS/src/View/img/GS2840-1000x1000.png"));
+		background.setLocation(0, 0);
+		background.setSize(800, 500);
+		mp.add(background);
 
 		//제목입력 라벨과 텍스트필드
 		JLabel tftitle = new JLabel("제목 입력 : ");
@@ -175,21 +189,23 @@ public class ScheduleRegister extends JFrame{
 		JButton return_bt = new JButton("뒤로가기");
 		return_bt.setLocation(650, 30);
 		return_bt.setSize(100,30);
+		
 		this.add(mp);
 
-		mp.add(miniteList1);
-		mp.add(hourList1);
-		mp.add(miniteList2);
-		mp.add(hourList2);
-		mp.add(contentsL);
-		mp.add(contentsTf);
-		mp.add(startL);
-		mp.add(endL);
-		mp.add(titleL);
-		mp.add(tftitle);
-		mp.add(titleTf);
-		mp.add(scheduleRegister_bt);
-		mp.add(return_bt);
+		background.add(miniteList1);
+		background.add(hourList1);
+		background.add(miniteList2);
+		background.add(hourList2);
+		background.add(contentsL);
+		background.add(contentsTf);
+		background.add(startL);
+		background.add(endL);
+		background.add(titleL);
+		background.add(tftitle);
+		background.add(titleTf);
+		background.add(scheduleRegister_bt);
+		background.add(return_bt);
+		
 
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
