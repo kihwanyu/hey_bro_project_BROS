@@ -30,6 +30,7 @@ public class GroupDelete extends JFrame{
 	private GroupController gc = new GroupController();
 	private ScheduleController sc = new ScheduleController();
 	public GroupDelete(Session session, String gName, Group group) {
+		System.out.println("gName = " + gName);
 		//JFrame mf = new JFrame();
 		// 프레임의 사이즈를 구합니다.
 		Dimension frameSize = this.getSize();
@@ -86,13 +87,10 @@ public class GroupDelete extends JFrame{
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
 				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
 				if(check.isSelected()){
 					gc.process("GroupDelete.do", session);
-					sc.process("ScheduleDelete.do", group.getNumber());
+					System.out.println("group.getNumber() = " + group.getNumber());
+					sc.process("ScheduleDelete.do", gName);
 					
 					JOptionPane.showMessageDialog(null, "그룹을 삭제했습니다.");
 					
@@ -133,6 +131,10 @@ public class GroupDelete extends JFrame{
 					
 					JOptionPane.showMessageDialog(null, "안내사항 확인 버튼을 눌러주세요.");
 				}
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
 				
 			}
 
