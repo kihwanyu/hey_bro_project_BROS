@@ -354,7 +354,7 @@ public class Group_Calendar_UI extends Frame{
 	public void CalendarButtonUpdate(Calendar calendar, int monthValue){
 		dateList.clear();
 		scheduleList.clear();
-
+		
 		int year = calendar.get(Calendar.YEAR);
 		int month = monthValue;
 
@@ -362,9 +362,7 @@ public class Group_Calendar_UI extends Frame{
 
 		int date_valueArr = 0;
 		int day_of_weekArr = 0;
-		
-		int day_count = 1;
-		
+
 		switch (day_of_week) {
 		case 1:
 			day_of_weekArr = 0;
@@ -411,14 +409,12 @@ public class Group_Calendar_UI extends Frame{
 		for(int i = 0; i < day_of_weekArr; i++){
 			dateList.add("");
 		}
-		for(int i = day_of_weekArr; i < date_valueArr; i++){
-			
-			dateList.add(String.valueOf(day_count).toString());
-			day_count++;
+		for(int i = 0; i < date_valueArr; i++){
+			dateList.add(String.valueOf(i+1).toString());
 		}
-		for(int i = date_valueArr; i < date_bt.length; i ++){
+		for(int i = date_valueArr+3; i < date_bt.length; i ++){
 			dateList.add("");
-		}		
+		}			
 		ArrayList<Schedule> thisMonthScheduleList = new ArrayList<>();
 		//SimpleDateFormat dateParse = new SimpleDateFormat("yyyy/MM");
 
